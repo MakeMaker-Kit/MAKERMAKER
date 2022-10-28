@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import "./styles/makemaker.css";
-import ScrollToTop from "./utils/scrollToTop";
+import ScrollToTop from "./hooks/scrollToTop";
 import { IconContextProvider } from "./services/context/OnIconContext";
 import store from "./services/redux/app/store";
 

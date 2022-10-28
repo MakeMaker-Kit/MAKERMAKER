@@ -1,3 +1,6 @@
+export const textStyles = {};
+export const elementStyles = {};
+
 export const themes = {
   themeWrapper: {},
   Centralised: "max-w-default mx-auto",
