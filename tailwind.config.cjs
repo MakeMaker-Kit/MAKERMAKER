@@ -9,6 +9,13 @@ module.exports = {
         cascadiacodePL: ["CascadiaCodePL", "monospace"],
         cascadiacodePLItalic: ["CascadiaCodePLItaic", "monospace"],
       },
+      colors: {
+        darkWhite: "#fefffe",
+        appGreen: "#5cb757",
+        appBlue: "#468ed5",
+        appRed: "#cc282c",
+        appPink: "#e59293",
+      },
       fontSize: {
         h1: "44px",
         h2: "36px",
