@@ -28,5 +28,7 @@ export const NavbarData: Array<navType> = [
     id: uuid(),
   },
 ];
+
+export interface 
 // 22695439587
 // 04-06-2004
