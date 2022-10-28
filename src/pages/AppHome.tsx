@@ -7,7 +7,9 @@ const AppHome = () => {
       ,
       <Wrapper>
         <div>
-          <h1>Hello World</h1>
+          <h1 className="text-3xl text-black font-cascadiacode">
+            Hello World 122934
+          </h1>
         </div>
       </Wrapper>
     </>

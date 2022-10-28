@@ -3,6 +3,12 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        cascadiacode: ["CascadiaCode", ",monospace"],
+        cascadiacodeItalic: ["CascadiaCodeItalic", "monospace"],
+        cascadiacodePL: ["CascadiaCodePL", "monospace"],
+        cascadiacodePLItalic: ["CascadiaCodePLItaic", "monospace"],
+      },
       fontSize: {
         h1: "44px",
         h2: "36px",
