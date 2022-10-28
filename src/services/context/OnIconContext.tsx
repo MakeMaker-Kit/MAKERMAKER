@@ -2,6 +2,7 @@ import React from "react";
 import { BiSearchAlt, BiMenu } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsTwitter } from "react-icons/bs";
 import { IconContextProps } from "./context.type";
 
@@ -22,6 +23,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         FaPinterestP,
         FaLinkedinIn,
         BsTwitter,
+        MdOutlineKeyboardArrowDown,
       }}
     >
       {children}

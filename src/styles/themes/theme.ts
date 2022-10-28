@@ -1,5 +1,18 @@
-export const textStyles = {};
-export const elementStyles = {};
+export const fontFamily = {
+  primary: "text-cascadiacode",
+  primaryItalic: "text-cascadiacodeItalic",
+  secondary: "text-cascadiacodePL",
+  secondaryItalic: "cascadiacodePLItalic",
+};
+const { primary, primaryItalic, secondary, secondaryItalic } = fontFamily;
+export const textStyles = {
+  mainLayout: `overflow-hidden antialised `,
+  mainText: `${primary} text-sm `,
+};
+export const elementStyles = {
+  ul: `list-type-style-none `,
+  li: ``,
+};
 export const wrapperStypes = {
   pageCenter: "max-w-default mx-auto",
 };
