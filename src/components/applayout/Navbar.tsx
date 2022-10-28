@@ -5,6 +5,7 @@ import { themes, flexLayout, textStyles } from "../../styles/themes/theme";
 import { useIcon } from "../../hooks/dispatchContext";
 import { NavbarData } from "../../utils/homeData";
 import { logoImage } from "../../assets/images";
+import { NavbarBtnDropdown } from "../dropdowns";
 
 const Navbar = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
@@ -34,16 +35,17 @@ const Navbar = () => {
                 {NavbarData.map((nav, index: number) => {
                   const { id, link, name } = nav;
                   return (
-                    <li
-                      className={classNames(
-                        `${flexRowCenter}`,
-                        `${mainText} ${mainLayout} uppercase`
-                      )}
-                      key={id}
-                    >
-                      <span>{name}</span>
-                      <MdOutlineKeyboardArrowDown />
-                    </li>
+                    // <li
+                    //   className={classNames(
+                    //     `${flexRowCenter}`,
+                    //     `${mainText} ${mainLayout} uppercase`
+                    //   )}
+                    //   key={id}
+                    // >
+                    //   <span>{name}</span>
+                    //   <MdOutlineKeyboardArrowDown />
+                    // </li>
+                    <NavbarBtnDropdown name={name} title={link} id={id} />
                   );
                 })}
 

@@ -1,4 +1,4 @@
-import { navType } from "./utils.types";
+import { navType, NavItemTypes } from "./utils.types";
 import uuid from "react-uuid";
 
 export const NavbarData: Array<navType> = [
@@ -28,7 +28,13 @@ export const NavbarData: Array<navType> = [
     id: uuid(),
   },
 ];
-
-export interface 
+//  Home Navbar DropdownMenu
+export const homeNavData: NavItemTypes[] = [
+  {
+    name: "",
+    link: "",
+    id: uuid(),
+  },
+];
 // 22695439587
 // 04-06-2004

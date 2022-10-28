@@ -3,3 +3,9 @@ export interface navType {
   link: string;
   id: number | string;
 }
+
+export interface NavItemTypes {
+  name: string;
+  link: string;
+  id: number | string;
+}
