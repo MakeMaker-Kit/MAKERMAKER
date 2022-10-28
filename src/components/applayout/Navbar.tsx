@@ -45,7 +45,7 @@ const Navbar = () => {
                     //   <span>{name}</span>
                     //   <MdOutlineKeyboardArrowDown />
                     // </li>
-                    <NavbarBtnDropdown name={name} title={link} id={id} />
+                    <NavbarBtnDropdown name={name} link={link} id={id} />
                   );
                 })}
 

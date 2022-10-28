@@ -1,6 +1,6 @@
 import { navType, NavItemTypes } from "./utils.types";
 import uuid from "react-uuid";
-
+import { HomeIcon } from "@radix-ui/react-icons";
 export const NavbarData: Array<navType> = [
   {
     name: "Home",
@@ -31,9 +31,22 @@ export const NavbarData: Array<navType> = [
 //  Home Navbar DropdownMenu
 export const homeNavData: NavItemTypes[] = [
   {
-    name: "",
+    name: "Brand",
     link: "",
     id: uuid(),
+    icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
+  },
+  {
+    name: "Works",
+    link: "",
+    id: uuid(),
+    icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
+  },
+  {
+    name: "Testimonials",
+    link: "",
+    id: uuid(),
+    icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
   },
 ];
 // 22695439587

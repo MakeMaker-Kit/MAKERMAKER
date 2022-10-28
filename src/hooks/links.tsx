@@ -1,10 +1,13 @@
 import React from "react";
 import { flexLayout, textStyles } from "../styles/themes/theme";
 import { useIcon } from "./dispatchContext";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import classNames from "classnames";
+
 type NavLinkProps = Omit<React.ComponentProps<"li">, "className"> & {};
-const Links = React.forwardRef<HTMLLIElement, NavLinkProps>(
+interface MoreProps extends NavLinkProps {
+  link: string;
+}
+const Links = React.forwardRef<HTMLLIElement, MoreProps>(
   ({ children, ...props }, ref) => {
     const { flexRowCenter } = flexLayout;
     const { mainLayout, mainText } = textStyles;
