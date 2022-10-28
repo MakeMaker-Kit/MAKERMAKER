@@ -2,7 +2,11 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import React from "react";
 import Links from "../../../../hooks/links";
 import classNames from "classnames";
-import { themes, flexLayout } from "../../../../styles/themes/theme";
+import {
+  themes,
+  flexLayout,
+  textStyles,
+} from "../../../../styles/themes/theme";
 import { HomeIcon } from "@radix-ui/react-icons";
 import { homeNavData } from "../../../../utils/homeData";
 
@@ -14,6 +18,7 @@ interface Props {
 const NavbarBtnDropdown = (props: Props) => {
   const { containerWrapper } = themes;
   const { flexRowCenter, flexRowCenterBetween, flexRowBetween } = flexLayout;
+  const { mainLayout, textCustom } = textStyles;
   return (
     <>
       <div className={`relative  inline-block text-center`}>
@@ -30,7 +35,7 @@ const NavbarBtnDropdown = (props: Props) => {
             className={classNames(
               `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
               `w-48 rounded-lg px-1.5 py-1 shadow-md md:w-56`,
-              `bg-gray-800 `
+              `bg-appGreen `
             )}
           >
             {homeNavData.map(({ icon, id, link, name }, i) => (
@@ -38,12 +43,18 @@ const NavbarBtnDropdown = (props: Props) => {
                 key={id}
                 className={classNames(
                   `${flexRowBetween} cursor-default select-none items-center rounded-md px-2 py-2 text-xs outline-none `,
-                  `text-gray-500 focus:bg-gray-900`
+                  `text-gray-50 focus:bg-gray-900`
                 )}
               >
                 <div className={classNames(`${flexRowCenter}`)}>
                   {icon}
-                  <span>{name}</span>
+                  <span
+                    className={classNames(
+                      `${textCustom} ${mainLayout} text-xs italic`
+                    )}
+                  >
+                    {name}
+                  </span>
                 </div>
 
                 <span>⌘+N</span>
