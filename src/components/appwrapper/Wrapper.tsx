@@ -1,16 +1,19 @@
 import React from "react";
 import { WrapperProps } from "./wrapper.types";
 import { Navbar, Footer } from "../applayout";
+import { wrapperStypes, themes } from "../../styles/themes/theme";
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
+  const { pageCenter } = wrapperStypes;
+  const { boxFull } = themes;
   return (
     <>
-      <div>
-        <div>
+      <div className={` bg-transparent`}>
+        <div className={`relative`}>
           {/* Header */}
           <Navbar />
         </div>
-        <div>{children}</div>
+        <div className={`${pageCenter} h-screen`}>{children}</div>
         <div>
           {/* Footer */}
           <Footer />

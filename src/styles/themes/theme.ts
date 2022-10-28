@@ -1,8 +1,13 @@
 export const textStyles = {};
 export const elementStyles = {};
-
+export const wrapperStypes = {
+  pageCenter: "max-w-default mx-auto",
+};
 export const themes = {
-  themeWrapper: {},
+  themeWrapper: {
+    marX: "mx-28",
+    padY: "py-3",
+  },
   Centralised: "max-w-default mx-auto",
   boxFull: "w-full h-full",
   XFull: "w-full",
