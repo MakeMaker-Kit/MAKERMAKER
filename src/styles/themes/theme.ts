@@ -7,7 +7,8 @@ export const fontFamily = {
 const { primary, primaryItalic, secondary, secondaryItalic } = fontFamily;
 export const textStyles = {
   mainLayout: `overflow-hidden antialised `,
-  mainText: `${primary} text-sm `,
+  mainText: `${primary} text-sm text-gray-600`,
+  textCustom: `${primary} text-sm `,
 };
 export const elementStyles = {
   ul: `list-type-style-none `,

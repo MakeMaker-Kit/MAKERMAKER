@@ -23,7 +23,7 @@ export const NavbarData: Array<navType> = [
     id: uuid(),
   },
   {
-    name: "",
+    name: "Tutorials",
     link: "",
     id: uuid(),
   },
