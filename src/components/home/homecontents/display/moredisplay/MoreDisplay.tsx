@@ -5,6 +5,7 @@ import { textStyles } from "../../../../../styles/themes/theme";
 import Button from "../../../../../hooks/button";
 import { themes, flexLayout } from "../../../../../styles/themes/theme";
 import { displayProduct, otherDisplay } from "../../../../../assets/images";
+import { BackpackIcon } from "@radix-ui/react-icons";
 
 const MoreDisplay = () => {
   const { themeWrapper, boxFull } = themes;
@@ -25,9 +26,9 @@ const MoreDisplay = () => {
           }}
         >
           <TextWrapper Zindex="z-[-1]" />
-          <div className={classNames(`${marX} `)}>
+          <div className={classNames(`${marX} pl-3`)}>
             {/*  */}
-            <div className={classNames(`${flexCol} ${boxFull}`)}>
+            <div className={classNames(`${flexCol} ${boxFull} space-y-5`)}>
               <div className={classNames(` ${flexRow} `)}>
                 <div
                   className={classNames(
@@ -58,7 +59,7 @@ const MoreDisplay = () => {
                     </div>
                     <div className={`max-w-six`}>
                       <p
-                        className={`${mainLayout} ${textCustom} text-sm text-gray-700 break-words leading-normal tracking-wide`}
+                        className={`${mainLayout} ${textCustom} text-sm text-gray-100 break-words leading-normal tracking-wide`}
                       >
                         Reasonably priced. Compact. The science set max,
                         provides an unparalleled personalized learning
@@ -89,9 +90,51 @@ const MoreDisplay = () => {
                   </div>
                 </div>
               </div>
-              <div></div>
+              {/* <div></div> */}
+              <div className={`${flexResponsive.flexRowColReverse}`}>
+                <div
+                  className={classNames(
+                    `w-full md:w-full lg:w-four lg:max-w-four h-auto pl-3 `
+                  )}
+                >
+                  <ul
+                    className={`${boxFull} ${flexRowCenter} space-x-2 justify-center`}
+                  >
+                    {Array(6)
+                      .fill(0)
+                      .map((i) => (
+                        <li key={i} className={"max-w-full"}>
+                          <BackpackIcon className="h-3.5 w-3.5 text-gray-50" />
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+                <div
+                  className={classNames(
+                    `w-full md:w-full lg:w-six lg:max-w-six h-auto `
+                  )}
+                >
+                  <ul
+                    className={classNames(
+                      `${boxFull} ${flexRow} space-x-2 justify-center`
+                    )}
+                  >
+                    {Array(6)
+                      .fill(0)
+                      .map((i) => (
+                        <li key={i} className={`whitespace-nowrap max-w-full`}>
+                          <span
+                            className={`${textCustom} ${mainLayout} text-xs font-cascadiacode text-ellipsis text-gray-50`}
+                          >
+                            Designing
+                          </span>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div></div>
+            {/* <div></div> */}
             {/*  */}
           </div>
         </div>
