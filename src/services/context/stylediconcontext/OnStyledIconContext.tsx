@@ -1,4 +1,5 @@
 import React from "react";
+
 type AwesomeContextType = {
   awesomeState: number;
   setAwesomeState: React.Dispatch<React.SetStateAction<number>>;
@@ -12,13 +13,15 @@ type Props = {
 
 export const AwesomeContextProvider = ({ children }: Props) => {
   const [awesomeState, setAwesomeState] = React.useState(0);
+  const memiosedContextValue = React.useMemo(
+    () => ({
+      awesomeState,
+      setAwesomeState,
+    }),
+    [awesomeState, setAwesomeState]
+  );
   return (
-    <AwesomeContext.Provider
-      value={{
-        awesomeState,
-        setAwesomeState,
-      }}
-    >
+    <AwesomeContext.Provider value={memiosedContextValue}>
       {children}
     </AwesomeContext.Provider>
   );
