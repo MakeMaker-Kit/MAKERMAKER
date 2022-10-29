@@ -9,11 +9,14 @@ import {
 } from "../../../../styles/themes/theme";
 import { HomeIcon } from "@radix-ui/react-icons";
 import { homeNavData } from "../../../../utils/homeData";
+import { NavItemTypes } from "../../../../types/global.types";
 
 interface Props {
   name: string;
   link: string;
   id: number | string;
+
+  navContents: NavItemTypes[];
 }
 const NavbarBtnDropdown = (props: Props) => {
   const { containerWrapper } = themes;
@@ -24,7 +27,11 @@ const NavbarBtnDropdown = (props: Props) => {
       <div className={`relative  inline-block text-center`}>
         <DropdownMenuPrimitive.Root>
           <DropdownMenuPrimitive.Trigger asChild>
-            <Links key={props.id} link={props.link}>
+            <Links
+              key={props.id}
+              link={props.link}
+              onClick={() => alert("How ae you")}
+            >
               {props.name}
             </Links>
           </DropdownMenuPrimitive.Trigger>
@@ -34,11 +41,11 @@ const NavbarBtnDropdown = (props: Props) => {
             sideOffset={5}
             className={classNames(
               `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
-              `w-48 rounded-lg px-1.5 py-1 shadow-md md:w-56`,
+              `w-48 rounded-sm px-1.5 py-1 shadow-md md:w-56`,
               `bg-appGreen `
             )}
           >
-            {homeNavData.map(({ icon, id, link, name }, i) => (
+            {props.navContents.map(({ icon, id, link, name }, i) => (
               <DropdownMenuPrimitive.Item
                 key={id}
                 className={classNames(
@@ -60,6 +67,7 @@ const NavbarBtnDropdown = (props: Props) => {
                 <span>⌘+N</span>
               </DropdownMenuPrimitive.Item>
             ))}
+            <DropdownMenuPrimitive.Separator className="my-1 h-px bg-gray-100" />
           </DropdownMenuPrimitive.Content>
         </DropdownMenuPrimitive.Root>
       </div>

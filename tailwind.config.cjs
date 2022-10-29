@@ -110,7 +110,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/line-clamp"),
-    require("tailwind-scrollbar")({ noncompatible: true }),
+    require("tailwind-scrollbar")({ nocompatible: true }),
     require("tailwindcss-radix"),
   ],
 };

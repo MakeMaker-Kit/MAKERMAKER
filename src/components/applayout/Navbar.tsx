@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <>
       <div className={classNames(`${marX} p-0`, ``)}>
-        <nav className={classNames(`${XFull} h-12`, ``)}>
+        <nav className={classNames(`${XFull} h-12`, `container `)}>
           <div className={classNames(`${boxFull} ${flexRowCenterBetween}`)}>
             <div>
               <Link to={"/"} className={classNames(`w-10 h-10`)}>
