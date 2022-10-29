@@ -11,3 +11,8 @@ export interface NavItemTypes {
   id: number | string;
   icon: React.ReactNode;
 }
+export interface BrandTypes {
+  img: string;
+  link: string;
+  id: number | string;
+}

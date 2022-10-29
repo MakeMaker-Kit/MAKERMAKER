@@ -20,6 +20,7 @@ export const wrapperStypes = {
 export const themes = {
   themeWrapper: {
     marX: "mx-4 breakpoint_md:mx-10 breakpoint_lg:mx-28",
+    largeMarX: "mx-40",
     padY: "py-40",
     dropdwonLayout: "relative z-[999] text-left",
   },

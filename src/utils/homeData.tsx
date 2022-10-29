@@ -1,6 +1,7 @@
-import { navType, NavItemTypes } from "./utils.types";
+import { navType, NavItemTypes, BrandTypes } from "./utils.types";
 import uuid from "react-uuid";
 import { EnvelopeClosedIcon, GearIcon, HomeIcon } from "@radix-ui/react-icons";
+import { brand1, brand2, brand3, brand4 } from "../assets/images";
 export const NavbarData: Array<navType> = [
   {
     name: "Home",
@@ -151,3 +152,25 @@ export const homeNavData: NavItemTypes[] = [
 ];
 // 22695439587
 // 04-06-2004
+export const BrandData: BrandTypes[] = [
+  {
+    img: brand1,
+    link: "",
+    id: uuid(),
+  },
+  {
+    img: brand2,
+    link: "",
+    id: uuid(),
+  },
+  {
+    img: brand3,
+    link: "",
+    id: uuid(),
+  },
+  {
+    img: brand4,
+    link: "",
+    id: uuid(),
+  },
+];

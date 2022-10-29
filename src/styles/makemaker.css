@@ -24,6 +24,11 @@ p{
 h1::before{
     @apply content-[attr(data-text)] absolute top-0 left-0 w-full h-full text-[#01fe87] stroke-[#01fe87] border-r-[2px_solid_#01fe07] overflow-hidden animate-animate 
 } */
+.image_view{
+    filter: saturate(0%) opacity(50%);
+    backface-visibility: hidden;
+    transition: filter 300ms ease 0ms;
+}
 
 @font-face {
     font-family: "CascadiaCode";
