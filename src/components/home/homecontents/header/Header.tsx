@@ -27,7 +27,7 @@ const Header = () => {
             )}
           >
             {/* Wraspper */}
-            <TextWrapper />
+            <TextWrapper Zindex="z-[-1]" />
             {/* Wraspper */}
             <div
               className={cx(`${boxFull} ${flexStart} justify-center flex-col space-y-10

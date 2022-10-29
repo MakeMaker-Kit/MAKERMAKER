@@ -1,12 +1,15 @@
 import React from "react";
 import cx from "classnames";
-const TextWrapper = () => {
+interface Props {
+  Zindex: string;
+}
+const TextWrapper = ({ Zindex }: Props) => {
   return (
     <>
       <div
         className={cx(
           `mb-8 text-left`,
-          `w-[500px] max-w-[500px] z-[-1] absolute top-[121px] left-[50px] bottom-auto right-auto break-words`
+          `w-[500px] max-w-[500px] ${Zindex} absolute top-[121px] left-[50px] bottom-auto right-auto break-words`
         )}
       >
         <div className={`relative last:pb-0`}>

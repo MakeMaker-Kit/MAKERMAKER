@@ -11,7 +11,9 @@ const HomeLayout = () => {
         <Header />
         {/* Border */}
         {/* Product Display */}
-        <ProductDisplay />
+        <div className="bg-grayWhite z-10]">
+          <ProductDisplay />
+        </div>
       </div>
     </>
   );
