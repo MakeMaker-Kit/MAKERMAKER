@@ -7,6 +7,7 @@ import {
 } from "../../../../styles/themes/theme";
 import { backgroundHeader } from "../../../../assets/images";
 import Button from "../../../../hooks/button";
+import { TextWrapper } from "../../../appwrapper";
 
 const Header = () => {
   const { themeWrapper, containerWrapper, XFull, boxFull, YFull } = themes;
@@ -22,9 +23,12 @@ const Header = () => {
           <div
             className={cx(
               `${XFull}  max-w-full breakpoint_md:w-full breakpoint_md:max-w-full lg:w-five lg:max-w-five ${YFull}`,
-              `border-l border-gray-300 h-[500px] p-3`
+              `border-l border-gray-300 h-[500px] p-3 relative`
             )}
           >
+            {/* Wraspper */}
+            <TextWrapper />
+            {/* Wraspper */}
             <div
               className={cx(`${boxFull} ${flexStart} justify-center flex-col space-y-10
             `)}

@@ -16,10 +16,12 @@ const ProductDisplay = () => {
     <>
       <div className={cx(`${marX} ${padY} relative`)}>
         <div className={`${boxFull} ${flexCol}`}>
-          <div className={cx(`${flexCol} relative`)}>
+          <div className={cx(`${flexRow} relative`)}>
             {/*  */}
             <TextWrapper />
             {/*  */}
+            <div className={cx(`w-th`)}></div>
+            <div></div>
           </div>
         </div>
       </div>
