@@ -1,4 +1,5 @@
 import React from "react";
+import ProductDisplay from "./homecontents/display/ProductDisplay";
 import Header from "./homecontents/header/Header";
 
 const HomeLayout = () => {
@@ -8,6 +9,9 @@ const HomeLayout = () => {
         {/* Header  */}
 
         <Header />
+        {/* Border */}
+        {/* Product Display */}
+        <ProductDisplay />
       </div>
     </>
   );
