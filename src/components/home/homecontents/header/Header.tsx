@@ -17,15 +17,12 @@ const Header = () => {
     <>
       <div className={cx(`${marX} ${padY}`)}>
         <div
-          className={cx(
-            ` ${boxFull} h-40`,
-            `${flexResponsive.flexRowColReverse}  `
-          )}
+          className={cx(` ${boxFull}`, `${flexResponsive.flexRowColReverse}  `)}
         >
           <div
             className={cx(
               `${XFull}  max-w-full breakpoint_md:w-full breakpoint_md:max-w-full lg:w-five lg:max-w-five ${YFull}`,
-              `border border-gray-300 h-[500px] p-3`
+              `border-l border-gray-300 h-[500px] p-3`
             )}
           >
             <div
@@ -35,18 +32,22 @@ const Header = () => {
               <div>
                 <h1
                   className={cx(
-                    ` ${textCustom} text-3xl font-bold tracking-wide leading-[1] text-gray-700 break-words opacity-60`
+                    ` ${textCustom} text-3xl font-bold tracking-wide leading-[1] text-gray-700 break-words opacity-60 capitalize`
                   )}
                   data-text="Bringing Science to Reality"
                 >
-                  Bringing Science To Reality
+                  Make the learning of science fun, engaging and interesting
                 </h1>
               </div>
               <div className={cx(`line-clamp-4 max-w-nine`)}>
-                <p className={cx(`${mainLayout} ${mainText} font-bold`)}>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Distinctio at earum esse dolorem accusamus, odit tempore
-                  laboriosam repellendus rerum impedit.
+                <p
+                  className={cx(
+                    `${mainLayout} ${mainText} font-bold tracking-wider capitalize`
+                  )}
+                >
+                  Make Maker focuses on developing products that simplify
+                  learning various science concepts throught project-based
+                  learning
                 </p>
               </div>
               {/*  */}

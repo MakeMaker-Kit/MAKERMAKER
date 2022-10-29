@@ -9,13 +9,13 @@ const Button = React.forwardRef<HTMLButtonElement, OtherProps>(
   ({ children, ...props }, ref) => {
     const {} = themes;
     const {} = flexLayout;
-    const { mainLayout, mainText } = textStyles;
+    const { mainLayout, textCustom } = textStyles;
     return (
       <button
         ref={ref}
         {...props}
         className={classNames(
-          `w-auto h-10 bg-appRed ${mainText} ${mainLayout} text-gray-50 whitespace-nowrap relative px-3 rounded-md`
+          `w-auto h-10 bg-appRed ${textCustom} ${mainLayout} text-sm  text-gray-50 whitespace-nowrap relative px-3 rounded-md`
         )}
       >
         {children}

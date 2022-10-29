@@ -22,6 +22,7 @@ module.exports = {
         appBlue: "#468ed5",
         appRed: "#cc282c",
         appPink: "#e59293",
+        grayWhite: "#f9f9f9",
       },
       fontSize: {
         h1: "44px",

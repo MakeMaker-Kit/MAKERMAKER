@@ -13,7 +13,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
           {/* Header */}
           <Navbar />
         </div>
-        <div className={`${pageCenter} h-screen`}>{children}</div>
+        <div className={`${pageCenter}`}>{children}</div>
         <div>
           {/* Footer */}
           <Footer />
