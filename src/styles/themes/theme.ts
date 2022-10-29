@@ -32,6 +32,7 @@ export const themes = {
   boxExtend: "min-w-full w-full max-w-full min-h-full h-full max-h-full",
   containerWrapper: "bg-white border-2 border-gray-800 shadow-lg ",
   transition: "transition duration-600 delay-100",
+  border: "w-full h-px bg-gray-100 my-2",
 };
 
 export const flexLayout = {
