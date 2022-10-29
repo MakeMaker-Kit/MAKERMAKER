@@ -19,7 +19,7 @@ export const wrapperStypes = {
 };
 export const themes = {
   themeWrapper: {
-    marX: "mx-28",
+    marX: "mx-4 breakpoint_md:mx-10 breakpoint_lg:mx-28",
     padY: "py-3",
   },
   Centralised: "max-w-default mx-auto",

@@ -1,9 +1,14 @@
 import React from "react";
+import Header from "./homecontents/header/Header";
 
 const HomeLayout = () => {
   return (
     <>
-      <div>{/* Header  */}</div>
+      <div>
+        {/* Header  */}
+
+        <Header />
+      </div>
     </>
   );
 };

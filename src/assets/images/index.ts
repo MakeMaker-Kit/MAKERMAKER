@@ -1,3 +1,3 @@
 import logoImage from "./logo.png";
-
-export { logoImage };
+import backgroundHeader from "./bgheader.jpg";
+export { logoImage, backgroundHeader };

@@ -7,6 +7,7 @@ import "./styles/makemaker.css";
 import ScrollToTop from "./hooks/scrollToTop";
 import { IconContextProvider } from "./services/context/OnIconContext";
 import store from "./services/redux/app/store";
+import { AwesomeContextProvider } from "./services/context/stylediconcontext/OnStyledIconContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ScrollToTop>
         <Provider store={store}>
           <IconContextProvider>
-            <App />
+            <AwesomeContextProvider>
+              <App />
+            </AwesomeContextProvider>
           </IconContextProvider>
         </Provider>
       </ScrollToTop>

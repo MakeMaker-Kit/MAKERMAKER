@@ -12,6 +12,11 @@ a, li{
 p{
     @apply font-cascadiacodePLItalic
 }
+.bgimage{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../public/assets/bgheader.jpg);
+}
 
 @font-face {
     font-family: "CascadiaCode";

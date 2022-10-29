@@ -24,7 +24,7 @@ const NavbarBtnDropdown = (props: Props) => {
   const { mainLayout, textCustom } = textStyles;
   return (
     <>
-      <div className={`relative  inline-block text-center`}>
+      <div className={`relative  inline-block text-center z-[999]`}>
         <DropdownMenuPrimitive.Root>
           <DropdownMenuPrimitive.Trigger asChild>
             <Links
