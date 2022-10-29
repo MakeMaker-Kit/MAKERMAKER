@@ -18,6 +18,13 @@ p{
     background-image: url(../../public/assets/bgheader.jpg);
 }
 
+/* h1{
+    @apply relative text-5xl text-[#252819] stroke-[0.3vw_#329d52] uppercase
+}
+h1::before{
+    @apply content-[attr(data-text)] absolute top-0 left-0 w-full h-full text-[#01fe87] stroke-[#01fe87] border-r-[2px_solid_#01fe07] overflow-hidden animate-animate 
+} */
+
 @font-face {
     font-family: "CascadiaCode";
     src: url("../../public/fonts/CascadiaCode.ttf");

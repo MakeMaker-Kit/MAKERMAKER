@@ -93,6 +93,10 @@ module.exports = {
           "0%": { opacity: 0, transform: "translateX(2px)" },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
+        animate: {
+          "0%, 10%, 100%": { width: "0" },
+          "70% 90%": { width: "60%" },
+        },
       },
       animation: {
         // Dropdown menu
@@ -105,6 +109,8 @@ module.exports = {
         "slide-right-fade":
           "slide-right-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-left-fade": "slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        // Text animation
+        animate: "animate 6s linear infinite",
       },
     },
   },

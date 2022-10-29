@@ -1,12 +1,27 @@
 import React from "react";
 import classNames from "classnames";
+import { themes, flexLayout, textStyles } from "../styles/themes/theme";
 type Props = Omit<React.ComponentProps<"button">, "className"> & {};
-const Button = React.forwardRef<HTMLButtonElement, Props>(
-  ({ children, ...props }, ref) => (
-    <button ref={ref} {...props}>
-      {children}
-    </button>
-  )
+interface OtherProps extends Props {
+  handleClick: () => void;
+}
+const Button = React.forwardRef<HTMLButtonElement, OtherProps>(
+  ({ children, ...props }, ref) => {
+    const {} = themes;
+    const {} = flexLayout;
+    const { mainLayout, mainText } = textStyles;
+    return (
+      <button
+        ref={ref}
+        {...props}
+        className={classNames(
+          `w-auto h-10 bg-appRed ${mainText} ${mainLayout} text-gray-50 whitespace-nowrap relative px-3 rounded-md`
+        )}
+      >
+        {children}
+      </button>
+    );
+  }
 );
 Button.displayName = "Button";
 export default Button;
