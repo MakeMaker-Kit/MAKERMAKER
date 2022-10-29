@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import { Link } from "react-router-dom";
+import {} from "@radix-ui/react-icons";
 import { themes, flexLayout, textStyles } from "../../styles/themes/theme";
 import { useIcon } from "../../hooks/dispatchContext";
 import { NavbarData } from "../../utils/homeData";
@@ -33,7 +34,7 @@ const Navbar = () => {
             <div className={`${flexRowCenter} space-x-4`}>
               <ul className={classNames(`${flexRowCenter} space-x-4`)}>
                 {NavbarData.map((nav, index: number) => {
-                  const { id, link, name } = nav;
+                  const { id, link, name, navContents } = nav;
                   return (
                     // <li
                     //   className={classNames(
@@ -45,7 +46,12 @@ const Navbar = () => {
                     //   <span>{name}</span>
                     //   <MdOutlineKeyboardArrowDown />
                     // </li>
-                    <NavbarBtnDropdown name={name} link={link} id={id} />
+                    <NavbarBtnDropdown
+                      name={name}
+                      link={link}
+                      id={id}
+                      navContents={navContents}
+                    />
                   );
                 })}
 
