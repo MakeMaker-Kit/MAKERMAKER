@@ -3,6 +3,8 @@ import MoreDisplay from "./homecontents/display/moredisplay/MoreDisplay";
 import ProductDisplay from "./homecontents/display/ProductDisplay";
 import Header from "./homecontents/header/Header";
 import { themes } from "../../styles/themes/theme";
+import Brand from "./homecontents/brands/Brand";
+import Testimonial from "./homecontents/testimonials/testimonial";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -27,6 +29,12 @@ const HomeLayout = () => {
         <Border />
         <div>
           <MoreDisplay />
+        </div>
+        <div>
+          <Brand />
+        </div>
+        <div>
+          <Testimonial />
         </div>
       </div>
     </>
