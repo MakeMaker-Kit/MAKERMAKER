@@ -13,7 +13,7 @@ const TestimonialCard = () => {
     <>
       <div
         className={cx(
-          `h-52 w-full md:w-full lg:w-[48%]`,
+          `h-52 w-full md:w-full lg:w-[48%] flex-[0_40%]`,
           ` pt-16 relative cursor-default`
         )}
       >
@@ -38,7 +38,7 @@ const TestimonialCard = () => {
           </div>
           {/* content */}
           <div className={cx(`w-full pt-10 `)}>
-            <div className={cx(`h-full ${flexCol} space-y-6`)}>
+            <div className={cx(`h-full ${flexCol} space-y-4`)}>
               <p
                 className={cx(
                   `line-clamp-5 ${textCustom} ${mainLayout} text-xs text-center font-cascadiacodePLItalic font-semibold`

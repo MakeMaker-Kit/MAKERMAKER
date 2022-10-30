@@ -17,7 +17,9 @@ p{
     height: 100vh;
     background-image: url(../../public/assets/bgheader.jpg);
 }
-
+button{
+    @apply bg-[#ff6900] 
+}
 /* h1{
     @apply relative text-5xl text-[#252819] stroke-[0.3vw_#329d52] uppercase
 }

@@ -6,16 +6,25 @@ import {
   themes,
 } from "../../../../styles/themes/theme";
 import TestimonialCard from "./TestimonialCard";
+import { useIcon } from "../../../../hooks/dispatchContext";
 
 const Testimonial = () => {
-  const { flexCol, flexWrap, flexRowCenter, flexRow, flexCenter } = flexLayout;
+  const {
+    flexCol,
+    flexWrap,
+    flexRowCenter,
+    flexRow,
+    flexCenter,
+    flexResponsive,
+  } = flexLayout;
   const { mainText, mainLayout, textCustom } = textStyles;
   const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
   const { marX, padY } = themeWrapper;
+  const { PaperPlaneIcon } = useIcon();
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>
-        <div className={cx(`${boxFull} ${flexCol} space-y-0`)}>
+        <div className={cx(`${boxFull} ${flexCol} space-y-10`)}>
           <div className={cx(`${flexCenter}`)}>
             <h2
               className={cx(
@@ -27,7 +36,10 @@ const Testimonial = () => {
           </div>
           <div className={cx(`overflow-visible ${XFull} ${flexCenter}`)}>
             <div
-              className={cx(`h-52 w-[500px]`, ` pt-16 relative cursor-default`)}
+              className={cx(
+                `h-52 w-full md:w-full  lg:w-[500px]`,
+                ` pt-16 relative cursor-default`
+              )}
             >
               <div
                 className={`${boxFull} shadow-amber-800 shadow-lg border-t border-solid border-spacing-9 border-appPink rounded-lg px-5 pb-4`}
@@ -50,7 +62,7 @@ const Testimonial = () => {
                 </div>
                 {/* content */}
                 <div className={cx(`w-full pt-10 `)}>
-                  <div className={cx(`h-full ${flexCol} space-y-6`)}>
+                  <div className={cx(`h-full ${flexCol} space-y-4`)}>
                     <p
                       className={cx(
                         `line-clamp-5 ${textCustom} ${mainLayout} text-xs text-center font-cascadiacodePLItalic font-semibold`
@@ -74,9 +86,39 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
-          <div className={cx(`${XFull} ${flexRow} overflow-visible gap-x-4 `)}>
+          <div
+            className={cx(
+              `${XFull} ${flexResponsive.flexRowColReverse} overflow-visible gap-x-4  flex-nowrap ${flexCenter}`
+            )}
+          >
             <TestimonialCard />
             <TestimonialCard />
+          </div>
+          {/* Text  */}
+          <h1
+            className={cx(
+              `${textCustom} text-2xl text-gray-700 font-cascadiacodePL font-medium ${mainLayout} text-center`
+            )}
+          >
+            Help Us Reach More Schools With These Learning Kits
+          </h1>
+          {/* Button */}
+          <div className={cx(`${flexCenter} `)}>
+            <button
+              className={cx(
+                `${flexRowCenter} w-40 space-x-2 h-8  p-2 rounded-md`,
+                `${flexCenter}`
+              )}
+            >
+              <p
+                className={cx(
+                  `whitespace-nowrap  ${textCustom} ${mainLayout} text-xs italic`
+                )}
+              >
+                Locate a school
+              </p>
+              <PaperPlaneIcon className={`w-2.5 h-2.5`} />
+            </button>
           </div>
         </div>
       </div>

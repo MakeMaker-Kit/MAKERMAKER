@@ -5,7 +5,7 @@ import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsTwitter } from "react-icons/bs";
 import { IconContextProps } from "./context.type";
-
+import { PaperPlaneIcon } from "@radix-ui/react-icons";
 interface IconContextTypes {}
 export const IconContext = React.createContext<any>({});
 
@@ -24,6 +24,8 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         FaLinkedinIn,
         BsTwitter,
         MdOutlineKeyboardArrowDown,
+        // READIX ICONS
+        PaperPlaneIcon,
       }}
     >
       {children}
