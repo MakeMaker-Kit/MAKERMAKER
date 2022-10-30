@@ -5,6 +5,7 @@ import {
   textStyles,
   themes,
 } from "../../../../styles/themes/theme";
+import TestimonialCard from "./TestimonialCard";
 
 const Testimonial = () => {
   const { flexCol, flexWrap, flexRowCenter, flexRow, flexCenter } = flexLayout;
@@ -14,7 +15,7 @@ const Testimonial = () => {
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>
-        <div className={cx(`${boxFull} ${flexCol} space-y-10`)}>
+        <div className={cx(`${boxFull} ${flexCol} space-y-0`)}>
           <div className={cx(`${flexCenter}`)}>
             <h2
               className={cx(
@@ -25,7 +26,9 @@ const Testimonial = () => {
             </h2>
           </div>
           <div className={cx(`overflow-visible ${XFull} ${flexCenter}`)}>
-            <div className={cx(`h-52 w-[500px]`, ` pt-16 relative`)}>
+            <div
+              className={cx(`h-52 w-[500px]`, ` pt-16 relative cursor-default`)}
+            >
               <div
                 className={`${boxFull} shadow-amber-800 shadow-lg border-t border-solid border-spacing-9 border-appPink rounded-lg px-5 pb-4`}
               >
@@ -71,7 +74,10 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
-          <div></div>
+          <div className={cx(`${XFull} ${flexRow} overflow-visible gap-x-4 `)}>
+            <TestimonialCard />
+            <TestimonialCard />
+          </div>
         </div>
       </div>
     </>
