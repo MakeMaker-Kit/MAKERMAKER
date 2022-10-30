@@ -29,7 +29,7 @@
     "tailwindcss-radix": "^2.6.1"
   },
   "devDependencies": {
-    "@types/react": "^18.0.22",
+    "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.7",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",

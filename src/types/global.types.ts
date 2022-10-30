@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface NavItemTypes {
   name: string;
   link: string;
