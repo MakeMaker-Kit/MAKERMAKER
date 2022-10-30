@@ -37,6 +37,7 @@ const HomeLayout = () => {
         <div>
           <Testimonial />
         </div>
+        <Border />
         {/* Blog Home Display */}
         <div>
           <HomeBlog />

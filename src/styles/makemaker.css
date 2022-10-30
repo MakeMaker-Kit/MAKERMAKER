@@ -48,4 +48,8 @@ h1::before{
     font-family: "CascadiaCodePLItalic";
     src: url("../../public/fonts/CascadiaCodePLItalic.ttf");
 }
+@font-face {
+    font-family: "PlayfairDisplay";
+    src: url("../../public/fonts/PlayfairDisplay-Regular.ttf");
+}
 @tailwind utilities;

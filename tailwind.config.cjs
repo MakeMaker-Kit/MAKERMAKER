@@ -8,6 +8,7 @@ module.exports = {
         cascadiacodeItalic: ["CascadiaCodeItalic", "monospace"],
         cascadiacodePL: ["CascadiaCodePL", "monospace"],
         cascadiacodePLItalic: ["CascadiaCodePLItaic", "monospace"],
+        playfair: ["PlayfairDisplay", "cursive"]
       },
       colors: {
         darkWhite: "#fefffe",
@@ -126,5 +127,6 @@ module.exports = {
     require("@tailwindcss/line-clamp"),
     require("tailwind-scrollbar")({ nocompatible: true }),
     require("tailwindcss-radix"),
+    require("tailwind-scrollbar-hide")
   ],
 };
