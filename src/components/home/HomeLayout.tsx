@@ -4,7 +4,7 @@ import ProductDisplay from "./homecontents/display/ProductDisplay";
 import Header from "./homecontents/header/Header";
 import { themes } from "../../styles/themes/theme";
 import Brand from "./homecontents/brands/Brand";
-import Testimonial from "./homecontents/testimonials/testimonial";
+import Testimonial from "./homecontents/testimonials/Testimonial";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;

@@ -6,7 +6,7 @@ export const fontFamily = {
 };
 const { primary, primaryItalic, secondary, secondaryItalic } = fontFamily;
 export const textStyles = {
-  mainLayout: `overflow-hidden antialised `,
+  mainLayout: `overflow-hidden antialised text-ellipsis`,
   mainText: `${primary} text-sm text-gray-600`,
   textCustom: `${primary} text-sm `,
 };
