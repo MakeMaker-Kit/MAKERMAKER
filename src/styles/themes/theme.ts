@@ -34,6 +34,7 @@ export const themes = {
   containerWrapper: "bg-white border-2 border-gray-800 shadow-lg ",
   transition: "transition duration-600 delay-100",
   border: "w-full h-px bg-gray-100 my-2",
+  transitions: "transition duration-300 delay-100 ease-linear"
 };
 
 export const flexLayout = {

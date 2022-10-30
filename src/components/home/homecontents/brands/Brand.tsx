@@ -10,7 +10,7 @@ const Brand = () => {
   const { flexRow, flexRowCenter } = flexLayout;
   return (
     <>
-      <div className={cx(`mx-64 my-10`)}>
+      <div className={cx(`mx-64 mt-10`)}>
         <ul className={cx(`${flexRowCenter}`, `${boxFull} flex-wrap`)}>
           {BrandData.map((brand) => (
             <li

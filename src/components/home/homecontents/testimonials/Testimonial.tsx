@@ -18,7 +18,8 @@ const Testimonial = () => {
     flexResponsive,
   } = flexLayout;
   const { mainText, mainLayout, textCustom } = textStyles;
-  const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
+  const { themeWrapper, boxFull, XFull, containerWrapper, transitions } =
+    themes;
   const { marX, padY } = themeWrapper;
   const { PaperPlaneIcon } = useIcon();
   return (
@@ -34,66 +35,69 @@ const Testimonial = () => {
               From people who have tried our products
             </h2>
           </div>
-          <div className={cx(`overflow-visible ${XFull} ${flexCenter}`)}>
-            <div
-              className={cx(
-                `h-52 w-full md:w-full  lg:w-[500px]`,
-                ` pt-16 relative cursor-default`
-              )}
-            >
+          <div className={cx(`${flexCol} space-y-0`)}>
+            <div className={cx(`overflow-visible ${XFull} ${flexCenter}`)}>
               <div
-                className={`${boxFull} shadow-amber-800 shadow-lg border-t border-solid border-spacing-9 border-appPink rounded-lg px-5 pb-4`}
+                className={cx(
+                  `h-52 w-full md:w-full  lg:w-[500px]`,
+                  ` pt-16 relative cursor-default`
+                )}
               >
-                {/* Image VIewer */}
                 <div
-                  className={cx(
-                    ` absolute  top-3 left-[45%] mx-auto`,
-                    `w-20 h-20 rounded-full bg-gradient-to-r from-slate-900 via-appBlue to-red-100 z-[10]`,
-                    `p-1 `
-                  )}
+                  className={`${boxFull} shadow-amber-800 shadow-lg border-t border-solid border-spacing-9 border-appPink rounded-lg px-5 pb-4`}
                 >
+                  {/* Image VIewer */}
                   <div
                     className={cx(
-                      `${boxFull} ${flexCenter} bg-white z-10 rounded-full`
+                      ` absolute  top-3 left-[45%] mx-auto`,
+                      `w-20 h-20 rounded-full bg-gradient-to-tr from-slate-900 via-appBlue to-red-100 z-[10]`,
+                      `p-1 `
                     )}
                   >
-                    <h1>Hello</h1>
-                  </div>
-                </div>
-                {/* content */}
-                <div className={cx(`w-full pt-10 `)}>
-                  <div className={cx(`h-full ${flexCol} space-y-4`)}>
-                    <p
-                      className={cx(
-                        `line-clamp-5 ${textCustom} ${mainLayout} text-xs text-center font-cascadiacodePLItalic font-semibold`
-                      )}
-                    >
-                      I have even had kids who would never speak up or engage in
-                      much of anything ask to come in at lunch to experiment!
-                      NOW that makes me happy!…
-                    </p>
                     <div
                       className={cx(
-                        `${flexCenter} ${flexRowCenter} space-x-2 ${mainLayout} ${textCustom} text-sm font-bold text-appBlue`
+                        `${boxFull} ${flexCenter} bg-white z-10 rounded-full`
                       )}
                     >
-                      <h1>Alexandar Ibekason</h1>
-                      <div className="w-px h-5 bg-black" />
-                      <h1>Wizardomw</h1>
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                  {/* content */}
+                  <div className={cx(`w-full pt-10 `)}>
+                    <div className={cx(`h-full ${flexCol} space-y-4`)}>
+                      <p
+                        className={cx(
+                          `line-clamp-5 ${textCustom} ${mainLayout} text-xs text-center font-cascadiacodePLItalic font-semibold`
+                        )}
+                      >
+                        I have even had kids who would never speak up or engage
+                        in much of anything ask to come in at lunch to
+                        experiment! NOW that makes me happy!…
+                      </p>
+                      <div
+                        className={cx(
+                          `${flexCenter} ${flexRowCenter} space-x-2 ${mainLayout} ${textCustom} text-sm font-bold text-appBlue`
+                        )}
+                      >
+                        <h1>Alexandar Ibekason</h1>
+                        <div className="w-px h-5 bg-black" />
+                        <h1>Wizardomw</h1>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div
+              className={cx(
+                `${XFull} ${flexResponsive.flexRowColReverse} overflow-visible gap-x-4  flex-nowrap ${flexCenter}`
+              )}
+            >
+              <TestimonialCard />
+              <TestimonialCard />
+            </div>
           </div>
-          <div
-            className={cx(
-              `${XFull} ${flexResponsive.flexRowColReverse} overflow-visible gap-x-4  flex-nowrap ${flexCenter}`
-            )}
-          >
-            <TestimonialCard />
-            <TestimonialCard />
-          </div>
+
           {/* Text  */}
           <h1
             className={cx(
@@ -103,21 +107,23 @@ const Testimonial = () => {
             Help Us Reach More Schools With These Learning Kits
           </h1>
           {/* Button */}
-          <div className={cx(`${flexCenter} `)}>
+          <div className={cx(`${flexCenter} group ${transitions}`)}>
             <button
               className={cx(
-                `${flexRowCenter} w-40 space-x-2 h-8  p-2 rounded-md`,
-                `${flexCenter}`
+                `${flexRowCenter} w-40 space-x-2 h-10  p-2 rounded-md`,
+                `${flexCenter} text-darkWhite`
               )}
             >
               <p
                 className={cx(
-                  `whitespace-nowrap  ${textCustom} ${mainLayout} text-xs italic`
+                  `whitespace-nowrap  ${textCustom} ${mainLayout} text-sm italic `
                 )}
               >
                 Locate a school
               </p>
-              <PaperPlaneIcon className={`w-2.5 h-2.5`} />
+              <PaperPlaneIcon
+                className={`w-2.5 h-2.5 hidden group-hover:inline-block`}
+              />
             </button>
           </div>
         </div>
