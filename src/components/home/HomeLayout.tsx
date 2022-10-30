@@ -5,7 +5,7 @@ import Header from "./homecontents/header/Header";
 import { themes } from "../../styles/themes/theme";
 import Brand from "./homecontents/brands/Brand";
 import Testimonial from "./homecontents/testimonials/Testimonial";
-import HomeBlogs from "./homecontents/blogdisplay/HomeBlogs";
+import HomeBlog from "./homecontents/blogdisplay/HomeBlogs";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -39,7 +39,7 @@ const HomeLayout = () => {
         </div>
         {/* Blog Home Display */}
         <div>
-          <HomeBlogs />
+          <HomeBlog />
         </div>
       </div>
     </>
