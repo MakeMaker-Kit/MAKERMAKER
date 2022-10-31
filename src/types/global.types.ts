@@ -27,5 +27,6 @@ export interface AuthContainerType{
   generatedPage: () => JSX.Element
 }
 export interface AuthContentType{
-  generateTitle: () => void
+  generateTitle?: string[] | undefined
+  page: number
 }

@@ -18,26 +18,20 @@ const AuthContainer: React.FC<AuthContainerType> = ({ generatedPage }) => {
 const AuthLayout = () => {
   const { boxFull, themeWrapper, XFull, transitions, containerWrapper } =
     themes;
-  const [page, setPage] = React.useState(2);
+  const [page, setPage] = React.useState(0);
+  const pageTitle = ["login", "register", "reset password", "set new password"];
 
-  const displayAuthTitle = () => {
-    page === 0
-      ? "Login"
-      : page === 1
-      ? "Register"
-      : page === 2
-      ? "Uncomfirned Forgot"
-      : "Confirmed Forgot";
-  };
   const displayAuthComtents = () => {
     if (page === 0) {
-      return <Login generateTitle={displayAuthTitle} />;
+      return <Login generateTitle={pageTitle} page={page} />;
     } else if (page === 1) {
-      return <Register generateTitle={displayAuthTitle} />;
+      return <Register generateTitle={pageTitle} page={page} />;
     } else if (page === 2) {
-      return <UncomfirnedForgotPassword generateTitle={displayAuthTitle} />;
+      return (
+        <UncomfirnedForgotPassword generateTitle={pageTitle} page={page} />
+      );
     } else {
-      return <ConfirmedForgotPassword generateTitle={displayAuthTitle} />;
+      return <ConfirmedForgotPassword generateTitle={pageTitle} page={page} />;
     }
   };
 
