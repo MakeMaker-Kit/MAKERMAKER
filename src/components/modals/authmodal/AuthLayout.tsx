@@ -12,13 +12,13 @@ import Register from "./authpages/Register";
 import UncomfirnedForgotPassword from "./authpages/UncomfirnedForgotPassword";
 import ConfirmedForgotPassword from "./authpages/ConfirmedForgotPassword";
 import { AuthContainerType } from "../../../types/global.types";
-const AuthContainer: React.FC<AuthContainerType> = (generatedPage) => {
-  return <>{generatedPage}</>;
+const AuthContainer: React.FC<AuthContainerType> = ({ generatedPage }) => {
+  return <>{generatedPage()}</>;
 };
 const AuthLayout = () => {
   const { boxFull, themeWrapper, XFull, transitions, containerWrapper } =
     themes;
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(2);
 
   const displayAuthTitle = () => {
     page === 0
