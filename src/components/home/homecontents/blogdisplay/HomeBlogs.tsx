@@ -100,7 +100,11 @@ const HomeBlog = () => {
                           Discover Your Place Of Comfort{" "}
                         </h1>
                       </div>
-                      <div className={cx(`${flexRowCenter} space-x-2`)}>
+                      <div
+                        className={cx(
+                          `${flexRowCenter} space-x-2 whitespace-nowrap`
+                        )}
+                      >
                         <div>
                           <p className={`${textCustom} text-xs font-medium`}>
                             {""}

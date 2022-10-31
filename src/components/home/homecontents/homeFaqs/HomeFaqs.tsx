@@ -9,7 +9,8 @@ import {
 const HomeFaqs = () => {
   const { themeWrapper, XFull, boxFull, containerWrapper } = themes;
   const { largeMarX, marX, padY } = themeWrapper;
-  const { flexCol, flexStart, flexRow, flexCenter } = flexLayout;
+  const { flexCol, flexStart, flexRow, flexCenter, flexResponsive } =
+    flexLayout;
   const { textCustom, mainLayout, mainText } = textStyles;
   return (
     <>
@@ -29,7 +30,11 @@ const HomeFaqs = () => {
             </p>
           </div>
           {/* FAQS Contents */}
-          <div className={cx(`${flexRow} ${XFull} gap-x-5`)}>
+          <div
+            className={cx(
+              `${flexResponsive.flexRowColReverse}   ${XFull} gap-x-5`
+            )}
+          >
             {Array(2)
               .fill(0)
               .map((i) => (
