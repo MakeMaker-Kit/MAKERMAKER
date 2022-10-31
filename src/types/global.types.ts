@@ -30,3 +30,25 @@ export interface AuthContentType{
   generateTitle?: string[] | undefined
   page: number
 }
+
+export interface InputRef{
+  focus?: () => void;
+  blur?: () => void;
+  select?: () => void;
+  value?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  name?: string;
+  type?: string;
+  placeholder?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;  
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onPaste?: (e: React.ClipboardEvent<HTMLInputElement>) => void;
+  onCompositionStart?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+  onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+  onCompositionUpdate?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+}
