@@ -1,5 +1,5 @@
 export interface globalInitialState {
   message: string;
   page: number;
-  onAtuhModal: boolean;
+  onAuthModal: boolean;
 }

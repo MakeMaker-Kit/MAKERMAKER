@@ -15,7 +15,6 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
 
           <Navbar />
         </div>
-        <AuthLayout />
         <div className={`${pageCenter}`}>{children}</div>
         <div className="bg-grayWhite border-2 border-solid border-orange">
           {/* Footer */}

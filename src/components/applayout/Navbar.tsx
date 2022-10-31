@@ -7,6 +7,11 @@ import { useIcon } from "../../hooks/dispatchContext";
 import { NavbarData } from "../../utils/homeData";
 import { logoImage } from "../../assets/images";
 import { NavbarBtnDropdown } from "../dropdowns";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  onModalState,
+  openAuthModal,
+} from "../../services/redux/features/globalslice/GlobalStateSlice";
 
 const Navbar = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
@@ -14,6 +19,9 @@ const Navbar = () => {
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
   const { MdOutlineKeyboardArrowDown, BiSearchAlt } = useIcon();
   const { mainLayout, mainText, textCustom } = textStyles;
+  const dispatch = useDispatch();
+  const modalState = useSelector(onModalState);
+  const openNodal = () => dispatch(openAuthModal()) && alert(modalState);
   return (
     <>
       <div className={classNames(`${marX} p-0`, ``)}>
@@ -83,6 +91,7 @@ const Navbar = () => {
                       className={classNames(
                         `${textCustom} ${mainLayout} text-gray-600 group-hover:text-white`
                       )}
+                      onClick={openNodal}
                     >
                       Login
                     </p>

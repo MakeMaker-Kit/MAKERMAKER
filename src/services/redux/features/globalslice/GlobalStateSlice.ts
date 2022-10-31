@@ -5,17 +5,17 @@ import { RootState } from '../../app/rootReducer';
 const initialState: globalInitialState = {
   message: "",
   page: 1,
-  onAtuhModal: false
+  onAuthModal: false
 };
 const globalState = createSlice({
   name: "globalstate",
   initialState,
   reducers: {
     openAuthModal: ((state) => {
-      state.onAtuhModal = true;
+      state.onAuthModal = true;
     }),
     closeAuthModal: ((state) => {
-      state.onAtuhModal = false;
+      state.onAuthModal = false;
     })
   },
   extraReducers: {},
@@ -24,5 +24,5 @@ const globalState = createSlice({
 const { actions, reducer } = globalState;
 export default reducer;
 export const {openAuthModal, closeAuthModal} = actions;
-export const onModalState = ((state: RootState) => state.globalState.onAtuhModal) 
+export const onModalState = ((state: RootState) => state.globalstate.onAuthModal) 
 

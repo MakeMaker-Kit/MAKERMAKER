@@ -13,7 +13,7 @@ const AuthLayout = () => {
   const {} = textStyles;
   const dispatch = useDispatch();
   const onModal = useSelector(onModalState);
-  const closeModal = () => dispatch(closeAuthModal);
+  const closeModal = () => dispatch(closeAuthModal());
   return (
     <>
       <Transition.Child>
@@ -40,13 +40,15 @@ const AuthLayout = () => {
                   <Transition.Child
                     as={React.Fragment}
                     enter="ease-out duration-500"
-                    enterFrom="opacity-0 scale-95 translate-x-[100%]"
-                    enterTo="opacity-100 scale-100 translate-x-[0%] transition-[all_0.6s_ease] "
+                    // enterFrom="opacity-0 scale-95 translate-x-[100%]"
+                    // enterTo="opacity-100 scale-100 translate-x-[0%] transition-[all_0.6s_ease] "
                     leave="transition  ease-in duration-500"
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-95"
                   >
-                    <Dialog.Panel className=" align-middle h-screen bg-indigo w-full  "></Dialog.Panel>
+                    <Dialog.Panel className=" align-middle h-screen bg-black w-[500px]  ">
+                      <div>Hello Div</div>
+                    </Dialog.Panel>
                   </Transition.Child>
                 </div>
               </div>
