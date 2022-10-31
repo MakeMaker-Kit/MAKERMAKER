@@ -200,22 +200,24 @@ export const DisplayContentData: DisplayContentTypes[] = [
     ],
     iconsValues: [
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
     ],
     handleClick: () => {},
+    id: uuid(),
+    isReversed: true,
   },
   {
     title: "A Quote on what we believe  ",
@@ -230,21 +232,23 @@ export const DisplayContentData: DisplayContentTypes[] = [
     ],
     iconsValues: [
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
       {
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+        icon: <EnvelopeClosedIcon className=" h-3.5 w-3.5" />,
       },
     ],
     handleClick: () => {},
+    id: uuid(),
+    isReversed: false,
   },
 ];

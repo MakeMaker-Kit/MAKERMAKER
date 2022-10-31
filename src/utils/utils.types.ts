@@ -26,4 +26,6 @@ export interface DisplayContentTypes {
   coreTags: string[];
   iconsValues: IconType[];
   handleClick: () => void | any;
+  id: string | null | undefined;
+  isReversed: Boolean | boolean;
 }

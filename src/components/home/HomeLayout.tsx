@@ -8,6 +8,7 @@ import Testimonial from "./homecontents/testimonials/Testimonial";
 import HomeBlog from "./homecontents/blogdisplay/HomeBlogs";
 import HomeFaqs from "./homecontents/homeFaqs/HomeFaqs";
 import HomeContact from "./homecontents/homecontact/HomeContact";
+import { DisplayContentData } from "../../utils/homeData";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -22,13 +23,17 @@ const HomeLayout = () => {
         {/* Border */}
         <Border />
         {/* Product Display */}
-        <div className="bg-grayWhite z-10]">
-          <ProductDisplay />
-        </div>
         <Border />
-        <div className="bg-grayWhite z-10]">
-          <ProductDisplay />
-        </div>
+        {[...DisplayContentData]
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .map((display, index) => {
+            return (
+              <div className="bg-grayWhite z-10]" key={display.id}>
+                <ProductDisplay {...display} />
+              </div>
+            );
+          })}
+
         <Border />
         <div>
           <MoreDisplay />
