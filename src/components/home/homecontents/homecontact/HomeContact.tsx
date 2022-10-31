@@ -45,7 +45,7 @@ const HomeContact = () => {
                 </div>
               </div>
               {/* Contact Section */}
-              <div className={`w-six max-w-six h-40`}>
+              <div className={`w-six max-w-six h-auto`}>
                 <div className={cx(`${boxFull} ${flexCol} space-y-4`)}>
                   <Contact />
                 </div>

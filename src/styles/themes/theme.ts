@@ -23,6 +23,7 @@ export const themes = {
     largeMarX: "mx-40",
     padY: "py-40",
     dropdwonLayout: "relative z-[999] text-left",
+    formPadL: "px-4"
   },
   Centralised: "max-w-default mx-auto",
   boxFull: "w-full h-full",
@@ -35,7 +36,7 @@ export const themes = {
   transition: "transition duration-600 delay-100",
   border: "w-full h-px bg-gray-100 my-2",
   transitions: "transition duration-300 delay-100 ease-linear",
-  backgroundImagelayout: "bg-[50%] bg-no-repeat relative bg-white max-w-full w-full h-full bg-cover pt-[30vh] pb-[14vh]"
+  backgroundImagelayout: "bg-[50%] bg-no-repeat relative bg-white max-w-full w-full h-full bg-cover pt-[30vh] pb-[14vh]", 
 };
 
 export const flexLayout = {
