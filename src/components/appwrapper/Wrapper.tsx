@@ -2,6 +2,7 @@ import React from "react";
 import { WrapperProps } from "./wrapper.types";
 import { Navbar, Footer } from "../applayout";
 import { wrapperStypes, themes } from "../../styles/themes/theme";
+import AuthLayout from "../modals/authmodal/AuthLayout";
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   const { pageCenter } = wrapperStypes;
@@ -11,8 +12,10 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
       <div className={` bg-transparent`}>
         <div className={`relative`}>
           {/* Header */}
+
           <Navbar />
         </div>
+        <AuthLayout />
         <div className={`${pageCenter}`}>{children}</div>
         <div className="bg-grayWhite border-2 border-solid border-orange">
           {/* Footer */}
