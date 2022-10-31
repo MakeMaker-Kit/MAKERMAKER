@@ -22,3 +22,10 @@ center: CenterProp;
 zoom: number;
 
 }
+
+export interface AuthContainerType{
+  generatedPage: () => JSX.Element
+}
+export interface AuthContentType{
+  generateTitle: () => void
+}

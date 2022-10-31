@@ -1,6 +1,9 @@
 import React from "react";
+import { AuthContentType } from "../../../../types/global.types";
 
-const ConfirmedForgotPassword = () => {
+const ConfirmedForgotPassword: React.FC<AuthContentType> = ({
+  generateTitle,
+}) => {
   return <div>ConfirmedForgotPassword</div>;
 };
 
