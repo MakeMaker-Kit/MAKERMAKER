@@ -7,7 +7,7 @@ import { useIcon } from "../../hooks/dispatchContext";
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
   const { themeWrapper, boxFull, XFull, containerWrapper, formLayout } = themes;
-  const { marX, padY } = themeWrapper;
+  const { marX, padY, formPadL } = themeWrapper;
   const { flexRow, flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
   const { MinusIcon } = useIcon();
   return (
@@ -70,9 +70,10 @@ const Footer = () => {
                   <input
                     type="text"
                     className={cx(
-                      `h-10`,
-                      `${formLayout} ${mainLayout} ${textCustom}`
+                      `h-10 focus-within:border-orange`,
+                      `${formLayout} ${mainLayout} ${textCustom} ${formPadL}`
                     )}
+                    placeholder="Subscribe "
                   />
                 </div>
                 <div className={cx(`w-four max-w-four `)}>
@@ -81,7 +82,13 @@ const Footer = () => {
               </div>
               {/*  */}
               <div className={cx(`${flexStart} ${flexCol} space-y-3`)}>
-                <h2>Follow Us</h2>
+                <h2
+                  className={cx(
+                    `${mainLayout} ${textCustom} text-sm font-playfair tracking-wide`
+                  )}
+                >
+                  Follow Us
+                </h2>
                 <ul className={cx(`${flexRowCenter} gap-x-4`)}>
                   {Array(4)
                     .fill(0)

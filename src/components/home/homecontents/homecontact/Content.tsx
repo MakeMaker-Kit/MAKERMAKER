@@ -1,16 +1,26 @@
 import React from "react";
 import cx from "classnames";
+import GoogleMapReact from "google-map-react";
 import {
   themes,
   textStyles,
   flexLayout,
 } from "../../../../styles/themes/theme";
+import { defaultProps, LocationProps } from "../../../../types/global.types";
 
+const LocationContainer = ({ text }: LocationProps) => <p>{text}</p>;
 const Content = () => {
   const { flexCenter, flexStart, flexCol, flexRowCenter } = flexLayout;
   const { mainLayout, mainText, textCustom } = textStyles;
-  const { themeWrapper } = themes;
+  const { themeWrapper, boxFull } = themes;
   const {} = themeWrapper;
+  const defaultProps: defaultProps = {
+    center: {
+      lat: 10.99835602,
+      lng: 77.01502627,
+    },
+    zoom: 11,
+  };
   return (
     <>
       <div className={cx(`${flexCenter}`)}>
@@ -49,6 +59,23 @@ const Content = () => {
               </p>
             </>
           ))}
+        {/* Map  
+        <div className="w-56 h-40">
+          <div className={cx(`${boxFull}`)}>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: "" }}
+              defaultCenter={defaultProps.center}
+              defaultZoom={defaultProps.zoom}
+            >
+              <LocationContainer
+                lat={59.955413}
+                lng={30.337844}
+                text={"MakeMaker"}
+              />
+            </GoogleMapReact>
+          </div>
+        </div>
+        {/*  */}
       </div>
     </>
   );

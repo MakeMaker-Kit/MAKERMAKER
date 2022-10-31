@@ -72,6 +72,22 @@ const Navbar = () => {
                   {/*  */}
                 </div>
                 <BiSearchAlt size={25} />
+                <span className={classNames(`h-6 w-auto group`)}>
+                  <div
+                    className={classNames(
+                      ` ${boxFull} ${flexCenter}`,
+                      `rounded  border border-orange p-2 cursor-pointer group-hover:bg-orange `
+                    )}
+                  >
+                    <p
+                      className={classNames(
+                        `${textCustom} ${mainLayout} text-gray-600 group-hover:text-white`
+                      )}
+                    >
+                      Login
+                    </p>
+                  </div>
+                </span>
               </ul>
             </div>
           </div>

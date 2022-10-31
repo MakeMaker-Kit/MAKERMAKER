@@ -6,3 +6,19 @@ export interface NavItemTypes {
   id: number | string;
   icon: React.ReactNode;
 }
+
+export interface LocationProps {
+  text:String;
+  lng:number;
+  lat: number
+}
+type CenterProp = {
+  lat: number,
+lng: number
+
+}
+export interface defaultProps{
+center: CenterProp;
+zoom: number;
+
+}
