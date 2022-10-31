@@ -38,7 +38,7 @@ const Contact = () => {
               label=""
               name=" "
               onChange={() => {}}
-              placeholder=""
+              placeholder="Your Full Name"
               value={""}
             />
           </div>
@@ -49,7 +49,7 @@ const Contact = () => {
                 label=""
                 name=" "
                 onChange={() => {}}
-                placeholder=""
+                placeholder="Your Email Address"
                 value={""}
               />
             </div>
@@ -58,7 +58,7 @@ const Contact = () => {
                 label=""
                 name=" "
                 onChange={() => {}}
-                placeholder=""
+                placeholder="Your Mobile Number"
                 value={""}
               />
             </div>
@@ -70,7 +70,7 @@ const Contact = () => {
               label=""
               name=" "
               onChange={() => {}}
-              placeholder=""
+              placeholder="Subject "
               value={""}
             />
           </div>

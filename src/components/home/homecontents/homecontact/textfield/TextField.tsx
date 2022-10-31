@@ -58,7 +58,7 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
             `${XFull} h-12 border border-solid border-orange rounded-md ${themeWrapper.formPadL}`,
             `${textCustom} ${mainLayout} text-sm `
           )}
-          placeholder="Full Name"
+          placeholder={placeholder}
           enterKeyHint={"done"}
           name={name}
           title={title}
