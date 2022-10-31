@@ -11,6 +11,7 @@ import {
   ClockIcon,
   MixIcon,
   CameraIcon,
+  MinusIcon,
 } from "@radix-ui/react-icons";
 interface IconContextTypes {}
 export const IconContext = React.createContext<any>({});
@@ -36,6 +37,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         ClockIcon,
         MixIcon,
         CameraIcon,
+        MinusIcon,
       }}
     >
       {children}

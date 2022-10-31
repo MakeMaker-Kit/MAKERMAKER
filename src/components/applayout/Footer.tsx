@@ -2,12 +2,14 @@ import React from "react";
 import cx from "classnames";
 import { textStyles, themes, flexLayout } from "../../styles/themes/theme";
 import Button from "../../hooks/button";
+import { useIcon } from "../../hooks/dispatchContext";
 
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
   const { themeWrapper, boxFull, XFull, containerWrapper, formLayout } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRow, flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
+  const { MinusIcon } = useIcon();
   return (
     <>
       <div className={cx(`${marX} py-6`)}>
@@ -27,6 +29,26 @@ const Footer = () => {
                   would improve the practical section of anything ask to come in
                   at lunch to experiment
                 </p>
+              </div>
+              {/*  */}
+              <div className={cx(`${flexStart} ${boxFull}  px-10`)}>
+                <ul
+                  className={cx(`${flexRowCenter} space-x-3 flex-1 flex-wrap`)}
+                >
+                  {Array(4)
+                    .fill(0)
+                    .map((i) => (
+                      <>
+                        <li
+                          key={i + Math.floor(Math.random() * 4)}
+                          className={`${flexRowCenter} flex-[0_0_20%] whitespace-nowrap space-x-2`}
+                        >
+                          <MinusIcon />
+                          <span>Our policy</span>
+                        </li>
+                      </>
+                    ))}
+                </ul>
               </div>
             </div>
           </div>

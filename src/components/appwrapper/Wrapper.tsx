@@ -14,7 +14,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
           <Navbar />
         </div>
         <div className={`${pageCenter}`}>{children}</div>
-        <div className="bg-white border-2 border-solid border-orange">
+        <div className="bg-grayWhite border-2 border-solid border-orange">
           {/* Footer */}
           <Footer />
         </div>
