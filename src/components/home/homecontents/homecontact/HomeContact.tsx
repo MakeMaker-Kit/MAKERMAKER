@@ -40,7 +40,7 @@ const HomeContact = () => {
             >
               {/* Contents Section */}
               <div className={`w-four max-w-four h-40`}>
-                <div className={cx(`${boxFull} ${flexCol} space-y-4`)}>
+                <div className={cx(`${boxFull} ${flexCol} space-y-10`)}>
                   <Content />
                 </div>
               </div>
