@@ -12,9 +12,9 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
       <div className={` bg-transparent`}>
         <div className={`relative`}>
           {/* Header */}
-
           <Navbar />
         </div>
+        <AuthLayout />
         <div className={`${pageCenter}`}>{children}</div>
         <div className="bg-grayWhite border-2 border-solid border-orange">
           {/* Footer */}

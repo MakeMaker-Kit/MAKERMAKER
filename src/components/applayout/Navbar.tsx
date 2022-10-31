@@ -21,7 +21,7 @@ const Navbar = () => {
   const { mainLayout, mainText, textCustom } = textStyles;
   const dispatch = useDispatch();
   const modalState = useSelector(onModalState);
-  const openNodal = () => dispatch(openAuthModal()) && alert(modalState);
+  const openNodal = () => dispatch(openAuthModal());
   return (
     <>
       <div className={classNames(`${marX} p-0`, ``)}>
