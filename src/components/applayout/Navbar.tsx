@@ -63,7 +63,7 @@ const Navbar = () => {
                   <div className={classNames(` ${boxFull} ${flexCenter}`)}>
                     <p
                       className={classNames(
-                        `${textCustom} ${mainLayout} text-white`
+                        `${textCustom} ${mainLayout} text-white whitespace-nowrap`
                       )}
                     >
                       Add To Cart

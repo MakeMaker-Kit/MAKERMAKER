@@ -3,6 +3,7 @@ import { globalInitialState } from "../type.types";
 
 const initialState: globalInitialState = {
   message: "",
+  page: 1,
 };
 const globalState = createSlice({
   name: "globalstate",
