@@ -71,6 +71,19 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
                   </span>
                 </div>
               </div>
+              {/*   Forgot PassWord */}
+              <div className={`${mainLayout} max-w-nine`}>
+                <p
+                  className={`whitespace-nowrap ${textCustom} text-sm font-playfair`}
+                >
+                  Forgot Password?.{" "}
+                  <span className="italic cursor-pointer underline"
+                  onClick={() => setPage((currentPage) =>  currentPage + 2)}
+                  >
+                    Reset Password{" "}
+                  </span>{" "}
+                </p>
+              </div>
             </div>
           </div>
           <div className="w-full h-px bg-gray-700" />
