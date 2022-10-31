@@ -23,15 +23,27 @@ const AuthLayout = () => {
 
   const displayAuthComtents = () => {
     if (page === 0) {
-      return <Login generateTitle={pageTitle} page={page} />;
+      return <Login generateTitle={pageTitle} page={page} setPage={setPage} />;
     } else if (page === 1) {
-      return <Register generateTitle={pageTitle} page={page} />;
+      return (
+        <Register generateTitle={pageTitle} page={page} setPage={setPage} />
+      );
     } else if (page === 2) {
       return (
-        <UncomfirnedForgotPassword generateTitle={pageTitle} page={page} />
+        <UncomfirnedForgotPassword
+          generateTitle={pageTitle}
+          page={page}
+          setPage={setPage}
+        />
       );
     } else {
-      return <ConfirmedForgotPassword generateTitle={pageTitle} page={page} />;
+      return (
+        <ConfirmedForgotPassword
+          generateTitle={pageTitle}
+          page={page}
+          setPage={setPage}
+        />
+      );
     }
   };
 
@@ -68,10 +80,8 @@ const AuthLayout = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className=" align-middle h-[500px] bg-black w-[400px] rounded-md border border-solid border-orange pt-20  ">
-                    <div
-                      className={classNames(`${boxFull} ${containerWrapper} `)}
-                    >
+                  <Dialog.Panel className=" align-middle h-[500px] bg-white w-[400px] rounded-md border border-solid border-orange pt-20  ">
+                    <div className={classNames(`${boxFull} `)}>
                       <AuthContainer generatedPage={displayAuthComtents} />
                     </div>
                   </Dialog.Panel>

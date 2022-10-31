@@ -20,7 +20,6 @@ lng: number
 export interface defaultProps{
 center: CenterProp;
 zoom: number;
-
 }
 
 export interface AuthContainerType{
@@ -28,7 +27,8 @@ export interface AuthContainerType{
 }
 export interface AuthContentType{
   generateTitle?: string[] | undefined
-  page: number
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface InputRef{

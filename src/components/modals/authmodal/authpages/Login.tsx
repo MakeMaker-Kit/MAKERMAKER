@@ -10,7 +10,7 @@ import Input from "../../../../hooks/Input";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
 
-const Login: React.FC<AuthContentType> = ({ generateTitle, page }) => {
+const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
   const {
     flexCol,
     flexRow,
@@ -35,11 +35,9 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page }) => {
           </h2>
         </div>
         {/*  */}
-        <div className={cx(`${boxFull} ${flexColBetween} ${containerWrapper}`)}>
+        <div className={cx(`${boxFull} ${flexColBetween} `)}>
           <div className={cx(`h-[90%] max-h-[90%] px-5 py-3 w-full`)}>
-            <div
-              className={`${boxFull} ${containerWrapper} ${flexCol} space-y-5 items-center`}
-            >
+            <div className={`${boxFull}  ${flexCol} space-y-5 items-center`}>
               <div className={`max-w-full w-full`}>
                 <Input isRounded={true} placeholder={`Ènter Your Email`} />
               </div>
@@ -84,7 +82,10 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page }) => {
               )}
             >
               <p>Dont have an account</p>
-              <span className={cx(`underline cursor-pointer text-black`)}>
+              <span
+                className={cx(`underline cursor-pointer text-black`)}
+                onClick={() => setPage((currentPage) => currentPage + 1)}
+              >
                 Register Here
               </span>
             </div>
