@@ -15,7 +15,7 @@ const Button = React.forwardRef<HTMLButtonElement, OtherProps>(
         ref={ref}
         {...props}
         className={classNames(
-          `w-auto h-10 ${textCustom} ${mainLayout} text-sm  text-gray-50 whitespace-nowrap relative px-3 rounded-md`
+          `w-auto h-10 ${textCustom} ${mainLayout} text-sm  text-gray-50 whitespace-nowrap relative px-3 `
         )}
       >
         {children}

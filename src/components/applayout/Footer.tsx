@@ -5,24 +5,24 @@ import Button from "../../hooks/button";
 
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
-  const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
+  const { themeWrapper, boxFull, XFull, containerWrapper, formLayout } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRow, flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
   return (
     <>
       <div className={cx(`${marX} py-6`)}>
-        <div className={`${boxFull} ${containerWrapper} ${flexRow}`}>
+        <div className={`${boxFull}  ${flexRow}`}>
           <div className={cx(`w-five max-w-five`)}>
             <div
               className={cx(
-                `${XFull} h-32 ${containerWrapper} ${flexCol} space-y-5 ${textCustom} ${mainLayout}`
+                `${XFull} h-auto  ${flexCol} space-y-5 ${textCustom} ${mainLayout}`
               )}
             >
               <div className={cx(`${flexCenter}`)}>
                 <h1 className={`text-4xl font-black`}>MAKEMAKER</h1>
               </div>
-              <div className={cx(`${flexStart} max-w-nine line-clamp-5`)}>
-                <p className="text-sm font-normal tracking-wide">
+              <div className={cx(`${flexCenter} max-w-nine line-clamp-5`)}>
+                <p className="text-sm font-normal tracking-wide text-center">
                   MakeMaker is a science aimed at debveloping science kits that
                   would improve the practical section of anything ask to come in
                   at lunch to experiment
@@ -37,7 +37,7 @@ const Footer = () => {
                 `${XFull} ${flexCol} space-y-5 ${textCustom} ${mainLayout}`
               )}
             >
-              <div className={cx(`${flexCenter} whitespace-nowrap`)}>
+              <div className={cx(`${flexStart} whitespace-nowrap`)}>
                 <h1 className={`text-2xl font-medium`}>
                   Subscribe to our Newsletter
                 </h1>
@@ -45,14 +45,20 @@ const Footer = () => {
               {/*  */}
               <div className={cx(`${flexRow} ${XFull}`)}>
                 <div className={cx(`w-six max-w-six`)}>
-                  <input type="text" className={cx(`w-full h-10`)} />
+                  <input
+                    type="text"
+                    className={cx(
+                      `h-10`,
+                      `${formLayout} ${mainLayout} ${textCustom}`
+                    )}
+                  />
                 </div>
                 <div className={cx(`w-four max-w-four `)}>
                   <Button handleClick={() => {}}>Subscribe</Button>
                 </div>
               </div>
               {/*  */}
-              <div className={cx(`${flexStart} ${flexCol}`)}>
+              <div className={cx(`${flexStart} ${flexCol} space-y-3`)}>
                 <h2>Follow Us</h2>
                 <ul className={cx(`${flexRowCenter} gap-x-4`)}>
                   {Array(4)

@@ -37,7 +37,7 @@ export const themes = {
   border: "w-full h-px bg-gray-100 my-2",
   transitions: "transition duration-300 delay-100 ease-linear",
   backgroundImagelayout: "bg-[50%] bg-no-repeat relative bg-white max-w-full w-full h-full bg-cover pt-[30vh] pb-[14vh]", 
-  formLayout: ``
+  formLayout: `w-full border border-solid border-orange `
 };
 
 export const flexLayout = {
