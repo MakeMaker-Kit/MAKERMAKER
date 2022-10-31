@@ -29,7 +29,9 @@ const MoreDisplay = () => {
           <div className={classNames(`${marX} pl-3`)}>
             {/*  */}
             <div className={classNames(`${flexCol} ${boxFull} space-y-5`)}>
-              <div className={classNames(` ${flexRow} `)}>
+              <div
+                className={classNames(` ${flexResponsive.flexRowColReverse} `)}
+              >
                 <div
                   className={classNames(
                     `w-full md:w-full md:max-w-full lg:w-four lg:max-w-four `
