@@ -7,6 +7,7 @@ import Brand from "./homecontents/brands/Brand";
 import Testimonial from "./homecontents/testimonials/Testimonial";
 import HomeBlog from "./homecontents/blogdisplay/HomeBlogs";
 import HomeFaqs from "./homecontents/homeFaqs/HomeFaqs";
+import HomeContact from "./homecontents/homecontact/HomeContact";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -47,6 +48,13 @@ const HomeLayout = () => {
         {/* HOME FAQS */}
         <HomeFaqs />
       </div>
+      {/* Border  */}
+      <Border />
+      {/* HomeContact */}
+      <div>
+        <HomeContact />
+      </div>
+      <div></div>
     </>
   );
 };

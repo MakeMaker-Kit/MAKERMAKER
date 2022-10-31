@@ -40,7 +40,7 @@ const HomeFaqs = () => {
               .map((i) => (
                 <div
                   key={i}
-                  className={`w-full md:w-full lg:w-five h-auto border border-slate-800 rounded-md  p-4`}
+                  className={`w-full md:w-full lg:w-five h-auto border border-appGreen rounded-md  p-4`}
                 >
                   <div className={cx(`${boxFull} ${flexCol} space-y-4`)}>
                     {Array(4)
@@ -50,7 +50,7 @@ const HomeFaqs = () => {
                           key={i + 1}
                           className={cx(
                             `h-36 ${XFull} } p-2`,
-                            `border border-slate-500 rounded-lg `
+                            `border border-orange rounded-lg `
                           )}
                         >
                           <div

@@ -17,6 +17,7 @@ module.exports = {
         appRed: "#cc282c",
         appPink: "#e59293",
         grayWhite: "#f9f9f9",
+        orange: "#ff6900"
       },
       backgroundColor: {
         darkWhite: "#fefffe",
@@ -25,6 +26,7 @@ module.exports = {
         appRed: "#cc282c",
         appPink: "#e59293",
         grayWhite: "#f9f9f9",
+        orange: "#ff6900"
       },
       fontSize: {
         h1: "44px",
