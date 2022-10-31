@@ -16,3 +16,14 @@ export interface BrandTypes {
   link: string;
   id: number | string;
 }
+type IconType = {
+  icon: React.ReactNode;
+};
+export interface DisplayContentTypes {
+  title: string;
+  desc: string;
+  image: string;
+  coreTags: string[];
+  iconsValues: IconType[];
+  handleClick: () => void | any;
+}

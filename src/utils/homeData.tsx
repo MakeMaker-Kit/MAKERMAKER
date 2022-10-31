@@ -1,7 +1,18 @@
-import { navType, NavItemTypes, BrandTypes } from "./utils.types";
+import {
+  navType,
+  NavItemTypes,
+  BrandTypes,
+  DisplayContentTypes,
+} from "./utils.types";
 import uuid from "react-uuid";
 import { EnvelopeClosedIcon, GearIcon, HomeIcon } from "@radix-ui/react-icons";
-import { brand1, brand2, brand3, brand4 } from "../assets/images";
+import {
+  brand1,
+  brand2,
+  brand3,
+  brand4,
+  displayProduct,
+} from "../assets/images";
 export const NavbarData: Array<navType> = [
   {
     name: "Home",
@@ -172,5 +183,68 @@ export const BrandData: BrandTypes[] = [
     img: brand4,
     link: "",
     id: uuid(),
+  },
+];
+
+export const DisplayContentData: DisplayContentTypes[] = [
+  {
+    title: "Make Maker Displayed",
+    desc: "Reasonably priced. Compact. The science set max, provides an unparalleled personalized learning experience and is the most effective way to introduce students to innovation, technology and pro",
+    image: displayProduct,
+    coreTags: [
+      "Innovation",
+      "Designing",
+      "Progammig",
+      "Manufacturing",
+      "Practicals",
+    ],
+    iconsValues: [
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+    ],
+    handleClick: () => {},
+  },
+  {
+    title: "A Quote on what we believe  ",
+    desc: "Education is the passport to the future for tomorrow belongs to those who prepare for it today",
+    image: displayProduct,
+    coreTags: [
+      "Innovation",
+      "Designing",
+      "Progammig",
+      "Manufacturing",
+      "Practicals",
+    ],
+    iconsValues: [
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+      {
+        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+      },
+    ],
+    handleClick: () => {},
   },
 ];

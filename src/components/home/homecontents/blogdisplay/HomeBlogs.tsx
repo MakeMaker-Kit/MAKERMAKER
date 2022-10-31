@@ -34,7 +34,7 @@ const HomeBlog = () => {
           <ul
             className={cx(
               `${flexRow}`,
-              `w-full h-full gap-x-4 flex-nowrap overflow-x-scroll py-10 scrollbar-hide snap-proximity`
+              `w-full h-full gap-x-4 flex-nowrap overflow-x-scroll py-10 scrollbar-hide snap-proximity snap-x`
             )}
           >
             {Array(6)
