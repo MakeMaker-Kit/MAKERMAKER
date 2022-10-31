@@ -8,7 +8,7 @@ import {
 import { surfaceBg } from "../../../../assets/images";
 import { TextWrapper } from "../../../appwrapper";
 import Contact from "./Contact";
-import { Content } from "@radix-ui/react-dropdown-menu";
+import Content from "./Content";
 
 const HomeContact = () => {
   const {
@@ -36,23 +36,17 @@ const HomeContact = () => {
           <TextWrapper Zindex="z-[-1]" />
           <div className={cx(`${marX} `)}>
             <div
-              className={cx(
-                `${boxFull} ${containerWrapper} ${flexResponsive.flexRowColReverse}`
-              )}
+              className={cx(`${boxFull} ${flexResponsive.flexRowColReverse}`)}
             >
               {/* Contents Section */}
-              <div className={`w-five max-w-five h-40`}>
-                <div
-                  className={cx(`${boxFull} ${containerWrapper} ${flexCol}`)}
-                >
+              <div className={`w-four max-w-four h-40`}>
+                <div className={cx(`${boxFull} ${flexCol} space-y-4`)}>
                   <Content />
                 </div>
               </div>
               {/* Contact Section */}
-              <div className={`w-five max-w-five h-40`}>
-                <div
-                  className={cx(`${boxFull} ${containerWrapper} ${flexCol}`)}
-                >
+              <div className={`w-six max-w-six h-40`}>
+                <div className={cx(`${boxFull} ${flexCol} space-y-4`)}>
                   <Contact />
                 </div>
               </div>

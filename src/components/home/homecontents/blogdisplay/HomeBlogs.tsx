@@ -41,7 +41,7 @@ const HomeBlog = () => {
               .fill(0)
               .map((i) => (
                 <div
-                  key={i}
+                  key={i + 1}
                   className={cx(
                     `w-three max-w-three h-auto  flex-shrink-0 snap-center`
                   )}

@@ -1,4 +1,5 @@
 import React from "react";
+import cx from "classnames";
 import {
   themes,
   textStyles,
@@ -6,13 +7,17 @@ import {
 } from "../../../../styles/themes/theme";
 
 const Content = () => {
-  const {} = flexLayout;
-  const {} = textStyles;
+  const { flexCenter, flexStart, flexCol } = flexLayout;
+  const { mainLayout, mainText, textCustom } = textStyles;
   const { themeWrapper } = themes;
   const {} = themeWrapper;
   return (
     <>
-      <div></div>
+      <div className={cx(`${flexCenter}`)}>
+        <h1 className={cx(`${mainLayout} ${textCustom} text-4xl text-gray-50`)}>
+          Contact Infromation
+        </h1>
+      </div>
     </>
   );
 };
