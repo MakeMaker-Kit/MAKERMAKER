@@ -26,9 +26,24 @@ interface FormTypes extends InputTypes {
   maxLength?: number;
   minLength?: number;
   maxLengthMax?: number;
+  title?: string;
 }
 const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
-  ({ children, ...props }, ref) => {
+  (
+    {
+      children,
+      name,
+      label,
+      placeholder,
+      hint,
+      value,
+      id,
+      title,
+      onChange,
+      ...props
+    },
+    ref
+  ) => {
     const { XFull, themeWrapper } = themes;
     const {} = flexLayout;
     const { textCustom, mainLayout, mainText } = textStyles;
@@ -37,16 +52,18 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
       <>
         <input
           type="text"
+          ref={ref}
+          {...props}
           className={cx(
             `${XFull} h-12 border border-solid border-orange rounded-md ${themeWrapper.formPadL}`,
             `${textCustom} ${mainLayout} text-sm `
           )}
           placeholder="Full Name"
           enterKeyHint={"done"}
-          name=""
-          title=""
-          value={""}
-          onChange={(e) => {}}
+          name={name}
+          title={title}
+          value={value}
+          onChange={onChange}
         />
       </>
     );

@@ -34,21 +34,45 @@ const Contact = () => {
       <div className={cx(`${XFull} h-96`, ``)}>
         <div className={`${boxFull} ${flexCol} gap-y-5`}>
           <div className={cx(`${XFull}`)}>
-            <TextField />
+            <TextField
+              label=""
+              name=" "
+              onChange={() => {}}
+              placeholder=""
+              value={""}
+            />
           </div>
           <div className={cx(`${flexRowCenter} gap-x-4`)}>
             {/*  */}
             <div className="w-five max-w-six">
-              <TextField />
+              <TextField
+                label=""
+                name=" "
+                onChange={() => {}}
+                placeholder=""
+                value={""}
+              />
             </div>
             <div className="w-five max-w-five">
-              <TextField />
+              <TextField
+                label=""
+                name=" "
+                onChange={() => {}}
+                placeholder=""
+                value={""}
+              />
             </div>
 
             {/*  */}
           </div>
           <div className={cx(`${XFull}`)}>
-            <TextField />
+            <TextField
+              label=""
+              name=" "
+              onChange={() => {}}
+              placeholder=""
+              value={""}
+            />
           </div>
           <div className="w-full">
             <textarea
