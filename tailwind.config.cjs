@@ -8,7 +8,8 @@ module.exports = {
         cascadiacodeItalic: ["CascadiaCodeItalic", "monospace"],
         cascadiacodePL: ["CascadiaCodePL", "monospace"],
         cascadiacodePLItalic: ["CascadiaCodePLItaic", "monospace"],
-        playfair: ["PlayfairDisplay", "cursive"]
+        playfair: ["PlayfairDisplay", "cursive"],
+        gordita: ["GorditaRegular", "sans-serif"],
       },
       colors: {
         darkWhite: "#fefffe",
@@ -17,7 +18,7 @@ module.exports = {
         appRed: "#cc282c",
         appPink: "#e59293",
         grayWhite: "#f9f9f9",
-        orange: "#ff6900"
+        orange: "#ff6900",
       },
       backgroundColor: {
         darkWhite: "#fefffe",
@@ -26,7 +27,7 @@ module.exports = {
         appRed: "#cc282c",
         appPink: "#e59293",
         grayWhite: "#f9f9f9",
-        orange: "#ff6900"
+        orange: "#ff6900",
       },
       fontSize: {
         h1: "44px",
@@ -129,6 +130,6 @@ module.exports = {
     require("@tailwindcss/line-clamp"),
     require("tailwind-scrollbar")({ nocompatible: true }),
     require("tailwindcss-radix"),
-    require("tailwind-scrollbar-hide")
+    require("tailwind-scrollbar-hide"),
   ],
 };

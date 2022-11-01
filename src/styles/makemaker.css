@@ -52,4 +52,8 @@ h1::before{
     font-family: "PlayfairDisplay";
     src: url("../../public/fonts/PlayfairDisplay-Regular.ttf");
 }
+@font-face {
+    font-family: "GorditaRegular";
+    src: url("../../public/fonts/Gordita-Regular.otf");
+}
 @tailwind utilities;

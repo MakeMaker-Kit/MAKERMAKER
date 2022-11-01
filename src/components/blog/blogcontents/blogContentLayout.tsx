@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { flexLayout, themes } from "../../../styles/themes/theme";
 import BlogMore from "./blogmore/BlogMore";
+import BlogMain from "./blogmain/BlogMain";
 const BlogContentLayout = () => {
   const { flexRow, flexResponsive } = flexLayout;
   const { themeWrapper, containerWrapper, boxFull, boxExtend, XExtend } =
@@ -38,6 +39,7 @@ const BlogContentLayout = () => {
                   )}
                 >
                   {/* Main Blog Display  */}
+                  <BlogMain />
                 </div>
               </div>
             </div>
