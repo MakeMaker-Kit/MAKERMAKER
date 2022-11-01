@@ -7,6 +7,8 @@ import {
 import uuid from "react-uuid";
 import { EnvelopeClosedIcon, GearIcon, HomeIcon } from "@radix-ui/react-icons";
 import {
+  bgBg,
+  bgMain,
   brand1,
   brand2,
   brand3,
@@ -222,7 +224,7 @@ export const DisplayContentData: DisplayContentTypes[] = [
   {
     title: "A Quote on what we believe  ",
     desc: "Education is the passport to the future for tomorrow belongs to those who prepare for it today",
-    image: displayProduct,
+    image: bgMain,
     coreTags: [
       "Innovation",
       "Designing",
