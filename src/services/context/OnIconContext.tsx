@@ -13,6 +13,7 @@ import {
   MixIcon,
   CameraIcon,
   MinusIcon,
+  ArchiveIcon,
 } from "@radix-ui/react-icons";
 interface IconContextTypes {}
 export const IconContext = React.createContext<any>({});
@@ -40,6 +41,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         MixIcon,
         CameraIcon,
         MinusIcon,
+        ArchiveIcon,
       }}
     >
       {children}

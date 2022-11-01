@@ -24,7 +24,7 @@ export const themes = {
     padY: "py-4 breakpoint_md:py-8 breakpoint_lg:py-20",
     dropdwonLayout: "relative z-[999] text-left",
     formPadL: "px-4",
-    mainMarX: `mx-4 breakpoint_md:mx-8 breakpoint_lg:mx-20`,
+    mainMarX: `mx-4 breakpoint_md:mx-8 breakpoint_lg:mx-16`,
   },
   Centralised: "max-w-default mx-auto",
   boxFull: "w-full h-full",
