@@ -45,10 +45,10 @@ const UncomfirnedForgotPassword: React.FC<AuthContentType> = ({
               {/* Comformation Link */}
               <div className="w-full max-w-nine whitespace-nowrap">
                 <p
-                  className={`${textCustom} ${mainLayout} text-xs font-playfair whitespace-nowrap`}
+                  className={`${textCustom} ${mainLayout} text-xs font-playfair whitespace-nowrap flex`}
                 >
                   We an email to <em>wilsonibason@gmail.com</em>{" "}
-                  <blockquote>comfirm it</blockquote>
+                  {/* <blockquote>comfirm it</blockquote>+ */}
                 </p>
               </div>
             </div>
