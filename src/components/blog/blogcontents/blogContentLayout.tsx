@@ -23,13 +23,17 @@ const BlogContentLayout = () => {
                     `w-full md:w-four md:max-w-four lg:w-four h-40`,
                     `${containerWrapper}`
                   )}
-                ></div>
+                >
+                  {/* Categories or Sidebar Section */}
+                </div>
                 <div
                   className={cx(
                     `w-full md:w-six md:max-w-six h-40`,
                     `${containerWrapper}`
                   )}
-                ></div>
+                >
+                  {/* Main Blog Display  */}
+                </div>
               </div>
             </div>
             <div
@@ -37,7 +41,9 @@ const BlogContentLayout = () => {
                 `w-full md:w-full lg:w-four lg:max-w-four h-40`,
                 `${containerWrapper}`
               )}
-            ></div>
+            >
+              {/* New / popular Blogs Display  */}
+            </div>
           </div>
         </div>
       </div>
