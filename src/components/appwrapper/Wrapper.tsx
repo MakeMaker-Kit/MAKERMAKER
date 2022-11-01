@@ -4,6 +4,7 @@ import { Navbar, Footer } from "../applayout";
 import { wrapperStypes, themes } from "../../styles/themes/theme";
 import AuthLayout from "../modals/authmodal/AuthLayout";
 import ScrollToTop from "react-scroll-to-top";
+import MainFooter from "../applayout/mainfooter/MainFooter";
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   const { pageCenter } = wrapperStypes;
@@ -21,6 +22,11 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
         <div className="bg-appBlue border-2 border-solid border-white">
           {/* Footer */}
           <Footer />
+        </div>
+        {/* MainFooter */}
+        <div className="bg-gray-800 border-2 border-solid border-white">
+          {/* Footer */}
+          <MainFooter />
         </div>
         {/* ScrollTotop */}
         <ScrollToTop

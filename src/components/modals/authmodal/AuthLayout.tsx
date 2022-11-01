@@ -101,3 +101,9 @@ const AuthLayout = () => {
 };
 
 export default AuthLayout;
+/**
+ *
+ * By clicking "Sign Up" button, I expressly agree to the EmailJSand understand that my account information will be used according to EmailJS
+ */
+//6LfQis0iAAAAAIEhyGhe3zcWH_jISMBCdTYcJBcO GOOGLE RECAPCAHA KEY SITE
+//6LfQis0iAAAAAA6JTAktygGBTqeudU2fJFMFL0Aa SECRET KEY

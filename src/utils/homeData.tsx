@@ -254,3 +254,5 @@ export const DisplayContentData: DisplayContentTypes[] = [
     isReversed: false,
   },
 ];
+
+export const FooterData = [{}];
