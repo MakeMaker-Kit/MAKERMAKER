@@ -19,7 +19,12 @@ const AuthLayout = () => {
   const { boxFull, themeWrapper, XFull, transitions, containerWrapper } =
     themes;
   const [page, setPage] = React.useState(0);
-  const pageTitle = ["login", "register", "reset password", "set new password"];
+  const pageTitle: Array<string> = [
+    "login",
+    "register",
+    "reset password",
+    "set new password",
+  ];
 
   const displayAuthComtents = () => {
     if (page === 0) {
