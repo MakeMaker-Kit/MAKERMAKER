@@ -7,7 +7,14 @@ import MainButton from "../../../hooks/button/mainBTN";
 import { useIcon } from "../../../hooks/dispatchContext";
 
 const MainFooter = () => {
-  const { flexRow, flexRowCenter, flexCol, flexStart, flexCenter } = flexLayout;
+  const {
+    flexRow,
+    flexRowCenter,
+    flexCol,
+    flexStart,
+    flexCenter,
+    flexResponsive,
+  } = flexLayout;
   const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
   const { marX, padY } = themeWrapper;
   const { textCustom, mainLayout } = textStyles;
@@ -16,7 +23,7 @@ const MainFooter = () => {
     <>
       <div className={cx(`${marX} py-20`)}>
         <div className={cx(`${boxFull}  `)}>
-          <div className={cx(`${flexRow} space-x-10`)}>
+          <div className={cx(`${flexResponsive.flexRowColReverse} space-x-10`)}>
             <div className={cx(`w-[48%] min-w-five h-auto`)}>
               <div className={` ${XFull} h-40 ${flexRow} space-x-5`}>
                 {/*  */}
@@ -86,7 +93,7 @@ const MainFooter = () => {
                       <Input placeholder="your name" isRounded={true} />
                     </div>
                     <div className={`w-full max-w-nine ${flexCenter}`}>
-                      <MainButton isRounded={true}>Subscibe</MainButton>
+                      <MainButton isRounded={true}>Subscribe Now</MainButton>
                     </div>
                   </div>
                 </div>
