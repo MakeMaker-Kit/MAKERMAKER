@@ -18,7 +18,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
         </div>
         <AuthLayout />
         <div className={`${pageCenter}`}>{children}</div>
-        <div className="bg-grayWhite border-2 border-solid border-orange">
+        <div className="bg-appBlue border-2 border-solid border-white">
           {/* Footer */}
           <Footer />
         </div>

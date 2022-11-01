@@ -44,7 +44,11 @@ const Footer = () => {
                           className={`${flexRowCenter} flex-[0_0_20%] whitespace-nowrap space-x-2`}
                         >
                           <MinusIcon />
-                          <span>Our policy</span>
+                          <span
+                            className={`${mainLayout} ${textCustom} text-sm font-playfair`}
+                          >
+                            Our policy
+                          </span>
                         </li>
                       </>
                     ))}
