@@ -9,11 +9,11 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
   return (
     <>
       <div>
-        <div>
+        <div className={`relative`}>
           <Navbar />
         </div>
         <div className={`${pageCenter}`}>{children}</div>
-        <div>
+        <div className={`bg-gray-800 border-2 border-solid border-white`}>
           <MainFooter />
         </div>
       </div>
