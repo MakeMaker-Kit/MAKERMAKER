@@ -4,15 +4,17 @@ import { flexLayout, themes, textStyles } from "../../../styles/themes/theme";
 import { generatedId } from "../../../hooks/localuuid/uuid";
 import Input from "../../../hooks/Input";
 import MainButton from "../../../hooks/button/mainBTN";
+import { useIcon } from "../../../hooks/dispatchContext";
 
 const MainFooter = () => {
   const { flexRow, flexRowCenter, flexCol, flexStart, flexCenter } = flexLayout;
   const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
   const { marX, padY } = themeWrapper;
-  const {} = textStyles;
+  const { textCustom, mainLayout } = textStyles;
+  const { FaWhatsapp } = useIcon();
   return (
     <>
-      <div className={cx(`${marX} py-10`)}>
+      <div className={cx(`${marX} py-20`)}>
         <div className={cx(`${boxFull}  `)}>
           <div className={cx(`${flexRow} space-x-10`)}>
             <div className={cx(`w-[48%] min-w-five h-auto`)}>
@@ -22,11 +24,11 @@ const MainFooter = () => {
                 <div className={cx(`w-five max-w-five`)}>
                   <div className={cx(`${boxFull} ${flexCol}`)}>
                     {/* MAKEMAKER ABOUT */}
-                    <div className={`${flexStart} ${flexCol}`}>
+                    <div className={`${flexStart} ${flexCol} space-y-5`}>
                       {/* LOGO */}
                       <div
                         className={cx(
-                          `w-28 h-10 border border-dotted border-gray-700 hover:border-appRed`
+                          `w-32 h-16 border border-dotted border-gray-700 hover:border-appRed`
                         )}
                       >
                         <img
@@ -38,36 +40,44 @@ const MainFooter = () => {
                         />
                       </div>
                       {/* LOGO DESCRIPTION */}
-                      <div>
-                        <p>
+                      <div className={`line-clamp-5 ${mainLayout}`}>
+                        <p
+                          className={`${textCustom} text-sm font-playfair tracking-wider leading-relaxed text-gray-50`}
+                        >
                           Lorem ipsum dolor sit amet consectetur adipisicing
                           elit. Quasi, esse.
                         </p>
                       </div>
+                      <ul className={`${flexRowCenter} space-x-4`}>
+                        {Array(4)
+                          .fill(0)
+                          .map((i) => (
+                            <li
+                              className={`w-10 h-10 p-2  border-none bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 shadow-xl rounded-md`}
+                              key={generatedId(i)}
+                            >
+                              <div className={cx(`${boxFull} ${flexCenter}`)}>
+                                <FaWhatsapp size={20} className={``} />
+                              </div>
+                            </li>
+                          ))}
+                      </ul>
                     </div>
-                    <ul className={`${flexRowCenter} space-x-4`}>
-                      {Array(4)
-                        .fill(0)
-                        .map((i) => (
-                          <li
-                            className={`w-12 h-12 ${flexCenter} border`}
-                            key={generatedId(i)}
-                          >
-                            <p>djdj</p>
-                          </li>
-                        ))}
-                    </ul>
                   </div>
                 </div>
                 {/*  */}
                 <div className={cx(`w-five max-w-five`)}>
                   <div
                     className={cx(
-                      `${boxFull} ${flexCol} items-start  space-y-2 `
+                      `${boxFull} ${flexCol} items-start  space-y-4 `
                     )}
                   >
                     <div className={`${flexStart}`}>
-                      <h1 className={`text-start`}>Subscribe</h1>
+                      <h1
+                        className={`text-start ${mainLayout} ${textCustom} text-xl font-playfair text-gray-50`}
+                      >
+                        Subscribe
+                      </h1>
                     </div>
                     <div className={`w-full max-w-full`}>
                       <Input placeholder="your name" isRounded={true} />
@@ -92,14 +102,18 @@ const MainFooter = () => {
                       className={cx(`w-three max-w-five h-auto gap-x-10`)}
                       key={generatedId(i)}
                     >
-                      <div className={cx(`boxFull  ${flexCol}`)}>
-                        <span>Company</span>
-                        <ul className={cx(`${flexCol}`)}>
+                      <div
+                        className={cx(
+                          `boxFull  ${flexCol} space-y-5 ${mainLayout} ${textCustom} font-playfair text-gray-50`
+                        )}
+                      >
+                        <span className={`text-lg `}>Company</span>
+                        <ul className={cx(`${flexCol} space-y-4`)}>
                           {Array(4)
                             .fill(0)
                             .map((i) => (
                               <li key={generatedId(i)}>
-                                <span>About Us</span>
+                                <span className={`text-sm`}>About Us</span>
                               </li>
                             ))}
                         </ul>
