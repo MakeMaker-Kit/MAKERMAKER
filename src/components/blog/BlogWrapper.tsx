@@ -13,7 +13,7 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
           <Navbar />
         </div>
         <div className={`${pageCenter} bg-white`}>
-          <div className={`h-screen w-screen`}>{children}</div>
+          <div className={`h-screen w-screen my-10`}>{children}</div>
         </div>
         <div className={`bg-gray-800 border-2 border-solid border-white`}>
           <MainFooter />

@@ -10,15 +10,14 @@ const BlogContentLayout = () => {
   const { mainMarX } = themeWrapper;
   return (
     <>
-      <div className={`${mainMarX} my-10 `}>
+      <div className={`${mainMarX}  `}>
         <div className={`${boxExtend} ${containerWrapper}`}>
           <div
             className={cx(`${flexResponsive.flexRowCol} gap-y-4 md:gap-x-4`)}
           >
             <div
               className={cx(
-                `w-full md:w-full md:max-w-full lg:w-seven lg:max-w-seven h-40`,
-                `${containerWrapper}`
+                `w-full md:w-full md:max-w-full lg:w-seven lg:max-w-seven h-40`
               )}
             >
               <div
@@ -34,8 +33,8 @@ const BlogContentLayout = () => {
                 </div>
                 <div
                   className={cx(
-                    `w-full md:w-seven md:max-w-seven h-[200px]`,
-                    `${containerWrapper} overflow-y-scroll`
+                    `w-full md:w-seven md:max-w-seven h-screen`,
+                    `overflow-y-scroll scrollbar-hide`
                   )}
                 >
                   {/* Main Blog Display  */}
@@ -45,8 +44,7 @@ const BlogContentLayout = () => {
             </div>
             <div
               className={cx(
-                `w-full md:w-full lg:w-three lg:max-w-three h-screen`,
-                `${containerWrapper}`
+                `w-full md:w-full lg:w-three lg:max-w-three h-screen`
               )}
             >
               <BlogMore />

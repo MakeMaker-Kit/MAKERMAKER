@@ -52,20 +52,20 @@ const BlogMore = () => {
                             className={`${textCustom} ${mainLayout} max-w-full`}
                           >
                             <h2
-                              className={`text-sm font-playfair line-clamp-2 text-black font-black tracking-wider cursor-pointer`}
+                              className={`text-sm font-gordita line-clamp-2 text-black font-black tracking-wider cursor-pointer`}
                             >
                               Customize your WooCommerce store with countless
                               Web
                             </h2>
                           </div>
                           {/*  */}
-                          <div className={cx(`${flexRowCenter}`)}>
+                          <div className={cx(`${flexRowCenter} space-x-2`)}>
                             <span>
                               <ArchiveIcon />
                             </span>
                             <p
                               className={cx(
-                                `${mainLayout} ${textCustom} text-xs font-playfair font-semibold`
+                                `${mainLayout} ${textCustom} text-xs font-gordita font-semibold`
                               )}
                             >
                               15<sub>th</sub> April 2022{" "}
