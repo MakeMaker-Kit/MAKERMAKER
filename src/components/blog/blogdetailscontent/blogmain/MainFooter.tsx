@@ -12,13 +12,13 @@ const MainFooter = () => {
   const { containerWrapper, themeWrapper, boxFull, XFull } = themes;
   const {} = themeWrapper;
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
-  const {} = useIcon();
+  const { FaLinkedinIn } = useIcon();
   return (
     <>
       <div className={`${flexRowCenterBetween} ${mainLayout} ${textCustom}`}>
-        <div className={`${flexRowCenter}`}>
+        <div className={`${flexRowCenter} gap-x-4`}>
           <p>Tags: </p>
-          <ul className={`${flexRowCenter}`}>
+          <ul className={`${flexRowCenter} gap-x-2`}>
             {Array(4)
               .fill(0)
               .map((i) => (
@@ -26,12 +26,17 @@ const MainFooter = () => {
               ))}
           </ul>
         </div>
-        <ul className={classNames(`${flexRowCenter}`)}>
+        <ul className={classNames(`${flexRowCenter} gap-x-4`)}>
           {Array(4)
             .fill(0)
             .map((i) => (
-              <li key={i} className={classNames(`w-8 p-2 h-8`)}>
-                <div className={classNames(`${flexCenter} ${boxFull}`)}></div>
+              <li
+                key={i}
+                className={classNames(`w-8 p-2 h-8 bg-gray-50 border`)}
+              >
+                <div className={classNames(`${flexCenter} ${boxFull}`)}>
+                  <FaLinkedinIn />
+                </div>
               </li>
             ))}
         </ul>
