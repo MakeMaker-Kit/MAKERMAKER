@@ -5,7 +5,6 @@ import { HomeLayout } from "../components/home";
 const AppHome = () => {
   return (
     <>
-      ,
       <Wrapper>
         <div>
           <HomeLayout />

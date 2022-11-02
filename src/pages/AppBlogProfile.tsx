@@ -1,13 +1,13 @@
 import React from "react";
 import { BlogWrapper } from "../components/blog";
-import BlogProfileLayour from "../components/blog/blogprofile/BlogProfileLayout";
+import BlogProfileLayout from "../components/blog/blogprofile/BlogProfileLayout";
 
 const AppBlogProfile = () => {
   return (
     <>
       <BlogWrapper>
         <div>
-          <BlogProfileLayour />
+          <BlogProfileLayout />
         </div>
       </BlogWrapper>
     </>
