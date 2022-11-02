@@ -4,6 +4,9 @@ import classNames from "classnames";
 type BannerProps = Omit<React.ComponentProps<"div">, "className"> & {};
 interface MoreProps extends BannerProps {
   children?: string | undefined;
+  home?: string;
+  routePath?: string;
+  routePathID?: string;
 }
 const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
   ({ children, ...props }, ref) => {
