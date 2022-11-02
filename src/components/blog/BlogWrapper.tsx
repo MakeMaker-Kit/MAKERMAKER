@@ -14,8 +14,9 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
         <div className={`relative`}>
           <Navbar />
         </div>
-        <div className={`bg-white `}>
+        <div className={`bg-white  `}>
           <BlogHeader />
+          <div className={`w-full h-px bg-gray-200 my-4`} />
         </div>
         <AuthLayout />
         <div className={`${pageCenter} bg-white`}>

@@ -1,5 +1,6 @@
 import React from "react";
 import cx from "classnames";
+import { useNavigate } from "react-router-dom";
 import MainButton from "../../../../hooks/button/mainBTN";
 import {
   textStyles,
@@ -8,19 +9,28 @@ import {
 } from "../../../../styles/themes/theme";
 
 const BlogHeader = () => {
-  const {} = textStyles;
-  const { flexRowCenterBetween, flexCenter } = flexLayout;
+  const { textCustom, mainLayout } = textStyles;
+  const { flexRowCenterBetween, flexCenter, flexRowCenter } = flexLayout;
   const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
   const { mainMarX } = themeWrapper;
+  const navigate = useNavigate();
   return (
     <>
       <div className={`${boxFull}  `}>
         <div className={`${mainMarX}`}>
           <div className={cx(`${XFull}`)}>
             {/* Heade Layout  */}
-            <div className={cx(`h-28 ${XFull} ${containerWrapper}`)}>
-              <div className={`${boxFull} ${flexRowCenterBetween}`}>
-                <div></div>
+            <div className={cx(`h-24 p-3 ${XFull} `)}>
+              <div className={`${boxFull} ${flexRowCenterBetween} `}>
+                <div
+                  className={cx(
+                    `${flexRowCenter} space-x-3 ${mainLayout} ${textCustom} capitalize font-gordita text-xs cursor-pointer `
+                  )}
+                >
+                  <p className={`hover:underline`}>Home{"  "} </p>
+                  <span> / </span>
+                  <p className={`text-orange hover:underline`}> {"  "} blog </p>
+                </div>
                 <div
                   className={`h-20 w-[500px] active:border focus-within:border border-dotted border-gray-700 bg-gray-100 rounded-lg`}
                 >
