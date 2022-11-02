@@ -2,6 +2,7 @@ import React from "react";
 import { wrapperStypes } from "../../styles/themes/theme";
 import { MainFooter, Navbar } from "../applayout";
 import AuthLayout from "../modals/authmodal/AuthLayout";
+import BlogHeader from "./blogcontents/blogheader/BlogHeader";
 interface Props {
   children: React.ReactNode;
 }
@@ -12,6 +13,9 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
       <div>
         <div className={`relative`}>
           <Navbar />
+        </div>
+        <div className={`bg-white `}>
+          <BlogHeader />
         </div>
         <AuthLayout />
         <div className={`${pageCenter} bg-white`}>
