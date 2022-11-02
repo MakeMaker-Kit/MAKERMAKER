@@ -4,7 +4,12 @@ type TextProps = Omit<React.ComponentProps<"p">, "className"> & {};
 interface MoreProps extends TextProps {}
 const Text = React.forwardRef<HTMLParagraphElement, MoreProps>(
   ({ children, ...props }, ref) => {
-    return <p>{children}</p>;
+    return (
+      <p {...props} ref={ref}>
+        {" "}
+        {children}
+      </p>
+    );
   }
 );
 

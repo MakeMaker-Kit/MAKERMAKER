@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { useNavigate } from "react-router-dom";
 import MainButton from "../../../../hooks/button/mainBTN";
+import { useIcon } from "../../../../hooks/dispatchContext";
 import {
   textStyles,
   flexLayout,
@@ -14,6 +15,7 @@ const BlogHeader = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
   const { mainMarX } = themeWrapper;
   const navigate = useNavigate();
+  const { BsTwitter } = useIcon();
   return (
     <>
       <div className={`${boxFull}  `}>
@@ -52,7 +54,20 @@ const BlogHeader = () => {
                     </div>
                   </div>
                 </div>
-                <div></div>
+                <ul className={`${flexRowCenter} space-x-5`}>
+                  {Array(4)
+                    .fill(0)
+                    .map((i) => (
+                      <li
+                        className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
+                        key={i}
+                      >
+                        <div className={cx(`${boxFull} ${flexCenter}`)}>
+                          <BsTwitter className={`w-3 h-3`} />
+                        </div>
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
           </div>
