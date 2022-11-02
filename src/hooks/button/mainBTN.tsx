@@ -5,18 +5,20 @@ type ButtonProps = Omit<React.ComponentProps<"button">, "className"> & {};
 interface MoreProps extends ButtonProps {
   isRounded: boolean;
   bgColor?: string;
+  textColor?: string;
 }
 const MainButton = React.forwardRef<HTMLButtonElement, MoreProps>(
-  ({ children, isRounded, bgColor, ...props }, ref) => {
+  ({ children, isRounded, bgColor, textColor, ...props }, ref) => {
     const { mainLayout, textCustom } = textStyles;
     return (
       <button
         className={classNames(
-          `w-full h-10 border border-solid border-orange `,
+          `w-full h-10 border border-solid  `,
           `${isRounded ? "rounded" : ""}
         `,
-          `${bgColor ? bgColor : "bg-orange"}`,
-          `${textCustom} ${mainLayout} text-gray-50 text-sm font-playfair`
+          `${bgColor ? bgColor : "bg-orange border-orange"}`,
+          `${textColor ? textCustom : "text-gray-50"}`,
+          `${textCustom} ${mainLayout}  text-sm font-playfair`
         )}
       >
         {children}
