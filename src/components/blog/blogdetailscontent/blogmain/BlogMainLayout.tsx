@@ -16,7 +16,7 @@ const BlogMainLayout = () => {
   const {} = textStyles;
   return (
     <>
-      <div className={classNames(`${flexCol}`)}>
+      <div className={classNames(`${flexCol} space-y-5`)}>
         <div>
           <MainHeader />
         </div>
