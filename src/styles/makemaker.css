@@ -32,6 +32,10 @@ h1::before{
     transition: filter 300ms ease 0ms;
 }
 
+h1, h2, h3, h4, h5, h6, p, span, img, li, ol, button, mark{
+    @apply font-gordita
+}
+
 @font-face {
     font-family: "CascadiaCode";
     src: url("../../public/fonts/CascadiaCode.ttf");

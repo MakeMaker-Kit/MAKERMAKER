@@ -18,7 +18,7 @@ const BlogDetailContentLayout = () => {
           >
             <div
               className={cx(
-                `w-full md:w-full md:max-w-full lg:w-seven lg:max-w-seven`
+                `w-full md:w-full md:max-w-full lg:w-seven lg:max-w-seven px-10`
               )}
             >
               <div className={cx(`${boxFull} ${containerWrapper}`)}>
