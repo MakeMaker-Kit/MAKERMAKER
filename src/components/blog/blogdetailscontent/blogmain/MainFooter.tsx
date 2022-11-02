@@ -22,7 +22,9 @@ const MainFooter = () => {
             {Array(4)
               .fill(0)
               .map((i) => (
-                <li key={i}>Science</li>
+                <li key={i} className={`text-gray-600`}>
+                  Science
+                </li>
               ))}
           </ul>
         </div>

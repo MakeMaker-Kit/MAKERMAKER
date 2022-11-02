@@ -6,6 +6,7 @@ import {
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import BlogMoreProfile from "./BlogMoreProfile";
 
 const BlogMore = () => {
   const { flexCol, flexRow, flexStart, flexRowCenter } = flexLayout;
@@ -16,6 +17,9 @@ const BlogMore = () => {
   return (
     <>
       <div className={cx(`${boxFull} ${flexCol} gap-y-5`)}>
+        {/* ProfileMoreProfile */}
+        <BlogMoreProfile />
+        {/* More Blogs Components */}
         <div className={` px-4 py-8 bg-gray-50 rounded-md shadow-md`}>
           <div className={cx(`${boxFull} ${flexCol} space-y-3`)}>
             <div className={cx(`${flexStart} ${mainLayout} ${textCustom}`)}>
@@ -79,6 +83,7 @@ const BlogMore = () => {
             </div>
           </div>
         </div>
+        {/* Social or Tags Components */}
         <div className={` px-4 py-8`}>
           <div className={cx(`${boxFull}`)}></div>
         </div>
