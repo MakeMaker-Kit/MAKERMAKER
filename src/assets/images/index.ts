@@ -9,6 +9,7 @@ import brand4 from "./brand4.webp";
 import surfaceBg from "./dark-fabric-texture.jpg";
 import bgBg from "./bgBg.png";
 import bgMain from "./bgMain.png";
+import img2 from "./img2.webp";
 export {
   logoImage,
   backgroundHeader,
@@ -21,4 +22,5 @@ export {
   surfaceBg,
   bgBg,
   bgMain,
+  img2,
 };

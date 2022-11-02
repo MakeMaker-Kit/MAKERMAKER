@@ -17,6 +17,7 @@ import {
   HeartFilledIcon,
   HeartIcon,
   ReaderIcon,
+  ArrowRightIcon,
 } from "@radix-ui/react-icons";
 interface IconContextTypes {}
 export const IconContext = React.createContext<any>({});
@@ -48,6 +49,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         HeartFilledIcon,
         HeartIcon,
         ReaderIcon,
+        ArrowRightIcon,
       }}
     >
       {children}

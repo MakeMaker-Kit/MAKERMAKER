@@ -56,4 +56,7 @@ h1::before{
     font-family: "GorditaRegular";
     src: url("../../public/fonts/Gordita-Regular.otf");
 }
+.bghover:hover {
+    background: linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url('../assets/images/img2.webp')
+}
 @tailwind utilities;
