@@ -38,6 +38,7 @@ export const themes = {
   border: "w-full h-px bg-gray-100 my-2",
   transitions: "transition duration-300 delay-100 ease-linear",
   transitionEase: "transition-all duration-700 delay-200 ease-in-out",
+  imageLayout: "max-w-full w-full h-full object-cover ",
   backgroundImagelayout:
     "bg-[50%] bg-no-repeat relative bg-white max-w-full w-full h-full bg-cover pt-[30vh] pb-[14vh]",
   formLayout: `w-full border border-solid border-orange `,

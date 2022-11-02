@@ -10,7 +10,10 @@ const ButtonText = React.forwardRef<HTMLDivElement, MoreProps>(
   ({ children, clasNames, isRounded, color, ...props }, ref) => {
     return (
       <>
-        <div className={`w-auto h-8 p-2 border rounded-md`} ref={ref}>
+        <div
+          className={`w-auto h-8 p-2 border rounded-md cursor-pointer`}
+          ref={ref}
+        >
           <div className={cx(`${clasNames}`)} {...props}>
             <p className={`text-sm font-gordita`}>{children}</p>
           </div>
