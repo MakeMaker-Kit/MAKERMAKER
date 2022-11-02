@@ -52,7 +52,7 @@ const BlogProfileMainLayout = () => {
                 <div className={`w-40 p-3`}>
                   <MainButton
                     isRounded={true}
-                    bgColor={`bg-blue-200`}
+                    bgColor={`bg-blue-100`}
                     textColor={`text-gray-800`}
                   >
                     Progamming{" "}

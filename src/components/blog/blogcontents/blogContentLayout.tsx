@@ -32,7 +32,7 @@ const BlogContentLayout = () => {
                 </div>
                 <div
                   className={cx(
-                    `w-full md:w-seven md:max-w-seven h-screen`,
+                    `w-full md:w-seven md:max-w-seven h-auto`,
                     `overflow-y-scroll scrollbar-hide`
                   )}
                 >
@@ -43,7 +43,7 @@ const BlogContentLayout = () => {
             </div>
             <div
               className={cx(
-                `w-full md:w-full lg:w-three lg:max-w-three h-screen`
+                `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
               <BlogMore />
