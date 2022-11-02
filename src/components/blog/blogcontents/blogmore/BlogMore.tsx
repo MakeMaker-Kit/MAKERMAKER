@@ -40,7 +40,7 @@ const BlogMore = () => {
                           title=""
                           width={400}
                           height={400}
-                          className={`max-w-full w-full h-full object-center  object-contain`}
+                          className={`max-w-full w-full h-full object-[100%_100%]  object-cover`}
                         />
                       </div>
                       <div className={cx(`w-seven max-w-seven`, ``)}>

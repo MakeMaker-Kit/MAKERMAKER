@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { flexLayout, textStyles, themes } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
+import BlogMainLayout from "./blogmain/BlogMainLayout";
 
 const BlogDetailContentLayout = () => {
   const { flexResponsive } = flexLayout;
@@ -17,9 +18,13 @@ const BlogDetailContentLayout = () => {
           >
             <div
               className={cx(
-                `w-full md:w-full md:max-w-full lg:w-seven lg:max-w-seven h-40`
+                `w-full md:w-full md:max-w-full lg:w-seven lg:max-w-seven`
               )}
-            ></div>
+            >
+              <div className={cx(`${boxFull}`)}>
+                <BlogMainLayout />
+              </div>
+            </div>
             <div
               className={cx(
                 `w-full md:w-full lg:w-three lg:max-w-three h-screen`
