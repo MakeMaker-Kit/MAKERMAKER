@@ -3,6 +3,7 @@ import cx from "classnames";
 import { flexLayout, themes } from "../../../styles/themes/theme";
 import BlogMore from "./blogmore/BlogMore";
 import BlogMain from "./blogmain/BlogMain";
+import BlogCategories from "./blogcategories/BlogCategories";
 const BlogContentLayout = () => {
   const { flexRow, flexResponsive } = flexLayout;
   const { themeWrapper, containerWrapper, boxFull, boxExtend, XExtend } =
@@ -29,6 +30,7 @@ const BlogContentLayout = () => {
                     `${containerWrapper}`
                   )}
                 >
+                  <BlogCategories />
                   {/* Categories or Sidebar Section */}
                 </div>
                 <div
