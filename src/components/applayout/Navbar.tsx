@@ -24,7 +24,7 @@ const Navbar = () => {
   const openNodal = () => dispatch(openAuthModal());
   return (
     <>
-      <div className={classNames(`${marX} p-0`, ``)}>
+      <div className={classNames(`${marX} my-3 py-6 border-y`, ``)}>
         <nav className={classNames(`${XFull} h-12`, `container `)}>
           <div className={classNames(`${boxFull} ${flexRowCenterBetween}`)}>
             <div>
@@ -40,7 +40,12 @@ const Navbar = () => {
               </Link>
             </div>
             <div className={`${flexRowCenter} space-x-4`}>
-              <ul className={classNames(`${flexRowCenter} space-x-4`)}>
+              <ul
+                className={classNames(
+                  `${flexRowCenter} space-x-4`,
+                  ` hidden md:hidden lg:flex`
+                )}
+              >
                 {NavbarData.map((nav, index: number) => {
                   const { id, link, name, navContents } = nav;
                   return (
