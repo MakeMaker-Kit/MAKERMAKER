@@ -22,11 +22,12 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
         <AuthLayout />
         <div className={`${pageCenter} bg-white`}>
           <div className={`h-auto  my-10`}>{children}</div>
+          <div className="mb-10">
+            <BlogContact />
+          </div>
         </div>
         {/* Blog Contact */}
-        <div>
-          <BlogContact />
-        </div>
+
         <div className={`bg-gray-800 border-2 border-solid border-white`}>
           <MainFooter />
         </div>

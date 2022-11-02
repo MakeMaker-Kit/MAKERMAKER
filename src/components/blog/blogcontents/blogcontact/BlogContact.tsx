@@ -23,7 +23,7 @@ const BlogContact = () => {
             {/* BlogContact Layout  */}
             <div
               className={cx(
-                `${XFull} h-28 py-10 px-20 rounded-lg shadow-md border bg-gray-100 `
+                `${XFull} h-28 py-10 px-20 rounded-lg shadow-md border bg-gray-50 `
               )}
             >
               <div
