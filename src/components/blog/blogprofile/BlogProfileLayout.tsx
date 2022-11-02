@@ -1,8 +1,10 @@
 import React from "react";
 import cx from "classnames";
 import { themes, flexLayout } from "../../../styles/themes/theme";
+import BlogMore from "../blogcontents/blogmore/BlogMore";
+import BlogProfileMainLayout from "./blogprofilemain/BlogProfileMainLayout";
 
-const BlogProfileLayour = () => {
+const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const { flexResponsive } = flexLayout;
@@ -20,7 +22,7 @@ const BlogProfileLayour = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                <BlogMainLayout />
+                <BlogProfileMainLayout />
               </div>
             </div>
             <div
@@ -38,4 +40,4 @@ const BlogProfileLayour = () => {
   );
 };
 
-export default BlogProfileLayour;
+export default BlogProfileLayout;

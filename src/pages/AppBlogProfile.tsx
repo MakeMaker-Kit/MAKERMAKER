@@ -1,6 +1,6 @@
 import React from "react";
 import { BlogWrapper } from "../components/blog";
-import BlogProfileLayour from "../components/blog/blogprofile/BlogProfileLayour";
+import BlogProfileLayour from "../components/blog/blogprofile/BlogProfileLayout";
 
 const AppBlogProfile = () => {
   return (
