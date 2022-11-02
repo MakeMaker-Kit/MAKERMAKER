@@ -53,7 +53,9 @@ const BlogMoreProfile = () => {
             </p>
           </div>
           {/*  */}
-          <div></div>
+          <ul className={`${flexRowCenter}`}>
+            <li></li>
+          </ul>
         </div>
       </div>
     </>
