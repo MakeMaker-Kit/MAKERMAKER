@@ -1,12 +1,12 @@
 import React from "react";
-import { BlogCategoryLayout } from "../../components/blog";
+import { BlogCategoryLayouts } from "../../components/blog";
 import BlogWrapper from "../../components/blog/BlogWrapper";
 
 const AppTagCategory = () => {
   return (
     <>
       <BlogWrapper>
-        <BlogCategoryLayout />
+        <BlogCategoryLayouts />
       </BlogWrapper>
     </>
   );
