@@ -34,7 +34,7 @@ const BlogHeader = () => {
                   <p className={`text-orange hover:underline`}> {"  "} blog </p>
                 </div>
                 <div
-                  className={`h-20 w-[500px] active:border focus-within:border border-dotted border-gray-700 bg-gray-100 rounded-lg`}
+                  className={`h-20 w-[500px] hidden md:hidden lg:flex active:border focus-within:border border-dotted border-gray-700 bg-gray-100 rounded-lg`}
                 >
                   <div className={`${boxFull} `}>
                     <div

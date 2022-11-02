@@ -30,7 +30,7 @@ const BlogMore = () => {
                     <div className={`${boxFull} ${flexRow} gap-x-4`}>
                       <div
                         className={cx(
-                          `w-three max-w-three`,
+                          `w-[10%] md:w-[10%] lg:w-three max-w-three`,
                           `border border-dotted border-gray-500 rounded-lg cursor-pointer`
                         )}
                       >

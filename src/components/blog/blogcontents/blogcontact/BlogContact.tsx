@@ -31,7 +31,7 @@ const BlogContact = () => {
               >
                 <div className={cx(`w-two max-w-two`)}>
                   <div
-                    className={`${flexCenter} ${XFull} ${textCustom} ${mainLayout} text-lg font-gordita break-words `}
+                    className={`${flexCenter} ${XFull} ${textCustom} ${mainLayout} text-lg font-gordita whitespace-nowrap lg:break-words `}
                   >
                     <h1 className={`max-w-nine`}>
                       Subscribe for our Blog Newsletter
