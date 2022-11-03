@@ -22,9 +22,6 @@ const ShopWrapper: React.FC<Iprops> = ({ children }) => {
             <ShopHeader />
             <div className={`w-full h-px bg-gray-200 my-4`} />
             {/*  BnnaerPage Wrappers*/}
-            {/* <div>
-            <BannerPageWrapper />
-          </div> */}
           </div>
           <AuthLayout />
           <div className={`${pageCenter} bg-white`}>
@@ -40,3 +37,5 @@ const ShopWrapper: React.FC<Iprops> = ({ children }) => {
     </>
   );
 };
+
+export default ShopWrapper;
