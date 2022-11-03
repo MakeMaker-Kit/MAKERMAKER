@@ -3,6 +3,7 @@ import {
   NavItemTypes,
   BrandTypes,
   DisplayContentTypes,
+  ShopCategoryTypes,
 } from "./utils.types";
 import uuid from "react-uuid";
 import { EnvelopeClosedIcon, GearIcon, HomeIcon } from "@radix-ui/react-icons";
@@ -287,5 +288,76 @@ export const shopCarouselData: ShopCarouselTypes[] = [
     image: banner5,
     link: "",
     id: uuid(),
+  },
+];
+export const ShopCategoryData: ShopCategoryTypes[] = [
+  {
+    name: "Stem Marvrl",
+    link: "",
+    id: uuid(),
+    icon: <GearIcon className="h-3 w-3" />,
+    subCategory: [
+      {
+        name: "Arduino",
+        link: "",
+        id: uuid(),
+      },
+      {
+        name: "Battery",
+        link: "",
+        id: uuid(),
+      },
+      {
+        name: "3d Models",
+        link: "",
+        id: uuid(),
+      },
+    ],
+  },
+  {
+    name: "Stem Marvrl",
+    link: "",
+    id: uuid(),
+    icon: <GearIcon className="h-3 w-3" />,
+    subCategory: [
+      {
+        name: "Arduino",
+        link: "",
+        id: uuid(),
+      },
+      {
+        name: "Battery",
+        link: "",
+        id: uuid(),
+      },
+      {
+        name: "3d Models",
+        link: "",
+        id: uuid(),
+      },
+    ],
+  },
+  {
+    name: "Stem Marvrl",
+    link: "",
+    id: uuid(),
+    icon: <GearIcon className="h-3 w-3" />,
+    subCategory: [
+      {
+        name: "Arduino",
+        link: "",
+        id: uuid(),
+      },
+      {
+        name: "Battery",
+        link: "",
+        id: uuid(),
+      },
+      {
+        name: "3d Models",
+        link: "",
+        id: uuid(),
+      },
+    ],
   },
 ];

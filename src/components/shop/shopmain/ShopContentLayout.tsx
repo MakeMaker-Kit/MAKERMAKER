@@ -29,17 +29,18 @@ const ShopContentLayout = () => {
             </div>
           </div>
           {/* Shop Layout Container  */}
-          <div className={cx(`${flexResponsive.flexRowCol}`)}>
+          <div
+            className={cx(
+              `${flexResponsive.flexRowCol}`,
+              `border border-dashed`
+            )}
+          >
             {/* Filter Component */}
-            <div
-              className={cx(`w-full max-w-two ${containerWrapper} px-3 py-5`)}
-            >
+            <div className={cx(`w-full max-w-two  px-6 py-5 bg-white`)}>
               <ShopCategory />
             </div>
             {/* Shop Items Component */}
-            <div
-              className={cx(`w-full max-w-eight ${containerWrapper} h-auto`)}
-            ></div>
+            <div className={cx(`w-full max-w-eight  h-auto bg-gray-100`)}></div>
           </div>
         </div>
       </div>

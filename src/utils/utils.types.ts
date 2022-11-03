@@ -35,3 +35,15 @@ export interface ShopCarouselTypes {
   link: string;
   id: string | null | undefined;
 }
+type SubCategoryType = {
+  name: string;
+  link: string;
+  id: number | string | undefined;
+};
+export interface ShopCategoryTypes {
+  name: string;
+  link: string;
+  id: number | string | undefined;
+  icon: React.ReactNode;
+  subCategory: SubCategoryType[];
+}
