@@ -9,11 +9,8 @@ import {
 import ShopProducts from "./ShopProducts";
 
 const ProductCard = () => {
-  const { boxFull, boxExtend, containerWrapper, imageLayout, transitions } =
-    themes;
-  const { flexRow, flexCol, flexCenter, flexRowCenter } = flexLayout;
-  const { mainLayout, textCustom } = textStyles;
-  const { ArchiveIcon } = useIcon();
+  const { boxFull } = themes;
+  const { flexRow } = flexLayout;
   return (
     <>
       <div className={cx(`${boxFull}`)}>
@@ -22,6 +19,7 @@ const ProductCard = () => {
           {Array(5)
             .fill(0)
             .map((i) => (
+              // Single Image Card
               <ShopProducts key={i} />
             ))}
         </ul>
