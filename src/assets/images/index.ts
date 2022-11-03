@@ -10,6 +10,12 @@ import surfaceBg from "./dark-fabric-texture.jpg";
 import bgBg from "./bgBg.png";
 import bgMain from "./bgMain.png";
 import img2 from "./img2.webp";
+//
+import banner1 from "./shop/banner1.webp";
+import banner2 from "./shop/banner2.webp";
+import banner3 from "./shop/banner3.webp";
+import banner4 from "./shop/banner4.webp";
+import banner5 from "./shop/banner5.webp";
 export {
   logoImage,
   backgroundHeader,
@@ -23,4 +29,9 @@ export {
   bgBg,
   bgMain,
   img2,
+  banner1,
+  banner2,
+  banner3,
+  banner4,
+  banner5,
 };
