@@ -1,12 +1,16 @@
 import React from "react";
 import { flexLayout, textStyles, themes } from "../../../styles/themes/theme";
 import { useIcon } from "../../../hooks/dispatchContext";
+import { useDispatch } from "react-redux";
+import { openShopComponent } from "../../../services/redux/features/globalslice/GlobalStateSlice";
 
 const CartButtonModal = () => {
   const { flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { boxFull } = themes;
   const { ClockIcon } = useIcon();
+  const dispatch = useDispatch();
+  const openShopModal = () => dispatch(openShopComponent());
   return (
     <>
       <div
@@ -19,6 +23,7 @@ const CartButtonModal = () => {
         >
           <div
             className={`${boxFull} ${flexCol} ${flexStart} ${mainLayout} ${textCustom} text-white text-xs space-y-2  `}
+            onClick={openShopModal}
           >
             <div className={`${flexRowCenter} space-x-2 tracking-wider`}>
               <ClockIcon />

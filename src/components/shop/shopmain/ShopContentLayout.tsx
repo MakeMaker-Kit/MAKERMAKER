@@ -6,12 +6,16 @@ import ShopHeader from "./shopcontent/shopheader/ShopHeader";
 import ShopCategory from "./shopcontent/shopcategory/ShopCategory";
 import ProductCard from "./shopcontent/shopproducts/ProductCard";
 import CartButtonModal from "../../modals/cartbtnmodal/CartButtonModal";
+import { openShopModal } from "../../../services/redux/features/globalslice/GlobalStateSlice";
+import { useSelector } from "react-redux";
 
 const ShopContentLayout = () => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
   const { mainMarX } = themeWrapper;
   const { flexResponsive } = flexLayout;
   const {} = textStyles;
+  const modalState = useSelector(openShopModal);
+
   return (
     <>
       {/*   Shop Wrapper Layout  */}
@@ -21,7 +25,7 @@ const ShopContentLayout = () => {
       <div className={`${mainMarX} relative`}>
         <div className={cx(`${boxExtend}`)}>
           {/* Modal Cart Trigger */}
-          <CartButtonModal />
+          {!modalState && <CartButtonModal />}
           {/* Shop Header Carousel */}
           <div
             className={cx(

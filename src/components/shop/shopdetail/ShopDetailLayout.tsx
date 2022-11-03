@@ -2,16 +2,24 @@ import React from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import classNames from "classnames";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  closeShopComponent,
+  openShopModal,
+} from "../../../services/redux/features/globalslice/GlobalStateSlice";
 
 const ShopDetailLayout = () => {
   const {} = themes;
   const {} = flexLayout;
   const {} = textStyles;
+  const dispatch = useDispatch();
+  const modalState = useSelector(openShopModal);
+  const closeModal = () => dispatch(closeShopComponent());
   return (
     <>
       <div>
-        <Transition appear show={true} as={React.Fragment}>
-          <Dialog as="div" className={"relative z-[999]"} onClose={() => false}>
+        <Transition appear show={modalState} as={React.Fragment}>
+          <Dialog as="div" className={"relative z-[999]"} onClose={closeModal}>
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-500"
