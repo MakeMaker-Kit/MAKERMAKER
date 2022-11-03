@@ -16,9 +16,7 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
     const { textCustom, mainLayout } = textStyles;
     return (
       <>
-        <div className={classNames(`my-4 py-20 bg-gray-100`)}
-        {...props}
-        >
+        <div className={classNames(`my-4 py-20 bg-gray-100`)} {...props}>
           <div className={`${boxFull} ${flexCenter}`}>
             {/* Display Page Routed Company */}
             <div className={`w-auto h-10 bg-orange p-5 rounded-2xl shadow-md`}>
@@ -30,7 +28,7 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
                 <span
                   className={classNames(
                     `capitalize`,
-                    `${!routePathID ? "text-gray-500" : ""}`
+                    `${!routePathID ? "text-gray-300" : ""}`
                   )}
                 >
                   {routePath ? routePath : ""}

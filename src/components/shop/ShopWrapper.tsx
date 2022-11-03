@@ -4,6 +4,7 @@ import Navbar from "../applayout/Navbar";
 import AuthLayout from "../modals/authmodal/AuthLayout";
 import MainFooter from "../applayout/mainfooter/MainFooter";
 import ShopHeader from "./shopmain/shopcontent/shopheader/ShopHeader";
+import ShopDetailLayout from "./shopdetail/ShopDetailLayout";
 interface Iprops {
   children: React.ReactNode;
 }
@@ -23,6 +24,7 @@ const ShopWrapper: React.FC<Iprops> = ({ children }) => {
             <div className={`w-full h-px bg-gray-200 my-4`} />
             {/*  BnnaerPage Wrappers*
           </div> */}
+          <ShopDetailLayout />
           <AuthLayout />
           <div className={`${pageCenter} bg-white`}>
             <div className={`h-auto  my-10`}>{children}</div>

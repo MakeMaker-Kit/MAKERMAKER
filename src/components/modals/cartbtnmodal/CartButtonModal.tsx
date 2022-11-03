@@ -10,20 +10,24 @@ const CartButtonModal = () => {
   return (
     <>
       <div
-        className={`absolute z-[999999] w-80 max-w-[200px] top-30 right-[-10vw]`}
+        className={`absolute z-[999999] w-80 max-w-[200px]  cursor-pointer top-0 right-[-8vw]`}
       >
+        <div className="fixed inset-0 bg-black bg-opacity-0" />
+
         <div
-          className={`fixed z-[999] p-4 bg-orange rounded-l-lg border-4 border-dotted`}
+          className={`fixed z-[999] p-4 bg-orange rounded-l-lg border-4 border-dotted   `}
         >
           <div
-            className={`${boxFull} ${flexCol} ${flexStart} ${mainLayout} ${textCustom} text-xs space-y-2  `}
+            className={`${boxFull} ${flexCol} ${flexStart} ${mainLayout} ${textCustom} text-white text-xs space-y-2  `}
           >
             <div className={`${flexRowCenter} space-x-2 tracking-wider`}>
               <ClockIcon />
               <p> 0 Item(s)</p>
             </div>
             {/*  */}
-            <div className={`py-1 px-2 rounded-md shadow-sm bg-white `}>
+            <div
+              className={`py-1 px-2 rounded-md shadow-sm bg-white text-gray-900 font-medium`}
+            >
               <div className={`${boxFull} ${flexCenter}`}>
                 <p> $20 </p>
               </div>
