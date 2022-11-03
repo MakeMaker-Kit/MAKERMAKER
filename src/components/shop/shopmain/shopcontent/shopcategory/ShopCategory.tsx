@@ -6,6 +6,7 @@ import {
   flexLayout,
   textStyles,
 } from "../../../../../styles/themes/theme";
+import { ShopCategoryData } from "../../../../../utils/homeData";
 
 const ShopCategory = () => {
   const { boxFull } = themes;
@@ -14,32 +15,40 @@ const ShopCategory = () => {
   const { ChevronDownIcon, ChevronUpIcon, CameraIcon } = useIcon();
   return (
     <>
-      <div className={`${boxFull} ${flexCol}`}>
-        <div className={cx(`${flexRowCenterBetween}`)}>
-          <div
-            className={cx(
-              `${flexRowCenter} ${mainLayout} ${textCustom} space-x-2 text-xs`
-            )}
-          >
-            <CameraIcon />
-            <p>Arduino </p>
-
-            {/*  */}
-          </div>
-
-          {/*  */}
-          <ChevronDownIcon />
-        </div>
-        <div
-          className={cx(`${flexCol} pl-6 ${textCustom} ${mainLayout} text-xs`)}
-        >
-          {Array(3)
-            .fill(0)
-            .map((i) => (
-              <p key={i + 1}>Battery</p>
-            ))}
-        </div>
-      </div>
+      <ul className={`${boxFull} ${flexCol} space-y-5`}>
+        {[...ShopCategoryData]
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map(({ icon, id, link, name, subCategory }, i) => (
+            <li className={cx(`${flexCol} space-y-4`)} key={id}>
+              <div className={cx(`${flexRowCenterBetween}`)}>
+                <div
+                  className={cx(
+                    `${flexRowCenter} ${mainLayout} ${textCustom} space-x-2 text-sm`
+                  )}
+                >
+                  <CameraIcon />
+                  <p>Arduino </p>
+                  {/*  */}
+                </div>
+                {/*  */}
+                <ChevronDownIcon />
+              </div>
+              {/*  */}
+              <div
+                className={cx(
+                  `${flexCol} space-y-4 pl-6 ${textCustom} ${mainLayout} text-sm`,
+                  ``
+                )}
+              >
+                {[...subCategory]
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((sub, i) => (
+                    <p key={sub.id}>Battery</p>
+                  ))}
+              </div>
+            </li>
+          ))}
+      </ul>
     </>
   );
 };
