@@ -1,4 +1,5 @@
 import React from "react";
+import { NonIndexRouteObject, OutletProps } from "react-router-dom";
 
 export interface NavItemTypes {
   name: string;
@@ -50,4 +51,19 @@ export interface InputRef {
   onCompositionStart?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionUpdate?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+}
+export declare function Outlet(props: OutletProps): React.ReactElement | null;
+export interface PathRouteProps {
+  caseSensitive?: NonIndexRouteObject["caseSensitive"];
+  path?: NonIndexRouteObject["path"];
+  id?: NonIndexRouteObject["id"];
+  loader?: NonIndexRouteObject["loader"];
+  action?: NonIndexRouteObject["action"];
+  hasErrorBoundary?: NonIndexRouteObject["hasErrorBoundary"];
+  shouldRevalidate?: NonIndexRouteObject["shouldRevalidate"];
+  handle?: NonIndexRouteObject["handle"];
+  index?: false;
+  children?: React.ReactNode;
+  element?: React.ReactNode | null;
+  errorElement?: React.ReactNode | null;
 }
