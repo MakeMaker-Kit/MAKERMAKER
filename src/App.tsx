@@ -12,7 +12,7 @@ const App = () => {
         <Route path="/profile/:profileID" element={<BlogProfile />} />
         {/* Tag Collection Route */}
         <Route path="/tag/:tagID" element={<BlogTag />} />
-        <Route path="/categories/categoryID" element={<BlogCategory />} />
+        <Route path="/categories/:categoryID" element={<BlogCategory />} />
         {/* Categories Collections */}
       </Routes>
     </>

@@ -4,6 +4,7 @@ import { flexLayout, themes } from "../../../styles/themes/theme";
 import BlogMore from "./blogmore/BlogMore";
 import BlogMain from "./blogmain/BlogMain";
 import BlogCategories from "./blogcategories/BlogCategories";
+import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrapper";
 const BlogContentLayout = () => {
   const { flexRow, flexResponsive } = flexLayout;
   const { themeWrapper, containerWrapper, boxFull, boxExtend, XExtend } =
@@ -11,6 +12,9 @@ const BlogContentLayout = () => {
   const { mainMarX } = themeWrapper;
   return (
     <>
+      <div>
+        <BannerPageWrapper home="Home " routePath="Blog" />
+      </div>
       <div className={`${mainMarX}  `}>
         <div className={`${boxExtend} `}>
           <div

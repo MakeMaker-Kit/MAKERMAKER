@@ -4,12 +4,12 @@ import classNames from "classnames";
 type BannerProps = Omit<React.ComponentProps<"div">, "className"> & {};
 interface MoreProps extends BannerProps {
   children?: string | undefined;
-  home?: string;
+  home?: string | "Home" | "homr";
   routePath?: string;
   routePathID?: string;
 }
 const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, home, routePath, routePathID, ...props }, ref) => {
     const { flexCenter, flexRow } = flexLayout;
     const {} = textStyles;
     const { boxFull, XFull } = themes;
@@ -23,9 +23,13 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
               <div
                 className={`${boxFull} ${flexCenter} ${flexRow} space-x-3 text-white text-sm  `}
               >
-                <span>Blog</span>
-                <span> / </span>
-                <span>How To Get In To The Tech Field</span>
+                <span className={`capitalize`}>{home ? home : "Home"}</span>
+                {routePath && <span>/</span>}
+                <span className={`capitalize`}>
+                  {routePath ? routePath : ""}
+                </span>
+                {routePathID && <span> / </span>}
+                <span>{routePathID ? routePathID : ""}</span>
               </div>
             </div>
           </div>

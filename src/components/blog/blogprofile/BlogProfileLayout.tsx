@@ -3,6 +3,7 @@ import cx from "classnames";
 import { themes, flexLayout } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogProfileMainLayout from "./blogprofilemain/BlogProfileMainLayout";
+import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrapper";
 
 const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
@@ -11,6 +12,9 @@ const BlogProfileLayout = () => {
 
   return (
     <>
+      <div>
+        <BannerPageWrapper />
+      </div>
       <div className={`${mainMarX}`}>
         <div className={cx(`${boxExtend}`)}>
           <div

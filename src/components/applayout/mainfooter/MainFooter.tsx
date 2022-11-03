@@ -24,7 +24,7 @@ const MainFooter = () => {
       <div className={cx(`${marX} py-20`)}>
         <div className={cx(`${boxFull}  `)}>
           <div className={cx(`${flexResponsive.flexRowColReverse} space-x-10`)}>
-            <div className={cx(`w-[48%] min-w-five h-auto`)}>
+            <div className={cx(`w-full md:w-full lg:w-[48%]  h-auto`)}>
               <div className={` ${XFull} h-40 ${flexRow} space-x-5`}>
                 {/*  */}
 
@@ -100,7 +100,7 @@ const MainFooter = () => {
                 {/*  */}
               </div>
             </div>
-            <div className={cx(`w-[48%] min-w-five h-auto`)}>
+            <div className={cx(`w-full md:w-full lg:w-[48%]  h-auto`)}>
               <div className={` ${XFull}  ${flexRow}`}>
                 {Array(3)
                   .fill(0)
