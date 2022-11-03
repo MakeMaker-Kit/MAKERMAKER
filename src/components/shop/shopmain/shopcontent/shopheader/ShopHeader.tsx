@@ -12,7 +12,11 @@ import SwiperCore, {
   Autoplay,
   Mousewheel,
 } from "swiper";
+import { shopCarouselData } from "../../../../../utils/homeData";
+import classNames from "classnames";
+import { themes } from "../../../../../styles/themes/theme";
 const ShopHeader = () => {
+  const { imageLayout } = themes;
   return (
     <>
       <Swiper
@@ -49,10 +53,20 @@ const ShopHeader = () => {
         ]}
         className="mySwiper"
       >
-        <SwiperSlide> slider 1 </SwiperSlide>
-        <SwiperSlide> slider 1 </SwiperSlide>
-        <SwiperSlide> slider 1 </SwiperSlide>
-        <SwiperSlide> slider 1 </SwiperSlide>
+        {[...shopCarouselData]
+          .sort((a, b) => a.image.localeCompare(b.image))
+          .map(({ id, image, link }) => (
+            <SwiperSlide key={id}>
+              <div className={classNames(`w-full max-w-full h-48`)}>
+                <img
+                  src={image}
+                  alt=""
+                  title=""
+                  className={classNames(`${imageLayout} rounded-md`)}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );

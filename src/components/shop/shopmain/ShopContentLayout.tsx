@@ -18,7 +18,7 @@ const ShopContentLayout = () => {
       <div className={`${mainMarX}`}>
         <div className={cx(`${boxExtend}`)}>
           {/* Shop Header Carousel */}
-          <div className={cx(`p-4 ${containerWrapper}`)}>
+          <div className={cx(`border border-dotted border-slate-500 p-1`)}>
             <div className={`${boxFull}`}>
               <ShopHeader />
             </div>
