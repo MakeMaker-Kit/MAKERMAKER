@@ -5,8 +5,7 @@ import {
   flexLayout,
   textStyles,
 } from "../../../../styles/themes/theme";
-import Contents from "./contents";
-
+import Contents from "./Contents";
 const DetailMoreWrapper = () => {
   const { XFull } = themes;
   const { flexCol, flexRow, flexRowCenter } = flexLayout;

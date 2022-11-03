@@ -7,12 +7,20 @@ import {
   textStyles,
 } from "../../../../../styles/themes/theme";
 import { ShopCategoryData } from "../../../../../utils/homeData";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  dropdownState,
+  toggleDropdownState,
+} from "../../../../../services/redux/features/globalslice/GlobalStateSlice";
 
 const ShopCategory = () => {
   const { boxFull } = themes;
   const { flexRowCenter, flexRowCenterBetween, flexCol } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { ChevronDownIcon, ChevronUpIcon, CameraIcon } = useIcon();
+  const dispatch = useDispatch();
+  const state = useSelector(dropdownState);
+  const openModal = () => dispatch(toggleDropdownState());
   return (
     <>
       <ul className={`${boxFull}  ${flexCol} space-y-5 z-[99]`}>
@@ -31,12 +39,14 @@ const ShopCategory = () => {
                   {/*  */}
                 </div>
                 {/*  */}
-                <ChevronDownIcon />
+                <ChevronDownIcon onClick={openModal} />
               </div>
               {/*  */}
               <div
                 className={cx(
-                  `${flexCol} space-y-4 pl-6 ${textCustom} ${mainLayout} text-sm`,
+                  `${flexCol} space-y-4 pl-6 ${textCustom} ${mainLayout} text-sm ${
+                    state ? "hidden" : "block"
+                  }`,
                   ``
                 )}
               >

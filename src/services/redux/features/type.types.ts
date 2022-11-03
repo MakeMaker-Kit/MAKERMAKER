@@ -3,4 +3,5 @@ export interface globalInitialState {
   page: number;
   onAuthModal: boolean;
   onShopModalOpen: boolean;
+  onDropdownState: boolean;
 }

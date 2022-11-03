@@ -16,7 +16,7 @@ const ProductCard = () => {
       <div className={cx(`${boxFull}`)}>
         {/* Products Layout  */}
         <ul className={cx(`${flexRow} basis-full flex-wrap gap-4`)}>
-          {Array(5)
+          {Array(8)
             .fill(0)
             .map((i) => (
               // Single Image Card
