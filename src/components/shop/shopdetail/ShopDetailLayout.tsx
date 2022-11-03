@@ -7,10 +7,13 @@ import {
   closeShopComponent,
   openShopModal,
 } from "../../../services/redux/features/globalslice/GlobalStateSlice";
+import DetailMoreWrapper from "./detailmain/DetailMoreWrapper";
+import DetailMore from "./detailmore/DetailMore";
+import ProductMore from "./detailproducts/ProductMore";
 
 const ShopDetailLayout = () => {
-  const {} = themes;
-  const {} = flexLayout;
+  const { containerWrapper, boxFull } = themes;
+  const { flexCol } = flexLayout;
   const {} = textStyles;
   const dispatch = useDispatch();
   const modalState = useSelector(openShopModal);
@@ -42,8 +45,19 @@ const ShopDetailLayout = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className=" align-middle h-[90vh] bg-white w-[86vw] rounded-xl shadow-xl  border border-solid pt-20  ">
-                    <div className={classNames(` `)}></div>
+                  <Dialog.Panel className=" align-middle h-[90vh] bg-white w-[86vw] rounded-xl shadow-xl  border border-solid p-16  ">
+                    <div
+                      className={classNames(
+                        ` ${boxFull} ${containerWrapper} ${flexCol}`
+                      )}
+                    >
+                      {/* Product maain */}
+                      <DetailMoreWrapper />
+                      {/* prodcut moe  */}
+                      <DetailMore />
+                      {/* more products display @apply  */}
+                      <ProductMore />
+                    </div>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
