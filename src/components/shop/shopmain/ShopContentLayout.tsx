@@ -4,6 +4,7 @@ import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
 import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrapper";
 import ShopHeader from "./shopcontent/shopheader/ShopHeader";
 import ShopCategory from "./shopcontent/shopcategory/ShopCategory";
+import ProductCard from "./shopcontent/shopproducts/ProductCard";
 
 const ShopContentLayout = () => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
@@ -36,11 +37,13 @@ const ShopContentLayout = () => {
             )}
           >
             {/* Filter Component */}
-            <div className={cx(`w-full max-w-two  px-6 py-5 bg-white`)}>
+            <div className={cx(`w-full max-w-two  px-6 py-5 bg-white sticky `)}>
               <ShopCategory />
             </div>
             {/* Shop Items Component */}
-            <div className={cx(`w-full max-w-eight  h-auto bg-gray-100`)}></div>
+            <div className={cx(`w-full max-w-eight  bg-gray-100 p-3`)}>
+              <ProductCard />
+            </div>
           </div>
         </div>
       </div>
