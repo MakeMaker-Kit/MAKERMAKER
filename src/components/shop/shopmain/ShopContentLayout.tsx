@@ -18,7 +18,7 @@ const ShopContentLayout = () => {
       <div>
         <BannerPageWrapper home="home" routePath="Shop" />
       </div>
-      <div className={`${mainMarX}`}>
+      <div className={`${mainMarX} relative`}>
         <div className={cx(`${boxExtend}`)}>
           {/* Modal Cart Trigger */}
           <CartButtonModal />
