@@ -6,7 +6,13 @@ import {
 } from "./utils.types";
 import uuid from "react-uuid";
 import { EnvelopeClosedIcon, GearIcon, HomeIcon } from "@radix-ui/react-icons";
+import { ShopCarouselTypes } from "./utils.types";
 import {
+  banner1,
+  banner2,
+  banner3,
+  banner4,
+  banner5,
   bgBg,
   bgMain,
   brand1,
@@ -256,3 +262,30 @@ export const DisplayContentData: DisplayContentTypes[] = [
 ];
 
 export const FooterData = [{}];
+export const shopCarouselData: ShopCarouselTypes[] = [
+  {
+    image: banner1,
+    link: "",
+    id: uuid(),
+  },
+  {
+    image: banner2,
+    link: "",
+    id: uuid(),
+  },
+  {
+    image: banner3,
+    link: "",
+    id: uuid(),
+  },
+  {
+    image: banner4,
+    link: "",
+    id: uuid(),
+  },
+  {
+    image: banner5,
+    link: "",
+    id: uuid(),
+  },
+];

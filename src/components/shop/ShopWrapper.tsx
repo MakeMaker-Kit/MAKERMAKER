@@ -18,11 +18,11 @@ const ShopWrapper: React.FC<Iprops> = ({ children }) => {
           <div className={`relative`}>
             <Navbar />
           </div>
-          <div className={`bg-white `}>
+          {/* <div className={`bg-white `}>
             <ShopHeader />
             <div className={`w-full h-px bg-gray-200 my-4`} />
-            {/*  BnnaerPage Wrappers*/}
-          </div>
+            {/*  BnnaerPage Wrappers*
+          </div> */}
           <AuthLayout />
           <div className={`${pageCenter} bg-white`}>
             <div className={`h-auto  my-10`}>{children}</div>

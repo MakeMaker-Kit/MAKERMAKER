@@ -29,3 +29,9 @@ export interface DisplayContentTypes {
   id: string | null | undefined;
   isReversed: Boolean | boolean;
 }
+
+export interface ShopCarouselTypes {
+  image: string;
+  link: string;
+  id: string | null | undefined;
+}
