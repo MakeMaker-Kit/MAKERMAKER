@@ -5,6 +5,7 @@ import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrap
 import ShopHeader from "./shopcontent/shopheader/ShopHeader";
 import ShopCategory from "./shopcontent/shopcategory/ShopCategory";
 import ProductCard from "./shopcontent/shopproducts/ProductCard";
+import CartButtonModal from "../../modals/cartbtnmodal/CartButtonModal";
 
 const ShopContentLayout = () => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
@@ -19,6 +20,8 @@ const ShopContentLayout = () => {
       </div>
       <div className={`${mainMarX}`}>
         <div className={cx(`${boxExtend}`)}>
+          {/* Modal Cart Trigger */}
+          <CartButtonModal />
           {/* Shop Header Carousel */}
           <div
             className={cx(

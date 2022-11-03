@@ -8,7 +8,7 @@ import {
 import { useIcon } from "../../../../../hooks/dispatchContext";
 
 const ShopProducts = () => {
-  const { boxFull, imageLayout, transitions } = themes;
+  const { boxFull, imageLayout, transitions, transitionEase } = themes;
   const { flexCol, flexRowCenter, flexCenter } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { ArchiveIcon } = useIcon();
@@ -50,17 +50,21 @@ const ShopProducts = () => {
             <div>
               <p className={`font-semibold tracking-wide`}>Arduino Uno Board</p>
             </div>
-            <div className={cx(`${flexRowCenter} w-full`)}>
+            <div
+              className={cx(`${flexRowCenter} w-full group ${transitionEase}`)}
+            >
               <div
                 className={cx(
-                  `w-eight h-8 p-2 border border-orange rounded-l-md `
+                  `w-eight h-8 p-2 border border-orange group-hover:bg-orange group-hover:text-gray-50 rounded-l-md `
                 )}
               >
                 <div className={`${boxFull} ${flexCenter}`}>
                   <p>ADD TO CART</p>
                 </div>
               </div>
-              <div className={`w-8 h-8 p-2 border border-orange rounded-r-md`}>
+              <div
+                className={`w-8 h-8 p-2 border border-orange rounded-r-md group-hover:border-r-orange group-hover:text-orange`}
+              >
                 <div className={`${boxFull} ${flexCenter}`}>
                   <ArchiveIcon />
                 </div>
