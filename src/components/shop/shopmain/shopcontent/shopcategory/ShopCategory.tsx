@@ -15,7 +15,7 @@ const ShopCategory = () => {
   const { ChevronDownIcon, ChevronUpIcon, CameraIcon } = useIcon();
   return (
     <>
-      <ul className={`${boxFull}  ${flexCol} space-y-5`}>
+      <ul className={`${boxFull}  ${flexCol} space-y-5 z-[99]`}>
         {[...ShopCategoryData]
           .sort((a, b) => a.name.localeCompare(b.name))
           .map(({ icon, id, link, name, subCategory }, i) => (
