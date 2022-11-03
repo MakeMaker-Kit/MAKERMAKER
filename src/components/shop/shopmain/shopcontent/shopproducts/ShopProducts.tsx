@@ -6,18 +6,23 @@ import {
   textStyles,
 } from "../../../../../styles/themes/theme";
 import { useIcon } from "../../../../../hooks/dispatchContext";
+import { useDispatch } from "react-redux";
+import { openShopComponent } from "../../../../../services/redux/features/globalslice/GlobalStateSlice";
 
 const ShopProducts = () => {
   const { boxFull, imageLayout, transitions, transitionEase } = themes;
   const { flexCol, flexRowCenter, flexCenter } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { ArchiveIcon } = useIcon();
+  const dispatch = useDispatch();
+  const openModal = () => dispatch(openShopComponent());
   return (
     <>
       <li
         className={cx(
           `flex-[0_0_23.5%] w-full max-w-[23.5%] shadow-md p-4 rounded-md bg-white hover:shadow-lg hover:translate-x-1 hover:translate-y-1 hover:backdrop-blur-md hover:opacity-70 ${transitions}`
         )}
+        onClick={openModal}
       >
         <div className={cx(`${boxFull} ${flexCol} `)}>
           <div className={cx(`h-64 w-full relative`)}>

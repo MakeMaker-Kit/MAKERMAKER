@@ -14,7 +14,7 @@ const CartButtonModal = () => {
   return (
     <>
       <div
-        className={`absolute z-[999999] w-80 max-w-[200px]  cursor-pointer top-0 right-[-8vw]`}
+        className={`absolute z-[999999] w-80 max-w-[1px]  cursor-pointer top-0 right-[-8vw]`}
       >
         <div className="fixed inset-0 bg-black bg-opacity-0" />
 

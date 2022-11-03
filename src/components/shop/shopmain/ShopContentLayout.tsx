@@ -25,7 +25,7 @@ const ShopContentLayout = () => {
       <div className={`${mainMarX} relative`}>
         <div className={cx(`${boxExtend}`)}>
           {/* Modal Cart Trigger */}
-          {!modalState && <CartButtonModal />}
+          {/* {!modalState && <CartButtonModal />} */}
           {/* Shop Header Carousel */}
           <div
             className={cx(
