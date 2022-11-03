@@ -84,6 +84,7 @@ const Navbar = () => {
                   </div>
                   {/*  */}
                 </div>
+                {/* Search Component */}
                 <BiSearchAlt size={25} />
                 <span className={classNames(`h-6 w-auto group`)}>
                   <div
