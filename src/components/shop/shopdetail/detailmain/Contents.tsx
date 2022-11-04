@@ -22,9 +22,9 @@ const Contents = () => {
 
   return (
     <>
-      <div className={cx(`${flexCol} ${textCustom} ${mainLayout}`)}>
+      <div className={cx(`${flexCol} ${textCustom} ${mainLayout} space-y-6`)}>
         {/*  */}
-        <div className={`${flexCol}`}>
+        <div className={`${flexCol} space-y-6`}>
           <div className={`${flexRowCenterBetween}`}>
             <h1>Swordfish Fillet</h1>
             <div
@@ -65,14 +65,14 @@ const Contents = () => {
 
         {/*  */}
         <div className={cx(`${flexStart} ${flexRowCenter} space-x-3`)}>
-          <h1>$75.1 </h1>
-          <p>$23</p>
+          <h1 className={`text-4xl`}>$75.1 </h1>
+          <p className={`text-lg`}>$23</p>
         </div>
         {/*  */}
-        <div className={`${flexCol}`}>
+        <div className={`${flexCol} space-y-6`}>
           {/*  */}
           <div className={`${flexRowCenterBetween}`}>
-            <div className={`w-full max-w-full`}>
+            <div className={`w-full max-w-seven`}>
               <MainButton isRounded={true}>Add To Shopping Cart</MainButton>
             </div>
             <p className={`whitespace-nowrap`}>9 items Remaining </p>
@@ -80,9 +80,9 @@ const Contents = () => {
           {/*  */}
           <div className="w-full h-px bg-gray-900" />
           {/*  */}
-          <div className={`${flexRowCenter}`}>
+          <div className={`${flexRowCenter} space-x-4`}>
             <p>Categories</p>
-            <div className={`${flexRowCenter}`}>
+            <div className={`${flexRowCenter} space-x-3`}>
               {Array(3)
                 .fill(0)
                 .map((i) => (
@@ -96,6 +96,11 @@ const Contents = () => {
                   </div>
                 ))}
             </div>
+          </div>
+          {/*  */}
+          <div className={`${flexRowCenter} gap-x-5`}>
+            <p>Selles</p>
+            <p className="">MakeMAKER</p>
           </div>
         </div>
       </div>
