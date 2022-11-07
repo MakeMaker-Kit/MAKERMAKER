@@ -15,7 +15,6 @@ interface Props {
   name: string;
   link: string;
   id: number | string;
-
   navContents: NavItemTypes[];
 }
 const NavbarBtnDropdown = (props: Props) => {
