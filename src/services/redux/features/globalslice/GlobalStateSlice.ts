@@ -7,7 +7,7 @@ const initialState: globalInitialState = {
   page: 1,
   onAuthModal: false,
   onShopModalOpen: false,
-  onDropdownState: false,
+  onDropdownState: true,
 };
 const globalState = createSlice({
   name: "globalstate",
