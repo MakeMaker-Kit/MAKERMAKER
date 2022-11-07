@@ -20,6 +20,7 @@ import {
   ArrowRightIcon,
   ChevronDownIcon,
   ChevronUpIcon,
+  ArrowLeftIcon,
 } from "@radix-ui/react-icons";
 interface IconContextTypes {}
 export const IconContext = React.createContext<any>({});
@@ -54,6 +55,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         ArrowRightIcon,
         ChevronDownIcon,
         ChevronUpIcon,
+        ArrowLeftIcon,
       }}
     >
       {children}

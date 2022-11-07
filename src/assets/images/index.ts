@@ -16,6 +16,7 @@ import banner2 from "./shop/banner2.webp";
 import banner3 from "./shop/banner3.webp";
 import banner4 from "./shop/banner4.webp";
 import banner5 from "./shop/banner5.webp";
+import shops from  "./shops.png"
 export {
   logoImage,
   backgroundHeader,
@@ -34,4 +35,5 @@ export {
   banner3,
   banner4,
   banner5,
+  shops
 };

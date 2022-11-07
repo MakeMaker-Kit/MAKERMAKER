@@ -5,26 +5,48 @@ import {
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { shops } from "../../../../assets/images";
+import { useIcon } from "../../../../hooks/dispatchContext";
 
 const ImageViewer = () => {
   const { flexCol, flexRowCenter, flexCenter } = flexLayout;
   const { XFull, boxFull } = themes;
   const {} = textStyles;
+  const { ArrowLeftIcon, ArrowRightIcon } = useIcon();
   return (
     <>
       <div className={`${XFull}`}>
         {/*  */}{" "}
-        <div className={`${flexCol} overflow-scroll scrollbar-hide w-[500px]`}>
+        <div
+          className={`${flexCol} overflow-scroll scrollbar-hide w-[500px] space-y-5`}
+        >
           {/* MIAIN image display */}
-          <div
-            className={`w-full max-w-[500px] h-full max-h-[500px] overscroll-none relative`}
-          >
+          <div className={`w-[400px] h-[400px] overscroll-none relative`}>
+            {/* NEXT/ PREVIOUS BUTTONS  */}
+            <div
+              className={cx(
+                `top-1/2 left-2 absolute inline-block cursor-pointer `,
+                `h-12 w-12 p-1 border border-dotted shadow rounded-full cursor-pointer z-10 bg-gray-100`,
+                `${flexCenter}`
+              )}
+            >
+              <ArrowLeftIcon />
+            </div>
+            <div
+              className={cx(
+                `top-1/2 right-2 absolute inline-block cursor-pointer `,
+                `h-12 w-12 p-1 border border-dotted shadow rounded-full cursor-pointer z-10 bg-gray-100`,
+                `${flexCenter}`
+              )}
+            >
+              <ArrowRightIcon />
+            </div>
+            {/*  */}
             <img
-              src="https://pickbazar-react.vercel.app/_next/image?url=https%3A%2F%2Fpickbazarlaravel.s3.ap-southeast-1.amazonaws.com%2F575%2Fbaby-spinach-1.png&w=640&q=75"
+              src={shops}
               alt=""
               title=""
               data-loading="lazy"
-              // className={`max-w-full w-full h-full object-center object-cover`}
               className={`absolute max-h-full top-0 left-0 max-w-full w-full h-full object-cover`}
             />
           </div>
@@ -38,11 +60,14 @@ const ImageViewer = () => {
                   .fill(0)
                   .map((i) => (
                     <li
-                      className={`w-40 h-40 border border-dotted border-gray-700 flex-shrink-0 rounded-md shadow-md`}
+                      className={`w-28 h-28 border border-dotted border-gray-700 flex-shrink-0 rounded-md shadow-md snap-center`}
                       key={i}
                     >
                       <div className={`${boxFull}`}>
-                        <img />
+                        <img
+                          src={shops}
+                          className={`max-w-full w-full h-full object-cover object-center`}
+                        />
                       </div>
                     </li>
                   ))}
