@@ -6,6 +6,7 @@ import {
   themes,
 } from "../../../../styles/themes/theme";
 import ShopProducts from "../../shopmain/shopcontent/shopproducts/ShopProducts";
+import DetailCard from "./DetailCard";
 
 const ProductMore = () => {
   const { flexRow } = flexLayout;
@@ -19,7 +20,7 @@ const ProductMore = () => {
             .fill(0)
             .map((i) => (
               // Single Image Card
-              <ShopProducts key={i} />
+              <DetailCard key={i} />
             ))}
         </ul>
       </div>

@@ -67,7 +67,11 @@ const DetailCard = () => {
                 <h2>$90.00</h2>
               </div>
               {/*  */}
-              <div className={cx(`p-3 border border-gray-600`)}>
+              <div
+                className={cx(
+                  `px-3 py-1 border-2 border-gray-400 rounded-full shadow-xl`
+                )}
+              >
                 <div className={cx(`${boxFull} ${flexRowCenter} gap-x-3`)}>
                   <BiCartAlt />
                   <p>Cart</p>
