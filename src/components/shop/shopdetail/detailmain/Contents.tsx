@@ -22,9 +22,9 @@ const Contents = () => {
 
   return (
     <>
-      <div className={cx(`${flexCol} ${textCustom} ${mainLayout} space-y-6`)}>
+      <div className={cx(`${flexCol} ${textCustom} ${mainLayout} space-y-12`)}>
         {/*  */}
-        <div className={`${flexCol} space-y-6`}>
+        <div className={`${flexCol} space-y-12`}>
           <div className={`${flexRowCenterBetween}`}>
             <h1>Swordfish Fillet</h1>
             <div
@@ -52,7 +52,9 @@ const Contents = () => {
             </div>
           </div>
           {/*  */}
-          <div className={`${flexStart}`}>
+          <div
+            className={`${flexStart} font-light tracking-wide text-start leading-relaxed`}
+          >
             <p>
               The swordfish meat has a very delicate flavour, meaty and mild.
               Swordfish, also known as broadbills, is an oily fish similar to
