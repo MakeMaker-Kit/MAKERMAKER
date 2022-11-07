@@ -27,7 +27,7 @@ const ShopContentLayout = () => {
         <div className={cx(`${boxExtend}`)}>
           {/* Modal Cart Trigger */}
           <CartModalLayout />
-          {/* {!modalState && <CartButtonModal />} */}
+          {/* <CartButtonModal /> */}
           {/* Shop Header Carousel */}
           <div
             className={cx(

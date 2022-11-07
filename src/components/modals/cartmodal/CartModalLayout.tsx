@@ -25,7 +25,7 @@ const CartModalLayout = () => {
   const closeModal = () => dispatch(unToggleCartModal());
   return (
     <div>
-      <Transition appear show={true} as={React.Fragment}>
+      <Transition appear show={cartState} as={React.Fragment}>
         <Dialog as="div" className={"relative z-[999]"} onClose={closeModal}>
           <Transition.Child
             as={React.Fragment}
@@ -44,11 +44,11 @@ const CartModalLayout = () => {
               <Transition.Child
                 as={React.Fragment}
                 enter="ease-out duration-500"
-                enterFrom="opacity-0 scale-95 translate-y-[100%]"
-                enterTo="opacity-100 scale-100 translate-y-[0%] transition-[all_0.6s_ease] "
-                leave="transition  ease-in duration-500"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
+                enterFrom="opacity-0 scale-95 translate-x-[100%]"
+                enterTo="opacity-100 scale-100 translate-x-[0%] transition-[all_0.6s_ease] "
+                leave="transition  ease-out duration-500"
+                leaveFrom="opacity-100 scale-100 translate-x-[0%] transition-[all_1s_ease]"
+                leaveTo="opacity-0 scale-95 translate-x-[100%]"
               >
                 <Dialog.Panel className=" align-right h-[100vh] bg-white w-[30vw] shadow-xl  border border-solid  overflow-y-auto scrollbar-none">
                   <div
@@ -62,14 +62,15 @@ const CartModalLayout = () => {
                         {/*  */}
                         <div className={`${flexRowCenter}`}>
                           <p>icon</p>
-                          <p>1 Item</p>
+                          <p> 1 Item</p>
                         </div>
                         {/*  */}
                         <div
                           className={cx(
                             `p-2 w-8 h-8 `,
-                            `${flexCenter} rounded-full bg-gray-100 shadow`
+                            `${flexCenter} rounded-full bg-gray-100 shadow cursor-pointer`
                           )}
+                          onClick={closeModal}
                         >
                           <p>kf</p>
                         </div>

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   onModalState,
   openAuthModal,
+  toggleCartModal,
 } from "../../services/redux/features/globalslice/GlobalStateSlice";
 
 const Navbar = () => {
@@ -22,6 +23,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const modalState = useSelector(onModalState);
   const openNodal = () => dispatch(openAuthModal());
+  const openCartMenu = () => dispatch(toggleCartModal());
   return (
     <>
       <div className={classNames(`${marX} my-3 py-6 border-y`, ``)}>
@@ -76,10 +78,11 @@ const Navbar = () => {
                   <div className={classNames(` ${boxFull} ${flexCenter}`)}>
                     <p
                       className={classNames(
-                        `${textCustom} ${mainLayout} text-white whitespace-nowrap`
+                        `${textCustom} ${mainLayout} text-white whitespace-nowrap cursor-pointer`
                       )}
+                      onClick={openCartMenu}
                     >
-                      Add To Cart
+                      Open Cart
                     </p>
                   </div>
                   {/*  */}

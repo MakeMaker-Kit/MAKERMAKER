@@ -23,7 +23,7 @@ const CartProducts = () => {
         )}
       >
         <div className={cx(`${flexRowCenter} gap-x-4`)}>
-          <div className={`py-2 px-4 bg-gray-200 shadow rounded-full`}>
+          <div className={`py-2 px-3 bg-gray-200 shadow rounded-full`}>
             <div className={`${flexColCenter} gap-y-3`}>
               <span>+</span>
               <span>1</span>

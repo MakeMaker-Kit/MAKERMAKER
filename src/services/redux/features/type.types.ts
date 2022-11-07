@@ -5,4 +5,5 @@ export interface globalInitialState {
   onShopModalOpen: boolean;
   onDropdownState: boolean;
   onCartModalOpen: boolean;
+  cartBTNShow: boolean;
 }
