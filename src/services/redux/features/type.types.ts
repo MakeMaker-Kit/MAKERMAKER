@@ -4,4 +4,5 @@ export interface globalInitialState {
   onAuthModal: boolean;
   onShopModalOpen: boolean;
   onDropdownState: boolean;
+  onCartModalOpen: boolean;
 }

@@ -8,6 +8,7 @@ const initialState: globalInitialState = {
   onAuthModal: false,
   onShopModalOpen: false,
   onDropdownState: true,
+  onCartModalOpen: false,
 };
 const globalState = createSlice({
   name: "globalstate",
@@ -31,6 +32,12 @@ const globalState = createSlice({
     unToggleDropdownState: (state) => {
       state.onDropdownState = !state.onDropdownState;
     },
+    toggleCartModal: (state) => {
+      state.onCartModalOpen = !state.onCartModalOpen;
+    },
+    unToggleCartModal: (state) => {
+      state.onCartModalOpen = !state.onCartModalOpen;
+    }
   },
   extraReducers: {},
 });
@@ -44,9 +51,12 @@ export const {
   openShopComponent,
   toggleDropdownState,
   unToggleDropdownState,
+  toggleCartModal,
+  unToggleCartModal
 } = actions;
 export const onModalState = (state: RootState) => state.globalstate.onAuthModal;
 export const openShopModal = (state: RootState) =>
   state.globalstate.onShopModalOpen;
 export const dropdownState = (state: RootState) =>
   state.globalstate.onDropdownState;
+export const cartModalState = (state: RootState) => state.globalstate.onCartModalOpen;
