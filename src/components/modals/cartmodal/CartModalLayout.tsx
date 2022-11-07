@@ -78,7 +78,7 @@ const CartModalLayout = () => {
                     {/* CartProducts layoout  */}
                     <div
                       className={cx(
-                        `${XExtend} ${flexCol} overflow-y-scroll scrollbar-hide`
+                        `${XExtend} ${flexCol} overflow-y-scroll scrollbar-hide h-full max-h-full`
                       )}
                     >
                       {Array(10)
@@ -88,8 +88,31 @@ const CartModalLayout = () => {
                         ))}
                     </div>
                     {/* Cart Checkout  */}
-                    <div>
-                      <h1>HelloChecoit</h1>
+                    <div className={`p-3 `}>
+                      <div
+                        className={cx(
+                          `${boxFull} bg-appGreen rounded-full p-1 `
+                        )}
+                      >
+                        <div
+                          className={`${flexRowCenterBetween} ${boxFull} ${mainLayout} ${textCustom}`}
+                        >
+                          {/*  */}
+                          <div
+                            className={`px-4 py-3 bg-transparent rounded-full`}
+                          >
+                            <div className={`${boxFull} ${flexCenter}`}>
+                              <p>Checkout</p>
+                            </div>
+                          </div>
+                          {/*  */}
+                          <div className={`px-4 py-3 bg-white rounded-full`}>
+                            <div className={`${boxFull} ${flexCenter}`}>
+                              <p>$3.00</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Dialog.Panel>

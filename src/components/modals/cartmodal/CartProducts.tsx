@@ -10,7 +10,7 @@ const CartProducts = () => {
   return (
     <div
       className={cx(
-        `p-3 border-y border-dotted border-gray-900 h-40 ${containerWrapper}`
+        `p-3 border-y border-dotted border-gray-900 h-56 ${containerWrapper}`
       )}
     >
       <div className={cx(`${boxFull}`)}></div>
