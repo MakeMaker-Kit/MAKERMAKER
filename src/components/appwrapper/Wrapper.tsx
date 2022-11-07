@@ -1,10 +1,9 @@
 import React from "react";
 import { WrapperProps } from "./wrapper.types";
-import { Navbar, Footer } from "../applayout";
+import { Navbar, Footer, MainFooter } from "../applayout";
 import { wrapperStypes, themes } from "../../styles/themes/theme";
 import AuthLayout from "../modals/authmodal/AuthLayout";
 import ScrollToTop from "react-scroll-to-top";
-import MainFooter from "../applayout/mainfooter/MainFooter";
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   const { pageCenter } = wrapperStypes;
@@ -19,13 +18,11 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
         </div>
         <AuthLayout />
         <div className={`${pageCenter}`}>{children}</div>
-        <div className="bg-appBlue border-2 border-solid border-white">
+        <div className="bg-grayWhite border-2 border-solid border-orange">
           {/* Footer */}
           <Footer />
         </div>
-        {/* MainFooter */}
-        <div className="bg-gray-800 border-2 border-solid border-white">
-          {/* Footer */}
+        <div className={`bg-gray-800 border-2 border-solid border-white`}>
           <MainFooter />
         </div>
         {/* ScrollTotop */}
