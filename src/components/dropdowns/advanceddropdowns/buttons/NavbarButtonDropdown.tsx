@@ -41,8 +41,8 @@ const NavbarBtnDropdown = (props: Props) => {
             sideOffset={5}
             className={classNames(
               `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
-              `w-48 rounded-sm px-1.5 py-1 shadow-md md:w-56`,
-              `bg-appGreen `
+              `w-48 rounded-md px-1.5 py-1 shadow-md md:w-56`,
+              `bg-orange `
             )}
           >
             {props.navContents.map(({ icon, id, link, name }, i) => (
@@ -67,7 +67,7 @@ const NavbarBtnDropdown = (props: Props) => {
                 <span>⌘+N</span>
               </DropdownMenuPrimitive.Item>
             ))}
-            <DropdownMenuPrimitive.Separator className="my-1 h-px bg-gray-100" />
+            {/* <DropdownMenuPrimitive.Separator className="my-1 h-px bg-gray-100" /> */}
           </DropdownMenuPrimitive.Content>
         </DropdownMenuPrimitive.Root>
       </div>
