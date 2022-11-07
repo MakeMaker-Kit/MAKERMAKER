@@ -13,7 +13,7 @@ const ImageViewer = () => {
     <>
       <div className={`${XFull}`}>
         {/*  */}{" "}
-        <div className={`${flexCol} overflow-scroll scrollbar-hide`}>
+        <div className={`${flexCol} overflow-scroll scrollbar-hide w-[500px]`}>
           {/* MIAIN image display */}
           <div
             className={`w-full max-w-[500px] h-full max-h-[500px] overscroll-none relative`}

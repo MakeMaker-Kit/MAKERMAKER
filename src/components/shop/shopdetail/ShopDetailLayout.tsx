@@ -65,6 +65,7 @@ const ShopDetailLayout = () => {
           </Dialog>
         </Transition>
       </div>
+      ,
     </>
   );
 };
