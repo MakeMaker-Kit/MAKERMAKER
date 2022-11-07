@@ -4,9 +4,11 @@ import { ThunkAction } from "redux-thunk";
 import logger from "redux-logger";
 import { RootState } from "./rootReducer";
 import GlobalStateReducer from "../features/globalslice/GlobalStateSlice";
+import SanityToClientReducer from "../features/sanitytoclient/SanityToClient";
 const store = configureStore({
   reducer: {
     globalstate: GlobalStateReducer,
+    sanity: SanityToClientReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
