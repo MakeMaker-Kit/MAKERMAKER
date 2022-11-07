@@ -11,7 +11,7 @@ import {
 import CartProducts from "./CartProducts";
 
 const CartModalLayout = () => {
-  const { themeWrapper, boxFull, XExtend } = themes;
+  const { themeWrapper, boxFull, XExtend, containerWrapper } = themes;
   const {
     flexCol,
     flexColBetween,
@@ -67,8 +67,8 @@ const CartModalLayout = () => {
                         {/*  */}
                         <div
                           className={cx(
-                            `p-2 w-10 h-10 `,
-                            `${flexCenter} rounded-full bg-gray-300`
+                            `p-2 w-8 h-8 `,
+                            `${flexCenter} rounded-full bg-gray-100 shadow`
                           )}
                         >
                           <p>kf</p>
@@ -78,17 +78,18 @@ const CartModalLayout = () => {
                     {/* CartProducts layoout  */}
                     <div
                       className={cx(
-                        `${XExtend} ${flexCol} overflow-y-scroll scrollbar-hide h-full max-h-full`
+                        `${XExtend}  overflow-y-scroll scrollbar-hide `,
+                        `h-[700px] max-h-[700px]`
                       )}
                     >
-                      {Array(10)
+                      {Array(20)
                         .fill(0)
                         .map((i) => (
                           <CartProducts key={i} />
                         ))}
                     </div>
                     {/* Cart Checkout  */}
-                    <div className={`p-3 `}>
+                    <div className={`p-3`}>
                       <div
                         className={cx(
                           `${boxFull} bg-appGreen rounded-full p-1 `

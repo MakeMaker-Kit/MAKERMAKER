@@ -19,7 +19,16 @@ interface MoreProps extends Props {
 }
 const Image = React.forwardRef<HTMLImageElement, MoreProps>(
   ({ children, title, src, className, alt, size, onClick, ...props }, ref) => {
-    return <img src={src} alt={alt} ref={ref} {...props} title={title} />;
+    return (
+      <img
+        src={src}
+        alt={alt}
+        ref={ref}
+        {...props}
+        title={title}
+        className={`${className}`}
+      />
+    );
   }
 );
 Image.displayName = "Image";
