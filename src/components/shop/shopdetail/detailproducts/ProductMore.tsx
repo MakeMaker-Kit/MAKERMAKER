@@ -1,17 +1,28 @@
 import React from "react";
+import cx from "classnames";
 import {
   textStyles,
   flexLayout,
   themes,
 } from "../../../../styles/themes/theme";
+import ShopProducts from "../../shopmain/shopcontent/shopproducts/ShopProducts";
 
 const ProductMore = () => {
-  const {} = textStyles;
-  const {} = flexLayout;
-  const {} = themes;
+  const { flexRow } = flexLayout;
+  const { boxFull } = themes;
   return (
     <>
-      <div></div>
+      <div className={cx(`${boxFull}`)}>
+        {/* Similar Product Layout */}
+        <ul className={cx(`${flexRow} basis-full flex-wrap gap-4`)}>
+          {Array(10)
+            .fill(0)
+            .map((i) => (
+              // Single Image Card
+              <ShopProducts key={i} />
+            ))}
+        </ul>
+      </div>
     </>
   );
 };
