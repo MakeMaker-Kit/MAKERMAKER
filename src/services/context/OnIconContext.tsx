@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineGooglePlus } from "react-icons/ai";
-import { BiSearchAlt, BiMenu } from "react-icons/bi";
+import { BiSearchAlt, BiMenu, BiCartAlt } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -41,6 +41,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         BsTwitter,
         MdOutlineKeyboardArrowDown,
         AiOutlineGooglePlus,
+        BiCartAlt,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,
