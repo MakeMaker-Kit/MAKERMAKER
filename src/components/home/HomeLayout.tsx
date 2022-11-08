@@ -10,6 +10,7 @@ import HomeFaqs from "./homecontents/homeFaqs/HomeFaqs";
 import HomeContact from "./homecontents/homecontact/HomeContact";
 import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchHeader } from "../../services/redux/features/sanitytoclient/SanityToClient";
 import {
   fetchHomeHeader,
   getHomeHeader,
@@ -26,7 +27,7 @@ const HomeLayout = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     // dispatch(getHomeHeader(HomeQuery));
-    dispatch(fetchHomeHeader(HomeQuery));
+    dispatch(fetchHeader(HomeQuery));
     return console.log("HomeHeader DATA", homeHeader);
   }, [useSelector, homeHeader]);
   return (

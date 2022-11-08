@@ -1,16 +1,30 @@
 import { User } from "./../type.types";
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  AnyAction,
+} from "@reduxjs/toolkit";
 import { sanityInitialState } from "../type.types";
 import { RootState } from "../../app/rootReducer";
 import SanityToClientService from "./SanityToClientService";
 import { client } from "../../../../client";
 // Descript services
+
+// const value = localStorage.getItem("teeMeasuresAverages")
+
+// if (typeof value === 'string') {
+//     const parse = JSON.parse(value) // ok
+
+// }
+
 const { genrateHomeHeader, generateHeader } = SanityToClientService;
+const homeHeaderData = JSON.parse(localStorage.getItem("HomeHeader") || "");
 const initialState: sanityInitialState = {
   error: "",
   message: "",
   loading: false,
-  homeHeader: null,
+  homeHeader: homeHeaderData ? homeHeaderData : null,
   headerHome: null,
 };
 
@@ -27,10 +41,10 @@ export const fetchHomeHeader = createAsyncThunk(
 );
 export const fetchHeader = createAsyncThunk(
   "users/fetchHomeHeader",
-  async (user: string, thunkApi) => {
+  (user: string, thunkApi) => {
     let message: string;
     try {
-      const response = await generateHeader(user);
+      const response = generateHeader(user);
       return response;
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -54,15 +68,15 @@ const SanityToClientSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHomeHeader.pending, (state) => {
+      .addCase(fetchHeader.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchHomeHeader.fulfilled, (state, action) => {
-        state.loading = true;
+      .addCase(fetchHeader.fulfilled, (state, action) => {
+        state.loading = false;
         state.homeHeader = action.payload;
       })
-      .addCase(fetchHomeHeader.rejected, (state, action) => {
+      .addCase(fetchHeader.rejected, (state, action) => {
         state.loading = false;
         state.homeHeader = null;
       });

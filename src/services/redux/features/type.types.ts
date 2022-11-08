@@ -12,7 +12,7 @@ export interface sanityInitialState {
   message: string;
   error: {} | null;
   loading: boolean | Boolean;
-  homeHeader: null | void;
+  homeHeader: null | {};
   headerHome: null | {};
 }
 

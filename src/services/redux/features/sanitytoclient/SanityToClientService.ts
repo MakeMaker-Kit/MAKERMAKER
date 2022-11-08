@@ -1,3 +1,4 @@
+import { AnyAction } from "@reduxjs/toolkit";
 import { client } from "../../../../client";
 
 type GenerateHeader = (payloadpResponse: string) => Promise<null | void>;
@@ -7,10 +8,12 @@ const genrateHomeHeader: GenerateHeader = async (payloadResponse) => {
   });
 };
 
-const generateHeader = async (payloadResponse: string) => {
-  await client.fetch(payloadResponse).then((response) => {
+const generateHeader = (payloadResponse: string) => {
+  client.fetch(payloadResponse).then((response) => {
+    localStorage.setItem("HomeHeader", JSON.stringify(response));
     return response;
   });
 };
+
 const SanityToClientService = { genrateHomeHeader, generateHeader };
 export default SanityToClientService;
