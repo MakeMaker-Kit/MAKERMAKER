@@ -1,11 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { sanityInitialState } from "../type.types";
 
-const initialState = {};
+const initialState: sanityInitialState = {
+  error: "",
+  message: "",
+  loading: false,
+  homeHeader: null,
+};
 
 const SanityToClientSlice = createSlice({
   name: "sanity",
   initialState,
   reducers: {},
+  extraReducers: {},
 });
 
 const { actions, reducer } = SanityToClientSlice;
