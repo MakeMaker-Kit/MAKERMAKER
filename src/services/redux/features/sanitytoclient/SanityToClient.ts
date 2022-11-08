@@ -57,3 +57,4 @@ const { actions, reducer } = SanityToClientSlice;
 
 export const {} = actions;
 export default reducer;
+export const homeHeaderState = (state: RootState) => state.sanity.homeHeader;

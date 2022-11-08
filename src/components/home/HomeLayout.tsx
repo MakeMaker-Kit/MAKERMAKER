@@ -9,11 +9,25 @@ import HomeBlog from "./homecontents/blogdisplay/HomeBlogs";
 import HomeFaqs from "./homecontents/homeFaqs/HomeFaqs";
 import HomeContact from "./homecontents/homecontact/HomeContact";
 import { DisplayContentData } from "../../utils/homeData";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchHomeHeader,
+  homeHeaderState,
+} from "../../services/redux/features/sanitytoclient/SanityToClient";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
 };
+
 const HomeLayout = () => {
+  const homeHeader = useSelector(homeHeaderState);
+  const HomeQuery = '*[_type == "header"]';
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchHomeHeader(HomeQuery));
+    if (homeHeaderState) return console.log("HomeHeader DATA", homeHeaderState);
+  }, [useSelector, homeHeaderState]);
+
   return (
     <>
       <div>
