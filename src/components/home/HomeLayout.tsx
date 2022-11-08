@@ -24,7 +24,7 @@ const Border = () => {
 
 const HomeLayout = () => {
   const homeHeader = useSelector(homeHeaderState);
-  const HomeQuery = '*[_type == "header"]';
+  const HomeQuery: string = '*[_type == "header"]';
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(fetchHeader(HomeQuery));
@@ -34,8 +34,9 @@ const HomeLayout = () => {
     <>
       <div>
         {/* Header  */}
-        {homeHeader &&
-          homeHeader?.map((content: HeaderApi) => <Header {...content} />)}
+        {homeHeader?.map((content: HeaderApi) => (
+          <Header {...content} />
+        ))}
         {/* Border */}
         <Border />
         {/* Product Display */}

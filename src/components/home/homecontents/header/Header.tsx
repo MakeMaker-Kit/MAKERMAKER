@@ -9,6 +9,7 @@ import { backgroundHeader } from "../../../../assets/images";
 import Button from "../../../../hooks/button";
 import { TextWrapper } from "../../../appwrapper";
 import { HeaderApi } from "../../../../types/api.types";
+import { urlFor } from "../../../../client";
 interface IProps {
   props: {}[];
 }
@@ -44,7 +45,7 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
                   )}
                   data-text="Bringing Science to Reality"
                 >
-                  Make the learning of science fun, engaging and interesting
+                  {title}
                 </h1>
               </div>
               <div className={cx(`line-clamp-4 max-w-nine`)}>
@@ -53,9 +54,7 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
                     `${mainLayout} ${mainText} font-bold tracking-wider capitalize`
                   )}
                 >
-                  Make Maker focuses on developing products that simplify
-                  learning various science concepts throught project-based
-                  learning
+                  {desc}
                 </p>
               </div>
               {/*  */}
@@ -73,7 +72,7 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
               <div
                 className={`bg-[url(${backgroundHeader})] max-w-full w-full h-full bg-no-repeat bg-center bg-cover opacity-80 bg-gradient-to-r  from-gray-500 to-slate-200`}
                 style={{
-                  backgroundImage: `url(${backgroundHeader})`,
+                  backgroundImage: `url(${urlFor(image)})`,
                 }}
               ></div>
             </div>
