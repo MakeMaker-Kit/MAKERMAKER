@@ -11,6 +11,7 @@ import HomeContact from "./homecontents/homecontact/HomeContact";
 import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchHeader } from "../../services/redux/features/sanitytoclient/SanityToClient";
+import { HeaderApi } from "../../types/api.types";
 import {
   fetchHomeHeader,
   getHomeHeader,
@@ -26,7 +27,6 @@ const HomeLayout = () => {
   const HomeQuery = '*[_type == "header"]';
   const dispatch = useDispatch();
   React.useEffect(() => {
-    // dispatch(getHomeHeader(HomeQuery));
     dispatch(fetchHeader(HomeQuery));
     return console.log("HomeHeader DATA", homeHeader);
   }, [useSelector, homeHeader]);
@@ -34,7 +34,8 @@ const HomeLayout = () => {
     <>
       <div>
         {/* Header  */}
-        <Header />
+        {homeHeader &&
+          homeHeader?.map((content: HeaderApi) => <Header {...content} />)}
         {/* Border */}
         <Border />
         {/* Product Display */}

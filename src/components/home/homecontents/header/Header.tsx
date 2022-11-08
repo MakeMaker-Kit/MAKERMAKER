@@ -8,8 +8,12 @@ import {
 import { backgroundHeader } from "../../../../assets/images";
 import Button from "../../../../hooks/button";
 import { TextWrapper } from "../../../appwrapper";
-
-const Header = () => {
+import { HeaderApi } from "../../../../types/api.types";
+interface IProps {
+  props: {}[];
+}
+const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
+  const { title, desc, image } = props;
   const { themeWrapper, containerWrapper, XFull, boxFull, YFull } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRow, flexResponsive, flexStart, flexCenter } = flexLayout;

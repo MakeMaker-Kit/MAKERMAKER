@@ -10,19 +10,11 @@ import { RootState } from "../../app/rootReducer";
 import SanityToClientService from "./SanityToClientService";
 import { client } from "../../../../client";
 // Descript services
-
-// const value = localStorage.getItem("teeMeasuresAverages")
-
-// if (typeof value === 'string') {
-//     const parse = JSON.parse(value) // ok
-
-// }
-
 const { genrateHomeHeader, generateHeader } = SanityToClientService;
-// const homeHeaderData = JSON.parse(localStorage.getItem("HomeHeader") || "");
+const homeHeaderData2 = JSON.parse(localStorage.getItem("HomeHeader") || "");
 const data = localStorage.getItem("HomeHeader");
 let homeHeaderData;
-if (data && typeof data === "string") {
+if (data || typeof data === "string") {
   homeHeaderData = JSON.parse(data);
 }
 
@@ -30,7 +22,7 @@ const initialState: sanityInitialState = {
   error: "",
   message: "",
   loading: false,
-  homeHeader: homeHeaderData ? homeHeaderData : null,
+  homeHeader: homeHeaderData2 ? homeHeaderData2 : null,
   headerHome: null,
 };
 
@@ -81,6 +73,8 @@ const SanityToClientSlice = createSlice({
       .addCase(fetchHeader.fulfilled, (state, action) => {
         state.loading = false;
         state.homeHeader = action.payload;
+        state.error = "";
+        state.message = "";
       })
       .addCase(fetchHeader.rejected, (state, action) => {
         state.loading = false;
