@@ -1,25 +1,21 @@
 import { User } from "./../type.types";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { sanityInitialState } from "../type.types";
 import { RootState } from "../../app/rootReducer";
 import SanityToClientService from "./SanityToClientService";
+import { client } from "../../../../client";
 // Descript services
-const { genrateHomeHeader } = SanityToClientService;
+const { genrateHomeHeader, generateHeader } = SanityToClientService;
 const initialState: sanityInitialState = {
   error: "",
   message: "",
   loading: false,
   homeHeader: null,
+  headerHome: null,
 };
 
-// export const fetchHomeHeader = createAsyncThunk<User>(
-//   "users/fetchByIdStatus",
-//   async (user, thunkAPI) => {
-//     return await genrateHomeHeader(user);
-//   }
-// );
 export const fetchHomeHeader = createAsyncThunk(
-  "users/fetchByIdStatus",
+  "users/fetchHomeHeader",
   async (user: string, { getState, requestId }: any) => {
     const { currentRequestId, loading } = getState().user;
     if (loading !== "pending" || requestId !== currentRequestId) {
@@ -29,12 +25,32 @@ export const fetchHomeHeader = createAsyncThunk(
     return response;
   }
 );
-
+export const fetchHeader = createAsyncThunk(
+  "users/fetchHomeHeader",
+  async (user: string, thunkApi) => {
+    let message: string;
+    try {
+      const response = await generateHeader(user);
+      return response;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        message = error.message;
+        return thunkApi.rejectWithValue(message);
+      }
+    }
+  }
+);
 const SanityToClientSlice = createSlice({
   name: "sanity",
   initialState,
   reducers: {
-    getHomeHeader: (state, action) => {},
+    getHomeHeader: (state, action) => {
+      client.fetch(action.payload).then((data) => {
+        state.headerHome = data;
+        // return state.headerHome;
+        return state.headerHome;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +71,7 @@ const SanityToClientSlice = createSlice({
 
 const { actions, reducer } = SanityToClientSlice;
 
-export const {} = actions;
+export const { getHomeHeader } = actions;
 export default reducer;
 export const homeHeaderState = (state: RootState) => state.sanity.homeHeader;
+export const headerHomeState = (state: RootState) => state.sanity.headerHome;

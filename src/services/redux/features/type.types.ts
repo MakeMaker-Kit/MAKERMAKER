@@ -13,6 +13,7 @@ export interface sanityInitialState {
   error: {} | null;
   loading: boolean | Boolean;
   homeHeader: null | void;
+  headerHome: null | {};
 }
 
 export interface User {

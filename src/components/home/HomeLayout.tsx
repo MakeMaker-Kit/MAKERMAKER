@@ -12,6 +12,7 @@ import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchHomeHeader,
+  getHomeHeader,
   homeHeaderState,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
 const Border = () => {
@@ -24,15 +25,14 @@ const HomeLayout = () => {
   const HomeQuery = '*[_type == "header"]';
   const dispatch = useDispatch();
   React.useEffect(() => {
+    // dispatch(getHomeHeader(HomeQuery));
     dispatch(fetchHomeHeader(HomeQuery));
-    if (homeHeaderState) return console.log("HomeHeader DATA", homeHeaderState);
-  }, [useSelector, homeHeaderState]);
-
+    return console.log("HomeHeader DATA", homeHeader);
+  }, [useSelector, homeHeader]);
   return (
     <>
       <div>
         {/* Header  */}
-
         <Header />
         {/* Border */}
         <Border />
