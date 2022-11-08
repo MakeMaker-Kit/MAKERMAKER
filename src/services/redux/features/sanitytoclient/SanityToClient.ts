@@ -11,7 +11,9 @@ const initialState: sanityInitialState = {
 const SanityToClientSlice = createSlice({
   name: "sanity",
   initialState,
-  reducers: {},
+  reducers: {
+    getHomeHeader: (state, action) => {},
+  },
   extraReducers: {},
 });
 
