@@ -1,9 +1,12 @@
 import { client } from "../../../../client";
 
-const genrateHomeHeader = async (payloadResponse: string) => {
-  client.fetch(payloadResponse).then(({ data }) => {
-    if (!data) throw new Error("Data is Invalid");
-    else return data;
+type GenerateHeader = (payloadpResponse: string) => Promise<null | void>;
+const genrateHomeHeader: GenerateHeader = async (payloadResponse) => {
+  client.fetch(payloadResponse).then((response) => {
+    if (!response) throw new Error("Data is Invalid");
+    else {
+      return response.data;
+    }
   });
 };
 

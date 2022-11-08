@@ -10,7 +10,11 @@ export interface globalInitialState {
 // Create a minimalist adorn to the current  tate of the applicatiopn to  be repopulatex to the virtual dom of the modukr dom of tjhe appkiavction tim
 export interface sanityInitialState {
   message: string;
-  error: string | null;
+  error: {} | null;
   loading: boolean | Boolean;
-  homeHeader: null | {};
+  homeHeader: null | void;
+}
+
+export interface User {
+  user: string;
 }
