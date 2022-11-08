@@ -10,7 +10,7 @@ const genrateHomeHeader: GenerateHeader = async (payloadResponse) => {
 
 const generateHeader = (payloadResponse: string) => {
   client.fetch(payloadResponse).then((response) => {
-    localStorage.setItem("HomeHeader", JSON.stringify(response));
+    if (response) localStorage.setItem("HomeHeader", JSON.stringify(response));
     return response;
   });
 };

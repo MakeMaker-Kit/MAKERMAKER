@@ -19,7 +19,13 @@ import { client } from "../../../../client";
 // }
 
 const { genrateHomeHeader, generateHeader } = SanityToClientService;
-const homeHeaderData = JSON.parse(localStorage.getItem("HomeHeader") || "");
+// const homeHeaderData = JSON.parse(localStorage.getItem("HomeHeader") || "");
+const data = localStorage.getItem("HomeHeader");
+let homeHeaderData;
+if (data && typeof data === "string") {
+  homeHeaderData = JSON.parse(data);
+}
+
 const initialState: sanityInitialState = {
   error: "",
   message: "",
