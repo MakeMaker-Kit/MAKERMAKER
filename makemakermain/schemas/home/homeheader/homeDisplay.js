@@ -14,7 +14,7 @@ export default {
     {
       name: "desc",
       title: "Destruction",
-      type: "textarea",
+      type: "text",
       required: true,
       description: "",
     },
