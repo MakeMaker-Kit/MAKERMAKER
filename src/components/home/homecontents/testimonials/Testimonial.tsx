@@ -34,7 +34,7 @@ const Testimonial = () => {
   React.useEffect(() => {
     dispatch(fetchQuery(hometestimonials));
   }, [dispatch, hometestimonials]);
-  console.table("", testimonialData);
+  console.table("testimonials data ", testimonialData);
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>

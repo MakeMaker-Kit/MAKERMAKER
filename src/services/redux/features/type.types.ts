@@ -24,3 +24,7 @@ export interface sanityInitialState {
 export interface User {
   user: string;
 }
+
+export  interface TAuth{
+  user: null | {}
+}
