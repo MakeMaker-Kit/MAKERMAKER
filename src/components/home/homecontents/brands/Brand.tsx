@@ -2,12 +2,24 @@ import React from "react";
 import cx from "classnames";
 import { flexLayout, themes } from "../../../../styles/themes/theme";
 import { BrandData } from "../../../../utils/homeData";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  homeBrand,
+  fetchQuery,
+} from "../../../../services/redux/features/sanitytoclient/SanityToClient";
+import { homebrands } from "../../../../utils/querypaths";
 
 const Brand = () => {
   const {} = flexLayout;
   const { themeWrapper, boxFull, containerWrapper } = themes;
   const { marX, padY, largeMarX } = themeWrapper;
   const { flexRow, flexRowCenter } = flexLayout;
+  const homebrand = useSelector(homeBrand);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchQuery(homebrands));
+  }, [dispatch, homebrands]);
+  console.log("HomeBand", homebrand);
   return (
     <>
       <div className={cx(`mx-64 mt-10`)}>

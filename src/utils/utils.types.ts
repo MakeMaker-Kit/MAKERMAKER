@@ -47,3 +47,5 @@ export interface ShopCategoryTypes {
   icon: React.ReactNode;
   subCategory: SubCategoryType[];
 }
+
+export interface TBrands {}

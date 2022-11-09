@@ -26,7 +26,7 @@ const Navbar = () => {
   const openCartMenu = () => dispatch(toggleCartModal());
   return (
     <>
-      <div className={classNames(`${marX} my-3 py-6 border-y`, ``)}>
+      <div className={classNames(`${marX} my-2 py-3 border-y`, ``)}>
         <nav className={classNames(`${XFull} h-12`, `container `)}>
           <div className={classNames(`${boxFull} ${flexRowCenterBetween}`)}>
             <div>

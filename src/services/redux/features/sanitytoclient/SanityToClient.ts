@@ -125,3 +125,4 @@ export const headerHomeState = (state: RootState) => state.sanity.headerHome;
 export const testimonials = (state: RootState) => state.sanity.testimonials;
 export const socialLinks = (state: RootState) => state.sanity.socialLinks;
 export const footerAbout = (state: RootState) => state.sanity.footerAbout;
+export const homeBrand = (state: RootState) => state.sanity.homeBrand;
