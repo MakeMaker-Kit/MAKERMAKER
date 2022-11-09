@@ -27,6 +27,7 @@ const NavbarBtnDropdown = (props: Props) => {
     flexCol,
     flexStart,
     flexColBetween,
+    flexColCenter,
   } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   return (
@@ -76,16 +77,19 @@ const NavbarBtnDropdown = (props: Props) => {
                           <div className={`w-1/2 max-w-1/2 border`}>
                             <div className={`${XFull} ${flexColBetween}`}>
                               {/*  */}
-                              <div className={``}>
-                                <p>fffkkf</p>
+                              <div className={`${flexColCenter}`}>
+                                <p>Science Kit Unified</p>
+                                <p>What is the meaning of the project wonder</p>
                               </div>
                               {/*  */}
-                              <div>
-                                <p>fff</p>
+                              <div className={`${flexColCenter} `}>
+                                <p>Science Kit Unified</p>
+                                <p>What is the meaning of the project wonder</p>
                               </div>
                               {/*  */}
-                              <div>
-                                <p>ffjjff</p>
+                              <div className={`${flexColCenter}`}>
+                                <p>Science Kit Unified</p>
+                                <p>What is the meaning of the project wonder</p>
                               </div>
                               {/*  */}
                             </div>
@@ -94,7 +98,7 @@ const NavbarBtnDropdown = (props: Props) => {
                         </div>
                         {/*  */}
                         <div>
-                          <p>dkdkdk</p>
+                          <p className={`text-start`}>dkdkdk</p>
                         </div>
                       </div>
                     </div>
@@ -124,9 +128,9 @@ const NavbarBtnDropdown = (props: Props) => {
                               {/*  */}
                               <div className={`w-full max-w-two border `}>
                                 <ul className={`${XFull} `}>
-                                  <li className={`h-16`}>
+                                  <li className={`h-20`}>
                                     <img
-                                      src=""
+                                      src="https://www.pngitem.com/pimgs/m/161-1618619_image-e-commerce-png-transparent-png.png"
                                       alt=""
                                       className={`max-w-full w-full h-full object-center object-cover`}
                                     />
