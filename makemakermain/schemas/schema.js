@@ -10,6 +10,7 @@ import category from "./category";
 import post from "./post";
 import author from "./author";
 import homeheader from "./home/homeheader/homeheader";
+import homeDisplay from "./home/homeheader/homeDisplay";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -27,5 +28,6 @@ export default createSchema({
     // { type: 'typename' } in other document schemas
     blockContent,
     homeheader,
+    homeDisplay,
   ]),
 });

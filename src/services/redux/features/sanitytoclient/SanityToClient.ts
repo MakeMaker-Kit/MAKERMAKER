@@ -24,6 +24,7 @@ const initialState: sanityInitialState = {
   loading: false,
   homeHeader: homeHeaderData2 ? homeHeaderData2 : null,
   headerHome: null,
+  displaymore: null,
 };
 
 export const fetchHomeHeader = createAsyncThunk(

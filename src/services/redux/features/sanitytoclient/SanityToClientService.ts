@@ -17,6 +17,17 @@ const generateHeader = (payloadResponse: string) => {
     return response;
   });
 };
-
-const SanityToClientService = { genrateHomeHeader, generateHeader };
+const generateQuery = (payloadResponse: string) => {
+  client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      localStorage.setItem("QueryResponse", JSON.stringify(response));
+    }
+    return response;
+  });
+};
+const SanityToClientService = {
+  genrateHomeHeader,
+  generateHeader,
+  generateQuery,
+};
 export default SanityToClientService;

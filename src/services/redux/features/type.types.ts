@@ -14,6 +14,7 @@ export interface sanityInitialState {
   loading: boolean | Boolean;
   homeHeader: null | {} | void;
   headerHome: null | {};
+  displaymore: null | {} | void;
 }
 
 export interface User {
