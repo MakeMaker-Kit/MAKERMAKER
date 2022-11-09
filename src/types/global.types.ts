@@ -67,3 +67,24 @@ export interface PathRouteProps {
   element?: React.ReactNode | null;
   errorElement?: React.ReactNode | null;
 }
+//
+export interface THomeBrand {
+  brandImage: string;
+  title: string;
+}
+
+export interface TTestimonials {
+  image: string;
+  name: string;
+  description: string;
+  company: string;
+}
+
+export interface TSocial {
+  name: string;
+}
+
+export type TFooter{
+  logo: string;
+  desc: string
+}

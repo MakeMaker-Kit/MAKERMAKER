@@ -25,7 +25,7 @@ export default {
       type: "text ",
     },
     {
-      name: "companuy",
+      name: "company",
       title: "Company",
       description: "",
       type: "string",
