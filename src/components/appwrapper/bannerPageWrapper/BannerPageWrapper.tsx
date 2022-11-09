@@ -23,12 +23,14 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
               <div
                 className={`${boxFull} ${flexCenter} ${flexRow} space-x-3 text-white text-xs  ${textCustom}`}
               >
-                <span className={`capitalize`}>{home ? home : "Home"}</span>
+                <span className={`capitalize cursor-pointer hover:underline`}>
+                  {home ? home : "Home"}
+                </span>
                 {routePath && <span>/</span>}
                 <span
                   className={classNames(
-                    `capitalize`,
-                    `${!routePathID ? "text-gray-300" : ""}`
+                    `capitalize cursor-pointer hover:underline`,
+                    `${!routePathID ? "text-gray-900" : ""}`
                   )}
                 >
                   {routePath ? routePath : ""}
@@ -36,7 +38,9 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
                 {routePathID && <span> / </span>}
                 <span
                   className={classNames(
-                    `${routePath && routePathID ? "text-gray-900" : ""}`
+                    `${
+                      routePath && routePathID ? "text-gray-900" : ""
+                    } cursor-pointer hover:underline`
                   )}
                 >
                   {routePathID ? routePathID : ""}
