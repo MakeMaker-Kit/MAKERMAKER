@@ -1,7 +1,10 @@
+import { uuid } from "@sanity/uuid";
+
 export default {
   name: "header",
   title: "Header",
   type: "document",
+  id: uuid(),
   fields: [
     {
       name: "title",
