@@ -18,6 +18,12 @@ let homeHeaderData;
 if (data || typeof data === "string") {
   homeHeaderData = JSON.parse(data);
 }
+// QueryResponseData
+const Data = localStorage.getItem("QueryResponse");
+let QueryResponseData;
+if (Data || typeof Data === "string") {
+  QueryResponseData = JSON.parse(Data);
+}
 
 const initialState: sanityInitialState = {
   error: "",
@@ -26,6 +32,10 @@ const initialState: sanityInitialState = {
   homeHeader: homeHeaderData2 ? homeHeaderData2 : null,
   headerHome: null,
   displaymore: null,
+  homeBrand: QueryResponseData ? QueryResponseData : null,
+  testimonials: QueryResponseData ? QueryResponseData : null,
+  socialLinks: QueryResponseData ? QueryResponseData : null,
+  footerAbout: QueryResponseData ? QueryResponseData : null,
 };
 
 export const fetchHomeHeader = createAsyncThunk(

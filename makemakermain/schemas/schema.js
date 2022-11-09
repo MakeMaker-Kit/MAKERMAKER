@@ -15,6 +15,7 @@ import homebrand from "./home/homeheader/homebrand";
 import hometestimonials from "./home/homeheader/hometestimonials";
 import sociallinks from "./sociallinks/sociallinks";
 import footerabout from "./footer/footerabout/footerabout";
+import footermain from "./footer/footermain/footermain";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -37,5 +38,6 @@ export default createSchema({
     hometestimonials,
     sociallinks,
     footerabout,
+    footermain,
   ]),
 });

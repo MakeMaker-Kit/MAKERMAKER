@@ -15,6 +15,10 @@ export interface sanityInitialState {
   homeHeader: null | {} | void;
   headerHome: null | {};
   displaymore: null | {} | void;
+  homeBrand: null | {} | void;
+  testimonials: null | {} | void;
+  socialLinks: null | {} | void;
+  footerAbout: null | {} | void;
 }
 
 export interface User {

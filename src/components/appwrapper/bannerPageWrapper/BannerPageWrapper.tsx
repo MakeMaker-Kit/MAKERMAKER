@@ -36,7 +36,7 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
                 {routePathID && <span> / </span>}
                 <span
                   className={classNames(
-                    `${routePath && routePathID ? "text-gray-500" : ""}`
+                    `${routePath && routePathID ? "text-gray-900" : ""}`
                   )}
                 >
                   {routePathID ? routePathID : ""}
