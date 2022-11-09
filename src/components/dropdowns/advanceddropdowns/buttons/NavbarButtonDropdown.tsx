@@ -18,8 +18,16 @@ interface Props {
   navContents: NavItemTypes[];
 }
 const NavbarBtnDropdown = (props: Props) => {
-  const { containerWrapper } = themes;
-  const { flexRowCenter, flexRowCenterBetween, flexRowBetween } = flexLayout;
+  const { containerWrapper, boxFull, XFull } = themes;
+  const {
+    flexRowCenter,
+    flexRowCenterBetween,
+    flexRowBetween,
+    flexRow,
+    flexCol,
+    flexStart,
+    flexColBetween,
+  } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   return (
     <>
@@ -40,32 +48,110 @@ const NavbarBtnDropdown = (props: Props) => {
             sideOffset={5}
             className={classNames(
               `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
-              `w-48 rounded-md px-1.5 py-1 shadow-md md:w-56`,
-              `bg-orange `
+              `w-48 rounded px-1.5 py-1 shadow-md md:w-screen h-auto`,
+              `bg-orange `,
+              `border-2 border-dotted border-white`
             )}
           >
-            {props.navContents.map(({ icon, id, link, name }, i) => (
+            <div className={`${boxFull}`}>
+              {/* {props.navContents.map(({ icon, id, link, name }, index) => ( */}
               <DropdownMenuPrimitive.Item
-                key={id}
-                className={classNames(
-                  `${flexRowBetween} cursor-default select-none items-center rounded-md px-2 py-2 text-xs outline-none `,
-                  `text-gray-50 focus:bg-gray-900`
-                )}
+                // key={id}
+                className={classNames(`$ bg-white p-5 `)}
               >
-                <div className={classNames(`${flexRowCenter}`)}>
-                  {icon}
-                  <span
-                    className={classNames(
-                      `${textCustom} ${mainLayout} text-xs italic`
-                    )}
-                  >
-                    {name}
-                  </span>
-                </div>
+                <div className={`${boxFull} ${flexRow}`}>
+                  {/* CONTENTS container  */}
+                  <div className={classNames(`w-1/2 max-w-1/2  `)}>
+                    <div className={` ${XFull} `}>
+                      <div
+                        className={classNames(
+                          `${flexColBetween} ${XFull} `,
+                          `${textCustom} ${mainLayout}`
+                        )}
+                      >
+                        <h1 className={classNames(`text-start`)}>
+                          Hello contents container{" "}
+                        </h1>
+                        <div className={`${XFull} ${flexRow}`}>
+                          <div className={`w-1/2 max-w-1/2 border`}>
+                            <div className={`${XFull} ${flexColBetween}`}>
+                              {/*  */}
+                              <div className={``}>
+                                <p>fffkkf</p>
+                              </div>
+                              {/*  */}
+                              <div>
+                                <p>fff</p>
+                              </div>
+                              {/*  */}
+                              <div>
+                                <p>ffjjff</p>
+                              </div>
+                              {/*  */}
+                            </div>
+                          </div>
+                          <div className={`w-1/2 max-w-1/2  border`}></div>
+                        </div>
+                        {/*  */}
+                        <div>
+                          <p>dkdkdk</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/*   Divider */}
+                  <div className={classNames(` border border-green-900`)} />
+                  {/* Images Container */}
+                  <div className={`w-1/2 max-w-1/2 `}>
+                    <div className={`${XFull} ${flexStart} ${flexRow}`}></div>
+                    <div
+                      className={classNames(
+                        `${flexColBetween} ${textCustom} ${mainLayout}`
+                      )}
+                    >
+                      <h1>Hello world </h1>
+                      {/* Main Contents */}
+                      <div
+                        className={`px-10  h-[400px] max-h-[400px] overflow-y-scroll scrollbar-hide `}
+                      >
+                        {Array(20)
+                          .fill(0)
+                          .map((i) => (
+                            <div
+                              key={i}
+                              className={`${XFull} max-w-full ${flexRow}`}
+                            >
+                              {/*  */}
+                              <div className={`w-full max-w-two border `}>
+                                <ul className={`${XFull} `}>
+                                  <li className={`h-16`}>
+                                    <img
+                                      src=""
+                                      alt=""
+                                      className={`max-w-full w-full h-full object-center object-cover`}
+                                    />
+                                  </li>
+                                </ul>
+                              </div>
+                              {/*  */}
+                              <div className={`w-full max-w-eight border h-20`}>
+                                <h1>djjjddjj</h1>
+                              </div>
+                            </div>
+                          ))}
 
-                <span>⌘+N</span>
+                        {/*  */}
+                      </div>
+                      <div>
+                        <h1>Footer Element</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </DropdownMenuPrimitive.Item>
-            ))}
+              {/* ))} */}
+            </div>
+
             {/* <DropdownMenuPrimitive.Separator className="my-1 h-px bg-gray-100" /> */}
           </DropdownMenuPrimitive.Content>
         </DropdownMenuPrimitive.Root>
