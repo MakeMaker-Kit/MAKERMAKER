@@ -122,3 +122,6 @@ export const { getHomeHeader } = actions;
 export default reducer;
 export const homeHeaderState = (state: RootState) => state.sanity.homeHeader;
 export const headerHomeState = (state: RootState) => state.sanity.headerHome;
+export const testimonials = (state: RootState) => state.sanity.testimonials;
+export const socialLinks = (state: RootState) => state.sanity.socialLinks;
+export const footerAbout = (state: RootState) => state.sanity.footerAbout;

@@ -7,6 +7,13 @@ import {
 } from "../../../../styles/themes/theme";
 import TestimonialCard from "./TestimonialCard";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  testimonials,
+  fetchQuery,
+} from "../../../../services/redux/features/sanitytoclient/SanityToClient";
+import { hometestimonials } from "../../../../utils/querypaths";
 
 const Testimonial = () => {
   const {
@@ -22,6 +29,12 @@ const Testimonial = () => {
     themes;
   const { marX, padY } = themeWrapper;
   const { PaperPlaneIcon } = useIcon();
+  const dispatch = useDispatch();
+  const testimonialData = useSelector(testimonials);
+  React.useEffect(() => {
+    dispatch(fetchQuery(hometestimonials));
+  }, [dispatch, hometestimonials]);
+  console.table("", testimonialData);
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>

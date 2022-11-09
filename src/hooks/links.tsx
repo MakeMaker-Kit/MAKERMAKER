@@ -18,7 +18,7 @@ const Links = React.forwardRef<HTMLLIElement, MoreProps>(
         {...props}
         className={classNames(
           `${flexRowCenter}`,
-          `${mainText} ${mainLayout} uppercase`
+          `${mainText} ${mainLayout} uppercase text-xs`
         )}
       >
         <span>{children}</span>
