@@ -84,7 +84,21 @@ export interface TSocial {
   name: string;
 }
 
-export type TFooter{
+export type TFooter = {
   logo: string;
-  desc: string
+  desc: string;
+};
+
+export interface RegiterType {
+  fullName: string;
+  email?: string;
+  password?: string | number;
+  comfirmPassword: string;
+  phoneNumber?: number | string;
+}
+
+export interface LoginType {
+  email?: string;
+  password: string;
+  comfirmPassword: string;
 }
