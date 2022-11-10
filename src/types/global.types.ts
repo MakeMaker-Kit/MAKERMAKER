@@ -100,6 +100,6 @@ export interface RegiterType {
 
 export interface LoginType {
   email?: string;
-  password: string | number;
-  comfirmPassword: string | NumberSchemaType;
+  password: string;
+  comfirmPassword: string;
 }

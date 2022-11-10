@@ -9,6 +9,7 @@ import {
 import Input from "../../../../hooks/Input";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { PASSWORD_REGEX, EMAIL_ADDREESS_REGEX } from "../Regex";
 import {
   Formik,
   FormikErrors,
@@ -48,7 +49,31 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
             password: "",
             email: "",
           }}
-          validate={(values: LoginType) => {}}
+          validate={(values: LoginType) => {
+            const errors: FormikErrors<LoginType> = {};
+            let { comfirmPassword, email, password } = errors;
+            //
+            if (!values.email) {
+              email = "Email Required";
+            } else if (!EMAIL_ADDREESS_REGEX.test(values.email)) {
+              email = "Invalid Email Address";
+            }
+            //
+            if (!values.password) {
+              password = "Your Password is Required";
+            } else if (!PASSWORD_REGEX.test(values.password)) {
+              password = "Invalid Password ";
+            }
+            //
+            if (!values.password) {
+              comfirmPassword = "Invalid";
+            } else if (
+              values.comfirmPassword !== values.password &&
+              !PASSWORD_REGEX.test(values.comfirmPassword)
+            ) {
+              comfirmPassword = "Your Password dosen't match";
+            }
+          }}
           onSubmit={() => {}}
         >
           {(formik) => {
