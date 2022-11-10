@@ -30,6 +30,9 @@ const HomeLayout = () => {
   const HomeQuery: string = '*[_type == "header"]';
   const dispatch = useDispatch();
   React.useEffect(() => {
+    console.log("Vite Production ", import.meta.env.VITE_SUPABASE_KEY);
+  }, []);
+  React.useEffect(() => {
     dispatch(fetchHeader(HomeQuery));
     return console.log("HomeHeader DATA", homeHeader);
   }, [useSelector, HomeQuery, dispatch]);

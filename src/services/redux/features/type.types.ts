@@ -25,6 +25,15 @@ export interface User {
   user: string;
 }
 
-export  interface TAuth{
-  user: null | {}
+export interface TAuth {
+  user: null | {};
+}
+
+export interface ProductStateTypes {
+  productQuantity: number;
+  totalQuantity: number;
+  readonly totalPrice: number;
+  productIndexQuantity: number;
+  cart?: null | {} | void;
+  isItemsAdded: boolean | Boolean;
 }

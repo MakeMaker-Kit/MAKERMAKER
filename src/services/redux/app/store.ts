@@ -6,11 +6,13 @@ import { RootState } from "./rootReducer";
 import GlobalStateReducer from "../features/globalslice/GlobalStateSlice";
 import SanityToClientReducer from "../features/sanitytoclient/SanityToClient";
 import AuthReducer from "../features/authslice/AuthSlice";
+import ProductReducer from "../features/productslice/ProductSlice";
 const store = configureStore({
   reducer: {
     globalstate: GlobalStateReducer,
     sanity: SanityToClientReducer,
     auth: AuthReducer,
+    product: ProductReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

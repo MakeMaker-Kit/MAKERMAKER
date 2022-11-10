@@ -101,6 +101,7 @@ const Register: React.FC<AuthContentType> = ({
                 client.create(DBDetails).then(() => {
                   setSubmitting(false);
                   setStatus(false);
+                  setPage((currentPage) => currentPage + 1);
                 });
               } else if (error) {
                 throw error;
