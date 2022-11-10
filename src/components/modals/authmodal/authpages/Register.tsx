@@ -11,6 +11,8 @@ import Input from "../../../../hooks/Input";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { AiOutlineGooglePlus } from "react-icons/ai";
+import { supabase } from "../../../db/database/Database";
+import { client } from "../../../../client";
 import {
   EMAIL_ADDREESS_REGEX,
   USER_REGEX,
@@ -88,7 +90,29 @@ const Register: React.FC<AuthContentType> = ({
             }
           }}
           // if (!values.)
-          onSubmit={() => {}}
+          onSubmit={async (values, { setStatus, setSubmitting }) => {
+            try {
+              const { error, data } = await supabase.auth.signInWithPassword(
+                values
+              );
+              const DBDetails = {
+                _type: "userData",
+                ...data,
+              };
+              if (data) {
+                client.create(DBDetails).then(() => {
+                  setSubmitting(false);
+                  setStatus(false);
+                });
+              } else if (error) {
+                throw error;
+              }
+            } catch (error: unknown) {
+              if (error instanceof Error) {
+                return error.message;
+              }
+            }
+          }}
         >
           {(formik) => {
             const { handleChange, values } = formik;

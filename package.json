@@ -17,6 +17,7 @@
     "@sanity/image-url": "^1.0.1",
     "@sanity/types": "^2.35.0",
     "@sanity/uuid": "^3.0.1",
+    "@supabase/supabase-js": "^2.0.5",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/react-icons": "^3.0.0",
     "@types/react-redux": "^7.1.24",
