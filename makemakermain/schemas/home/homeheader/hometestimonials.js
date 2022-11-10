@@ -22,7 +22,7 @@ export default {
       name: "description",
       title: "Description",
       description: "",
-      type: "text ",
+      type: "text",
     },
     {
       name: "company",

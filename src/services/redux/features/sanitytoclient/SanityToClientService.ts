@@ -12,7 +12,7 @@ const generateHeader = (payloadResponse: string) => {
   client.fetch(payloadResponse).then((response) => {
     if (response) {
       localStorage.setItem("HomeHeader", JSON.stringify(response));
-      console.log("responmse data ", response);
+      console.log("response data ", response);
     }
     return response;
   });

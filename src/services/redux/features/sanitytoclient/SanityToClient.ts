@@ -29,7 +29,7 @@ const initialState: sanityInitialState = {
   error: "",
   message: "",
   loading: false,
-  homeHeader: homeHeaderData2 ? homeHeaderData2 : null,
+  homeHeader: homeHeaderData ? homeHeaderData : null,
   headerHome: null,
   displaymore: null,
   homeBrand: QueryResponseData ? QueryResponseData : null,
@@ -53,15 +53,17 @@ export const fetchHeader = createAsyncThunk(
   "users/fetchHomeHeader",
   (user: string, thunkApi) => {
     let message: string;
-    try {
-      const response = generateHeader(user);
-      return response;
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        message = error.message;
-        return thunkApi.rejectWithValue(message);
-      }
-    }
+    const response = generateHeader(user);
+    return response;
+    // try {
+    //   const response = generateHeader(user);
+    //   return response;
+    // } catch (error: unknown) {
+    //   if (error instanceof Error) {
+    //     message = error.message;
+    //     return thunkApi.rejectWithValue(message);
+    //   }
+    // }
   }
 );
 export const fetchQuery = createAsyncThunk(
@@ -92,9 +94,8 @@ const SanityToClientSlice = createSlice({
       })
       .addCase(fetchHeader.fulfilled, (state, action) => {
         state.loading = false;
-        state.homeHeader = action.payload;
-        state.error = "";
-        state.message = "";
+        // state.homeHeader = action.payload;
+        state.error = null;
       })
       .addCase(fetchHeader.rejected, (state, action) => {
         state.loading = false;

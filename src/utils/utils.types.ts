@@ -49,3 +49,14 @@ export interface ShopCategoryTypes {
 }
 
 export interface TBrands {}
+type Return = {
+  talk: () => string;
+};
+type Person = <T>(name: T) => Return;
+const person: Person = (name) => {
+  return {
+    talk() {
+      return `fkfkfk ${name}`;
+    },
+  };
+};

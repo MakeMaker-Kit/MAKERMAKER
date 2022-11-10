@@ -5,16 +5,16 @@ export default {
   description: "",
   fields: [
     {
-      name: "",
-      title: "",
+      name: "name",
+      title: "Footer Main",
       description: "",
-      type: "",
+      type: "text",
     },
     {
-      name: "",
-      title: "",
+      name: "desc",
+      title: "Description  of the Footer Main",
       description: "",
-      type: "",
+      type: "blockContent",
     },
   ],
 };
