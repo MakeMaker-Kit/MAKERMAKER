@@ -1,3 +1,4 @@
+import { NumberSchemaType } from "@sanity/types/dist/dts";
 import React from "react";
 import { NonIndexRouteObject, OutletProps } from "react-router-dom";
 
@@ -92,13 +93,13 @@ export type TFooter = {
 export interface RegiterType {
   fullName: string;
   email?: string;
-  password?: string | number;
+  password?: string;
   comfirmPassword: string;
-  phoneNumber?: number | string;
+  phoneNumber?: string;
 }
 
 export interface LoginType {
   email?: string;
-  password: string;
-  comfirmPassword: string;
+  password: string | number;
+  comfirmPassword: string | NumberSchemaType;
 }

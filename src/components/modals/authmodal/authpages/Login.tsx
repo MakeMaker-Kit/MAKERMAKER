@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { AuthContentType } from "../../../../types/global.types";
+import { AuthContentType, LoginType } from "../../../../types/global.types";
 import {
   flexLayout,
   textStyles,
@@ -9,6 +9,13 @@ import {
 import Input from "../../../../hooks/Input";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import {
+  Formik,
+  FormikErrors,
+  FormikConsumer,
+  FormikProps,
+  FormikRegistration,
+} from "formik";
 
 const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
   const {
@@ -34,76 +41,105 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
             {generateTitle[page]}
           </h2>
         </div>
-        {/*  */}
-        <div className={cx(`${boxFull} ${flexColBetween} `)}>
-          <div className={cx(`h-[90%] max-h-[90%] px-5 py-3 w-full`)}>
-            <div className={`${boxFull}  ${flexCol} space-y-5 items-center`}>
-              <div className={`max-w-full w-full`}>
-                <Input isRounded={true} placeholder={`Ènter Your Email`} />
-              </div>
-              <div className={`w-full max-w-full`}>
-                <Input isRounded={true} placeholder={`Enter your Password `} />
-              </div>
-              <div className={`w-full max-w-full`}>
-                <Input
-                  isRounded={true}
-                  placeholder={`Confirm your Password `}
-                />
-              </div>
-              {/* Login Button */}
-              <div className={` w-full max-w-nine `}>
-                <MainButton isRounded={true}>Login</MainButton>
-              </div>
-              {/*  */}
-              <div
-                className={`w-full ${flexRowCenter} space-x-1 justify-center cursor-pointer`}
-              >
-                <p
-                  className={`${textCustom} ${mainLayout} text-xs italic font-playfair`}
-                >
-                  Sign in with Google
-                </p>
-                <div className="w-5 h-5 ">
-                  <span
-                    className={`${boxFull} ${flexCenter} bg-orange rounded-full`}
-                  >
-                    <AiOutlineGooglePlus className="text-gray-50" />
-                  </span>
-                </div>
-              </div>
-              {/*   Forgot PassWord */}
-              <div className={`${mainLayout} max-w-nine`}>
-                <p
-                  className={`whitespace-nowrap ${textCustom} text-sm font-playfair`}
-                >
-                  Forgot Password?.{" "}
-                  <span className="italic cursor-pointer underline"
-                  onClick={() => setPage((currentPage) =>  currentPage + 2)}
-                  >
-                    Reset Password{" "}
-                  </span>{" "}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="w-full h-px bg-gray-700" />
-          <div className={cx(`h-[10%] max-h-[10%] `)}>
-            <div
-              className={cx(
-                `${boxFull} ${flexRowCenter} space-x-3 justify-center`,
-                `${mainLayout} ${textCustom} text-xs font-playfair`
-              )}
-            >
-              <p>Dont have an account</p>
-              <span
-                className={cx(`underline cursor-pointer text-black`)}
-                onClick={() => setPage((currentPage) => currentPage + 1)}
-              >
-                Register Here
-              </span>
-            </div>
-          </div>
-        </div>
+        {/* Foem Layout*/}
+        <Formik
+          initialValues={{
+            comfirmPassword: "",
+            password: "",
+            email: "",
+          }}
+          validate={(values: LoginType) => {}}
+          onSubmit={() => {}}
+        >
+          {(formik) => {
+            return (
+              <>
+                <form className={cx(`${boxFull} ${flexColBetween} `)}>
+                  <div className={cx(`h-[90%] max-h-[90%] px-5 py-3 w-full`)}>
+                    <div
+                      className={`${boxFull}  ${flexCol} space-y-5 items-center`}
+                    >
+                      <div className={`max-w-full w-full`}>
+                        <Input
+                          isRounded={true}
+                          placeholder={`Ènter Your Email`}
+                        />
+                      </div>
+                      <div className={`w-full max-w-full`}>
+                        <Input
+                          isRounded={true}
+                          placeholder={`Enter your Password `}
+                        />
+                      </div>
+                      <div className={`w-full max-w-full`}>
+                        <Input
+                          isRounded={true}
+                          placeholder={`Confirm your Password `}
+                        />
+                      </div>
+                      {/* Login Button */}
+                      <div className={` w-full max-w-nine `}>
+                        <MainButton isRounded={true}>Login</MainButton>
+                      </div>
+                      {/*  */}
+                      <div
+                        className={`w-full ${flexRowCenter} space-x-1 justify-center cursor-pointer`}
+                      >
+                        <p
+                          className={`${textCustom} ${mainLayout} text-xs italic font-playfair`}
+                        >
+                          Sign in with Google
+                        </p>
+                        <div className="w-5 h-5 ">
+                          <span
+                            className={`${boxFull} ${flexCenter} bg-orange rounded-full`}
+                          >
+                            <AiOutlineGooglePlus className="text-gray-50" />
+                          </span>
+                        </div>
+                      </div>
+                      {/*   Forgot PassWord */}
+                      <div className={`${mainLayout} max-w-nine`}>
+                        <p
+                          className={`whitespace-nowrap ${textCustom} text-sm font-playfair`}
+                        >
+                          Forgot Password?.{" "}
+                          <span
+                            className="italic cursor-pointer underline"
+                            onClick={() =>
+                              setPage((currentPage) => currentPage + 2)
+                            }
+                          >
+                            Reset Password{" "}
+                          </span>{" "}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full h-px bg-gray-700" />
+                  <div className={cx(`h-[10%] max-h-[10%] `)}>
+                    <div
+                      className={cx(
+                        `${boxFull} ${flexRowCenter} space-x-3 justify-center`,
+                        `${mainLayout} ${textCustom} text-xs font-playfair`
+                      )}
+                    >
+                      <p>Dont have an account</p>
+                      <span
+                        className={cx(`underline cursor-pointer text-black`)}
+                        onClick={() =>
+                          setPage((currentPage) => currentPage + 1)
+                        }
+                      >
+                        Register Here
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </>
+            );
+          }}
+        </Formik>
       </div>
     </>
   );

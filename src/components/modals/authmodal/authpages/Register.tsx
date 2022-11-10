@@ -11,6 +11,12 @@ import Input from "../../../../hooks/Input";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { AiOutlineGooglePlus } from "react-icons/ai";
+import {
+  EMAIL_ADDREESS_REGEX,
+  USER_REGEX,
+  phoneRegExp,
+  PASSWORD_REGEX,
+} from "../Regex";
 
 const Register: React.FC<AuthContentType> = ({
   generateTitle,
@@ -44,7 +50,44 @@ const Register: React.FC<AuthContentType> = ({
             password: "",
             phoneNumber: "",
           }}
-          validate={(values: RegiterType) => {}}
+          validate={(values: RegiterType) => {
+            const errors: FormikErrors<RegiterType> = {};
+            let { fullName, comfirmPassword, email, password, phoneNumber } =
+              errors;
+            if (!values.fullName) {
+              errors.fullName = "Required";
+            } else if (!USER_REGEX.test(values.fullName)) {
+              fullName = "Invalid FUllName";
+            }
+            //
+            if (!values.email) {
+              email = "Email Required";
+            } else if (!EMAIL_ADDREESS_REGEX.test(values.email)) {
+              email = "Invalid Email Address";
+            }
+            //
+            if (!values.phoneNumber) {
+              phoneNumber = "Phone Number Required";
+            } else if (!phoneRegExp.test(values.phoneNumber)) {
+              phoneNumber = "Invalid Phone Number ";
+            }
+            //
+            if (!values.password) {
+              password = "Your Password is Required";
+            } else if (!PASSWORD_REGEX.test(values.password)) {
+              password = "Invalid Password ";
+            }
+            //
+            if (!values.password) {
+              comfirmPassword = "Invalid";
+            } else if (
+              values.comfirmPassword !== values.password &&
+              !PASSWORD_REGEX.test(values.comfirmPassword)
+            ) {
+              comfirmPassword = "Your Password dosen't match";
+            }
+          }}
+          // if (!values.)
           onSubmit={() => {}}
         >
           {(formik) => {
