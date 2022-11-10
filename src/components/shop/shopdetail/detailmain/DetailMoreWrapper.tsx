@@ -13,15 +13,15 @@ const DetailMoreWrapper = () => {
   const {} = textStyles;
   return (
     <>
-      <div className={cx(`${flexRow} ${XFull} flex-wrap basis-full`)}>
+      <div className={cx(`${flexRow} ${XFull} flex-wrap basis-full gap-x-2`)}>
         {/* IMAGE LAYOUT  */}
-        <div className={cx(`w-full max-w-five flex-[0_0_48%]`)}>
+        <div className={cx(`w-full max-w-five flex-[0_0_47%]`)}>
           <div className={cx(`${XFull}`)}>
             <ImageViewer />
           </div>
         </div>
         {/* CONTENT LAYOUT */}
-        <div className={cx(`w-full max-w-five flex-[0_0_48%]`)}>
+        <div className={cx(`w-full max-w-five flex-[0_0_47%]`)}>
           <div className={cx(`${XFull}`)}>
             <Contents />
           </div>

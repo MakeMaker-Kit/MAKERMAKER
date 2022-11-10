@@ -92,7 +92,9 @@ const Contents = () => {
                     key={i}
                     className={`p-2 border border-orange rounded-md`}
                   >
-                    <div className={`${flexCenter} ${boxFull}`}>
+                    <div
+                      className={`${flexCenter} ${boxFull} whitespace-nowrap`}
+                    >
                       <p>Rice and Beans</p>
                     </div>
                   </div>

@@ -45,7 +45,7 @@ const ShopDetailLayout = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className=" align-middle h-[100vh] bg-white w-[86vw] rounded-xl shadow-xl  border border-solid px-12 pt-12 overflow-y-auto scrollbar-none">
+                  <Dialog.Panel className=" align-middle h-[100vh] bg-white w-[86vw] rounded-xl shadow-xl  border border-solid px-8 pt-12 overflow-y-auto scrollbar-none">
                     <div
                       className={classNames(` ${boxFull}  ${flexCol} gap-y-4`)}
                       // ${containerWrapper}
