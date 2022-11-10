@@ -3,6 +3,12 @@ import cx from "classnames";
 import { textStyles, themes, flexLayout } from "../../styles/themes/theme";
 import Button from "../../hooks/button";
 import { useIcon } from "../../hooks/dispatchContext";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  footerAbout,
+  fetchFooterLinks,
+} from "../../services/redux/features/sanitytoclient/SanityToClient";
+import { footerabout } from "../../utils/querypaths";
 
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
@@ -10,6 +16,13 @@ const Footer = () => {
   const { marX, padY, formPadL } = themeWrapper;
   const { flexRow, flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
   const { MinusIcon } = useIcon();
+  const dispatch = useDispatch();
+  const footer = useSelector(footerAbout);
+  React.useEffect(() => {
+    dispatch(fetchFooterLinks(footerabout));
+  }, [dispatch, footer]);
+  console.log("Footer Data", footer);
+
   return (
     <>
       <div className={cx(`${marX} py-6`)}>

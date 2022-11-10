@@ -25,9 +25,37 @@ const generateQuery = (payloadResponse: string) => {
     return response;
   });
 };
+const generateteTestimonials = (payloadResponse: string) => {
+  client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      localStorage.setItem("QueryResponse", JSON.stringify(response));
+    }
+    return response;
+  });
+};
+const generateSocial = (payloadResponse: string) => {
+  client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      localStorage.setItem("QueryResponse", JSON.stringify(response));
+    }
+    return response;
+  });
+};
+const generateFooterLinks = (payloadResponse: string) => {
+  client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      localStorage.setItem("QueryResponse", JSON.stringify(response));
+    }
+    return response;
+  });
+};
+
 const SanityToClientService = {
   genrateHomeHeader,
   generateHeader,
   generateQuery,
+  generateFooterLinks,
+  generateSocial,
+  generateteTestimonials,
 };
 export default SanityToClientService;

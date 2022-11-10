@@ -23,6 +23,7 @@
     "@types/redux-logger": "^3.0.9",
     "axios": "^1.1.3",
     "classnames": "^2.3.2",
+    "formik": "^2.2.9",
     "google-map-react": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,13 +36,15 @@
     "react-uuid": "^2.0.0",
     "react-whatsapp-widget": "^2.1.0",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "spinners-react": "^1.0.7",
     "sweetalert2": "^11.6.7",
     "swiper": "^8.4.4",
     "tailwind-scrollbar": "^2.0.1",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "tailwindcss-radix": "^2.6.1"
+    "tailwindcss-radix": "^2.6.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/google-map-react": "^2.1.7",

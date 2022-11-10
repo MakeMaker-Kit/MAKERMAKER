@@ -10,8 +10,14 @@ import { RootState } from "../../app/rootReducer";
 import SanityToClientService from "./SanityToClientService";
 import { client } from "../../../../client";
 // Descript services
-const { genrateHomeHeader, generateHeader, generateQuery } =
-  SanityToClientService;
+const {
+  genrateHomeHeader,
+  generateHeader,
+  generateQuery,
+  generateFooterLinks,
+  generateSocial,
+  generateteTestimonials,
+} = SanityToClientService;
 const homeHeaderData2 = JSON.parse(localStorage.getItem("HomeHeader") || "");
 const data = localStorage.getItem("HomeHeader");
 let homeHeaderData;
@@ -74,6 +80,19 @@ export const fetchQuery = createAsyncThunk(
     return response;
   }
 );
+export const fetchTetimonial = createAsyncThunk(
+  "sanity/fetchTestimonial",
+  (user: string) => generateteTestimonials(user)
+);
+export const fetchFooterLinks = createAsyncThunk(
+  "sanity/fetchFooterLinks",
+  (user: string) => generateFooterLinks(user)
+);
+export const fetchSocial = createAsyncThunk(
+  "sanity/fetchSocial",
+  (user: string) => generateSocial(user)
+);
+
 const SanityToClientSlice = createSlice({
   name: "sanity",
   initialState,
