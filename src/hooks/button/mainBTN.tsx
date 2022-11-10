@@ -6,8 +6,10 @@ interface MoreProps extends ButtonProps {
   isRounded: boolean;
   bgColor?: string;
   textColor?: string;
+  // onSubmit?: (e?: FormEvent<HTMLFormElement> | undefined) => void
 }
-const MainButton = React.forwardRef<HTMLButtonElement, MoreProps>(
+
+const MainButton = React.forwardRef<HTMLFormElement, MoreProps>(
   ({ children, isRounded, bgColor, textColor, ...props }, ref) => {
     const { mainLayout, textCustom } = textStyles;
     return (

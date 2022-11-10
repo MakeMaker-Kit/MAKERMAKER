@@ -91,6 +91,9 @@ const Register: React.FC<AuthContentType> = ({
           onSubmit={() => {}}
         >
           {(formik) => {
+            const { handleChange, values } = formik;
+            const { comfirmPassword, email, fullName, password, phoneNumber } =
+              values;
             return (
               <>
                 <form className={cx(`${boxFull} ${flexColBetween} `)}>
@@ -102,6 +105,8 @@ const Register: React.FC<AuthContentType> = ({
                         <Input
                           isRounded={true}
                           placeholder={`Enter your FullName `}
+                          value={""}
+                          name={fullName}
                         />
                       </div>
                       {/*  */}
@@ -110,12 +115,14 @@ const Register: React.FC<AuthContentType> = ({
                           <Input
                             isRounded={true}
                             placeholder={`Ènter Your Email`}
+                            name={email}
                           />
                         </div>
                         <div className={`max-w-five w-five`}>
                           <Input
                             isRounded={true}
                             placeholder={`Ènter Your Phone Number`}
+                            name={phoneNumber}
                           />
                         </div>
                       </div>
@@ -125,12 +132,14 @@ const Register: React.FC<AuthContentType> = ({
                         <Input
                           isRounded={true}
                           placeholder={`Enter your Password `}
+                          name={password}
                         />
                       </div>
                       <div className={`${XExtend}`}>
                         <Input
                           isRounded={true}
                           placeholder={`Confirm your Password `}
+                          name={comfirmPassword}
                         />
                       </div>
                       {/* Login Button */}

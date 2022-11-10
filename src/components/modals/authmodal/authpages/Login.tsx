@@ -74,9 +74,24 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
               comfirmPassword = "Your Password dosen't match";
             }
           }}
-          onSubmit={() => {}}
+          onSubmit={(values: LoginType, { setSubmitting, setFieldTouched }) => {
+            setTimeout(() => {
+              console.log("", values);
+              console.group(values);
+            }, 500);
+          }}
         >
           {(formik) => {
+            const {
+              initialErrors,
+              initialValues,
+              handleBlur,
+              handleChange,
+              isSubmitting,
+              values,
+              handleSubmit
+            } = formik;
+            const { comfirmPassword, password, email } = values;
             return (
               <>
                 <form className={cx(`${boxFull} ${flexColBetween} `)}>
@@ -88,23 +103,26 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
                         <Input
                           isRounded={true}
                           placeholder={`Ènter Your Email`}
+                          name={email}
                         />
                       </div>
                       <div className={`w-full max-w-full`}>
                         <Input
                           isRounded={true}
                           placeholder={`Enter your Password `}
+                          name={password}
                         />
                       </div>
                       <div className={`w-full max-w-full`}>
                         <Input
                           isRounded={true}
                           placeholder={`Confirm your Password `}
+                          name={comfirmPassword}
                         />
                       </div>
                       {/* Login Button */}
                       <div className={` w-full max-w-nine `}>
-                        <MainButton isRounded={true}>Login</MainButton>
+                        <MainButton isRounded={true} onSubmit={handleSubmit}>Login</MainButton>
                       </div>
                       {/*  */}
                       <div
