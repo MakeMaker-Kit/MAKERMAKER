@@ -1,5 +1,6 @@
 import React from "react";
 import cx from "classnames";
+import { client } from "../../../../client";
 import { AuthContentType, LoginType } from "../../../../types/global.types";
 import {
   flexLayout,
@@ -10,6 +11,7 @@ import Input from "../../../../hooks/Input";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { PASSWORD_REGEX, EMAIL_ADDREESS_REGEX } from "../Regex";
+import { supabase } from "../../../db/database/Database";
 import {
   Formik,
   FormikErrors,
@@ -74,11 +76,27 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
               comfirmPassword = "Your Password dosen't match";
             }
           }}
-          onSubmit={(values: LoginType, { setSubmitting, setFieldTouched }) => {
-            setTimeout(() => {
-              console.log("", values);
-              console.group(values);
-            }, 500);
+          onSubmit={async (values, { setSubmitting, setFieldTouched }) => {
+            try {
+              const { error, data } = await supabase.auth.signInWithPassword(
+                values
+              );
+              const UserLogin = {
+                _type: "userdata",
+                ...data,
+              };
+              if (data) {
+                client.create(UserLogin).then(() => {
+                  setSubmitting(true);
+                });
+              } else if (error) {
+                throw new Error("User Login UnSuccessful, parameters inflated");
+              }
+            } catch (error: unknown) {
+              if (error instanceof Error) {
+                return error.message;
+              }
+            }
           }}
         >
           {(formik) => {
@@ -89,7 +107,7 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
               handleChange,
               isSubmitting,
               values,
-              handleSubmit
+              handleSubmit,
             } = formik;
             const { comfirmPassword, password, email } = values;
             return (
@@ -122,7 +140,9 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
                       </div>
                       {/* Login Button */}
                       <div className={` w-full max-w-nine `}>
-                        <MainButton isRounded={true} onSubmit={handleSubmit}>Login</MainButton>
+                        <MainButton isRounded={true} onSubmit={handleSubmit}>
+                          Login
+                        </MainButton>
                       </div>
                       {/*  */}
                       <div

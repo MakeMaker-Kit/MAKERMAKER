@@ -92,9 +92,7 @@ const Register: React.FC<AuthContentType> = ({
           // if (!values.)
           onSubmit={async (values, { setStatus, setSubmitting }) => {
             try {
-              const { error, data } = await supabase.auth.signInWithPassword(
-                values
-              );
+              const { error, data } = await supabase.auth.signUp(values);
               const DBDetails = {
                 _type: "userData",
                 ...data,

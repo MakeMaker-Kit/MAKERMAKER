@@ -5,11 +5,6 @@ export default {
   type: "document",
   field: [
     {
-      name: "fullName",
-      title: "Full NAME",
-      type: "string",
-    },
-    {
       name: "email",
       title: "Email Address",
       type: "email",
@@ -18,18 +13,6 @@ export default {
       name: "password",
       title: "Users Password",
       type: "password",
-      required: true,
-    },
-    {
-      name: "comfirmPassword",
-      title: "Comfirmed Password",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "phoneNumber",
-      title: "Phone Number",
-      type: "number",
       required: true,
     },
   ],
