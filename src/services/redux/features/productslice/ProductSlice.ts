@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { ProductStateTypes } from "../type.types";
+import { toast } from "react-hot-toast";
 const IndexData = localStorage.getItem("productIndexQuantity");
 let productIndexData;
 if (IndexData || typeof IndexData === "string") {
@@ -44,7 +45,19 @@ export const ProductSlice = createSlice({
     setCart: (state, action: PayloadAction) => {
       state.cart = action.payload;
     },
+    addToCart: (state, action: PayloadAction) => {},
+    getIdentifiedProduct: (state, action: PayloadAction) => {},
+    removeFromCart: (state, action: PayloadAction) => {},
+    incrementProdut: (state, action: PayloadAction) => {},
+    decrementProduct: (state, action: PayloadAction) => {},
+    increaseProductInCart: (state, action: PayloadAction) => {},
+    decreaseProductInCart: (state, action: PayloadAction) => {},
+    removeAllProductInCart: (state, action: PayloadAction) => {},
+    removeAllSingularProductInCart: (state, action: PayloadAction) => {},
+    increaseAllSingularProductInCart: (state, action: PayloadAction) => {},
+    resetCart: (state, action: PayloadAction) => {},
   },
+
   extraReducers: {},
 });
 const { actions, caseReducers, getInitialState, reducer } = ProductSlice;
