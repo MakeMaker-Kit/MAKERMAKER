@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { ProductStateTypes } from "../type.types";
 const IndexData = localStorage.getItem("productIndexQuantity");
 let productIndexData;
@@ -40,7 +40,11 @@ const initialState: ProductStateTypes = {
 export const ProductSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    setCart: (state, action: PayloadAction) => {
+      state.cart = action.payload;
+    },
+  },
   extraReducers: {},
 });
 const { actions, caseReducers, getInitialState, reducer } = ProductSlice;

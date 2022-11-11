@@ -10,6 +10,8 @@ import store from "./services/redux/app/store";
 import { AwesomeContextProvider } from "./services/context/stylediconcontext/OnStyledIconContext";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import { Toaster } from "react-hot-toast";
+
 let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -19,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <IconContextProvider>
             <AwesomeContextProvider>
               <PersistGate persistor={persistor}>
+                <Toaster />
                 <App />
               </PersistGate>
             </AwesomeContextProvider>
