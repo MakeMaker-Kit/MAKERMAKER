@@ -28,12 +28,17 @@ export interface User {
 export interface TAuth {
   user: null | {};
 }
-
+export interface TCart {
+  id: number | string;
+  stockitems: number;
+}
 export interface ProductStateTypes {
   productQuantity: number;
   totalQuantity: number;
   readonly totalPrice: number;
   productIndexQuantity: number;
-  cart?: null | {} | void;
+  cart?: TCart[];
   isItemsAdded: boolean | Boolean;
+  ShouldCartBeCleared: Boolean | boolean;
+  ShouldCartBeReset: Boolean | boolean;
 }
