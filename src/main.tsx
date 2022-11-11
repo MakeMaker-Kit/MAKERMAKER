@@ -8,7 +8,9 @@ import ScrollToTop from "./hooks/scrollToTop";
 import { IconContextProvider } from "./services/context/OnIconContext";
 import store from "./services/redux/app/store";
 import { AwesomeContextProvider } from "./services/context/stylediconcontext/OnStyledIconContext";
-
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Router>
@@ -16,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Provider store={store}>
           <IconContextProvider>
             <AwesomeContextProvider>
-              <App />
+              <PersistGate persistor={persistor}>
+                <App />
+              </PersistGate>
             </AwesomeContextProvider>
           </IconContextProvider>
         </Provider>
