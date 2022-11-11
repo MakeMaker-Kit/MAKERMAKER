@@ -19,7 +19,7 @@ import footermain from "./footer/footermain/footermain";
 import userdata from "./auth/userdata";
 import products from "./products/products";
 import productVariant from "./products/productVariant";
-
+import blockContents from "./products/blockContents";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -45,5 +45,6 @@ export default createSchema({
     userdata,
     products,
     productVariant,
+    blockContents,
   ]),
 });
