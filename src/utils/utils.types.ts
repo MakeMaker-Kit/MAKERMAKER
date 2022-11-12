@@ -29,7 +29,16 @@ export interface DisplayContentTypes {
   id: string | null | undefined;
   isReversed: Boolean | boolean;
 }
-
+export interface TDisplayContentTypes{
+  [key: string]: number | string | string[] | boolean | undefined | IconType[];
+  title: string;
+  desc: string;
+  image: string;
+  coreTags: string[];
+  isReversed?: boolean
+  iconsValues?: IconType[]
+  
+}
 export interface ShopCarouselTypes {
   image: string;
   link: string;

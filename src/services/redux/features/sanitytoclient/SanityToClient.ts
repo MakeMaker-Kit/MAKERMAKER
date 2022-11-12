@@ -152,4 +152,5 @@ export const testimonials = (state: RootState) => state.sanity.testimonials;
 export const socialLinks = (state: RootState) => state.sanity.socialLinks;
 export const footerAbout = (state: RootState) => state.sanity.footerAbout;
 export const homeBrand = (state: RootState) => state.sanity.homeBrand;
-export const ProductDisplay = (state: RootState) => state.sanity.productDisplay;
+export const ProductDisplays = (state: RootState) =>
+  state.sanity.productDisplay;

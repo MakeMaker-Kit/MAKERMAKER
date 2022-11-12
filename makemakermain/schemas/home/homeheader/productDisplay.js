@@ -17,7 +17,7 @@ export default {
       required: true,
     },
     {
-      name: "images",
+      name: "image",
       title: "Images",
       type: "image",
       required: true,
@@ -26,7 +26,7 @@ export default {
       },
     },
     {
-      name: "categoryTags",
+      name: "coreTags",
       title: "Category tags",
       type: "array",
       of: {

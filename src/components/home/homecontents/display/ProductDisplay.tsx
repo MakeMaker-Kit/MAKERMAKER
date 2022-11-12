@@ -9,14 +9,17 @@ import {
 import { TextWrapper } from "../../../appwrapper";
 import Button from "../../../../hooks/button";
 import { displayProduct } from "../../../../assets/images";
-import { DisplayContentTypes } from "../../../../utils/utils.types";
+import {
+  DisplayContentTypes,
+  TDisplayContentTypes,
+} from "../../../../utils/utils.types";
 
-const ProductDisplay: React.FC<DisplayContentTypes> = ({
+const ProductDisplay: React.FC<TDisplayContentTypes> = ({
   coreTags,
   desc,
-  handleClick,
+  // handleClick,
   iconsValues,
-  id,
+  // id,
   image,
   title,
   isReversed,

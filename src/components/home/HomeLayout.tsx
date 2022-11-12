@@ -15,13 +15,17 @@ import {
   fetchQuery,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
 import { HeaderApi } from "../../types/api.types";
-import { fetchProductDisplay } from "../../services/redux/features/sanitytoclient/SanityToClient";
+import {
+  fetchProductDisplay,
+  ProductDisplays,
+} from "../../services/redux/features/sanitytoclient/SanityToClient";
 import { productDisplayQuery } from "../../utils/querypaths";
 import {
   fetchHomeHeader,
   getHomeHeader,
   homeHeaderState,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
+import { TDisplayContentTypes } from "../../utils/utils.types";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -29,7 +33,7 @@ const Border = () => {
 
 const HomeLayout = () => {
   const homeHeader = useSelector(homeHeaderState);
-  const productDisplay = useSelector(ProductDisplay);
+  const productDisplay = useSelector(ProductDisplays);
   const HomeQuery: string = '*[_type == "header"]';
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -54,16 +58,23 @@ const HomeLayout = () => {
         <Border />
         {/* Product Display */}
         <Border />
-        {DisplayContentData &&
+        {/* {DisplayContentData && 
           [...DisplayContentData]
-            .sort((a, b) => a.title.lwocaleCompare(b.title))
+            .sort((a, b) => a.title.localeCompare(b.title))
             .map((display, index: number) => {
               return (
-                <div className="bg-grayWhite z-[10]  " key={display.id}>
+                <div className="bg-grayWhite z-[10]" key={display.id}>
                   <ProductDisplay {...display} />
                 </div>
               );
-            })}
+             })} */}
+        {productDisplay.map((display: TDisplayContentTypes, index: number) => {
+          return (
+            <div className="bg-grayWhite z-[10]" key={index}>
+              <ProductDisplay {...display} />
+            </div>
+          );
+        })}
         <Border />
         <div>
           <MoreDisplay />
