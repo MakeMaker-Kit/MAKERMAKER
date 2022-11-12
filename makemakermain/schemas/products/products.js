@@ -26,6 +26,14 @@ export default {
       type: "productVariant",
     },
     {
+      name: "quantity",
+      title: "Quantity",
+      description: "This Query is not optional ",
+      value: 0,
+      type: "number",
+      required: true,
+    },
+    {
       name: "variants",
       title: "Variants",
       type: "array",

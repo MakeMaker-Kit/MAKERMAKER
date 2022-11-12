@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { ProductStateTypes, TCart } from "../type.types";
 import { toast } from "react-hot-toast";
+import { RootState } from "../../app/rootReducer";
 const IndexData = localStorage.getItem("productIndexQuantity");
 let productIndexData;
 if (IndexData || typeof IndexData === "string") {
@@ -32,12 +33,12 @@ if (cartData || typeof cartData === "string") {
 const initialState: ProductStateTypes = {
   isItemsAdded: false,
   productIndexQuantity: productIndexData ? productIndexData : 0,
-  productQuantity:0,
+  productQuantity: 0,
   totalPrice: totalPricwData ? totalPricwData : 0,
   totalQuantity: totalQuantityData ? totalQuantityData : 0,
   cart: cartItemData ? cartItemData : null || {},
   ShouldCartBeCleared: false,
-  ShouldCartBeReset: false
+  ShouldCartBeReset: false,
 };
 
 export const ProductSlice = createSlice({
@@ -101,53 +102,77 @@ export const ProductSlice = createSlice({
     },
     decrementProduct: (state, action) => {
       state.productQuantity =
-        state.productQuantity - 1 > 1  ? toast.error(`Don't do that to ${action.payload.product?.name}`) && 1 : state.productQuantity - 1;
+        state.productQuantity - 1 > 1
+          ? toast.error(`Don't do that to ${action.payload.product?.name}`) && 1
+          : state.productQuantity - 1;
     },
     increaseProductInCart: (state, action) => {
       let PriceInProductStock = action.payload.stockitems;
-const updatedItemindex= state.cart?.findIndex((cartItem) => cartItem.id === action.payload.product?_id);
-const updatedItem = typeof updatedItemindex === "undefined" || updatedItemindex ? toast.error(`Please we cannot update the cart item check if it exist`) :  { ...state.cart[updatedItemindex]}
-state.productQuantity = state.productQuantity + 1 > 1 && state.productQuantity >  PriceInProductStock  ? toast.error(``) && 1 : 1;
-return state.productQuantity;
+      const updatedItemindex = state.cart?.findIndex(
+        (cartItem) => cartItem.id === action.payload.product?._id
+      );
+      const updatedItem =
+        typeof updatedItemindex === "undefined" || updatedItemindex
+          ? toast.error(
+              `Please we cannot update the cart item check if it exist`
+            )
+          : { ...state.cart[updatedItemindex] };
+      state.productQuantity =
+        state.productQuantity + 1 > 1 &&
+        state.productQuantity > PriceInProductStock
+          ? toast.error(``) && 1
+          : 1;
+      return state.productQuantity;
     },
     decreaseProductInCart: (state, action) => {
       let PriceInProductStock = action.payload.stockitems;
-state.productQuantity =  state.productQuantity - 1 < 1 ? 1 : state.productQuantity -  1
+      state.productQuantity =
+        state.productQuantity - 1 < 1 ? 1 : state.productQuantity - 1;
     },
     removeAllProductInCart: (state, action) => {
-      if(action.payload?.ShouldCartBeCLear === "true" || state.ShouldCartBeCleared === true){
+      if (
+        action.payload?.ShouldCartBeCLear === "true" ||
+        state.ShouldCartBeCleared === true
+      ) {
         state.cart = [];
         state.productQuantity = 0;
         state.totalPrice = 0;
         state.ShouldCartBeCleared = false;
-      } else return
+      } else return;
     },
     removeAllSingularProductInCart: (state, action) => {
       const CartitemsList = state.cart?.map((CartItem) => {
-        if(CartItem.stockitems > 1){
-          let updatedItem = state.cart?.find((item) => item.id  === action.payload.product.id);
-        state.productQuantity = state.productQuantity - 1 
+        if (CartItem.stockitems > 1) {
+          let updatedItem = state.cart?.find(
+            (item) => item.id === action.payload.product.id
+          );
+          state.productQuantity = state.productQuantity - 1;
         } else {
-          return state.productQuantity
+          return state.productQuantity;
         }
-        return CartItem
-      })
+        return CartItem;
+      });
     },
     increaseAllSingularProductInCart: (state, action: PayloadAction) => {
-      const CheckIfItemExits =  state.cart?.map((CartItem) =>{
-        if(CartItem.stockitems > 1 ||   typeof CartItem.stockitems === "undefined"){
-        
+      const CheckIfItemExits = state.cart?.map((CartItem) => {
+        if (
+          CartItem.stockitems > 1 ||
+          typeof CartItem.stockitems === "undefined"
+        ) {
         }
-      } )
+      });
     },
     resetCart: (state, action) => {
-      if(action.payload.ShouldCartBeReset === "true" || state.ShouldCartBeReset === true && typeof state.ShouldCartBeReset === "boolean"){
+      if (
+        action.payload.ShouldCartBeReset === "true" ||
+        (state.ShouldCartBeReset === true &&
+          typeof state.ShouldCartBeReset === "boolean")
+      ) {
         state.cart = [];
         state.productQuantity = 0;
         state.totalPrice = 0;
         state.ShouldCartBeReset = false;
-
-      } else return
+      } else return;
     },
   },
 
@@ -170,3 +195,16 @@ export const {
   resetCart,
   setCart,
 } = actions;
+
+export const TotalQuantity = (state: RootState) => state.product.totalQuantity;
+export const Cart = (state: RootState) => state.product.cart;
+export const TotalPrice = (state: RootState) => state.product.totalPrice;
+export const ProductQuantity = (state: RootState) =>
+  state.product.productQuantity;
+export const ProductIndexQuantity = (state: RootState) =>
+  state.product.productIndexQuantity;
+export const shouldCartBeCleared = (state: RootState) =>
+  state.product.ShouldCartBeCleared;
+export const shouldCartBeReset = (state: RootState) =>
+  state.product.shouldCartBeReset;
+export const IsItemAdded = (state: RootState) => state.product.isItemAdded;

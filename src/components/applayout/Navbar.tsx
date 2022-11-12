@@ -9,6 +9,7 @@ import { logoImage } from "../../assets/images";
 import { NavbarBtnDropdown } from "../dropdowns";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { TotalQuantity } from "../../services/redux/features/productslice/ProductSlice";
 import {
   onModalState,
   openAuthModal,
@@ -24,6 +25,7 @@ const Navbar = () => {
   const { mainLayout, mainText, textCustom } = textStyles;
   const dispatch = useDispatch();
   const modalState = useSelector(onModalState);
+  const totalQuantity = useSelector(TotalQuantity);
   const openNodal = () => dispatch(openAuthModal());
   const openCartMenu = () => dispatch(toggleCartModal());
   return (
@@ -78,12 +80,20 @@ const Navbar = () => {
                   )}
                 >
                   {/* abolute  */}
-                  <div className={`absolute top-0 right-0 w-10 h-10 p-2`}>
-                    <span className={classNames(`${flexCenter} `)}>
-                      <AiOutlineShoppingCart
+                  <div
+                    className={`absolute top-0 right-0 w-5 h-5 p-0.5 rounded-full bg-white`}
+                  >
+                    <span
+                      className={classNames(
+                        `${flexCenter} ${mainLayout} ${textCustom} text-xs  `
+                      )}
+                    >
+                      {/* <AiOutlineShoppingCart
                         size={20}
                         className={`text-white`}
                       />
+                       */}
+                      {totalQuantity}
                     </span>
                   </div>
                   {/* abolute  */}
