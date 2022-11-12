@@ -43,7 +43,7 @@ const initialState: sanityInitialState = {
   testimonials: QueryResponseData ? QueryResponseData : null,
   socialLinks: QueryResponseData ? QueryResponseData : null,
   footerAbout: QueryResponseData ? QueryResponseData : null,
-  productDisplay: null,
+  productDisplay: null || {},
 };
 
 export const fetchHomeHeader = createAsyncThunk(
@@ -63,15 +63,6 @@ export const fetchHeader = createAsyncThunk(
     let message: string;
     const response = generateHeader(user);
     return response;
-    // try {
-    //   const response = generateHeader(user);
-    //   return response;
-    // } catch (error: unknown) {
-    //   if (error instanceof Error) {
-    //     message = error.message;
-    //     return thunkApi.rejectWithValue(message);
-    //   }
-    // }
   }
 );
 export const fetchQuery = createAsyncThunk(
@@ -105,7 +96,6 @@ const SanityToClientSlice = createSlice({
     getHomeHeader: (state, action) => {
       client.fetch(action.payload).then((data) => {
         state.headerHome = data;
-        // return state.headerHome;
         return state.headerHome;
       });
     },
@@ -118,7 +108,6 @@ const SanityToClientSlice = createSlice({
       })
       .addCase(fetchHeader.fulfilled, (state, action) => {
         state.loading = false;
-        // state.homeHeader = action.payload;
         state.error = null;
       })
       .addCase(fetchHeader.rejected, (state, action) => {

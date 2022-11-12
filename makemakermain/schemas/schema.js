@@ -21,6 +21,7 @@ import products from "./products/products";
 import productVariant from "./products/productVariant";
 import blockContents from "./products/blockContents";
 import banner from "./products/banner";
+import productDisplay from "./home/homeheader/productDisplay";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -48,5 +49,6 @@ export default createSchema({
     productVariant,
     blockContents,
     banner,
+    productDisplay,
   ]),
 });

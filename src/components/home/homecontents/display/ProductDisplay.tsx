@@ -106,7 +106,7 @@ const ProductDisplay: React.FC<DisplayContentTypes> = ({
               <ul
                 className={`${boxFull} ${flexRowCenter} space-x-2 justify-center`}
               >
-                {iconsValues.map((icon, i) => (
+                {iconsValues?.map((icon, i) => (
                   <li
                     key={i + Math.floor(Math.random() * 4)}
                     className={"max-w-full"}
