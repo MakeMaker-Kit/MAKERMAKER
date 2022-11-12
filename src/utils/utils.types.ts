@@ -116,3 +116,20 @@ type TypeName<T> = T extends string
   : T extends Function
   ? "function"
   : "object";
+
+interface Students {
+  [key: string]: string | number | undefined | number[];
+  name: string;
+  classes: number[];
+}
+const student: Students = {
+  name: "wilon",
+  classes: [1, 2],
+};
+console.log(student.classes);
+
+for (const key in student) {
+  console.log(`${key} i ${student[key as keyof Students]}`);
+}
+Object.keys(student).map(key => console.log(`${student[key as keyof Students]}`);
+)
