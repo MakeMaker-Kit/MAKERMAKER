@@ -43,8 +43,8 @@ const globalState = createSlice({
       state.cartBTNShow = !state.cartBTNShow;
     },
     hideButton: (state) => {
-      state.cartBTNShow = !state.cartBTNShow
-    }
+      state.cartBTNShow = !state.cartBTNShow;
+    },
   },
   extraReducers: {},
 });
@@ -60,13 +60,14 @@ export const {
   unToggleDropdownState,
   toggleCartModal,
   unToggleCartModal,
-  showButton, 
-  hideButton
+  showButton,
+  hideButton,
 } = actions;
 export const onModalState = (state: RootState) => state.globalstate.onAuthModal;
 export const openShopModal = (state: RootState) =>
   state.globalstate.onShopModalOpen;
 export const dropdownState = (state: RootState) =>
   state.globalstate.onDropdownState;
-export const cartModalState = (state: RootState) => state.globalstate.onCartModalOpen;
-export const cartBtn = (state: RootState) => state.globalstate.cartBTNShow
+export const cartModalState = (state: RootState) =>
+  state.globalstate.onCartModalOpen;
+export const cartBtn = (state: RootState) => state.globalstate.cartBTNShow;

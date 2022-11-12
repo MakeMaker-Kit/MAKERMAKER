@@ -15,17 +15,14 @@ const persistConfig = {
 };
 const reducer = combineReducers({
   product: ProductReducer,
+  globalstate: GlobalStateReducer,
+  sanity: SanityToClientReducer,
+  auth: AuthReducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 import ProductReducer from "../features/productslice/ProductSlice";
 const store = configureStore({
-  reducer: {
-    globalstate: GlobalStateReducer,
-    sanity: SanityToClientReducer,
-    auth: AuthReducer,
-    // product: ProductReducer,
-    persistedReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

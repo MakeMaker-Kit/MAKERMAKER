@@ -32,10 +32,10 @@ if (cartData || typeof cartData === "string") {
 }
 const initialState: ProductStateTypes = {
   isItemsAdded: false,
-  productIndexQuantity: productIndexData ? productIndexData : 0,
+  productIndexQuantity: 0,
   productQuantity: 0,
-  totalPrice: totalPricwData ? totalPricwData : 0,
-  totalQuantity: totalQuantityData ? totalQuantityData : 0,
+  totalPrice: 0,
+  totalQuantity: 0,
   cart: cartItemData ? cartItemData : null || {},
   ShouldCartBeCleared: false,
   ShouldCartBeReset: false,
@@ -206,5 +206,6 @@ export const ProductIndexQuantity = (state: RootState) =>
 export const shouldCartBeCleared = (state: RootState) =>
   state.product.ShouldCartBeCleared;
 export const shouldCartBeReset = (state: RootState) =>
-  state.product.shouldCartBeReset;
+  state.product.ShouldCartBeReset;
 export const IsItemAdded = (state: RootState) => state.product.isItemAdded;
+// export const onModalState = (state: RootState) => state.product.totalQuantity;
