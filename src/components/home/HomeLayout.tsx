@@ -15,6 +15,8 @@ import {
   fetchQuery,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
 import { HeaderApi } from "../../types/api.types";
+import { fetchProductDisplay } from "../../services/redux/features/sanitytoclient/SanityToClient";
+import { productDisplayQuery } from "../../utils/querypaths";
 import {
   fetchHomeHeader,
   getHomeHeader,
@@ -27,6 +29,7 @@ const Border = () => {
 
 const HomeLayout = () => {
   const homeHeader = useSelector(homeHeaderState);
+  const productDisplay = useSelector(ProductDisplay);
   const HomeQuery: string = '*[_type == "header"]';
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -36,6 +39,10 @@ const HomeLayout = () => {
     dispatch(fetchHeader(HomeQuery));
     return console.log("HomeHeader DATA", homeHeader);
   }, [useSelector, HomeQuery, dispatch]);
+  React.useEffect(() => {
+    dispatch(fetchProductDisplay(productDisplayQuery));
+  }, [productDisplay, dispatch, useSelector]);
+  console.log("productDiplay data", productDisplay);
   return (
     <>
       <div>
@@ -47,16 +54,16 @@ const HomeLayout = () => {
         <Border />
         {/* Product Display */}
         <Border />
-        {[...DisplayContentData]
-          .sort((a, b) => a.title.localeCompare(b.title))
-          .map((display, index) => {
-            return (
-              <div className="bg-grayWhite z-[10]  " key={display.id}>
-                <ProductDisplay {...display} />
-              </div>
-            );
-          })}
-
+        {DisplayContentData &&
+          [...DisplayContentData]
+            .sort((a, b) => a.title.lwocaleCompare(b.title))
+            .map((display, index: number) => {
+              return (
+                <div className="bg-grayWhite z-[10]  " key={display.id}>
+                  <ProductDisplay {...display} />
+                </div>
+              );
+            })}
         <Border />
         <div>
           <MoreDisplay />
