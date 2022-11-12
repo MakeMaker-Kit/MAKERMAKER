@@ -49,7 +49,13 @@ const generateFooterLinks = (payloadResponse: string) => {
     return response;
   });
 };
-
+const generateProductDisplay = (payloadResponse: string) => {
+  client.fetch(payloadResponse).then(({ data }) => {
+    if (data) {
+      return data;
+    }
+  });
+};
 const SanityToClientService = {
   genrateHomeHeader,
   generateHeader,
@@ -57,5 +63,6 @@ const SanityToClientService = {
   generateFooterLinks,
   generateSocial,
   generateteTestimonials,
+  generateProductDisplay,
 };
 export default SanityToClientService;

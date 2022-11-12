@@ -51,7 +51,7 @@ const HomeLayout = () => {
           .sort((a, b) => a.title.localeCompare(b.title))
           .map((display, index) => {
             return (
-              <div className="bg-grayWhite z-10]" key={display.id}>
+              <div className="bg-grayWhite z-[10]  " key={display.id}>
                 <ProductDisplay {...display} />
               </div>
             );

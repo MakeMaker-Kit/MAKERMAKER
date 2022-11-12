@@ -26,5 +26,13 @@ export default {
       description: "",
       options: { hospot: true },
     },
+    {
+      name: "categoryTags",
+      title: "Category tags",
+      type: "array",
+      of: {
+        type: "string",
+      },
+    },
   ],
 };

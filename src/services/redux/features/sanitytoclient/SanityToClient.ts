@@ -17,6 +17,7 @@ const {
   generateFooterLinks,
   generateSocial,
   generateteTestimonials,
+  generateProductDisplay,
 } = SanityToClientService;
 const homeHeaderData2 = JSON.parse(localStorage.getItem("HomeHeader") || "");
 const data = localStorage.getItem("HomeHeader");
@@ -42,6 +43,7 @@ const initialState: sanityInitialState = {
   testimonials: QueryResponseData ? QueryResponseData : null,
   socialLinks: QueryResponseData ? QueryResponseData : null,
   footerAbout: QueryResponseData ? QueryResponseData : null,
+  productDisplay: null,
 };
 
 export const fetchHomeHeader = createAsyncThunk(
@@ -92,7 +94,10 @@ export const fetchSocial = createAsyncThunk(
   "sanity/fetchSocial",
   (user: string) => generateSocial(user)
 );
-
+export const fetchProductDisplay = createAsyncThunk(
+  "sanity/fetchProductDisplay",
+  (user: string) => generateProductDisplay(user)
+);
 const SanityToClientSlice = createSlice({
   name: "sanity",
   initialState,
@@ -132,6 +137,18 @@ const SanityToClientSlice = createSlice({
       .addCase(fetchQuery.rejected, (state, action) => {
         state.loading = false;
         state.displaymore = null;
+      })
+      .addCase(fetchProductDisplay.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(fetchProductDisplay.fulfilled, (state, action) => {
+        state.loading = false;
+        state.productDisplay = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchProductDisplay.rejected, (state, action) => {
+        state.loading = false;
+        state.productDisplay = null;
       });
   },
 });
@@ -146,3 +163,4 @@ export const testimonials = (state: RootState) => state.sanity.testimonials;
 export const socialLinks = (state: RootState) => state.sanity.socialLinks;
 export const footerAbout = (state: RootState) => state.sanity.footerAbout;
 export const homeBrand = (state: RootState) => state.sanity.homeBrand;
+export const ProductDisplay = (state: RootState) => state.sanity.productDisplay;

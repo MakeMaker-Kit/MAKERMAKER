@@ -19,6 +19,7 @@ export interface sanityInitialState {
   testimonials: null | {} | void;
   socialLinks: null | {} | void;
   footerAbout: null | {} | void;
+  productDisplay: null | {} | void;
 }
 
 export interface User {
