@@ -36,6 +36,14 @@ export default {
         },
       ],
     },
+    {
+      name: "stockitems",
+      title: "Stock Items <OPTIONAL>",
+      description:
+        "This is the number of product remaining for each product in the Schema",
+      type: "number",
+      required: true,
+    },
     //
     {
       title: "Tags",

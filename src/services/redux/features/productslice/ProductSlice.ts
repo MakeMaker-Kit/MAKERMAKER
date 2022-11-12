@@ -133,7 +133,13 @@ state.productQuantity =  state.productQuantity - 1 < 1 ? 1 : state.productQuanti
         return CartItem
       })
     },
-    increaseAllSingularProductInCart: (state, action: PayloadAction) => {},
+    increaseAllSingularProductInCart: (state, action: PayloadAction) => {
+      const CheckIfItemExits =  state.cart?.map((CartItem) =>{
+        if(CartItem.stockitems > 1 ||   typeof CartItem.stockitems === "undefined"){
+        
+        }
+      } )
+    },
     resetCart: (state, action) => {
       if(action.payload.ShouldCartBeReset === "true" || state.ShouldCartBeReset === true && typeof state.ShouldCartBeReset === "boolean"){
         state.cart = [];

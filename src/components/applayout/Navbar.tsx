@@ -8,6 +8,7 @@ import { NavbarData } from "../../utils/homeData";
 import { logoImage } from "../../assets/images";
 import { NavbarBtnDropdown } from "../dropdowns";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import {
   onModalState,
   openAuthModal,
@@ -18,7 +19,8 @@ const Navbar = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
-  const { MdOutlineKeyboardArrowDown, BiSearchAlt } = useIcon();
+  const { MdOutlineKeyboardArrowDown, BiSearchAlt, AiOutlineShoppingCart } =
+    useIcon();
   const { mainLayout, mainText, textCustom } = textStyles;
   const dispatch = useDispatch();
   const modalState = useSelector(onModalState);
@@ -72,9 +74,19 @@ const Navbar = () => {
 
                 <div
                   className={classNames(
-                    `h-6 w-auto p-3 rounded border bg-appGreen `
+                    `h-6 w-auto p-3 rounded border bg-appGreen relative `
                   )}
                 >
+                  {/* abolute  */}
+                  <div className={`absolute top-0 right-0 w-10 h-10 p-2`}>
+                    <span className={classNames(`${flexCenter} `)}>
+                      <AiOutlineShoppingCart
+                        size={20}
+                        className={`text-white`}
+                      />
+                    </span>
+                  </div>
+                  {/* abolute  */}
                   <div className={classNames(` ${boxFull} ${flexCenter}`)}>
                     <p
                       className={classNames(
