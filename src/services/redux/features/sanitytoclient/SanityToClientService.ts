@@ -28,7 +28,7 @@ const generateQuery = (payloadResponse: string) => {
 const generateteTestimonials = (payloadResponse: string) => {
   client.fetch(payloadResponse).then((response) => {
     if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
+      localStorage.setItem("TestimonialsResponse", JSON.stringify(response));
     }
     return response;
   });
@@ -36,7 +36,7 @@ const generateteTestimonials = (payloadResponse: string) => {
 const generateSocial = (payloadResponse: string) => {
   client.fetch(payloadResponse).then((response) => {
     if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
+      localStorage.setItem("SocialResponse", JSON.stringify(response));
     }
     return response;
   });
@@ -44,7 +44,7 @@ const generateSocial = (payloadResponse: string) => {
 const generateFooterLinks = (payloadResponse: string) => {
   client.fetch(payloadResponse).then((response) => {
     if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
+      localStorage.setItem("FooterLinkResponse", JSON.stringify(response));
     }
     return response;
   });
@@ -52,8 +52,8 @@ const generateFooterLinks = (payloadResponse: string) => {
 const generateProductDisplay = (payloadResponse: string) => {
   client.fetch(payloadResponse).then((response) => {
     if (response) {
-      localStorage.setItem("ProductDisplay", JSON.stringify(response));
-      console.log("Respone ", response);
+      localStorage.setItem("ProductDisplayData", JSON.stringify(response));
+      console.log("Response from the product Display ", response);
     }
     return response;
   });
