@@ -11,3 +11,4 @@ export const productDisplayQuery = `*[_type == "productDisplay"]{
     images,
     categoryTags
  }`;
+export const HeaderQuery = `*[_type == "header"]`;
