@@ -107,18 +107,6 @@ const SanityToClientSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHeader.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchHeader.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(fetchHeader.rejected, (state, action) => {
-        state.loading = false;
-        state.homeHeader = null;
-      })
       .addCase(fetchQuery.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -131,18 +119,6 @@ const SanityToClientSlice = createSlice({
       .addCase(fetchQuery.rejected, (state, action) => {
         state.loading = false;
         state.displaymore = null;
-      })
-      .addCase(fetchProductDisplay.pending, (state, action) => {
-        state.loading = true;
-      })
-      .addCase(fetchProductDisplay.fulfilled, (state, action) => {
-        state.loading = false;
-        state.productDisplay = state.productDisplay;
-        state.error = null;
-      })
-      .addCase(fetchProductDisplay.rejected, (state, action) => {
-        state.loading = false;
-        state.productDisplay = null;
       });
   },
 });

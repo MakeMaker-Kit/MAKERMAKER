@@ -45,7 +45,8 @@ const HomeLayout = () => {
   }, [useSelector, HomeQuery, dispatch]);
   React.useEffect(() => {
     dispatch(fetchProductDisplay(productDisplayQuery));
-  }, [productDisplay, dispatch, useSelector]);
+    return console.log("Product Display Data", productDisplay);
+  }, [dispatch, useSelector, productDisplayQuery]);
   console.log("productDiplay data", productDisplay);
   return (
     <>
