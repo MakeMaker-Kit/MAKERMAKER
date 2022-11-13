@@ -57,24 +57,16 @@ const HomeLayout = () => {
         {/* Border */}
         <Border />
         {/* Product Display */}
-        <Border />
-        {/* {DisplayContentData && 
-          [...DisplayContentData]
-            .sort((a, b) => a.title.localeCompare(b.title))
-            .map((display, index: number) => {
-              return (
-                <div className="bg-grayWhite z-[10]" key={display.id}>
-                  <ProductDisplay {...display} />
-                </div>
-              );
-             })} */}
-        {productDisplay.map((display: TDisplayContentTypes, index: number) => {
-          return (
-            <div className="bg-grayWhite z-[10]" key={index}>
-              <ProductDisplay {...display} />
-            </div>
-          );
-        })}
+        {/* <Border /> */}
+
+        {productDisplay &&
+          productDisplay.map((display: TDisplayContentTypes, index: number) => {
+            return (
+              <div className="bg-grayWhite z-[10]" key={index}>
+                <ProductDisplay {...display} />
+              </div>
+            );
+          })}
         <Border />
         <div>
           <MoreDisplay />

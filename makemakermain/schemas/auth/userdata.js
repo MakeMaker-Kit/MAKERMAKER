@@ -3,16 +3,18 @@ export default {
   title: "User Data ",
   description: "This schema is for editing, but for storing logedin users",
   type: "document",
-  field: [
+  fields: [
     {
       name: "email",
       title: "Email Address",
       type: "email",
+      required: true,
     },
     {
       name: "password",
       title: "Users Password",
-      type: "password",
+      // type: "crossDatasetReference",
+      type: "string",
       required: true,
     },
   ],

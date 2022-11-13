@@ -1,7 +1,7 @@
 export default {
   name: "footerabout",
   title: "Footer about",
-  description: "",
+  description: "This is the company's about ection of the footer ",
   type: "document",
   fields: [
     {
@@ -9,7 +9,7 @@ export default {
       title: "Logo",
       type: "image",
       options: { hotspot: true },
-      description: "",
+      description: "Thisis the company's Logo",
       required: true,
     },
     {

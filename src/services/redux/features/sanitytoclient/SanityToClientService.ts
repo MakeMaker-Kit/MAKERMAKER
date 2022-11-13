@@ -50,10 +50,12 @@ const generateFooterLinks = (payloadResponse: string) => {
   });
 };
 const generateProductDisplay = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then(({ data }) => {
-    if (data) {
-      return data;
+  client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      localStorage.setItem("ProductDisplay", JSON.stringify(response));
+      console.log("Respone ", response);
     }
+    return response;
   });
 };
 const SanityToClientService = {

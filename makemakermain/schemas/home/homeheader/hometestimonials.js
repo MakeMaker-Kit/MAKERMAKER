@@ -1,7 +1,7 @@
 export default {
   name: "hometestimonials",
   title: "Testimonials",
-  description: "",
+  description: "This i the Testimonials section of the app",
   type: "document",
   fields: [
     {
@@ -15,19 +15,16 @@ export default {
     {
       name: "name",
       title: "Testimonial Name",
-      description: "",
       type: "string",
     },
     {
       name: "description",
       title: "Description",
-      description: "",
       type: "text",
     },
     {
       name: "company",
       title: "Company",
-      description: "",
       type: "string",
     },
   ],

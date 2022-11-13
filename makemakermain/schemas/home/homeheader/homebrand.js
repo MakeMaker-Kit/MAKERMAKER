@@ -1,20 +1,18 @@
 export default {
   name: "homebrand",
   title: "Home Brand",
-  description: "",
   type: "document",
   fields: [
     {
       name: "brandImage",
       title: "Brand Image",
-      decription: "",
+      decription: "This is the image of the brand",
       type: "image",
       options: { hotspot: true },
     },
     {
       name: "title",
       title: "Brand Title",
-      description: "",
       type: "text",
     },
   ],

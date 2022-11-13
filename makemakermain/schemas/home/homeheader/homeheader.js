@@ -4,7 +4,7 @@ export default {
   name: "header",
   title: "Header",
   type: "document",
-  id: uuid(),
+  // id: uuid(),
   fields: [
     {
       name: "title",

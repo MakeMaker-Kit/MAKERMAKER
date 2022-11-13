@@ -31,6 +31,11 @@ let QueryResponseData;
 if (Data || typeof Data === "string") {
   QueryResponseData = JSON.parse(Data);
 }
+const DATA = localStorage.getItem("ProductDisplay");
+let productDisplayData;
+if (DATA || typeof DATA === "string") {
+  productDisplayData = JSON.parse(DATA);
+}
 
 const initialState: sanityInitialState = {
   error: "",
@@ -43,7 +48,7 @@ const initialState: sanityInitialState = {
   testimonials: QueryResponseData ? QueryResponseData : null,
   socialLinks: QueryResponseData ? QueryResponseData : null,
   footerAbout: QueryResponseData ? QueryResponseData : null,
-  productDisplay: null || {},
+  productDisplay: productDisplayData ? productDisplayData : null,
 };
 
 export const fetchHomeHeader = createAsyncThunk(
@@ -132,7 +137,7 @@ const SanityToClientSlice = createSlice({
       })
       .addCase(fetchProductDisplay.fulfilled, (state, action) => {
         state.loading = false;
-        state.productDisplay = action.payload;
+        state.productDisplay = state.productDisplay;
         state.error = null;
       })
       .addCase(fetchProductDisplay.rejected, (state, action) => {

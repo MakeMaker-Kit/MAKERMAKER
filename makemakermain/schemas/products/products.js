@@ -3,11 +3,11 @@ export default {
   title: "Products  ",
   desciption: "This isn the Ecommerce or Products Query ",
   type: "document",
-  field: [
+  fields: [
     {
       name: "title",
       title: "Title",
-      description: "",
+      description: "Thid is the title of the Schema",
       type: "string",
       required: true,
     },
@@ -89,11 +89,11 @@ export default {
       ],
     },
     // /
-    {
-      name: "body",
-      title: "Body",
-      type: "localeBlockContent",
-    },
+    // {
+    //   name: "body",
+    //   title: "Body",
+    //   type: "localeBlockContent",
+    // },
   ],
   preview: {
     select: {

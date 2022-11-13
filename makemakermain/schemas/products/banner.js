@@ -1,8 +1,8 @@
 export default {
-  name: "",
-  title: "",
+  name: "banner",
+  title: "Banner",
   type: "document",
-  description: "This is the banner query ection",
+  description: "This is the banner query section",
   fields: [
     {
       name: "title",
@@ -14,9 +14,6 @@ export default {
       title: "Description",
       type: "text",
       descripotion: "This houldinclude the desciption of the Bannar",
-      minLength: 30,
-      maxLength: 40,
-      required: true,
     },
     {
       name: "image",

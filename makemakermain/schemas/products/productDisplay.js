@@ -25,12 +25,19 @@ export default {
         hotspot: true,
       },
     },
+
     {
       name: "coreTags",
       title: "Category tags",
       type: "array",
-      of: {
-        type: "string",
+      of: [
+        {
+          type: "string",
+          title: "Category",
+        },
+      ],
+      options: {
+        layout: "coreTags",
       },
     },
   ],
