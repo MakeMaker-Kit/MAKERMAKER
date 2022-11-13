@@ -9,17 +9,19 @@ export interface globalInitialState {
 }
 // Create a minimalist adorn to the current  tate of the applicatiopn to  be repopulatex to the virtual dom of the modukr dom of tjhe appkiavction tim
 export interface sanityInitialState {
+  // [key: string] : boolean ;
   message: string;
   error: {} | null;
   loading: boolean | Boolean;
-  homeHeader: null | {} | void;
-  headerHome: null | {};
-  displaymore: null | {} | void;
-  homeBrand: null | {} | void;
-  testimonials: null | {} | void;
-  socialLinks: null | {} | void;
-  productDisplay: null | {} | void;
-  footerAbout: null | {} | void;
+  homeHeader: null | {}[] | void;
+  headerHome: null | {}[];
+  displaymore: null | {}[] | void;
+  homeBrand: null | {}[] | void;
+  testimonials: null | {}[] | void;
+  socialLinks: null | {}[] | void;
+  productDisplay: null | {}[] | void;
+  footerAbout: null | {}[] | void;
+  delete: null | {}[] | void;
 }
 
 export interface User {

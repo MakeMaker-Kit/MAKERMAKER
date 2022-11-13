@@ -9,54 +9,22 @@ const genrateHomeHeader: GenerateHeader = async (payloadResponse) => {
 };
 
 const generateHeader = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then((response) => {
-    if (response) {
-      localStorage.setItem("HomeHeader", JSON.stringify(response));
-      console.log("response data ", response);
-    }
-    return response;
-  });
+  client.fetch(payloadResponse).then((response) => response);
 };
 const generateQuery = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then((response) => {
-    if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
-    }
-    return response;
-  });
+  client.fetch(payloadResponse).then((response) => response);
 };
 const generateteTestimonials = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then((response) => {
-    if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
-    }
-    return response;
-  });
+  client.fetch(payloadResponse).then((response) => response);
 };
 const generateSocial = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then((response) => {
-    if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
-    }
-    return response;
-  });
+  client.fetch(payloadResponse).then((response) => response);
 };
 const generateFooterLinks = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then((response) => {
-    if (response) {
-      localStorage.setItem("QueryResponse", JSON.stringify(response));
-    }
-    return response;
-  });
+  client.fetch(payloadResponse).then((response) => response);
 };
 const generateProductDisplay = (payloadResponse: string) => {
-  client.fetch(payloadResponse).then((response) => {
-    if (response) {
-      localStorage.setItem("ProductDisplay", JSON.stringify(response));
-      console.log("Respone ", response);
-    }
-    return response;
-  });
+  client.fetch(payloadResponse).then((response) => response);
 };
 const SanityToClientService = {
   genrateHomeHeader,

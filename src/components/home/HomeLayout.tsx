@@ -10,22 +10,14 @@ import HomeFaqs from "./homecontents/homeFaqs/HomeFaqs";
 import HomeContact from "./homecontents/homecontact/HomeContact";
 import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchHeader,
-  fetchQuery,
-} from "../../services/redux/features/sanitytoclient/SanityToClient";
 import { HeaderApi } from "../../types/api.types";
 import {
   fetchProductDisplay,
   ProductDisplays,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
-import { productDisplayQuery } from "../../utils/querypaths";
-import {
-  fetchHomeHeader,
-  getHomeHeader,
-  homeHeaderState,
-} from "../../services/redux/features/sanitytoclient/SanityToClient";
+import { homeHeaderState } from "../../services/redux/features/sanitytoclient/SanityToClient";
 import { TDisplayContentTypes } from "../../utils/utils.types";
+import { Delete } from "../../services/redux/features/sanitytoclient/SanityToClient";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -34,20 +26,7 @@ const Border = () => {
 const HomeLayout = () => {
   const homeHeader = useSelector(homeHeaderState);
   const productDisplay = useSelector(ProductDisplays);
-  const HomeQuery: string = '*[_type == "header"]';
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    console.log("Vite Production ", import.meta.env.VITE_SUPABASE_KEY);
-  }, []);
-  React.useEffect(() => {
-    dispatch(fetchHeader(HomeQuery));
-    return console.log("HomeHeader DATA", homeHeader);
-  }, [useSelector, HomeQuery, dispatch]);
-  React.useEffect(() => {
-    dispatch(fetchProductDisplay(productDisplayQuery));
-    return console.log("Product Display Data", productDisplay);
-  }, [dispatch, useSelector, productDisplayQuery]);
-  console.log("productDiplay data", productDisplay);
+
   return (
     <>
       <div>

@@ -19,49 +19,23 @@ const {
   generateteTestimonials,
   generateProductDisplay,
 } = SanityToClientService;
-const homeHeaderData2 = JSON.parse(localStorage.getItem("HomeHeader") || "");
-const data = localStorage.getItem("HomeHeader");
-let homeHeaderData;
-if (data || typeof data === "string") {
-  homeHeaderData = JSON.parse(data);
-}
-// QueryResponseData
-const Data = localStorage.getItem("QueryResponse");
-let QueryResponseData;
-if (Data || typeof Data === "string") {
-  QueryResponseData = JSON.parse(Data);
-}
-const DATA = localStorage.getItem("ProductDisplay");
-let productDisplayData;
-if (DATA || typeof DATA === "string") {
-  productDisplayData = JSON.parse(DATA);
-}
+// const homeHeaderData2 = JSON.parse(localStorage.getItem("HomeHeader") || "");
 
 const initialState: sanityInitialState = {
-  error: "",
+  error: null,
   message: "",
   loading: false,
-  homeHeader: homeHeaderData ? homeHeaderData : null,
-  headerHome: null,
-  displaymore: null,
-  homeBrand: QueryResponseData ? QueryResponseData : null,
-  testimonials: QueryResponseData ? QueryResponseData : null,
-  socialLinks: QueryResponseData ? QueryResponseData : null,
-  footerAbout: QueryResponseData ? QueryResponseData : null,
-  productDisplay: productDisplayData ? productDisplayData : null,
+  homeHeader: [],
+  headerHome: [],
+  displaymore: [],
+  homeBrand: [],
+  testimonials: [],
+  socialLinks: [],
+  footerAbout: [],
+  productDisplay: [],
+  delete: [],
 };
 
-export const fetchHomeHeader = createAsyncThunk(
-  "users/fetchHomeHeader",
-  async (user: string, { getState, requestId }: any) => {
-    const { currentRequestId, loading } = getState().user;
-    if (loading !== "pending" || requestId !== currentRequestId) {
-      return;
-    }
-    const response = await genrateHomeHeader(user);
-    return response;
-  }
-);
 export const fetchHeader = createAsyncThunk(
   "users/fetchHomeHeader",
   (user: string, thunkApi) => {
@@ -135,3 +109,4 @@ export const footerAbout = (state: RootState) => state.sanity.footerAbout;
 export const homeBrand = (state: RootState) => state.sanity.homeBrand;
 export const ProductDisplays = (state: RootState) =>
   state.sanity.productDisplay;
+export const Delete = (state: RootState) => state.sanity.delete;
