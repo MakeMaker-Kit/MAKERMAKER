@@ -22,7 +22,7 @@ import {
   homeHeaderState,
   ProductDisplays,
 } from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
-import { productDisplayQuery } from "../../utils/querypaths";
+import { productDisplayQuery, homeheaderQuery } from "../../utils/querypaths";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -35,9 +35,10 @@ const HomeLayout = () => {
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getFetchProductsDisplay(productDisplayQuery));
-    dispatch(getHomeHeader(homeHeader));
+    dispatch(getHomeHeader(homeheaderQuery));
   }, [dispatch]);
   console.log("Product Display Response", productDisplay);
+  console.log("Display more response data", homeHeader);
   return (
     <>
       <div>

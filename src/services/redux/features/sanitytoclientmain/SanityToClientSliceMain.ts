@@ -32,7 +32,7 @@ const initialState: sanityInitialState = {
   error: null,
   message: "",
   loading: false,
-  homeHeader: null,
+  homeHeader: homeHeaderResponse,
   headerHome: null,
   displaymore: null,
   homeBrand: null,
