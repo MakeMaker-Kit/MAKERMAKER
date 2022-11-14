@@ -9,10 +9,8 @@ import TestimonialCard from "./TestimonialCard";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {
-  testimonials,
-  fetchQuery,
-} from "../../../../services/redux/features/sanitytoclient/SanityToClient";
+import { fetchQuery } from "../../../../services/redux/features/sanitytoclient/SanityToClient";
+import { testimonials } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { hometestimonialsQuery } from "../../../../utils/querypaths";
 
 const Testimonial = () => {

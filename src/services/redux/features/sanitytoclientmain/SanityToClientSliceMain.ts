@@ -47,6 +47,12 @@ let homeBrandsResponse;
 if (homeBrandsData || typeof homeBrandsData === "string") {
   homeBrandsResponse = JSON.parse(homeBrandsData);
 }
+
+const homeTestimonialsData = sessionStorage.getItem("Testimonials");
+let homeTestimonialResponse;
+if (homeTestimonialsData || typeof homeTestimonialsData === "string") {
+  homeTestimonialResponse = JSON.parse(homeTestimonialsData);
+}
 // Localrorage Get Item
 
 const initialState: sanityInitialState = {
@@ -56,8 +62,8 @@ const initialState: sanityInitialState = {
   homeHeader: homeHeaderResponse ? homeHeaderResponse : null,
   headerHome: null,
   displaymore: homeHeaderResponse ? homeHeaderResponse : null,
-  homeBrand: null,
-  testimonials: homeBrandsResponse ? homeBrandsResponse : null,
+  homeBrand: homeBrandsResponse ? homeBrandsResponse : null,
+  testimonials: homeTestimonialResponse ? homeTestimonialResponse : null,
   socialLinks: null,
   footerAbout: footerAboutResponse ? footerAboutResponse : null,
   productDisplays: displayMoreResponse ? displayMoreResponse : null,

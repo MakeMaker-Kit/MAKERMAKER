@@ -3,10 +3,8 @@ import cx from "classnames";
 import { flexLayout, themes } from "../../../../styles/themes/theme";
 import { BrandData } from "../../../../utils/homeData";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  homeBrand,
-  fetchQuery,
-} from "../../../../services/redux/features/sanitytoclient/SanityToClient";
+import { fetchQuery } from "../../../../services/redux/features/sanitytoclient/SanityToClient";
+import { homeBrand } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { homebrandsQuery } from "../../../../utils/querypaths";
 
 const Brand = () => {
