@@ -22,6 +22,7 @@ export interface sanityInitialState {
   productDisplays: null | {};
   footerAbout: null | {};
   delete?: null | {};
+  contactData: THomeContact | null | {};
 }
 
 export interface User {
@@ -44,4 +45,12 @@ export interface ProductStateTypes {
   isItemsAdded: boolean | Boolean;
   ShouldCartBeCleared: Boolean | boolean;
   ShouldCartBeReset: Boolean | boolean;
+}
+
+export interface THomeContact {
+  [key: string]: string | undefined;
+  _type: string;
+  username: string;
+  email: string;
+  message: string;
 }

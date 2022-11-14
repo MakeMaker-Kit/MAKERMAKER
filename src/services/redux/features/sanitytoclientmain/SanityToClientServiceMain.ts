@@ -3,7 +3,12 @@ import { client } from "../../../../client";
 export type SanityServiceTypes = (
   payloadResponse: string
 ) => Promise<null | void>;
-
+export type SanityCreateTypes = (payloadResponse: {
+  _type: string;
+  username: string;
+  email: string;
+  message: string;
+}) => Promise<void>;
 export const fetchProductsDisplay: SanityServiceTypes = async (
   payloadResponse
 ) => {
@@ -54,13 +59,19 @@ export const fetchHomeBrands: SanityServiceTypes = async (payloadResponse) => {
     return response;
   });
 };
-
+export const fetchUserContact: SanityCreateTypes = async (payloadResponse) => {
+  await client.create(payloadResponse).then((response) => {
+    if (response) return true && response;
+    return response;
+  });
+};
 const SanityService = {
   fetchProductsDisplay,
   fetchHomeHeader,
   fetchDisplayMore,
   fetchTestimonials,
   fetchHomeBrands,
+  fetchUserContact,
 };
 
 export default SanityService;

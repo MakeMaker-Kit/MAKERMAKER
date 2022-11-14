@@ -7,17 +7,19 @@ import {
   AsyncThunkOptions,
   Dispatch,
 } from "@reduxjs/toolkit";
-import { sanityInitialState } from "../type.types";
+import { sanityInitialState, THomeContact } from "../type.types";
 import SanityService from "./SanityToClientServiceMain";
 import { SanityServiceTypes } from "./SanityToClientServiceMain";
 import { RootState } from "../../app/rootReducer";
 import { AxiosError } from "axios";
+import { SanityCreateTypes } from "./SanityToClientServiceMain";
 const {
   fetchProductsDisplay,
   fetchHomeHeader,
   fetchDisplayMore,
   fetchTestimonials,
   fetchHomeBrands,
+  fetchUserContact,
 } = SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
@@ -67,6 +69,11 @@ const initialState: sanityInitialState = {
   socialLinks: null,
   footerAbout: footerAboutResponse ? footerAboutResponse : null,
   productDisplays: displayMoreResponse ? displayMoreResponse : null,
+  contactData: {
+    username: "",
+    email: "",
+    message: "",
+  },
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -198,6 +205,19 @@ export const getHomeBrands = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
+export const getUserContact = createAsyncThunk<
+  MyData,
+  THomeContact,
+  { extra: {}; rejectWithValue: ValidationError }
+>("sanityMain/getUserContact", async (userQuery, thunkApi) => {
+  try {
+    return await fetchUserContact(userQuery);
+  } catch (err: any | unknown) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
 export const textGet = createAsyncThunk<
   MyData,
   QueryResponseData,
@@ -260,6 +280,21 @@ export const SanityMainSlice = createSlice({
         state.productDisplay = action.payload;
       })
       .addCase(getTestimonials.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload;
+          state.loading = false;
+        } else {
+          state.error = action.error;
+        }
+      })
+      .addCase(getUserContact.pending, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(getUserContact.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+      })
+      .addCase(getUserContact.rejected, (state, action) => {
         if (action.payload) {
           state.error = action.payload;
           state.loading = false;

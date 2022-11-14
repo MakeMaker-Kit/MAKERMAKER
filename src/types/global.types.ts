@@ -74,15 +74,15 @@ export interface THomeBrand {
   title: string;
 }
 type ImgOption = {
-  title: string
-}
+  title: string;
+};
 export interface TTestimonials {
   _id: string | number;
   image: string;
   name: string;
   description: string;
   company: string;
-  imageObject: ImgOption,
+  imageObject: ImgOption;
 }
 
 export interface TSocial {
