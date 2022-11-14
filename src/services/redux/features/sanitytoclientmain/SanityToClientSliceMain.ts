@@ -36,6 +36,17 @@ let displayMoreResponse;
 if (displayMoreData || typeof displayMoreData === "string") {
   displayMoreResponse = JSON.parse(displayMoreData);
 }
+const footerAboutData = localStorage.getItem("DisplayMore");
+let footerAboutResponse;
+if (footerAboutData || typeof footerAboutData === "string") {
+  footerAboutResponse = JSON.parse(footerAboutData);
+}
+
+const homeBrandsData = localStorage.getItem("DisplayMore");
+let homeBrandsResponse;
+if (homeBrandsData || typeof homeBrandsData === "string") {
+  homeBrandsResponse = JSON.parse(homeBrandsData);
+}
 // Localrorage Get Item
 
 const initialState: sanityInitialState = {
@@ -46,9 +57,9 @@ const initialState: sanityInitialState = {
   headerHome: null,
   displaymore: homeHeaderResponse ? homeHeaderResponse : null,
   homeBrand: null,
-  testimonials: null,
+  testimonials: homeBrandsResponse ? homeBrandsResponse : null,
   socialLinks: null,
-  footerAbout: null,
+  footerAbout: footerAboutResponse ? footerAboutResponse : null,
   productDisplays: displayMoreResponse ? displayMoreResponse : null,
   // delete: null,
 };
@@ -162,6 +173,19 @@ export const getTestimonials = createAsyncThunk<
 >("sanityMain/getTestimonials", async (query, thunkApi) => {
   try {
     return await fetchTestimonials(query);
+  } catch (err: unknown | any) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
+export const getHomeBrands = createAsyncThunk<
+  MyData,
+  string,
+  { extra: { localeErr: string }; rejectWithValue: ValidationError }
+>("sanityMain/getHomeBrands", async (query, thunkApi) => {
+  try {
+    return await fetchHomeBrands(query);
   } catch (err: unknown | any) {
     let error: AxiosError<ValidationError> = err;
     if (!error.response) throw error;
