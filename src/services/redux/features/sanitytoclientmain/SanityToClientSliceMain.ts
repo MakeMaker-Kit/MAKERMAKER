@@ -12,7 +12,8 @@ import SanityService from "./SanityToClientServiceMain";
 import { SanityServiceTypes } from "./SanityToClientServiceMain";
 import { RootState } from "../../app/rootReducer";
 import { AxiosError } from "axios";
-const { fetchProductsDisplay, fetchHomeHeader } = SanityService;
+const { fetchProductsDisplay, fetchHomeHeader, fetchDisplayMore } =
+  SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
 let ProductDsiplayResponse;
@@ -126,6 +127,19 @@ export const getHomeHeader = createAsyncThunk<
   try {
     return await fetchHomeHeader(query);
   } catch (err: any) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
+export const getDisplayMore = createAsyncThunk<
+  MyData,
+  string,
+  { extra: {}; rejectedValue: ValidationError }
+>("sanityMain/getDisplayMore", async (query, thunkApi) => {
+  try {
+    await fetchDisplayMore(query);
+  } catch (err: any | unknown) {
     let error: AxiosError<ValidationError> = err;
     if (!error.response) throw error;
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
