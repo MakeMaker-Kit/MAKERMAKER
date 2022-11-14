@@ -75,6 +75,7 @@ export interface THomeBrand {
 }
 
 export interface TTestimonials {
+  _id: string | number;
   image: string;
   name: string;
   description: string;
@@ -102,4 +103,11 @@ export interface LoginType {
   email?: string;
   password: string;
   comfirmPassword: string;
+}
+
+export interface THomeBrand {
+  [key: string]: string | undefined | number | Number | Boolean;
+  _id: number | string;
+  brandImage: string;
+  // title: string;
 }

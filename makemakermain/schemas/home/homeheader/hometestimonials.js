@@ -27,5 +27,18 @@ export default {
       title: "Company",
       type: "string",
     },
+    {
+      name: "imageObject",
+      title: "ImageOptions",
+      description: "Not Optional  but Addditional ",
+      type: "object",
+      fields: [
+        {
+          name: "title",
+          title: "Image tItle",
+          type: "string",
+        },
+      ],
+    },
   ],
 };

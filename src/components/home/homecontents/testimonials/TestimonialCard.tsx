@@ -5,7 +5,16 @@ import {
   textStyles,
   themes,
 } from "../../../../styles/themes/theme";
-const TestimonialCard = () => {
+import { TTestimonials } from "../../../../types/global.types";
+import { urlFor } from "../../../../client";
+
+const TestimonialCard: React.FC<TTestimonials> = ({
+  _id,
+  image,
+  name,
+  description,
+  company,
+}: TTestimonials) => {
   const { boxFull } = themes;
   const { flexCol, flexCenter, flexRowCenter } = flexLayout;
   const { textCustom, mainLayout } = textStyles;
@@ -33,7 +42,7 @@ const TestimonialCard = () => {
                 `${boxFull} ${flexCenter} bg-white z-10 rounded-full`
               )}
             >
-              <h1>Hello</h1>
+              <img src={`${urlFor(image)}`} />
             </div>
           </div>
           {/* content */}
@@ -44,18 +53,16 @@ const TestimonialCard = () => {
                   `line-clamp-5 ${textCustom} ${mainLayout} text-xs text-center font-cascadiacodePLItalic font-semibold`
                 )}
               >
-                I have even had kids who would never speak up or engage in much
-                of anything ask to come in at lunch to experiment! NOW that
-                makes me happy!…
+                {description}
               </p>
               <div
                 className={cx(
                   `${flexCenter} ${flexRowCenter} space-x-2 ${mainLayout} ${textCustom} text-sm font-bold text-appBlue`
                 )}
               >
-                <h1>Alexandar Ibekason</h1>
+                <h1>{name}</h1>
                 <div className="w-px h-5 bg-black" />
-                <h1>Wizardomw</h1>
+                <h1>{company}</h1>
               </div>
             </div>
           </div>

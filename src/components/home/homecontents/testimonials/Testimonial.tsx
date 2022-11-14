@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { fetchQuery } from "../../../../services/redux/features/sanitytoclient/SanityToClient";
 import { testimonials } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { hometestimonialsQuery } from "../../../../utils/querypaths";
+import { TTestimonials } from "../../../../types/global.types";
 
 const Testimonial = () => {
   const {
@@ -71,7 +72,12 @@ const Testimonial = () => {
                         `${boxFull} ${flexCenter} bg-white z-10 rounded-full`
                       )}
                     >
-                      <h1>Hello</h1>
+                      <img
+                        className={`max-w-full w-full max-h-full h-full object-center object-cover`}
+                        src={""}
+                        alt={`Testimonial_img`}
+                        title=""
+                      />
                     </div>
                   </div>
                   {/* content */}
@@ -105,8 +111,12 @@ const Testimonial = () => {
                 `${XFull} ${flexResponsive.flexRowColReverse} overflow-visible gap-x-4  flex-nowrap ${flexCenter}`
               )}
             >
-              <TestimonialCard />
-              <TestimonialCard />
+              {testimonialData &&
+                testimonialData.map(
+                  (testimonial: TTestimonials, index: number) => (
+                    <TestimonialCard {...testimonial} key={testimonial._id} />
+                  )
+                )}
             </div>
           </div>
 
