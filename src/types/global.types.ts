@@ -114,3 +114,11 @@ export interface THomeBrand {
   brandImage: string;
   // title: string;
 }
+
+export interface TContact {
+  username: string;
+  email: string;
+  phoneNumber: string | number;
+  subject: string;
+  message: string;
+}
