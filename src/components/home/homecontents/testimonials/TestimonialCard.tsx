@@ -42,7 +42,11 @@ const TestimonialCard: React.FC<TTestimonials> = ({
                 `${boxFull} ${flexCenter} bg-white z-10 rounded-full`
               )}
             >
-              <img src={`${urlFor(image)}`} />
+              <img
+                src={`${urlFor(image)}`}
+                alt={``}
+                className={`max-w-full w-full max-h-full h-full object-cover rounded-full`}
+              />
             </div>
           </div>
           {/* content */}
