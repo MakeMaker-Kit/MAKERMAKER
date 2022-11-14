@@ -6,6 +6,7 @@ export interface TInput {
   value?: string;
   name?: string;
   type?: string;
+  label?: string;
   disabled?: boolean;
   blur?: () => void;
   focus?: () => void;
@@ -19,10 +20,11 @@ const ContactTextField: React.FC<TInput> = ({
   name,
   type,
   disabled,
+  label,
+  onChange,
 }) => {
   const { XFull, themeWrapper } = themes;
   const { textCustom, mainLayout } = textStyles;
-
   return (
     <input
       className={cx(
@@ -33,6 +35,8 @@ const ContactTextField: React.FC<TInput> = ({
       placeholder={placeholder}
       type={type}
       name={name}
+      onChange={onChange}
+      required
     />
   );
 };

@@ -118,26 +118,34 @@ const Contact = () => {
             <form className={cx(`${XFull} h-96`, ``)} onSubmit={handleSubmit}>
               <div className={`${boxFull} ${flexCol} gap-y-5`}>
                 <div className={cx(`${XFull}`)}>
-                  <TextField
+                  <ContactTextField
                     label=""
-                    name=" "
+                    name="username"
+                    onChange={() => handleChange}
+                    placeholder="Enter Your Full Name"
+                    value={username}
+                    type={"text"}
+                  />
+                  {/* <TextField
+                    label=""
+                    name="fullname"
                     onChange={() => handleChange}
                     placeholder="Your Full Name"
                     value={username}
                     type={"text"}
-                  />
+                  /> */}
                 </div>
                 <div className={cx(`${flexRowCenter} gap-x-4`)}>
                   {/*  */}
                   <div className="w-five max-w-six">
-                    {/* <TextField
+                    <TextField
                       label=""
-                      name=" "
+                      name="email"
                       onChange={() => handleChange}
                       placeholder="Your Email Address"
                       value={email}
                       type={"email"}
-                    /> */}
+                    />
                   </div>
                   <div className="w-five max-w-five">
                     {/* <TextField

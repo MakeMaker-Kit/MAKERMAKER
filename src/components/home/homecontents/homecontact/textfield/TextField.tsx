@@ -5,7 +5,7 @@ import {
   flexLayout,
   textStyles,
 } from "../../../../../styles/themes/theme";
-type InputTypes = Omit<React.ComponentProps<"input">, "className"> & {};
+type InputTypes = Omit<React.ComponentProps<"input">, "classNames"> & {};
 
 interface FormTypes extends InputTypes {
   label: string;
@@ -52,12 +52,14 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
       <>
         <input
           ref={ref}
-          {...props}
+          // {...props}
           className={cx(
             `${XFull} h-12 border border-solid border-orange rounded-md ${themeWrapper.formPadL}`,
             `${textCustom} ${mainLayout} text-sm `
           )}
-          // placeholder={placeholder}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           enterKeyHint={"done"}
         />
       </>

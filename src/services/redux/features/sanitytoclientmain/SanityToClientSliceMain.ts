@@ -20,6 +20,7 @@ const {
   fetchTestimonials,
   fetchHomeBrands,
   fetchUserContact,
+  fetchContactForm,
 } = SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
@@ -213,6 +214,19 @@ export const getUserContact = createAsyncThunk<
   try {
     return await fetchUserContact(userQuery);
   } catch (err: any | unknown) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
+export const getContactForm = createAsyncThunk<
+  MyData,
+  string,
+  { extra: {}; rejectWithValue: ValidationError }
+>("sanityMain/getContactForm", async (query, thunkApi) => {
+  try {
+    return await fetchContactForm(query);
+  } catch (err: any) {
     let error: AxiosError<ValidationError> = err;
     if (!error.response) throw error;
     return thunkApi.rejectWithValue(error.response.data as ValidationError);

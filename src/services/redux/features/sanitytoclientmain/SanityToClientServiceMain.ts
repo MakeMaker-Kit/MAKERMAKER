@@ -67,6 +67,24 @@ export const fetchUserContact: SanityCreateTypes = async (payloadResponse) => {
     return response;
   });
 };
+export const fetchContactForm: SanityServiceTypes = async (payloadRespone) => {
+  await client.fetch(payloadRespone).then((response) => {
+    if (response) return response;
+    return response;
+  });
+};
+export const fetchContactInformation: SanityServiceTypes = async (
+  payloadRespone
+) => {
+  await client.fetch(payloadRespone).then((response) => {
+    if (response)
+      return sessionStorage.setItem(
+        "ContactInformation",
+        JSON.stringify(response)
+      );
+    return response;
+  });
+};
 const SanityService = {
   fetchProductsDisplay,
   fetchHomeHeader,
@@ -74,6 +92,7 @@ const SanityService = {
   fetchTestimonials,
   fetchHomeBrands,
   fetchUserContact,
+  fetchContactForm,
 };
 
 export default SanityService;

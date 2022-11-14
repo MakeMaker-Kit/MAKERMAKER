@@ -34,12 +34,16 @@ const HomeContact = () => {
         >
           {/* TextWrapper */}
           <TextWrapper Zindex="z-[-1]" />
-          <div className={cx(`${marX} h-[500px] max-h-[1000px]`)}>
+          <div
+            className={cx(
+              `${marX} h-auto md:h-auto lg:h-[500px] max-h-[1000px]`
+            )}
+          >
             <div
               className={cx(`${boxFull} ${flexResponsive.flexRowColReverse}`)}
             >
               {/* Contents Section */}
-              <div className={`w-four max-w-four h-40`}>
+              <div className={`w-four max-w-four  h-auto`}>
                 <div className={cx(`${boxFull} ${flexCol} space-y-10`)}>
                   <Content />
                 </div>
