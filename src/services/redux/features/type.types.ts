@@ -48,9 +48,11 @@ export interface ProductStateTypes {
 }
 
 export interface THomeContact {
-  [key: string]: string | undefined;
+  [key: string]: string | undefined | number;
   _type: string;
   username: string;
   email: string;
+  phoneNumber: string | number;
+  subject: string;
   message: string;
 }

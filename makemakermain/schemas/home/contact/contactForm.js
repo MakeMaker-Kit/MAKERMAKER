@@ -15,6 +15,18 @@ export default {
       required: true,
     },
     {
+      name: "phoneNumber",
+      title: "Phone Number",
+      type: "string",
+      required: true,
+    },
+    {
+      name: "subject",
+      title: "Subject of the Comment",
+      type: "string",
+      required: true,
+    },
+    {
       name: "message",
       title: "Users Message",
       type: "text",

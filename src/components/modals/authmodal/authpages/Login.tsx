@@ -140,7 +140,10 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
                       </div>
                       {/* Login Button */}
                       <div className={` w-full max-w-nine `}>
-                        <MainButton isRounded={true} onSubmit={handleSubmit}>
+                        <MainButton
+                          isRounded={true}
+                          onSubmit={() => handleSubmit}
+                        >
                           Login
                         </MainButton>
                       </div>

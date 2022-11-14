@@ -8,6 +8,8 @@ export type SanityCreateTypes = (payloadResponse: {
   username: string;
   email: string;
   message: string;
+  subject: string;
+  phoneNumber: string | number;
 }) => Promise<void>;
 export const fetchProductsDisplay: SanityServiceTypes = async (
   payloadResponse

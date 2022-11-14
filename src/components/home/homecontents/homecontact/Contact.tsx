@@ -6,8 +6,16 @@ import {
   themes,
 } from "../../../../styles/themes/theme";
 import TextField from "./textfield/TextField";
+import ContactTextField from "./textfield/ContactTextField";
 import Button from "../../../../hooks/button";
-import { Formik, FormikErrors } from "formik";
+import {
+  withFormik,
+  FormikProps,
+  FormikErrors,
+  Form,
+  Field,
+  Formik,
+} from "formik";
 import { TContact } from "../../../../types/global.types";
 import { useDispatch } from "react-redux";
 import { getUserContact } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
@@ -83,25 +91,31 @@ const Contact = () => {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
+            // event.preventDefault()
             setSubmitting(true);
-            const { email, message, username } = values;
+            const { email, message, username, phoneNumber, subject } = values;
             const UserRequest: THomeContact = {
-              _type: "contact",
+              _type: "homeContact",
+              // email,
+              // message,
+              // username,
+              // phoneNumber,
+              // subject
               ...values,
             };
             // @ts-ignore
-            if (values) return dispatch(getUserContact(UserRequest));
+            if (values) return await dispatch(getUserContact(UserRequest));
           } catch (error) {
             setSubmitting(false);
             if (error instanceof Error) return console.error(error.message);
           }
         }}
       >
-        {({ values, handleBlur, handleChange, handleSubmit }) => {
+        {({ values, handleBlur, handleChange, handleSubmit, isSubmitting }) => {
           const { email, message, username, phoneNumber, subject } = values;
 
           return (
-            <form className={cx(`${XFull} h-96`, ``)}>
+            <form className={cx(`${XFull} h-96`, ``)} onSubmit={handleSubmit}>
               <div className={`${boxFull} ${flexCol} gap-y-5`}>
                 <div className={cx(`${XFull}`)}>
                   <TextField
@@ -110,43 +124,47 @@ const Contact = () => {
                     onChange={() => handleChange}
                     placeholder="Your Full Name"
                     value={username}
+                    type={"text"}
                   />
                 </div>
                 <div className={cx(`${flexRowCenter} gap-x-4`)}>
                   {/*  */}
                   <div className="w-five max-w-six">
-                    <TextField
+                    {/* <TextField
                       label=""
                       name=" "
                       onChange={() => handleChange}
                       placeholder="Your Email Address"
                       value={email}
-                    />
+                      type={"email"}
+                    /> */}
                   </div>
                   <div className="w-five max-w-five">
-                    <TextField
+                    {/* <TextField
                       label=""
                       name=" "
                       onChange={() => {}}
                       placeholder="Your Mobile Number"
                       value={phoneNumber}
-                    />
+                      type={"number"}
+                    /> */}
                   </div>
 
                   {/*  */}
                 </div>
                 <div className={cx(`${XFull}`)}>
-                  <TextField
+                  {/* <TextField
                     label=""
                     name=" "
                     onChange={() => handleChange}
                     placeholder="Subject "
                     value={subject}
-                  />
+                    type={"text"}
+                  /> */}
                 </div>
                 <div className="w-full">
                   <textarea
-                    name=""
+                    name="message"
                     id=""
                     className={cx(
                       `${XFull} h-40 ${formPadL} rounded-md border border-orange`,
@@ -154,12 +172,15 @@ const Contact = () => {
                     )}
                     placeholder="Type Your Message"
                     value={message}
-                    onChange={() => handleChange}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </div>
               <div>
-                <Button handleClick={() => handleSubmit}>Submit </Button>
+                {/* <Button handleClick={() => {}}>Submit </Button> */}
+                <button disabled={isSubmitting} type={"submit"}>
+                  Submit
+                </button>
               </div>
             </form>
           );
