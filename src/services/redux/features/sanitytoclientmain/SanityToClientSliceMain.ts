@@ -12,8 +12,13 @@ import SanityService from "./SanityToClientServiceMain";
 import { SanityServiceTypes } from "./SanityToClientServiceMain";
 import { RootState } from "../../app/rootReducer";
 import { AxiosError } from "axios";
-const { fetchProductsDisplay, fetchHomeHeader, fetchDisplayMore } =
-  SanityService;
+const {
+  fetchProductsDisplay,
+  fetchHomeHeader,
+  fetchDisplayMore,
+  fetchTestimonials,
+  fetchHomeBrands,
+} = SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
 let ProductDsiplayResponse;
@@ -26,20 +31,25 @@ if (homeHeaderData || typeof homeHeaderData === "string") {
   homeHeaderResponse = JSON.parse(homeHeaderData);
 }
 
+const displayMoreData = localStorage.getItem("DisplayMore");
+let displayMoreResponse;
+if (displayMoreData || typeof displayMoreData === "string") {
+  displayMoreResponse = JSON.parse(displayMoreData);
+}
 // Localrorage Get Item
 
 const initialState: sanityInitialState = {
   error: null,
   message: "",
   loading: false,
-  homeHeader: homeHeaderResponse,
+  homeHeader: homeHeaderResponse ? homeHeaderResponse : null,
   headerHome: null,
-  displaymore: null,
+  displaymore: homeHeaderResponse ? homeHeaderResponse : null,
   homeBrand: null,
   testimonials: null,
   socialLinks: null,
   footerAbout: null,
-  productDisplays: ProductDsiplayResponse ? ProductDsiplayResponse : null,
+  productDisplays: displayMoreResponse ? displayMoreResponse : null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -145,7 +155,20 @@ export const getDisplayMore = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
-const textGet = createAsyncThunk<
+export const getTestimonials = createAsyncThunk<
+  MyData,
+  string,
+  { extra: { jwt: string }; rejectWithValue: ValidationError }
+>("sanityMain/getTestimonials", async (query, thunkApi) => {
+  try {
+    return await fetchTestimonials(query);
+  } catch (err: unknown | any) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
+export const textGet = createAsyncThunk<
   MyData,
   QueryResponseData,
   { extra: { jwt: string }; rejectValue: ValidationError }
@@ -196,6 +219,19 @@ export const SanityMainSlice = createSlice({
       .addCase(getFetchProductsDisplay.rejected, (state, action) => {
         if (action.payload) {
           state.error = action.payload.errorResponse;
+          state.loading = false;
+        } else {
+          state.error = action.error;
+        }
+      })
+      .addCase(getTestimonials.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+        state.productDisplay = action.payload;
+      })
+      .addCase(getTestimonials.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload;
           state.loading = false;
         } else {
           state.error = action.error;

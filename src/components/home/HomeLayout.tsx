@@ -51,14 +51,14 @@ const HomeLayout = () => {
         {/* Product Display */}
         {/* <Border /> */}
 
-        {/* {productDisplay &&
+        {productDisplay &&
           productDisplay.map((display: TDisplayContentTypes, index: number) => {
             return (
               <div className="bg-grayWhite z-[10]" key={index}>
                 <ProductDisplay {...display} />
               </div>
             );
-          })} */}
+          })}
         <Border />
         <div>
           <MoreDisplay />

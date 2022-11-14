@@ -31,11 +31,36 @@ export const fetchDisplayMore: SanityServiceTypes = async (payloadResponse) => {
     return response;
   });
 };
+export const fetchFooterAbout: SanityServiceTypes = async (payloadResponse) => {
+  await client.fetch(payloadResponse).then((response) => {
+    if (response)
+      return sessionStorage.setItem("FooterAbout", JSON.stringify(response));
+    return response;
+  });
+};
+export const fetchTestimonials: SanityServiceTypes = async (
+  payloadResponse
+) => {
+  await client.fetch(payloadResponse).then((response) => {
+    if (response)
+      return sessionStorage.setItem("Testimonials", JSON.stringify(response));
+    return response;
+  });
+};
+export const fetchHomeBrands: SanityServiceTypes = async (payloadResponse) => {
+  await client.fetch(payloadResponse).then((response) => {
+    if (response)
+      return sessionStorage.setItem("HomeBrands", JSON.stringify(response));
+    return response;
+  });
+};
 
 const SanityService = {
   fetchProductsDisplay,
   fetchHomeHeader,
   fetchDisplayMore,
+  fetchTestimonials,
+  fetchHomeBrands,
 };
 
 export default SanityService;
