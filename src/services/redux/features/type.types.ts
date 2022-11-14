@@ -13,15 +13,15 @@ export interface sanityInitialState {
   message: string;
   error: {} | null;
   loading: boolean | Boolean;
-  homeHeader: null | {}[] | void;
-  headerHome: null | {}[];
-  displaymore: null | {}[] | void;
-  homeBrand: null | {}[] | void;
-  testimonials: null | {}[] | void;
-  socialLinks: null | {}[] | void;
-  productDisplay: null | {}[] | void;
-  footerAbout: null | {}[] | void;
-  delete: null | {}[] | void;
+  homeHeader: null | {};
+  headerHome: null | {};
+  displaymore: null | {};
+  homeBrand: null | {};
+  testimonials: null | {};
+  socialLinks: null | {};
+  productDisplays: null | {};
+  footerAbout: null | {};
+  delete?: null | {};
 }
 
 export interface User {

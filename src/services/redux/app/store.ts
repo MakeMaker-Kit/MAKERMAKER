@@ -38,7 +38,7 @@ const sanityPersistConfig = {
   key: "sanity",
   version: 1,
   storage,
-  whitelist: ["productDisplay", "footerAbout", "homeHeader", "headerHome"],
+  whitelist: ["productDisplays", "footerAbout", "homeHeader", "headerHome"],
 };
 const reducer = combineReducers({
   product: ProductReducer,
@@ -51,7 +51,14 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 import ProductReducer from "../features/productslice/ProductSlice";
 import { TransformCredentials } from "./persist";
 const store = configureStore({
-  reducer: persistedReducer,
+  // reducer: persistedReducer,
+  reducer: {
+    product: ProductReducer,
+    globalstate: GlobalStateReducer,
+    sanity: SanityToClientReducer,
+    auth: AuthReducer,
+    sanityMain: SanityMainReducer,
+  },
   devTools: import.meta.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

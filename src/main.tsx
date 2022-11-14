@@ -20,10 +20,10 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Provider store={store}>
           <IconContextProvider>
             <AwesomeContextProvider>
-              <PersistGate persistor={persistor} loading={null}>
-                <Toaster />
-                <App />
-              </PersistGate>
+              {/* <PersistGate persistor={persistor} loading={null}> */}
+              <Toaster />
+              <App />
+              {/* </PersistGate> */}
             </AwesomeContextProvider>
           </IconContextProvider>
         </Provider>

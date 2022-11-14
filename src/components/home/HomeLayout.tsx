@@ -11,42 +11,47 @@ import HomeContact from "./homecontents/homecontact/HomeContact";
 import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderApi } from "../../types/api.types";
-import {
-  fetchProductDisplay,
-  ProductDisplays,
-} from "../../services/redux/features/sanitytoclient/SanityToClient";
-import { homeHeaderState } from "../../services/redux/features/sanitytoclient/SanityToClient";
+
 import { TDisplayContentTypes } from "../../utils/utils.types";
 import { Delete } from "../../services/redux/features/sanitytoclient/SanityToClient";
+import {
+  getFetchProductsDisplay,
+  ProductDisplays,
+} from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { productDisplayQuery } from "../../utils/querypaths";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
 };
 
 const HomeLayout = () => {
-  const homeHeader = useSelector(homeHeaderState);
+  const dispatch = useDispatch();
   const productDisplay = useSelector(ProductDisplays);
-
+  React.useEffect(() => {
+    // @ts-ignore
+    dispatch(getFetchProductsDisplay(productDisplayQuery));
+  }, [dispatch]);
+  console.log("Product Display Response", productDisplay);
   return (
     <>
       <div>
         {/* Header  */}
-        {homeHeader?.map((content: HeaderApi) => (
+        {/* {homeHeader?.map((content: HeaderApi) => (
           <Header {...content} />
-        ))}
+        ))} */}
         {/* Border */}
         <Border />
         {/* Product Display */}
         {/* <Border /> */}
 
-        {productDisplay &&
+        {/* {productDisplay &&
           productDisplay.map((display: TDisplayContentTypes, index: number) => {
             return (
               <div className="bg-grayWhite z-[10]" key={index}>
                 <ProductDisplay {...display} />
               </div>
             );
-          })}
+          })} */}
         <Border />
         <div>
           <MoreDisplay />

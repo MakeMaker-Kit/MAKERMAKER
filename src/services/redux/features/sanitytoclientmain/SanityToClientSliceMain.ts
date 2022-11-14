@@ -13,20 +13,24 @@ import { SanityServiceTypes } from "./SanityToClientServiceMain";
 import { RootState } from "../../app/rootReducer";
 import { AxiosError } from "axios";
 const { fetchProductsDisplay } = SanityService;
-
+const data = localStorage.getItem("ProductDisplays");
+let ProductDsiplayResponse;
+if (data) {
+  ProductDsiplayResponse = JSON.parse(data);
+}
 const initialState: sanityInitialState = {
   error: null,
   message: "",
   loading: false,
-  homeHeader: [],
-  headerHome: [],
-  displaymore: [],
-  homeBrand: [],
-  testimonials: [],
-  socialLinks: [],
-  footerAbout: [],
-  productDisplay: [],
-  delete: [],
+  homeHeader: null,
+  headerHome: null,
+  displaymore: null,
+  homeBrand: null,
+  testimonials: null,
+  socialLinks: null,
+  footerAbout: null,
+  productDisplays: ProductDsiplayResponse,
+  // delete: null,
 };
 type SliceFunctionDefinition = (
   query: string,
@@ -50,16 +54,16 @@ type TypedCreateAsyncThunk<AsyncThunkConfg> = <Returned, ThunkArg = void>(
   options?: AsyncThunkOptions<ThunkArg, AsyncThunkConfig>
 ) => AsyncThunk<Returned, ThunkArg, AsyncThunkConfig>;
 
-export const createAppAsyncThunk: TypedCreateAsyncThunk<{
-  state: RootState;
-}> = createAsyncThunk<
-  MyData,
-  QueryResponseData,
-  { extra: { jwt: string }; rejectedValue: ValidationError }
->("sanityMain/createAppAsyncThunk", async (state: RootState, thunkApi) => {
-  try {
-  } catch (err) {}
-});
+// export const createAppAsyncThunk: TypedCreateAsyncThunk<{
+//   state: RootState;
+// }> = createAsyncThunk<
+//   MyData,
+//   QueryResponseData,
+//   { extra: { jwt: string }; rejectedValue: ValidationError }
+// >("sanityMain/createAppAsyncThunk", async (state: RootState, thunkApi) => {
+//   try {
+//   } catch (err) {}
+// });
 
 export interface QueryResponseData {
   [key: string]: string | Boolean | undefined;
@@ -71,7 +75,7 @@ export type ValidationError = {
   errorMessage: string;
   errorResponse: string;
 };
-type MyData = {};
+type MyData = {} | null;
 type AsyncThunkConfig = {
   /** return type for `thunkApi.getState` */
   state?: unknown;
@@ -151,11 +155,15 @@ export const SanityMainSlice = createSlice({
       .addCase(getFetchProductsDisplay.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-        // state.productDisplay = action.payload;
+        state.productDisplay = action.payload;
       })
       .addCase(getFetchProductsDisplay.rejected, (state, action) => {
-        state.error = action.error;
-        state.loading = false;
+        if (action.payload) {
+          state.error = action.payload.errorResponse;
+          state.loading = false;
+        } else {
+          state.error = action.error;
+        }
       });
   },
 });
@@ -163,3 +171,14 @@ export const SanityMainSlice = createSlice({
 const { actions, reducer } = SanityMainSlice;
 export default reducer;
 export const {} = actions;
+export const homeHeaderState = (state: RootState) =>
+  state.sanityMain.homeHeader;
+export const headerHomeState = (state: RootState) =>
+  state.sanityMain.headerHome;
+export const testimonials = (state: RootState) => state.sanityMain.testimonials;
+export const socialLinks = (state: RootState) => state.sanityMain.socialLinks;
+export const footerAbout = (state: RootState) => state.sanityMain.footerAbout;
+export const homeBrand = (state: RootState) => state.sanityMain.homeBrand;
+export const ProductDisplays = (state: RootState) =>
+  state.sanityMain?.productDisplays;
+export const Delete = (state: RootState) => state.sanityMain.delete;
