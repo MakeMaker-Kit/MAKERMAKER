@@ -13,9 +13,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { HeaderApi } from "../../types/api.types";
 
 import { TDisplayContentTypes } from "../../utils/utils.types";
-import { Delete } from "../../services/redux/features/sanitytoclient/SanityToClient";
+import {
+  Delete,
+  getHomeHeader,
+} from "../../services/redux/features/sanitytoclient/SanityToClient";
 import {
   getFetchProductsDisplay,
+  homeHeaderState,
   ProductDisplays,
 } from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { productDisplayQuery } from "../../utils/querypaths";
@@ -27,18 +31,20 @@ const Border = () => {
 const HomeLayout = () => {
   const dispatch = useDispatch();
   const productDisplay = useSelector(ProductDisplays);
+  const homeHeader = useSelector(homeHeaderState);
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getFetchProductsDisplay(productDisplayQuery));
+    dispatch(getHomeHeader(homeHeader));
   }, [dispatch]);
   console.log("Product Display Response", productDisplay);
   return (
     <>
       <div>
         {/* Header  */}
-        {/* {homeHeader?.map((content: HeaderApi) => (
+        {homeHeader?.map((content: HeaderApi) => (
           <Header {...content} />
-        ))} */}
+        ))}
         {/* Border */}
         <Border />
         {/* Product Display */}

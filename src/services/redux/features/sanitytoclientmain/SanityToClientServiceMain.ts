@@ -15,6 +15,15 @@ export const fetchProductsDisplay: SanityServiceTypes = async (
   });
 };
 
-const SanityService = { fetchProductsDisplay };
+export const fetchHomeHeader: SanityServiceTypes = async (payloadResponse) => {
+  await client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      return localStorage.setItem("ProductDisplays", JSON.stringify(response));
+    }
+    return response;
+  });
+};
+
+const SanityService = { fetchProductsDisplay, fetchHomeHeader };
 
 export default SanityService;

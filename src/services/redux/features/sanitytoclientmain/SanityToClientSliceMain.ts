@@ -12,12 +12,21 @@ import SanityService from "./SanityToClientServiceMain";
 import { SanityServiceTypes } from "./SanityToClientServiceMain";
 import { RootState } from "../../app/rootReducer";
 import { AxiosError } from "axios";
-const { fetchProductsDisplay } = SanityService;
+const { fetchProductsDisplay, fetchHomeHeader } = SanityService;
+// Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
 let ProductDsiplayResponse;
 if (data) {
   ProductDsiplayResponse = JSON.parse(data);
 }
+const homeHeaderData = localStorage.getItem("HomeHeader");
+let homeHeaderResponse;
+if (homeHeaderData || typeof homeHeaderData === "string") {
+  homeHeaderResponse = JSON.parse(homeHeaderData);
+}
+
+// Localrorage Get Item
+
 const initialState: sanityInitialState = {
   error: null,
   message: "",
@@ -29,7 +38,7 @@ const initialState: sanityInitialState = {
   testimonials: null,
   socialLinks: null,
   footerAbout: null,
-  productDisplays: ProductDsiplayResponse,
+  productDisplays: ProductDsiplayResponse ? ProductDsiplayResponse : null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -108,7 +117,20 @@ export const getFetchProductsDisplay = createAsyncThunk<
     return thunkApi.rejectWithValue(errorLog.response.data as ValidationError);
   }
 });
-
+//
+export const getHomeHeader = createAsyncThunk<
+  MyData,
+  string,
+  { extra: { jwt: string }; rejectedValue: ValidationError }
+>("sanityMain/getHomeHeader", async (query, thunkApi) => {
+  try {
+    return await fetchHomeHeader(query);
+  } catch (err: any) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
 const textGet = createAsyncThunk<
   MyData,
   QueryResponseData,
