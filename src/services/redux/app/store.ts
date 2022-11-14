@@ -9,6 +9,7 @@ import AuthReducer from "../features/authslice/AuthSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, createTransform } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+import SanityMainReducer from "../features/sanitytoclientmain/SanityToClientSliceMain";
 
 export interface IAppState {
   authentication?: IAuthenticationState;
@@ -37,12 +38,14 @@ const sanityPersistConfig = {
   key: "sanity",
   version: 1,
   storage,
+  whitelist: ["productDisplay", "footerAbout", "homeHeader", "headerHome"],
 };
 const reducer = combineReducers({
   product: ProductReducer,
   globalstate: GlobalStateReducer,
   sanity: SanityToClientReducer,
   auth: AuthReducer,
+  sanitymain: persistReducer(sanityPersistConfig, SanityMainReducer),
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 import ProductReducer from "../features/productslice/ProductSlice";

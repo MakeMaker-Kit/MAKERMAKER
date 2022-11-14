@@ -111,12 +111,10 @@ export const ProductSlice = createSlice({
       const updatedItemindex = state.cart?.findIndex(
         (cartItem) => cartItem.id === action.payload.product?._id
       );
-      const updatedItem =
-        typeof updatedItemindex === "undefined" || updatedItemindex
-          ? toast.error(
-              `Please we cannot update the cart item check if it exist`
-            )
-          : { ...state.cart[updatedItemindex] };
+      // const updatedItem =
+      typeof updatedItemindex === "undefined" || updatedItemindex
+        ? toast.error(`Please we cannot update the cart item check if it exist`)
+        : { ...state.cart[updatedItemindex] };
       state.productQuantity =
         state.productQuantity + 1 > 1 &&
         state.productQuantity > PriceInProductStock

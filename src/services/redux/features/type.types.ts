@@ -9,7 +9,7 @@ export interface globalInitialState {
 }
 // Create a minimalist adorn to the current  tate of the applicatiopn to  be repopulatex to the virtual dom of the modukr dom of tjhe appkiavction tim
 export interface sanityInitialState {
-  // [key: string] : boolean ;
+  [key: string]: boolean | Boolean | null | {}[] | void | string | {};
   message: string;
   error: {} | null;
   loading: boolean | Boolean;
