@@ -7,7 +7,7 @@ import {
   homeBrand,
   fetchQuery,
 } from "../../../../services/redux/features/sanitytoclient/SanityToClient";
-import { homebrands } from "../../../../utils/querypaths";
+import { homebrandsQuery } from "../../../../utils/querypaths";
 
 const Brand = () => {
   const {} = flexLayout;
@@ -17,8 +17,9 @@ const Brand = () => {
   const homebrand = useSelector(homeBrand);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(fetchQuery(homebrands));
-  }, [dispatch, homebrands]);
+    // @ts-ignore
+    dispatch(fetchQuery(homebrandsQuery));
+  }, [dispatch, homebrand]);
   console.log("HomeBand", homebrand);
   return (
     <>

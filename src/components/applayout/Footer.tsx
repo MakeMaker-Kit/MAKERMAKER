@@ -8,7 +8,7 @@ import {
   footerAbout,
   fetchFooterLinks,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
-import { footerabout } from "../../utils/querypaths";
+import { footeraboutQuery } from "../../utils/querypaths";
 
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
@@ -19,7 +19,8 @@ const Footer = () => {
   const dispatch = useDispatch();
   const footer = useSelector(footerAbout);
   React.useEffect(() => {
-    dispatch(fetchFooterLinks(footerabout));
+    // @ts-ignore
+    dispatch(fetchFooterLinks(footeraboutQuery));
   }, [dispatch, footer]);
   console.log("Footer Data", footer);
 

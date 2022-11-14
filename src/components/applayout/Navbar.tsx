@@ -20,8 +20,12 @@ const Navbar = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
-  const { MdOutlineKeyboardArrowDown, BiSearchAlt, AiOutlineShoppingCart } =
-    useIcon();
+  const {
+    MdOutlineKeyboardArrowDown,
+    BiSearchAlt,
+    AiOutlineShoppingCart,
+    FiShoppingCart,
+  } = useIcon();
   const { mainLayout, mainText, textCustom } = textStyles;
   const dispatch = useDispatch();
   const modalState = useSelector(onModalState);
@@ -76,38 +80,25 @@ const Navbar = () => {
 
                 <div
                   className={classNames(
-                    `h-6 w-auto p-3 rounded border bg-appGreen relative `
+                    `h-6 w-auto p-3 rounded border  relative `
                   )}
                 >
                   {/* abolute  */}
                   <div
-                    className={`absolute top-0 right-0 w-5 h-5 p-0.5 rounded-full bg-white`}
+                    className={`absolute top-0 right-0 w-4 h-4 p-px rounded-full bg-white shadow-md`}
                   >
                     <span
                       className={classNames(
                         `${flexCenter} ${mainLayout} ${textCustom} text-xs  `
                       )}
                     >
-                      {/* <AiOutlineShoppingCart
-                        size={20}
-                        className={`text-white`}
-                      />
-                       */}
                       {totalQuantity}
                     </span>
                   </div>
                   {/* abolute  */}
                   <div className={classNames(` ${boxFull} ${flexCenter}`)}>
-                    <p
-                      className={classNames(
-                        `${textCustom} ${mainLayout} text-white whitespace-nowrap cursor-pointer`
-                      )}
-                      onClick={openCartMenu}
-                    >
-                      Open Cart
-                    </p>
+                    <FiShoppingCart size={25} className={`text-orange`} />
                   </div>
-                  {/*  */}
                 </div>
                 {/* Search Component */}
                 <BiSearchAlt size={25} />

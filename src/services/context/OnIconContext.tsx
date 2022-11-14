@@ -5,6 +5,7 @@ import { FiFacebook, FiInstagram } from "react-icons/fi";
 import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsTwitter } from "react-icons/bs";
+import { FiShoppingCart } from "react-icons/fi";
 import { IconContextProps } from "./context.type";
 import {
   PaperPlaneIcon,
@@ -43,6 +44,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         AiOutlineGooglePlus,
         BiCartAlt,
         AiOutlineShoppingCart,
+        FiShoppingCart,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,

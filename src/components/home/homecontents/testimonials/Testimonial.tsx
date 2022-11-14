@@ -13,7 +13,7 @@ import {
   testimonials,
   fetchQuery,
 } from "../../../../services/redux/features/sanitytoclient/SanityToClient";
-import { hometestimonials } from "../../../../utils/querypaths";
+import { hometestimonialsQuery } from "../../../../utils/querypaths";
 
 const Testimonial = () => {
   const {
@@ -32,8 +32,9 @@ const Testimonial = () => {
   const dispatch = useDispatch();
   const testimonialData = useSelector(testimonials);
   React.useEffect(() => {
-    dispatch(fetchQuery(hometestimonials));
-  }, [dispatch, hometestimonials]);
+    // @ts-ignore
+    dispatch(fetchQuery(hometestimonialsQuery));
+  }, [dispatch, testimonialData]);
   console.table("testimonials data ", testimonialData);
   return (
     <>

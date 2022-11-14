@@ -19,10 +19,16 @@ import {
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
 import {
   getFetchProductsDisplay,
+  getTestimonials,
   homeHeaderState,
   ProductDisplays,
+  testimonials,
 } from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
-import { productDisplayQuery, homeheaderQuery } from "../../utils/querypaths";
+import {
+  productDisplayQuery,
+  homeheaderQuery,
+  hometestimonialsQuery,
+} from "../../utils/querypaths";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -32,13 +38,16 @@ const HomeLayout = () => {
   const dispatch = useDispatch();
   const productDisplay = useSelector(ProductDisplays);
   const homeHeader = useSelector(homeHeaderState);
+  const hometestimonial = useSelector(testimonials);
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getFetchProductsDisplay(productDisplayQuery));
     dispatch(getHomeHeader(homeheaderQuery));
+    // @ts-ignore
+    dispatch(getTestimonials(hometestimonialsQuery));
   }, [dispatch]);
   console.log("Product Display Response", productDisplay);
-  console.log("Display more response data", homeHeader);
+  console.log("Display more response data", homeHeader, hometestimonial);
   return (
     <>
       <div>
