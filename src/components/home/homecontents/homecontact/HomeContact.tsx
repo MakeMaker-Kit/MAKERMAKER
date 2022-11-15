@@ -35,9 +35,7 @@ const HomeContact = () => {
           {/* TextWrapper */}
           <TextWrapper Zindex="z-[-1]" />
           <div
-            className={cx(
-              `${marX} h-auto md:h-auto lg:h-[500px] max-h-[1000px]`
-            )}
+            className={cx(`${marX} h-auto md:h-auto lg:h-auto max-h-[1000px]`)}
           >
             <div
               className={cx(`${boxFull} ${flexResponsive.flexRowColReverse}`)}

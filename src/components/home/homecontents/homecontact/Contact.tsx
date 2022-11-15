@@ -20,11 +20,13 @@ import { TContact } from "../../../../types/global.types";
 import { useDispatch } from "react-redux";
 import { getUserContact } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { THomeContact } from "../../../../services/redux/features/type.types";
+import { toast } from "react-hot-toast";
 import {
   EMAIL_ADDREESS_REGEX,
   PHONE_NUMBER_REGEX,
   USER_REGEX,
 } from "../../../modals/authmodal/Regex";
+import MainButton from "../../../../hooks/button/mainBTN";
 
 const Contact = () => {
   const { flexCenter, flexRow, flexCol, flexRowCenter } = flexLayout;
@@ -60,54 +62,70 @@ const Contact = () => {
         }}
         validate={(values: TContact) => {
           const error: FormikErrors<TContact> = {};
-          let { email, message, username, phoneNumber, subject } = error;
+          // let { email, message, username, phoneNumber, subject } = error;
           if (!values.email) {
-            email = "Email Address is Required";
+            error.email = "Email Address is Required";
           } else if (!EMAIL_ADDREESS_REGEX.test(values.email)) {
-            email = "Invalid email address";
+            error.email = "Invalid email address";
           }
           if (!values.username) {
-            username = "Username is Required";
+            error.username = "Username is Required";
           } else if (!USER_REGEX.test(values.username)) {
-            username = "Username is Required";
+            error.username = "Username is Required";
           }
           if (!values.message) {
-            message = "Message is Required";
+            error.message = "Message is Required";
           } else if (values.message.length > 100) {
-            username =
+            error.username =
               "Your message is too long and should be less than 100 characters ";
           }
           if (!values.phoneNumber) {
-            phoneNumber = "PHONE NUMBER IS INVALID";
+            error.phoneNumber = "PHONE NUMBER IS INVALID";
           } else if (!PHONE_NUMBER_REGEX.test(values.phoneNumber as string)) {
-            phoneNumber = "Phone Number is Required";
+            error.phoneNumber = "Phone Number is Required";
           }
           if (!values.subject) {
-            subject = "Subject is Invalid";
+            error.subject = "Subject is Invalid";
           } else if (values.subject.length > 50) {
-            subject =
+            error.subject =
               "Subject is too long and should be less than 50 characters";
           }
+          return error;
         }}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (
+          values,
+          { setSubmitting, validateField, setTouched }
+        ) => {
           try {
             // event.preventDefault()
             setSubmitting(true);
-            const { email, message, username, phoneNumber, subject } = values;
+            // const { email, message, username, phoneNumber, subject } = values;
             const UserRequest: THomeContact = {
               _type: "homeContact",
               ...values,
             };
             // @ts-ignore
-            if (values) return await dispatch(getUserContact(UserRequest));
+            dispatch(getUserContact(UserRequest));
+            alert(JSON.stringify(UserRequest, null));
+            setSubmitting(false);
+            // if (values) return dispatch(getUserContact(UserRequest));
           } catch (error) {
             setSubmitting(false);
             if (error instanceof Error) return console.error(error.message);
           }
         }}
       >
-        {({ values, handleBlur, handleChange, handleSubmit, isSubmitting }) => {
+        {({
+          values,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          touched,
+          errors,
+        }) => {
           const { email, message, username, phoneNumber, subject } = values;
+          console.log("Contct Information", errors);
 
           return (
             <form className={cx(`${XFull} h-96`, ``)} onSubmit={handleSubmit}>
@@ -116,10 +134,11 @@ const Contact = () => {
                   <ContactTextField
                     label=""
                     name="username"
-                    onChange={() => handleChange}
+                    // onChange={() => handleChange}
                     placeholder="Enter Your Full Name"
                     value={username}
                     type={"text"}
+                    handleChange={handleChange}
                   />
                   {/* <TextField
                     label=""
@@ -136,34 +155,45 @@ const Contact = () => {
                     <TextField
                       label=""
                       name="email"
-                      onChange={() => handleChange}
+                      // onChange={() => handleChange}
                       placeholder="Your Email Address"
                       value={email}
+                      error={errors.email}
+                      touched={touched.email}
+                      handleChange={handleChange}
                       type={"email"}
+                      title={"Emal"}
+                      onBlur={handleBlur}
                     />
+                    {/* {errors.email} */}
                   </div>
                   <div className="w-five max-w-five">
-                    {/* <TextField
+                    <TextField
                       label=""
-                      name=" "
-                      onChange={() => {}}
+                      name="phoneNumber"
+                      handleChange={handleChange}
                       placeholder="Your Mobile Number"
                       value={phoneNumber}
+                      error={errors.phoneNumber}
+                      touched={touched.phoneNumber}
                       type={"number"}
-                    /> */}
+                      onBlur={handleBlur}
+                    />
                   </div>
-
                   {/*  */}
                 </div>
                 <div className={cx(`${XFull}`)}>
-                  {/* <TextField
+                  <TextField
                     label=""
-                    name=" "
-                    onChange={() => handleChange}
+                    name="subject"
+                    handleChange={handleChange}
+                    error={errors.subject}
+                    touched={touched.subject}
                     placeholder="Subject "
                     value={subject}
                     type={"text"}
-                  /> */}
+                    onBlur={handleBlur}
+                  />
                 </div>
                 <div className="w-full">
                   <textarea
@@ -176,14 +206,18 @@ const Contact = () => {
                     placeholder="Type Your Message"
                     value={message}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   ></textarea>
                 </div>
               </div>
               <div>
-                {/* <Button handleClick={() => {}}>Submit </Button> */}
-                <button disabled={isSubmitting} type={"submit"}>
-                  Submit
-                </button>
+                <MainButton
+                  isRounded={true}
+                  disabled={isSubmitting}
+                  type={"submit"}
+                >
+                  {isSubmitting ? "Submitting" : "Submit"}
+                </MainButton>
               </div>
             </form>
           );

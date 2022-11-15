@@ -96,7 +96,10 @@ const Navbar = () => {
                     </span>
                   </div>
                   {/* abolute  */}
-                  <div className={classNames(` ${boxFull} ${flexCenter}`)}>
+                  <div
+                    className={classNames(` ${boxFull} ${flexCenter}`)}
+                    onClick={openCartMenu}
+                  >
                     <FiShoppingCart size={25} className={`text-orange`} />
                   </div>
                 </div>

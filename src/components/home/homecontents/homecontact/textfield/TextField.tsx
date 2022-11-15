@@ -12,7 +12,7 @@ interface FormTypes extends InputTypes {
   name: string;
   placeholder: string;
   hint?: string;
-  onChange: () => void;
+  onChange?: () => void;
   className?: string;
   style?: React.CSSProperties;
   value?: string | number;
@@ -27,6 +27,16 @@ interface FormTypes extends InputTypes {
   minLength?: number;
   maxLengthMax?: number;
   title?: string;
+  touched?: boolean;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleChange?: {
+    (e: React.ChangeEvent<any>): void;
+    <T = string | React.ChangeEvent<any>>(
+      field: T
+    ): T extends React.ChangeEvent<any>
+      ? void
+      : (e: string | React.ChangeEvent<any>) => void;
+  };
 }
 const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
   (
@@ -40,6 +50,10 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
       id,
       title,
       onChange,
+      handleChange,
+      error,
+      touched,
+      onBlur,
       ...props
     },
     ref
@@ -59,9 +73,13 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
           )}
           placeholder={placeholder}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           enterKeyHint={"done"}
+          name={name}
+          title={title}
+          onBlur={onBlur}
         />
+        {error && touched && error}
       </>
     );
   }

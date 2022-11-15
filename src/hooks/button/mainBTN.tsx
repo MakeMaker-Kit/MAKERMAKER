@@ -6,11 +6,16 @@ interface MoreProps extends ButtonProps {
   isRounded: boolean;
   bgColor?: string;
   textColor?: string;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
   // onSubmit?: (e?: FormEvent<HTMLFormElement> | undefined) => void
 }
 
 const MainButton = React.forwardRef<HTMLFormElement, MoreProps>(
-  ({ children, isRounded, bgColor, textColor, ...props }, ref) => {
+  (
+    { children, isRounded, bgColor, textColor, disabled, type, ...props },
+    ref
+  ) => {
     const { mainLayout, textCustom } = textStyles;
     return (
       <button
@@ -22,6 +27,8 @@ const MainButton = React.forwardRef<HTMLFormElement, MoreProps>(
           `${textColor ? textCustom : "text-gray-50"}`,
           `${textCustom} ${mainLayout}  text-sm font-playfair`
         )}
+        type={type}
+        disabled={disabled}
       >
         {children}
       </button>

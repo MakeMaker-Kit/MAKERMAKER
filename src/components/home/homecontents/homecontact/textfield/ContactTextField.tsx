@@ -13,6 +13,16 @@ export interface TInput {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   OnFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleChange?: {
+    /** Classic React change handler, keyed by input name */
+    (e: React.ChangeEvent<any>): void;
+    /** Preact-like linkState. Will return a handleChange function.  */
+    <T = string | React.ChangeEvent<any>>(
+      field: T
+    ): T extends React.ChangeEvent<any>
+      ? void
+      : (e: string | React.ChangeEvent<any>) => void;
+  };
 }
 const ContactTextField: React.FC<TInput> = ({
   placeholder,
@@ -22,6 +32,7 @@ const ContactTextField: React.FC<TInput> = ({
   disabled,
   label,
   onChange,
+  handleChange,
 }) => {
   const { XFull, themeWrapper } = themes;
   const { textCustom, mainLayout } = textStyles;
@@ -35,7 +46,7 @@ const ContactTextField: React.FC<TInput> = ({
       placeholder={placeholder}
       type={type}
       name={name}
-      onChange={onChange}
+      onChange={handleChange}
       required
     />
   );
