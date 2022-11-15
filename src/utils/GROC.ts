@@ -1,3 +1,5 @@
+import { TGROCID } from "./utils.types";
+
 export const productDisplay = () => {
   return `*[_type == "productDsiplay"] {
     title,
@@ -5,4 +7,27 @@ export const productDisplay = () => {
     images,
     categoryTags
  }`;
+};
+
+export const getBlogDetail: TGROCID = (categoryId) => {
+  const query = `*[_type == "post" && slug.current == ${categoryId}] | order(_updatedAt desc) {
+_id,
+slug,
+body,
+publishedAt,
+mainImage,
+author-> {
+name,
+slug,
+image,
+bio
+},
+categories[] {
+  category-> {
+    title,
+   description
+  }
+}
+  }`;
+  return query;
 };

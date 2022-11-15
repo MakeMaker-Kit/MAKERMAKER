@@ -1,12 +1,14 @@
 export default {
   type: "object",
-  name: "person",
+  name: "sociallinks",
   fieldsets: [{ name: "social", title: "Social media handles" }],
   options: {
     collapsible: true,
     collapsed: false,
     columns: 3,
   },
+  title: "Social Links",
+  description: "This is the for Social Media Links",
   fields: [
     {
       title: "Name",

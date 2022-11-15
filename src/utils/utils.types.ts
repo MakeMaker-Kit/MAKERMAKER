@@ -29,15 +29,14 @@ export interface DisplayContentTypes {
   id: string | null | undefined;
   isReversed: Boolean | boolean;
 }
-export interface TDisplayContentTypes{
+export interface TDisplayContentTypes {
   [key: string]: number | string | string[] | boolean | undefined | IconType[];
   title: string;
   desc: string;
   image: string;
   coreTags: string[];
-  isReversed?: boolean
-  iconsValues?: IconType[]
-  
+  isReversed?: boolean;
+  iconsValues?: IconType[];
 }
 export interface ShopCarouselTypes {
   image: string;
@@ -56,6 +55,8 @@ export interface ShopCategoryTypes {
   icon: React.ReactNode;
   subCategory: SubCategoryType[];
 }
+/// GROC
+export type TGROCID = <T>(categoryid: T) => void | string;
 
 export interface TBrands {}
 type Return = {
@@ -140,5 +141,6 @@ console.log(student.classes);
 for (const key in student) {
   console.log(`${key} i ${student[key as keyof Students]}`);
 }
-Object.keys(student).map(key => console.log(`${student[key as keyof Students]}`);
-)
+Object.keys(student).map((key) =>
+  console.log(`${student[key as keyof Students]}`)
+);
