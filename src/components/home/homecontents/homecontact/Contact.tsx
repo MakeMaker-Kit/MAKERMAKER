@@ -70,21 +70,22 @@ const Contact = () => {
             error.email = "Invalid email address";
           }
           if (!values.username) {
-            error.username = "Username is Required";
+            error.username = "Username is inVALID";
           } else if (!USER_REGEX.test(values.username)) {
-            error.username = "Username is Required";
+            error.username = "Username is Should Not be greater than 10";
           }
           if (!values.message) {
-            error.message = "Message is Required";
+            error.message = "Message is Invalid";
           } else if (values.message.length > 100) {
             error.username =
               "Your message is too long and should be less than 100 characters ";
           }
           if (!values.phoneNumber) {
             error.phoneNumber = "PHONE NUMBER IS INVALID";
-          } else if (!PHONE_NUMBER_REGEX.test(values.phoneNumber as string)) {
+          } else if (values.phoneNumber >= 10) {
             error.phoneNumber = "Phone Number is Required";
           }
+          // !PHONE_NUMBER_REGEX.test(values.phoneNumber as string)
           if (!values.subject) {
             error.subject = "Subject is Invalid";
           } else if (values.subject.length > 50) {
@@ -134,13 +135,13 @@ const Contact = () => {
                 <div className={cx(`${XFull}`)}>
                   <TextField
                     label=""
-                    name="fullname"
+                    name="username"
                     handleChange={handleChange}
-                    placeholder="Your Full Name"
+                    placeholder="Your Full Names"
                     value={username}
                     type={"text"}
-                    error={errors.phoneNumber}
-                    touched={touched.phoneNumber}
+                    error={errors.username}
+                    touched={touched.username}
                     onBlur={handleBlur}
                   />
                 </div>

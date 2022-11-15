@@ -14,7 +14,9 @@ const TextDisplay = React.forwardRef<HTMLDivElement, MoreProps>(
             `p-px bg-white shadow border ${flexCenter} w-1/2 text-red-800`
           )}
         >
-          <span className={`${textCustom} ${mainLayout} text-xs`}>
+          <span
+            className={`${textCustom} ${mainLayout} text-xs whitespace-nowrap lowercase`}
+          >
             {children}
           </span>
         </div>

@@ -5,6 +5,7 @@ import {
   flexLayout,
   textStyles,
 } from "../../../../../styles/themes/theme";
+import { TextDisplay } from "../../../../../hooks";
 type InputTypes = Omit<React.ComponentProps<"input">, "classNames"> & {};
 
 interface FormTypes extends InputTypes {
@@ -69,7 +70,7 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
           // {...props}
           className={cx(
             `${XFull} h-12 border border-solid border-orange rounded-md ${themeWrapper.formPadL}`,
-            `${textCustom} ${mainLayout} text-sm `
+            `${textCustom} ${mainLayout} text-sm mb-1`
           )}
           placeholder={placeholder}
           value={value}
@@ -79,7 +80,7 @@ const TextField = React.forwardRef<HTMLInputElement, FormTypes>(
           title={title}
           onBlur={onBlur}
         />
-        {error && touched && error}
+        {error && touched && <TextDisplay>{error}</TextDisplay>}
       </>
     );
   }
