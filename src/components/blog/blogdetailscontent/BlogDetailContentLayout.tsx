@@ -4,12 +4,25 @@ import { flexLayout, textStyles, themes } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogMainLayout from "./blogmain/BlogMainLayout";
 import { useParams } from "react-router-dom";
+import { getBlogDetail } from "../../../utils/GROC";
+import { useDispatch, useSelector } from "react-redux";
+import { BlogDetails } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 
 const BlogDetailContentLayout = () => {
+  let ID: string | undefined;
+  const blogId = useParams();
+  ID = blogId.id;
+  const dispatch = useDispatch();
+  const blogDetail = useSelector(BlogDetails);
   const { flexResponsive } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { themeWrapper, boxFull, XFull, containerWrapper, boxExtend } = themes;
   const { mainMarX } = themeWrapper;
+  React.useEffect(() => {
+    // @ts-ignore
+    dispatch(getBlogDetail(ID));
+  }, [dispatch, blogDetail]);
+  console.log("Blog Detail Response", blogDetail);
   return (
     <>
       <div className={`${mainMarX}`}>

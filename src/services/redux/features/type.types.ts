@@ -25,6 +25,7 @@ export interface sanityInitialState {
   contactData: THomeContact | null | {};
   contactForn?: TContactForm | null | {};
   contactInformation?: null | {};
+  blogDetailData?: null | {};
 }
 export interface TContactForm {
   [key: string]: string | undefined;

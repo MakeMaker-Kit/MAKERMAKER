@@ -59,6 +59,11 @@ if (homeTestimonialsData || typeof homeTestimonialsData === "string") {
   homeTestimonialResponse = JSON.parse(homeTestimonialsData);
 }
 // Localrorage Get Item
+const blogDetailData = sessionStorage.getItem("blogDetail");
+let singlePostResponse;
+if (blogDetailData) {
+  singlePostResponse = JSON.parse(blogDetailData);
+}
 
 const initialState: sanityInitialState = {
   error: null,
@@ -68,12 +73,19 @@ const initialState: sanityInitialState = {
   loading: false,
 
   homeHeader: homeHeaderResponse ? homeHeaderResponse : null,
+
   headerHome: null,
+
   displaymore: homeHeaderResponse ? homeHeaderResponse : null,
+
   homeBrand: homeBrandsResponse ? homeBrandsResponse : null,
+
   testimonials: homeTestimonialResponse ? homeTestimonialResponse : null,
+
   socialLinks: null,
+
   footerAbout: footerAboutResponse ? footerAboutResponse : null,
+
   productDisplays: displayMoreResponse ? displayMoreResponse : null,
 
   contactData: {
@@ -83,7 +95,10 @@ const initialState: sanityInitialState = {
   },
 
   contactForm: null,
+
   contactInformation: null,
+
+  blogDetailData: singlePostResponse ? singlePostResponse : null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -362,6 +377,21 @@ export const SanityMainSlice = createSlice({
         } else {
           state.error = action.error;
         }
+      })
+      .addCase(getBlogDetails.pending, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(getBlogDetails.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+      })
+      .addCase(getBlogDetails.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload;
+          state.loading = false;
+        } else {
+          state.error = action.error;
+        }
       });
   },
 });
@@ -396,4 +426,6 @@ export const ContactForm = (state: RootState) => state.sanityMain.contactForm;
 export const ContactInformation = (state: RootState) =>
   state.sanityMain.contactInformation;
 
+export const BlogDetails = (state: RootState) =>
+  state.sanityMain.blogDetailData;
 // body.map(({children}) => children[0].map(({text}) => text))
