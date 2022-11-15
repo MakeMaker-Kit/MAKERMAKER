@@ -1,5 +1,5 @@
 import { client } from "../../../../client";
-
+import { getBlogDetail } from "../../../../utils/GROC";
 export type SanityServiceTypes = (
   payloadResponse: string
 ) => Promise<null | void>;
@@ -85,6 +85,16 @@ export const fetchContactInformation: SanityServiceTypes = async (
     return response;
   });
 };
+
+export const fetchBlogDetail: SanityServiceTypes = async (payloadResponse) => {
+  const query: string = getBlogDetail(payloadResponse);
+  await client.fetch(query).then((response) => {
+    if (response) {
+      return sessionStorage.setItem("blogDetail", JSON.stringify(response));
+    }
+    return response;
+  });
+};
 const SanityService = {
   fetchProductsDisplay,
   fetchHomeHeader,
@@ -94,6 +104,7 @@ const SanityService = {
   fetchUserContact,
   fetchContactForm,
   fetchContactInformation,
+  fetchBlogDetail,
 };
 
 export default SanityService;

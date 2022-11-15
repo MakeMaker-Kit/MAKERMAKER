@@ -22,6 +22,7 @@ const {
   fetchUserContact,
   fetchContactForm,
   fetchContactInformation,
+  fetchBlogDetail,
 } = SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
@@ -259,6 +260,20 @@ export const getContactInfo = createAsyncThunk<
   }
 });
 
+export const getBlogDetails = createAsyncThunk<
+  MyData,
+  string,
+  { extra: {}; rejectWithValue: ValidationError }
+>("sanityMain/getBlogDetails", async (queryID, thunkApi) => {
+  try {
+    return await fetchBlogDetail(queryID);
+  } catch (err: any | unknown) {
+    let Error: AxiosError<ValidationError> = err;
+    if (!Error.response) throw Error;
+    return thunkApi.rejectWithValue(Error.response.data as ValidationError);
+  }
+});
+
 export const textGet = createAsyncThunk<
   MyData,
   QueryResponseData,
@@ -380,3 +395,5 @@ export const ContactForm = (state: RootState) => state.sanityMain.contactForm;
 
 export const ContactInformation = (state: RootState) =>
   state.sanityMain.contactInformation;
+
+// body.map(({children}) => children[0].map(({text}) => text))

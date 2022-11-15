@@ -56,7 +56,7 @@ export interface ShopCategoryTypes {
   subCategory: SubCategoryType[];
 }
 /// GROC
-export type TGROCID = <T>(categoryid: T) => void | string;
+export type TGROCID = <T>(categoryid: T) => string;
 
 export interface TBrands {}
 type Return = {

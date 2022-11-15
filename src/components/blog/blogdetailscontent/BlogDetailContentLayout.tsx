@@ -3,6 +3,7 @@ import cx from "classnames";
 import { flexLayout, textStyles, themes } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogMainLayout from "./blogmain/BlogMainLayout";
+import { useParams } from "react-router-dom";
 
 const BlogDetailContentLayout = () => {
   const { flexResponsive } = flexLayout;
