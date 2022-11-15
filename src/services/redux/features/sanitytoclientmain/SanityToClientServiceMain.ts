@@ -95,6 +95,15 @@ export const fetchBlogDetail: SanityServiceTypes = async (payloadResponse) => {
     return response;
   });
 };
+
+export const fetchBlogs: SanityServiceTypes = async (payloadResponse) => {
+  await client.fetch(payloadResponse).then((response) => {
+    if (response) {
+      return sessionStorage.setItem("MainBlog", JSON.stringify(response));
+    }
+    return response;
+  });
+};
 const SanityService = {
   fetchProductsDisplay,
   fetchHomeHeader,
@@ -105,6 +114,7 @@ const SanityService = {
   fetchContactForm,
   fetchContactInformation,
   fetchBlogDetail,
+  fetchBlogs,
 };
 
 export default SanityService;

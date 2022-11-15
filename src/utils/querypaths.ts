@@ -28,3 +28,23 @@ export const ContactInfoQuery = `*[_type == "contactInfo"]{
     addressInfo,
     companyInfo
 }`;
+
+export const BlogQuery = `*[_type == "post"]{
+    _id,
+slug,
+body,
+publishedAt,
+mainImage,
+author-> {
+name,
+slug,
+image,
+bio
+},
+categories[] {
+  category-> {
+    title,
+   description
+  }
+}
+}`;

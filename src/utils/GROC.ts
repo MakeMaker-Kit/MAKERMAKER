@@ -31,3 +31,13 @@ categories[] {
   }`;
   return query;
 };
+
+export const getAllPosts = () => {
+  return `*[_type == "post"] {
+    title,
+    desc,
+    images,
+    categoryTags
+
+  }`;
+};

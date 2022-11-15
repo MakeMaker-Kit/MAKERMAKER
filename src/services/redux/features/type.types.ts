@@ -7,6 +7,19 @@ export interface globalInitialState {
   onCartModalOpen: boolean;
   cartBTNShow: boolean;
 }
+type TBLOGCATEGORY = {
+  title?: string;
+  descriptiom?: string;
+};
+export interface TBlogPost {
+  [key: string]: string | undefined | Boolean | boolean | undefined | unknown;
+  _id: string;
+  slug?: string;
+  body?: Array<{}>;
+  publishedAt?: string;
+  author: TBLOGCATEGORY[];
+  mainImage?: string;
+}
 // Create a minimalist adorn to the current  tate of the applicatiopn to  be repopulatex to the virtual dom of the modukr dom of tjhe appkiavction tim
 export interface sanityInitialState {
   [key: string]: boolean | Boolean | null | {}[] | void | string | {};
@@ -26,6 +39,7 @@ export interface sanityInitialState {
   contactForn?: TContactForm | null | {};
   contactInformation?: null | {};
   blogDetailData?: null | {};
+  blogPosts?: null | {} | TBlogPost;
 }
 export interface TContactForm {
   [key: string]: string | undefined;
