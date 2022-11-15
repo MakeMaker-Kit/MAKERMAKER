@@ -1,15 +1,29 @@
 import React from "react";
 import cx from "classnames";
+import { useDispatch, useSelector } from "react-redux";
 import { flexLayout, themes } from "../../../styles/themes/theme";
 import BlogMore from "./blogmore/BlogMore";
 import BlogMain from "./blogmain/BlogMain";
 import BlogCategories from "./blogcategories/BlogCategories";
 import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrapper";
+import {
+  getBlogPosts,
+  BlogPosts,
+} from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { BlogQuery } from "../../../utils/querypaths";
 const BlogContentLayout = () => {
   const { flexRow, flexResponsive } = flexLayout;
   const { themeWrapper, containerWrapper, boxFull, boxExtend, XExtend } =
     themes;
+
   const { mainMarX } = themeWrapper;
+  const dispatch = useDispatch();
+  const blogPosts = useSelector(BlogPosts);
+  React.useEffect(() => {
+    // @ts-ignore
+    dispatch(getBlogPosts(BlogQuery));
+  }, [dispatch, blogPosts]);
+  console.log("BlogPots Details", blogPosts);
   return (
     <>
       <div>

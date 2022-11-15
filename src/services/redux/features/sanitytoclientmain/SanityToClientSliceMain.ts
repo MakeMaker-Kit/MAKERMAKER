@@ -66,6 +66,12 @@ if (blogDetailData) {
   singlePostResponse = JSON.parse(blogDetailData);
 }
 
+const blogPostData = sessionStorage.getItem("blogDetail");
+let blogpostResponse;
+if (blogPostData || typeof blogPostData === "string") {
+  blogpostResponse = JSON.parse(blogPostData);
+}
+
 const initialState: sanityInitialState = {
   error: null,
 
@@ -100,6 +106,8 @@ const initialState: sanityInitialState = {
   contactInformation: null,
 
   blogDetailData: singlePostResponse ? singlePostResponse : null,
+
+  blogPosts: blogpostResponse ? blogpostResponse : null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -407,6 +415,21 @@ export const SanityMainSlice = createSlice({
         } else {
           state.error = action.error;
         }
+      })
+      .addCase(getBlogPosts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getBlogPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(getBlogPosts.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload;
+          state.loading = false;
+        } else {
+          state.error = action.error;
+        }
       });
   },
 });
@@ -443,4 +466,6 @@ export const ContactInformation = (state: RootState) =>
 
 export const BlogDetails = (state: RootState) =>
   state.sanityMain.blogDetailData;
+
+export const BlogPosts = (state: RootState) => state.sanityMain.blogPosts;
 // body.map(({children}) => children[0].map(({text}) => text))

@@ -39,7 +39,7 @@ export interface sanityInitialState {
   contactForn?: TContactForm | null | {};
   contactInformation?: null | {};
   blogDetailData?: null | {};
-  blogPosts?: null | {} | TBlogPost;
+  blogPosts?: null | {} | TBlogPost[];
 }
 export interface TContactForm {
   [key: string]: string | undefined;
