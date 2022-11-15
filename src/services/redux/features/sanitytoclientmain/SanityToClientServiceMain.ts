@@ -93,6 +93,7 @@ const SanityService = {
   fetchHomeBrands,
   fetchUserContact,
   fetchContactForm,
+  fetchContactInformation,
 };
 
 export default SanityService;

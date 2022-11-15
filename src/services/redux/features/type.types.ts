@@ -23,8 +23,18 @@ export interface sanityInitialState {
   footerAbout: null | {};
   delete?: null | {};
   contactData: THomeContact | null | {};
+  contactForn?: TContactForm | null | {};
+  contactInformation?: null | {};
 }
-
+export interface TContactForm {
+  [key: string]: string | undefined;
+  readonly _type: string;
+  email?: string;
+  username?: string;
+  phoneNumber?: string;
+  subject?: string;
+  message?: string;
+}
 export interface User {
   user: string;
 }
@@ -56,3 +66,9 @@ export interface THomeContact {
   subject: string;
   message: string;
 }
+
+type Icon = "me" | "you" | "her";
+type Size = "33" | "xl" | "lg";
+type SixedIcon = `${Icon}-${Size}`;
+
+const magic: SixedIcon = "her-xl";

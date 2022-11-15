@@ -12,3 +12,19 @@ export const productDisplayQuery = `*[_type == "productDisplay"]{
     categoryTags
  }`;
 export const HeaderQuery = `*[_type == "header"]`;
+export const ContactQuery = `*[_type == "homeContact"]{
+_id,
+_createdAt,
+username,
+email,
+phonenNumnber,
+subject,
+message
+}`;
+export const ContactInfoQuery = `*[_type == "contactInfo"]{
+    _type,
+    _id,
+    _createdAt,
+    addressInfo,
+    companyInfo
+}`;

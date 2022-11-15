@@ -21,6 +21,7 @@ const {
   fetchHomeBrands,
   fetchUserContact,
   fetchContactForm,
+  fetchContactInformation,
 } = SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
@@ -60,8 +61,11 @@ if (homeTestimonialsData || typeof homeTestimonialsData === "string") {
 
 const initialState: sanityInitialState = {
   error: null,
+
   message: "",
+
   loading: false,
+
   homeHeader: homeHeaderResponse ? homeHeaderResponse : null,
   headerHome: null,
   displaymore: homeHeaderResponse ? homeHeaderResponse : null,
@@ -70,11 +74,15 @@ const initialState: sanityInitialState = {
   socialLinks: null,
   footerAbout: footerAboutResponse ? footerAboutResponse : null,
   productDisplays: displayMoreResponse ? displayMoreResponse : null,
+
   contactData: {
     username: "",
     email: "",
     message: "",
   },
+
+  contactForm: null,
+  contactInformation: null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -167,6 +175,7 @@ export const getHomeHeader = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
+
 export const getDisplayMore = createAsyncThunk<
   MyData,
   string,
@@ -180,6 +189,7 @@ export const getDisplayMore = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
+
 export const getTestimonials = createAsyncThunk<
   MyData,
   string,
@@ -193,6 +203,7 @@ export const getTestimonials = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
+
 export const getHomeBrands = createAsyncThunk<
   MyData,
   string,
@@ -219,6 +230,7 @@ export const getUserContact = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
+
 export const getContactForm = createAsyncThunk<
   MyData,
   string,
@@ -232,6 +244,21 @@ export const getContactForm = createAsyncThunk<
     return thunkApi.rejectWithValue(error.response.data as ValidationError);
   }
 });
+
+export const getContactInfo = createAsyncThunk<
+  MyData,
+  string,
+  { extra: {}; rejectWithValue: ValidationError }
+>("sanityMain/getContactForm", async (query, thunkApi) => {
+  try {
+    return await fetchContactInformation(query);
+  } catch (err: any) {
+    let error: AxiosError<ValidationError> = err;
+    if (!error.response) throw error;
+    return thunkApi.rejectWithValue(error.response.data as ValidationError);
+  }
+});
+
 export const textGet = createAsyncThunk<
   MyData,
   QueryResponseData,
@@ -250,6 +277,11 @@ export const textGet = createAsyncThunk<
   }
   return (await response.json()) as MyData;
 });
+
+/**
+ * 
+ Create SnaityToClient Slicce @type to
+ */
 export const SanityMainSlice = createSlice({
   name: "sanityMain",
   initialState,
@@ -320,16 +352,31 @@ export const SanityMainSlice = createSlice({
 });
 
 const { actions, reducer } = SanityMainSlice;
+
 export default reducer;
+
 export const {} = actions;
+
 export const homeHeaderState = (state: RootState) =>
   state.sanityMain.homeHeader;
+
 export const headerHomeState = (state: RootState) =>
   state.sanityMain.headerHome;
+
 export const testimonials = (state: RootState) => state.sanityMain.testimonials;
+
 export const socialLinks = (state: RootState) => state.sanityMain.socialLinks;
+
 export const footerAbout = (state: RootState) => state.sanityMain.footerAbout;
+
 export const homeBrand = (state: RootState) => state.sanityMain.homeBrand;
+
 export const ProductDisplays = (state: RootState) =>
   state.sanityMain?.productDisplays;
+
 export const Delete = (state: RootState) => state.sanityMain.delete;
+
+export const ContactForm = (state: RootState) => state.sanityMain.contactForm;
+
+export const ContactInformation = (state: RootState) =>
+  state.sanityMain.contactInformation;

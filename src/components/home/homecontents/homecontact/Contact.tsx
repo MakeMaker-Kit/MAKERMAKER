@@ -96,11 +96,6 @@ const Contact = () => {
             const { email, message, username, phoneNumber, subject } = values;
             const UserRequest: THomeContact = {
               _type: "homeContact",
-              // email,
-              // message,
-              // username,
-              // phoneNumber,
-              // subject
               ...values,
             };
             // @ts-ignore

@@ -1,19 +1,26 @@
 import React from "react";
 import cx from "classnames";
 import GoogleMapReact from "google-map-react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   themes,
   textStyles,
   flexLayout,
 } from "../../../../styles/themes/theme";
 import { defaultProps, LocationProps } from "../../../../types/global.types";
-
+import {
+  getContactInfo,
+  ContactInformation,
+} from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { ContactInfoQuery, ContactQuery } from "../../../../utils/querypaths";
 const LocationContainer = ({ text }: LocationProps) => <p>{text}</p>;
 const Content = () => {
   const { flexCenter, flexStart, flexCol, flexRowCenter } = flexLayout;
   const { mainLayout, mainText, textCustom } = textStyles;
   const { themeWrapper, boxFull } = themes;
   const {} = themeWrapper;
+  const dispatch = useDispatch();
+  const contactInfo = useSelector(ContactInformation);
   const defaultProps: defaultProps = {
     center: {
       lat: 10.99835602,
@@ -21,6 +28,14 @@ const Content = () => {
     },
     zoom: 11,
   };
+  /// FECH
+  React.useLayoutEffect(() => {
+    // @ts-ignore
+    dispatch(getContactInfo(ContactInfoQuery));
+  }, [dispatch]);
+  console.log("====================================");
+  console.log("Contaxct Information ", contactInfo);
+  console.log("====================================");
   return (
     <>
       <div className={cx(`${flexCenter}`)}>
