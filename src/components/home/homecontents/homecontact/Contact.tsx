@@ -27,6 +27,7 @@ import {
   USER_REGEX,
 } from "../../../modals/authmodal/Regex";
 import MainButton from "../../../../hooks/button/mainBTN";
+import { TextDisplay } from "../../../../hooks";
 
 const Contact = () => {
   const { flexCenter, flexRow, flexCol, flexRowCenter } = flexLayout;
@@ -128,26 +129,20 @@ const Contact = () => {
           console.log("Contct Information", errors);
 
           return (
-            <form className={cx(`${XFull} h-96`, ``)} onSubmit={handleSubmit}>
+            <form className={cx(`${XFull} h-auto`, ``)} onSubmit={handleSubmit}>
               <div className={`${boxFull} ${flexCol} gap-y-5`}>
                 <div className={cx(`${XFull}`)}>
-                  <ContactTextField
-                    label=""
-                    name="username"
-                    // onChange={() => handleChange}
-                    placeholder="Enter Your Full Name"
-                    value={username}
-                    type={"text"}
-                    handleChange={handleChange}
-                  />
-                  {/* <TextField
+                  <TextField
                     label=""
                     name="fullname"
-                    onChange={() => handleChange}
+                    handleChange={handleChange}
                     placeholder="Your Full Name"
                     value={username}
                     type={"text"}
-                  /> */}
+                    error={errors.phoneNumber}
+                    touched={touched.phoneNumber}
+                    onBlur={handleBlur}
+                  />
                 </div>
                 <div className={cx(`${flexRowCenter} gap-x-4`)}>
                   {/*  */}
@@ -208,6 +203,10 @@ const Contact = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   ></textarea>
+
+                  {errors.message && touched.message && (
+                    <TextDisplay>{errors.message}</TextDisplay>
+                  )}
                 </div>
               </div>
               <div>
