@@ -49,7 +49,7 @@ const BlogMoreProfile = () => {
               <img
                 src={`${
                   author
-                    ? urlFor(author[0].image)
+                    ? urlFor(author[0]?.image && author[0]?.image)
                     : "https://bunzo-react.pages.dev/static/e5e25dbd97017ad7fffd2049490b5ca1/1deab/team-2.webp"
                 }`}
                 alt=""
@@ -61,7 +61,7 @@ const BlogMoreProfile = () => {
           </div>
           {/*  */}
           <div className={`${flexColCenter}`}>
-            <p>{author[0].name}</p>
+            <p>{author[0]?.name && author[0]?.name}</p>
             <p>Nigeria</p>
           </div>
           {/*  */}
@@ -101,23 +101,24 @@ const BlogMoreProfile = () => {
               projectId="zkmc5a7m"
               className={`${mainLayout} ${textCustom} text-xs`}
               dataset="production"
-              content={author[0].bio}
+              content={author[0]?.bio && author[0]?.bio}
             />
           </div>
           {/*  */}
           <ul className={`${flexRowCenter} gap-x-4`}>
-            {author[0].social.map((items: string, index: number) => (
-              <Link
-                to={`/${items}`}
-                rel="no-referee"
-                className={`h-10 w-10 p-2 border bg-gray-100 rounded-full`}
-                key={index}
-              >
-                <div className={`${boxFull} ${flexCenter}`}>
-                  <FaLinkedinIn />
-                </div>
-              </Link>
-            ))}
+            {author[0]?.social &&
+              author[0]?.social.map((items: string, index: number) => (
+                <Link
+                  to={`/${items}`}
+                  rel="no-referee"
+                  className={`h-10 w-10 p-2 border bg-gray-100 rounded-full`}
+                  key={index}
+                >
+                  <div className={`${boxFull} ${flexCenter}`}>
+                    <FaLinkedinIn />
+                  </div>
+                </Link>
+              ))}
           </ul>
           {/*  */}
           <div className={`w-full max-w-five `}>

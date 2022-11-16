@@ -29,7 +29,7 @@ const BlogCategories = () => {
       <div className={`${boxFull}`}>
         <div className="py-3 ">
           <div className={cx(`${boxFull} ${flexCol} gap-y-5`)}>
-            {blogCategories.map(
+            {blogCategories?.map(
               ({ _id, title, image }: TCategory, index: number) => (
                 <div
                   key={_id}
