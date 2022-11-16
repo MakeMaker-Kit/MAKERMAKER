@@ -152,3 +152,11 @@ export interface TBlogs {
     image?: string;
   }[];
 }
+
+export interface TCategory {
+  title?: string;
+  description?: string;
+  _type?: number;
+  image?: string;
+  _id?: string;
+}

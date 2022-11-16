@@ -26,6 +26,7 @@ const BlogContentLayout = () => {
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getBlogPosts(BlogQuery));
+    // @ts-ignore
     dispatch(getBlogCategories(blogCategoryQuery));
   }, [dispatch, blogCategories]);
   console.log("BlogPots Details", blogPosts, blogCategories);

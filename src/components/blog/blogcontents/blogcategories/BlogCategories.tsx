@@ -1,6 +1,9 @@
 import React from "react";
 import cx from "classnames";
+import { useSelector } from "react-redux";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { BlogCategory } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { TCategory } from "../../../../types/global.types";
 import {
   flexLayout,
   themes,
@@ -17,6 +20,7 @@ const BlogCategories = () => {
     transition,
     transitionEase,
   } = themes;
+  const blogCategories = useSelector(BlogCategory);
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
   const { ArrowRightIcon } = useIcon();
@@ -25,11 +29,10 @@ const BlogCategories = () => {
       <div className={`${boxFull}`}>
         <div className="py-3 ">
           <div className={cx(`${boxFull} ${flexCol} gap-y-5`)}>
-            {Array(5)
-              .fill(0)
-              .map((i) => (
+            {blogCategories.map(
+              ({ _id, title, image }: TCategory, index: number) => (
                 <div
-                  key={i}
+                  key={_id}
                   className={cx(
                     `h-24 ${XFull}`,
                     `rounded-lg shadow group ${transitionEase} border border-dotted border-slate-300`
@@ -53,7 +56,7 @@ const BlogCategories = () => {
                             `${mainLayout} ${textCustom} text-[1rem] font-semibold text-white font-gordita`
                           )}
                         >
-                          <h3 className={cx(`tracking-wide`)}>Designing</h3>
+                          <h3 className={cx(`tracking-wide`)}>{title}</h3>
                         </div>
                         <div
                           className={`w-8 h-8 p-2 bg-orange text-white rounded-full`}
@@ -66,7 +69,8 @@ const BlogCategories = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              )
+            )}
           </div>
         </div>
       </div>
