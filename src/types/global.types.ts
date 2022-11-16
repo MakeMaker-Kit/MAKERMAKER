@@ -143,7 +143,7 @@ export interface TBlogs {
     | TAUTHOR;
   _id: string;
   slug: { current: string; _type?: string };
-  body?: {}[];
+  body: {}[];
   title?: string;
   publishedAt?: string;
   mainImage?: string;

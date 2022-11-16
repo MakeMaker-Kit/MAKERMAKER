@@ -6,6 +6,7 @@ import BlogMainLayout from "./blogmain/BlogMainLayout";
 import { useParams } from "react-router-dom";
 // import { getBlogDetail } from "../../../utils/GROC";
 import { useDispatch, useSelector } from "react-redux";
+import { TBlogs } from "../../../types/global.types";
 import {
   BlogDetails,
   getBlogDetails,
@@ -42,7 +43,10 @@ const BlogDetailContentLayout = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                <BlogMainLayout />
+                {blogDetail &&
+                  blogDetail?.map((detail: TBlogs) => (
+                    <BlogMainLayout {...detail} />
+                  ))}
               </div>
             </div>
             <div
@@ -50,7 +54,7 @@ const BlogDetailContentLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              <BlogMore />
+              {/* <BlogMore /> */}
               {/* New / popular Blogs Display  */}
             </div>
           </div>

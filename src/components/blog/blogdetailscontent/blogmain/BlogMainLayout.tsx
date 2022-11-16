@@ -5,11 +5,21 @@ import {
   flexLayout,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { TBlogs } from "../../../../types/global.types";
 import MainHeader from "./MainHeader";
 import MainDesc from "./MainDesc";
 import MainFooter from "./MainFooter";
 
-const BlogMainLayout = () => {
+const BlogMainLayout: React.FC<TBlogs> = ({
+  _id,
+  slug,
+  body,
+  title,
+  mainImage,
+  author,
+  categories,
+}: TBlogs) => {
+  console.log("fjfjfjfjf", body);
   const { themeWrapper } = themes;
   const {} = themeWrapper;
   const { flexCol } = flexLayout;
@@ -21,7 +31,7 @@ const BlogMainLayout = () => {
           <MainHeader />
         </div>
         <div>
-          <MainDesc />
+          <MainDesc body={body} />
         </div>
         <div>
           <MainFooter />
