@@ -7,6 +7,7 @@ import MainButton from "../../../../hooks/button/mainBTN";
 import { BlogPosts } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { TAUTHOR, TBlogs } from "../../../../types/global.types";
 import { urlFor } from "../../../../client";
+import PortableText from "react-portable-text";
 import {
   textStyles,
   themes,
@@ -14,7 +15,7 @@ import {
 } from "../../../../styles/themes/theme";
 
 const BlogMoreProfile = () => {
-  const {} = textStyles;
+  const { mainLayout, textCustom } = textStyles;
   const { themeWrapper, boxFull, XFull, containerWrapper, imageLayout } =
     themes;
   const {} = themeWrapper;
@@ -29,6 +30,7 @@ const BlogMoreProfile = () => {
     flexCenter,
   } = flexLayout;
   const { FaLinkedinIn } = useIcon();
+
   return (
     <>
       <div
@@ -62,10 +64,43 @@ const BlogMoreProfile = () => {
           </div>
           {/*  */}
           <div className={`${flexCenter} text-center`}>
-            <p>
-              Wilson been a front-end and UI designer for over 10 years. He
-              helps develop HasThemes premium training products.
-            </p>
+            <PortableText
+              serializers={{
+                h1: (props: React.ReactElement) => (
+                  <h1
+                    className={`text-xs font-poppins font-semibold text-gray-300  ${mainLayout} ${textCustom}`}
+                    {...props}
+                  >
+                    {" "}
+                  </h1>
+                ),
+                span: (props: React.ReactElement) => (
+                  <span
+                    className={cx(`${mainLayout} ${textCustom} text-xs`)}
+                    {...props}
+                  ></span>
+                ),
+                li: ({ children }: { children: React.ReactElement }) => (
+                  <li className="ml-4 list-none  font-semibold capitalize text-red-700 text-xs   ">
+                    {children}
+                  </li>
+                ),
+                img: (src: string) => (
+                  <img className="rounded" alt="post_img" src={src} />
+                ),
+                link: ({
+                  href,
+                  children,
+                }: {
+                  href?: string;
+                  children: React.ReactElement;
+                }) => <a href={href}>{children}</a>,
+              }}
+              projectId="zkmc5a7m"
+              className={`${mainLayout} ${textCustom} text-xs`}
+              dataset="production"
+              content={author[0].bio}
+            />
           </div>
           {/*  */}
           <ul className={`${flexRowCenter} gap-x-4`}>

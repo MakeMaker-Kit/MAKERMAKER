@@ -41,6 +41,8 @@ name,
 slug,
 image,
 bio,
+occupation,
+social,
 },
 categories[] {
   category-> {

@@ -127,7 +127,9 @@ export type TAUTHOR = {
   name?: string;
   slug?: string;
   image?: string;
-  readonly bio?: {}[];
+  readonly bio?: Object[];
+  occupation?: string;
+  social?: string[];
 };
 export interface TBlogs {
   [key: string]:
