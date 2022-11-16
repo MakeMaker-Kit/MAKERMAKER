@@ -47,6 +47,7 @@ export interface sanityInitialState {
   blogDetailData?: null | {};
   blogPosts?: null | {} | TBlogPost[];
   blogCategories?: null | {} | TBlogCat;
+  text?: null | {};
 }
 export interface TContactForm {
   [key: string]: string | undefined;

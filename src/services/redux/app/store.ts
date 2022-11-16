@@ -60,7 +60,10 @@ const store = configureStore({
     sanityMain: SanityMainReducer,
   },
   devTools: import.meta.env.NODE_ENV !== "production",
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(logger),
 });
 
 export type appDispatch = typeof store.dispatch;

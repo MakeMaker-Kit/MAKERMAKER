@@ -13,6 +13,7 @@ import { SanityServiceTypes } from "./SanityToClientServiceMain";
 import { RootState } from "../../app/rootReducer";
 import { AxiosError } from "axios";
 import { SanityCreateTypes } from "./SanityToClientServiceMain";
+import { client } from "../../../../client";
 const {
   fetchProductsDisplay,
   fetchHomeHeader,
@@ -117,6 +118,8 @@ const initialState: sanityInitialState = {
   blogPosts: blogpostResponse ? blogpostResponse : null,
 
   blogCategories: blogCategoryResponse ? blogCategoryResponse : null,
+
+  text: null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -365,6 +368,12 @@ export const SanityMainSlice = createSlice({
     resetError: (state) => {
       state.error = null;
     },
+    fetchBlog: (state, action) => {
+      const result = client.fetch(action.payload).then((response) => {
+        return response;
+      });
+      state.text = result;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -476,7 +485,7 @@ const { actions, reducer } = SanityMainSlice;
 
 export default reducer;
 
-export const {} = actions;
+export const { fetchBlog } = actions;
 
 export const homeHeaderState = (state: RootState) =>
   state.sanityMain.homeHeader;
@@ -510,3 +519,5 @@ export const BlogPosts = (state: RootState) => state.sanityMain.blogPosts;
 
 export const BlogCategory = (state: RootState) =>
   state.sanityMain.blogCategories;
+
+export const Text = (state: RootState) => state.sanityMain.text;

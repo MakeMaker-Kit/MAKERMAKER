@@ -11,6 +11,8 @@ import {
   BlogPosts,
   getBlogCategories,
   BlogCategory,
+  fetchBlog,
+  Text,
 } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { BlogQuery } from "../../../utils/querypaths";
 import { blogCategoryQuery } from "../../../utils/GROC";
@@ -22,14 +24,21 @@ const BlogContentLayout = () => {
   const { mainMarX } = themeWrapper;
   const dispatch = useDispatch();
   const blogPosts = useSelector(BlogPosts);
+  const text = useSelector(Text);
   const blogCategories = useSelector(BlogCategory);
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getBlogPosts(BlogQuery));
     // @ts-ignore
     dispatch(getBlogCategories(blogCategoryQuery));
+    dispatch(fetchBlog(BlogQuery));
   }, [dispatch, blogCategories]);
-  console.log("BlogPots Details", blogPosts, blogCategories);
+  console.log("BlogPots Details", blogPosts, blogCategories, text);
+  console.log("BlogPots Details TWo", text);
+  console.log(
+    "kjgjjjg",
+    text[0].map(({ author }: { author: {} }) => author)
+  );
   return (
     <>
       <div>
@@ -70,7 +79,7 @@ const BlogContentLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              <BlogMore />
+              {/* <BlogMore /> */}
               {/* New / popular Blogs Display  */}
             </div>
           </div>
