@@ -56,7 +56,7 @@ const MainDesc = ({ body }: { body: Object[] }) => {
             }) => <a href={href}>{children}</a>,
           }}
           projectId="zkmc5a7m"
-          className={`${mainLayout} ${textCustom} text-xs text-red-900 bg-black p-3 `}
+          className={`${mainLayout} ${textCustom} text-xs text-red-900  p-3 `}
           dataset="production"
           content={body}
         />
