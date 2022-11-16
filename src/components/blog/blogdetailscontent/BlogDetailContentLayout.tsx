@@ -8,6 +8,10 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TBlogs } from "../../../types/global.types";
 import {
+  fetchSingleBlog,
+  TextDetails,
+} from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import {
   BlogDetails,
   getBlogDetails,
 } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
@@ -18,6 +22,7 @@ const BlogDetailContentLayout = () => {
   ID = blogId.id;
   const dispatch = useDispatch();
   const blogDetail = useSelector(BlogDetails);
+  const testdetail = useSelector(TextDetails);
   const { flexResponsive } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   // gerneate Query
@@ -28,8 +33,9 @@ const BlogDetailContentLayout = () => {
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getBlogDetails(ID));
+    dispatch(fetchSingleBlog(ID));
   }, [dispatch, blogDetail]);
-  console.log("Blog Detail Response", blogDetail);
+  console.log("Blog Detail Response", blogDetail, testdetail);
   return (
     <>
       <div className={`${mainMarX}`}>

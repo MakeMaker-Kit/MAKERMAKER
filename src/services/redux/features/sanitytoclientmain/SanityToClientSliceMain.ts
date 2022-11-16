@@ -120,6 +120,7 @@ const initialState: sanityInitialState = {
   blogCategories: blogCategoryResponse ? blogCategoryResponse : null,
 
   text: null,
+  testdetails: null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -374,6 +375,13 @@ export const SanityMainSlice = createSlice({
       });
       state.text = result;
     },
+
+    fetchSingleBlog: (state, action) => {
+      const result = client.fetch(action.payload).then((response) => {
+        return response;
+      });
+      state.testdetails = result;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -454,6 +462,7 @@ export const SanityMainSlice = createSlice({
       .addCase(getBlogPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        // state.blogPosts = action.payload;
       })
       .addCase(getBlogPosts.rejected, (state, action) => {
         if (action.payload) {
@@ -485,7 +494,7 @@ const { actions, reducer } = SanityMainSlice;
 
 export default reducer;
 
-export const { fetchBlog } = actions;
+export const { fetchBlog, fetchSingleBlog } = actions;
 
 export const homeHeaderState = (state: RootState) =>
   state.sanityMain.homeHeader;
@@ -521,3 +530,4 @@ export const BlogCategory = (state: RootState) =>
   state.sanityMain.blogCategories;
 
 export const Text = (state: RootState) => state.sanityMain.text;
+export const TextDetails = (state: RootState) => state.sanityMain.testdetails;

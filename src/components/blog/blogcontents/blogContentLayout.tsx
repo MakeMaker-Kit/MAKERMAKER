@@ -33,11 +33,11 @@ const BlogContentLayout = () => {
     dispatch(getBlogCategories(blogCategoryQuery));
     dispatch(fetchBlog(BlogQuery));
   }, [dispatch, blogCategories]);
-  console.log("BlogPots Details", blogPosts, blogCategories, text);
+  console.log("BlogPots Details", blogPosts);
   console.log("BlogPots Details TWo", text);
   console.log(
-    "kjgjjjg",
-    text[0].map(({ author }: { author: {} }) => author)
+    "kjgjjjg"
+    // text.map((texts) => texts?.author)
   );
   return (
     <>
