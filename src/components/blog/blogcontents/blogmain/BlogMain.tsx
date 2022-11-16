@@ -1,6 +1,8 @@
 import React from "react";
 import cx from "classnames";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { useSelector } from "react-redux";
+import { BlogCategory } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import {
   flexLayout,
   themes,
@@ -10,6 +12,7 @@ import {
 const BlogMain = () => {
   const { flexCol, flexRow, flexRowCenter, flexCenter, flexRowCenterBetween } =
     flexLayout;
+  const blogMainContent = useSelector(BlogCategory);
   const { themeWrapper, boxFull, XFull, containerWrapper, YFull } = themes;
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
@@ -19,9 +22,8 @@ const BlogMain = () => {
       <div className={cx(`${boxFull}`)}>
         <div className={`p-3`}>
           <div className={cx(`${XFull} ${flexCol} space-y-5`)}>
-            {Array(6)
-              .fill(0)
-              .map((i) => (
+            {blogMainContent
+              .map(({_id,slug  }: , index: number) => (
                 <div className={`${XFull} h-[9rem] `} key={i}>
                   <div className={`${boxFull} ${flexRow} gap-x-5`}>
                     <div
