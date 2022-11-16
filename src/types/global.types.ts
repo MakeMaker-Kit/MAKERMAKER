@@ -122,3 +122,33 @@ export interface TContact {
   subject: string;
   message: string;
 }
+
+type TAUTHOR = {
+  name?: string;
+  slug?: string;
+  image?: string;
+  readonly bio?: {}[];
+};
+export interface TBlogs {
+  [key: string]:
+    | string
+    | undefined
+    | Boolean
+    | boolean
+    | number
+    | {}[]
+    | {}
+    | TAUTHOR;
+  _id: string;
+  slug: string;
+  body?: {}[];
+  title?: string;
+  publishedAt?: string;
+  mainImage?: string;
+  author: {} | TAUTHOR;
+  categories: {
+    title?: string;
+    description?: string;
+    image?: string;
+  }[];
+}

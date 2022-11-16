@@ -2,17 +2,22 @@ import React from "react";
 import cx from "classnames";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { useSelector } from "react-redux";
-import { BlogCategory } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import moment from "moment";
+import {
+  BlogCategory,
+  BlogPosts,
+} from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import {
   flexLayout,
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { TBlogs } from "../../../../types/global.types";
 
 const BlogMain = () => {
   const { flexCol, flexRow, flexRowCenter, flexCenter, flexRowCenterBetween } =
     flexLayout;
-  const blogMainContent = useSelector(BlogCategory);
+  const blogMainContent = useSelector(BlogPosts);
   const { themeWrapper, boxFull, XFull, containerWrapper, YFull } = themes;
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
@@ -22,9 +27,9 @@ const BlogMain = () => {
       <div className={cx(`${boxFull}`)}>
         <div className={`p-3`}>
           <div className={cx(`${XFull} ${flexCol} space-y-5`)}>
-            {blogMainContent
-              .map(({_id,slug  }: , index: number) => (
-                <div className={`${XFull} h-[9rem] `} key={i}>
+            {blogMainContent.map(
+              ({ _id, slug, author, title }: TBlogs, index: number) => (
+                <div className={`${XFull} h-[9rem] `} key={_id}>
                   <div className={`${boxFull} ${flexRow} gap-x-5`}>
                     <div
                       className={cx(
@@ -61,7 +66,7 @@ const BlogMain = () => {
                               `text-[16px] font-gordita tracking-wider font-semibold`
                             )}
                           >
-                            Customize your WooCommerce store with countless Web
+                            {title}
                           </h2>
                         </div>
                         <div className={`${flexRowCenterBetween}`}>
@@ -83,7 +88,8 @@ const BlogMain = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              )
+            )}
           </div>
         </div>
       </div>

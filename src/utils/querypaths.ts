@@ -35,6 +35,7 @@ slug,
 body,
 publishedAt,
 mainImage,
+title, 
 author-> {
 name,
 slug,
@@ -44,7 +45,8 @@ bio
 categories[] {
   category-> {
     title,
-   description
+   description,
+   image
   }
 }
 }`;
