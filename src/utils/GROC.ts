@@ -42,9 +42,9 @@ export const getAllPosts = () => {
   }`;
 };
 
-export const blogCategoryQuery = `*[_type == "category"{
+export const blogCategoryQuery = `*[_type == "category"]{
   _id,
   title,
   description,
   image
-}]`
+}`;

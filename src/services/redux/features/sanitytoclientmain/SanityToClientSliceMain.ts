@@ -24,6 +24,7 @@ const {
   fetchContactInformation,
   fetchBlogDetail,
   fetchBlogs,
+  fetchBlogCategories,
 } = SanityService;
 // Localrorage Get Item
 const data = localStorage.getItem("ProductDisplays");
@@ -72,6 +73,12 @@ if (blogPostData || typeof blogPostData === "string") {
   blogpostResponse = JSON.parse(blogPostData);
 }
 
+const blogCategoryData = sessionStorage.getItem("BlogCategories");
+let blogCategoryResponse;
+if (blogCategoryData || typeof blogCategoryData === "string") {
+  blogCategoryResponse = JSON.parse(blogCategoryData);
+}
+
 const initialState: sanityInitialState = {
   error: null,
 
@@ -108,6 +115,8 @@ const initialState: sanityInitialState = {
   blogDetailData: singlePostResponse ? singlePostResponse : null,
 
   blogPosts: blogpostResponse ? blogpostResponse : null,
+
+  blogCategories: blogCategoryResponse ? blogCategoryResponse : null,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -312,6 +321,20 @@ export const getBlogPosts = createAsyncThunk<
   }
 });
 
+export const getBlogCategories = createAsyncThunk<
+  MyData,
+  string,
+  { extra: {}; rejectWithValue: ValidationError }
+>("sanityMain/getBlogCategories", async (queryID, thunkApi) => {
+  try {
+    return await fetchBlogCategories(queryID);
+  } catch (err: any | unknown) {
+    let Error: AxiosError<ValidationError> = err;
+    if (!Error.response) throw Error;
+    return thunkApi.rejectWithValue(Error.response.data as ValidationError);
+  }
+});
+
 export const textGet = createAsyncThunk<
   MyData,
   QueryResponseData,
@@ -430,6 +453,21 @@ export const SanityMainSlice = createSlice({
         } else {
           state.error = action.error;
         }
+      })
+      .addCase(getBlogCategories.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getBlogCategories.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(getBlogCategories.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload;
+          state.loading = false;
+        } else {
+          state.error = action.error;
+        }
       });
   },
 });
@@ -469,3 +507,6 @@ export const BlogDetails = (state: RootState) =>
 
 export const BlogPosts = (state: RootState) => state.sanityMain.blogPosts;
 // body.map(({children}) => children[0].map(({text}) => text))
+
+export const BlogCategory = (state: RootState) =>
+  state.sanityMain.blogCategories;

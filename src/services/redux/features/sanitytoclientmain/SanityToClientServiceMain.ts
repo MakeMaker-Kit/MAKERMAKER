@@ -115,6 +115,7 @@ export const fetchBlogCategories: SanityServiceTypes = async (
     return response;
   });
 };
+
 const SanityService = {
   fetchProductsDisplay,
   fetchHomeHeader,

@@ -20,6 +20,12 @@ export interface TBlogPost {
   author: TBLOGCATEGORY[];
   mainImage?: string;
 }
+export interface TBlogCat {
+  _id?: string | number;
+  title?: string;
+  description?: string;
+  image?: string;
+}
 // Create a minimalist adorn to the current  tate of the applicatiopn to  be repopulatex to the virtual dom of the modukr dom of tjhe appkiavction tim
 export interface sanityInitialState {
   [key: string]: boolean | Boolean | null | {}[] | void | string | {};
@@ -40,6 +46,7 @@ export interface sanityInitialState {
   contactInformation?: null | {};
   blogDetailData?: null | {};
   blogPosts?: null | {} | TBlogPost[];
+  blogCategories?: null | {} | TBlogCat;
 }
 export interface TContactForm {
   [key: string]: string | undefined;

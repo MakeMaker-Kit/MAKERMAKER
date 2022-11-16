@@ -9,8 +9,11 @@ import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrap
 import {
   getBlogPosts,
   BlogPosts,
+  getBlogCategories,
+  BlogCategory,
 } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { BlogQuery } from "../../../utils/querypaths";
+import { blogCategoryQuery } from "../../../utils/GROC";
 const BlogContentLayout = () => {
   const { flexRow, flexResponsive } = flexLayout;
   const { themeWrapper, containerWrapper, boxFull, boxExtend, XExtend } =
@@ -19,11 +22,13 @@ const BlogContentLayout = () => {
   const { mainMarX } = themeWrapper;
   const dispatch = useDispatch();
   const blogPosts = useSelector(BlogPosts);
+  const blogCategories = useSelector(BlogCategory);
   React.useEffect(() => {
     // @ts-ignore
     dispatch(getBlogPosts(BlogQuery));
-  }, [dispatch, blogPosts]);
-  console.log("BlogPots Details", blogPosts);
+    dispatch(getBlogCategories(blogCategoryQuery));
+  }, [dispatch, blogPosts, blogCategories]);
+  console.log("BlogPots Details", blogPosts, blogCategories);
   return (
     <>
       <div>
