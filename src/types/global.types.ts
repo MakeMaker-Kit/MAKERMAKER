@@ -123,7 +123,7 @@ export interface TContact {
   message: string;
 }
 
-type TAUTHOR = {
+export type TAUTHOR = {
   name?: string;
   slug?: string;
   image?: string;

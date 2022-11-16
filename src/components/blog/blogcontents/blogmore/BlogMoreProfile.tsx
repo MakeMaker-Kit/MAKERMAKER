@@ -1,8 +1,12 @@
 import React from "react";
 import cx from "classnames";
+import { useSelector } from "react-redux";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { FaLinkedin, FaLinkedinIn } from "react-icons/fa";
 import MainButton from "../../../../hooks/button/mainBTN";
+import { BlogPosts } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { TAUTHOR, TBlogs } from "../../../../types/global.types";
+import { urlFor } from "../../../../client";
 import {
   textStyles,
   themes,
@@ -14,6 +18,9 @@ const BlogMoreProfile = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper, imageLayout } =
     themes;
   const {} = themeWrapper;
+  const blogPosts = useSelector(BlogPosts);
+  const author = blogPosts?.map(({ author }: TBlogs) => author);
+  console.log("Auth Repone", author);
   const {
     flexRowCenter,
     flexCol,
@@ -36,7 +43,11 @@ const BlogMoreProfile = () => {
               )}
             >
               <img
-                src="https://bunzo-react.pages.dev/static/e5e25dbd97017ad7fffd2049490b5ca1/1deab/team-2.webp"
+                src={`${
+                  author
+                    ? urlFor(author[0].image)
+                    : "https://bunzo-react.pages.dev/static/e5e25dbd97017ad7fffd2049490b5ca1/1deab/team-2.webp"
+                }`}
                 alt=""
                 title=""
                 data-loading="lazy"
@@ -46,7 +57,7 @@ const BlogMoreProfile = () => {
           </div>
           {/*  */}
           <div className={`${flexColCenter}`}>
-            <p>Wilson Ibekason</p>
+            <p>{author[0].name}</p>
             <p>Nigeria</p>
           </div>
           {/*  */}

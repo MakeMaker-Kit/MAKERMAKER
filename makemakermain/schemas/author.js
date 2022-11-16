@@ -43,6 +43,18 @@ export default {
         },
       ],
     },
+    {
+      name: "social",
+      title: " Social Media",
+      description: "This is the Authors",
+      type: "array",
+      of: [
+        {
+          type: "string",
+          title: "Add the authors social Media Link Here",
+        },
+      ],
+    },
   ],
   preview: {
     select: {
