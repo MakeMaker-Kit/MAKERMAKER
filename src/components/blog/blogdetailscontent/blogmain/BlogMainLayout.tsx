@@ -17,7 +17,9 @@ const BlogMainLayout: React.FC<TBlogs> = ({
   title,
   mainImage,
   author,
+  publishedAt,
   categories,
+  detail,
 }: TBlogs) => {
   console.log("fjfjfjfjf", body);
   const { themeWrapper } = themes;
@@ -28,7 +30,11 @@ const BlogMainLayout: React.FC<TBlogs> = ({
     <>
       <div className={classNames(`${flexCol} space-y-5`)}>
         <div>
-          <MainHeader />
+          <MainHeader
+            mainImage={mainImage}
+            author={author}
+            publihedAt={publishedAt}
+          />
         </div>
         <div>
           <MainDesc body={body} />

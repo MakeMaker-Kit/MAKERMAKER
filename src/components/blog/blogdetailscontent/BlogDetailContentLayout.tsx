@@ -45,7 +45,7 @@ const BlogDetailContentLayout = () => {
               <div className={cx(`${boxFull} `)}>
                 {blogDetail &&
                   blogDetail?.map((detail: TBlogs) => (
-                    <BlogMainLayout {...detail} />
+                    <BlogMainLayout {...detail} detail={detail} />
                   ))}
               </div>
             </div>

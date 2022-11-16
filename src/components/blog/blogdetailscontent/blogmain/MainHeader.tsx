@@ -5,10 +5,18 @@ import {
   textStyles,
   flexLayout,
 } from "../../../../styles/themes/theme";
+import moment from "moment";
 import ButtonText from "../../../../hooks/text/buttonText";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { TBlogs } from "../../../../types/global.types";
+import { urlFor } from "../../../../client";
 
-const MainHeader = () => {
+const MainHeader: React.FC<TBlogs> = ({
+  mainImage,
+  title,
+  publishedAt,
+  author,
+}: TBlogs) => {
   const { themeWrapper, XFull, boxFull, containerWrapper } = themes;
   const {} = themeWrapper;
   const { flexCol, flexRow, flexRowCenter, flexRowCenterBetween, flexCenter } =
@@ -20,7 +28,7 @@ const MainHeader = () => {
       <div className={classNames(`${flexCol} gap-y-10`)}>
         <div className={`${XFull} h-[350px]  rounded-xl`}>
           <img
-            src="https://bunzo-react.pages.dev/static/d48582260f8f1d3f931ed2db15f51b82/1d064/03.webp"
+            src={urlFor(mainImage)}
             alt=""
             className={classNames(
               `max-w-full w-full h-full object-cover rounded-xl `
@@ -40,7 +48,7 @@ const MainHeader = () => {
               Marketing
             </ButtonText>
             <p>
-              By <span>Wilson</span>
+              By <span>{author?.name}</span>
             </p>
           </div>
           <div
@@ -49,7 +57,9 @@ const MainHeader = () => {
             <span>
               <ArchiveIcon />
             </span>
-            <p className="tracking-tight">03/05/2021.</p>
+            <p className="tracking-tight">
+              {moment(publishedAt).utc().format("YYYY-MMM-DD")}.
+            </p>
             <p>10 min read</p>
           </div>
           <div className={`${flexRowCenter} space-x-1`}>
