@@ -8,15 +8,20 @@ import {
 import moment from "moment";
 import ButtonText from "../../../../hooks/text/buttonText";
 import { useIcon } from "../../../../hooks/dispatchContext";
-import { TBlogs } from "../../../../types/global.types";
+import { TBlogs, TAUTHOR } from "../../../../types/global.types";
 import { urlFor } from "../../../../client";
 
-const MainHeader: React.FC<TBlogs> = ({
+const MainHeader = ({
   mainImage,
-  title,
+  categories,
   publishedAt,
   author,
-}: TBlogs) => {
+}: {
+  mainImage?: string;
+  categories: Array<{}>;
+  publishedAt?: string;
+  author?: TAUTHOR;
+}) => {
   const { themeWrapper, XFull, boxFull, containerWrapper } = themes;
   const {} = themeWrapper;
   const { flexCol, flexRow, flexRowCenter, flexRowCenterBetween, flexCenter } =

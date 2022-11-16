@@ -33,7 +33,8 @@ const BlogMainLayout: React.FC<TBlogs> = ({
           <MainHeader
             mainImage={mainImage}
             author={author}
-            publihedAt={publishedAt}
+            publishedAt={publishedAt}
+            categories={categories}
           />
         </div>
         <div>
