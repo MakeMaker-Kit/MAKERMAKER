@@ -46,12 +46,13 @@ export default {
     {
       name: "social",
       title: " Social Media",
-      description: "This is the Authors",
+      description: "This is the Authors Social Media ",
       type: "array",
       of: [
         {
           type: "string",
-          title: "Add the authors social Media Link Here",
+          title:
+            "Add the authors social Media Link Here (Facebook, Twitter, LinkedIn, Instagram)",
         },
       ],
     },

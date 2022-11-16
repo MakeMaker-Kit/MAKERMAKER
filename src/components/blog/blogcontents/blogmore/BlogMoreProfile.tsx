@@ -8,6 +8,7 @@ import { BlogPosts } from "../../../../services/redux/features/sanitytoclientmai
 import { TAUTHOR, TBlogs } from "../../../../types/global.types";
 import { urlFor } from "../../../../client";
 import PortableText from "react-portable-text";
+import { Link } from "react-router-dom";
 import {
   textStyles,
   themes,
@@ -21,7 +22,8 @@ const BlogMoreProfile = () => {
   const {} = themeWrapper;
   const blogPosts = useSelector(BlogPosts);
   const author = blogPosts?.map(({ author }: TBlogs) => author);
-  console.log("Auth Repone", author);
+  const social = blogPosts?.map(({ social }: TBlogs) => social);
+  console.log("Auth Repone", social, blogPosts);
   const {
     flexRowCenter,
     flexCol,
@@ -104,18 +106,18 @@ const BlogMoreProfile = () => {
           </div>
           {/*  */}
           <ul className={`${flexRowCenter} gap-x-4`}>
-            {Array(4)
-              .fill(0)
-              .map((i) => (
-                <li
-                  className={`h-10 w-10 p-2 border bg-gray-100 rounded-full`}
-                  key={i}
-                >
-                  <div className={`${boxFull} ${flexCenter}`}>
-                    <FaLinkedinIn />
-                  </div>
-                </li>
-              ))}
+            {author[0].social.map((items: string, index: number) => (
+              <Link
+                to={`/${items}`}
+                rel="no-referee"
+                className={`h-10 w-10 p-2 border bg-gray-100 rounded-full`}
+                key={index}
+              >
+                <div className={`${boxFull} ${flexCenter}`}>
+                  <FaLinkedinIn />
+                </div>
+              </Link>
+            ))}
           </ul>
           {/*  */}
           <div className={`w-full max-w-five `}>
