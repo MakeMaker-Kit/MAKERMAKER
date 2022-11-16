@@ -87,7 +87,7 @@ export const fetchContactInformation: SanityServiceTypes = async (
 };
 
 export const fetchBlogDetail: SanityServiceTypes = async (payloadResponse) => {
-  const query: string = getBlogDetail(payloadResponse);
+  const query = getBlogDetail(payloadResponse);
   await client.fetch(query).then((response) => {
     if (response) {
       return sessionStorage.setItem("blogDetail", JSON.stringify(response));

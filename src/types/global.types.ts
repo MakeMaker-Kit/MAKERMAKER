@@ -140,12 +140,12 @@ export interface TBlogs {
     | {}
     | TAUTHOR;
   _id: string;
-  slug: string;
+  slug: { current: string; _type?: string };
   body?: {}[];
   title?: string;
   publishedAt?: string;
   mainImage?: string;
-  author: {} | TAUTHOR;
+  author: TAUTHOR;
   categories: {
     title?: string;
     description?: string;

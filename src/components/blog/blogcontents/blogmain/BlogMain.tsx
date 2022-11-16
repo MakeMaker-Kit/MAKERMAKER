@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import {
   BlogCategory,
@@ -13,6 +14,7 @@ import {
   textStyles,
 } from "../../../../styles/themes/theme";
 import { TBlogs } from "../../../../types/global.types";
+import { urlFor } from "../../../../client";
 
 const BlogMain = () => {
   const { flexCol, flexRow, flexRowCenter, flexCenter, flexRowCenterBetween } =
@@ -27,17 +29,31 @@ const BlogMain = () => {
       <div className={cx(`${boxFull}`)}>
         <div className={`p-3`}>
           <div className={cx(`${XFull} ${flexCol} space-y-5`)}>
-            {blogMainContent.map(
-              ({ _id, slug, author, title }: TBlogs, index: number) => (
+            {blogMainContent?.map(
+              (
+                {
+                  _id,
+                  slug,
+                  author,
+                  title,
+                  categories,
+                  mainImage,
+                  publishedAt,
+                }: TBlogs,
+                index: number
+              ) => (
                 <div className={`${XFull} h-[9rem] `} key={_id}>
-                  <div className={`${boxFull} ${flexRow} gap-x-5`}>
+                  <Link
+                    to={`/blog/${slug.current}`}
+                    className={`${boxFull} ${flexRow} gap-x-5`}
+                  >
                     <div
                       className={cx(
                         `w-three max-w-three ${YFull} rounded-md cursor-pointer`
                       )}
                     >
                       <img
-                        src="https://bunzo-react.pages.dev/static/dcb17957c78e01b1c55a19531f8a2bb0/c6aca/06.webp"
+                        src={urlFor(mainImage)}
                         alt=""
                         className={cx(
                           `w-full max-w-full h-full object-center object-cover rounded-md border border-dotted border-gray-600`
@@ -53,11 +69,14 @@ const BlogMain = () => {
                         <div className={`${flexRowCenter} gap-x-5`}>
                           <div className={`w-auto h-8 p-1 border rounded-md`}>
                             <div className={cx(`${boxFull} ${flexCenter}`)}>
-                              <p className={`text-sm font-gordita`}>Business</p>
+                              <p className={`text-sm font-gordita`}>
+                                {categories[0].title}
+                              </p>
                             </div>
                           </div>
                           <p className={cx(`text-sm text-gray-400`)}>
-                            By <span className="text-gray-900">Wilson</span>
+                            By{" "}
+                            <span className="text-gray-900">{author.name}</span>
                           </p>
                         </div>
                         <div>
@@ -76,7 +95,9 @@ const BlogMain = () => {
                             <span>
                               <ArchiveIcon />
                             </span>
-                            <p className="tracking-tight">03/05/2021.</p>
+                            <p className="tracking-tight">
+                              {moment(publishedAt).utc().format("YYYY-MMM-DD")}
+                            </p>
                             <p>10 min read</p>
                           </div>
                           <div className={`${flexRowCenter} space-x-1`}>
@@ -86,7 +107,7 @@ const BlogMain = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               )
             )}

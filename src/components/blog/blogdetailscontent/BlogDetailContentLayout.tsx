@@ -4,9 +4,12 @@ import { flexLayout, textStyles, themes } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogMainLayout from "./blogmain/BlogMainLayout";
 import { useParams } from "react-router-dom";
-import { getBlogDetail } from "../../../utils/GROC";
+// import { getBlogDetail } from "../../../utils/GROC";
 import { useDispatch, useSelector } from "react-redux";
-import { BlogDetails } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import {
+  BlogDetails,
+  getBlogDetails,
+} from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 
 const BlogDetailContentLayout = () => {
   let ID: string | undefined;
@@ -16,11 +19,14 @@ const BlogDetailContentLayout = () => {
   const blogDetail = useSelector(BlogDetails);
   const { flexResponsive } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
+  // gerneate Query
+
   const { themeWrapper, boxFull, XFull, containerWrapper, boxExtend } = themes;
   const { mainMarX } = themeWrapper;
+  console.log("Params Id Respone", ID);
   React.useEffect(() => {
     // @ts-ignore
-    dispatch(getBlogDetail(ID));
+    dispatch(getBlogDetails(ID));
   }, [dispatch, blogDetail]);
   console.log("Blog Detail Response", blogDetail);
   return (

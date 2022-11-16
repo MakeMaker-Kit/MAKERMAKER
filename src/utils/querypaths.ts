@@ -40,13 +40,13 @@ author-> {
 name,
 slug,
 image,
-bio
+bio,
 },
 categories[] {
   category-> {
     title,
    description,
-   image
-  }
+   image,
+  },
 }
 }`;

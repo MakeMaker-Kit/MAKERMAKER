@@ -27,7 +27,7 @@ const BlogContentLayout = () => {
     // @ts-ignore
     dispatch(getBlogPosts(BlogQuery));
     dispatch(getBlogCategories(blogCategoryQuery));
-  }, [dispatch, blogPosts, blogCategories]);
+  }, [dispatch, blogCategories]);
   console.log("BlogPots Details", blogPosts, blogCategories);
   return (
     <>

@@ -10,7 +10,7 @@ export const productDisplay = () => {
 };
 
 export const getBlogDetail: TGROCID = (categoryId) => {
-  const query = `*[_type == "post" && slug.current == ${categoryId}] | order(_updatedAt desc) {
+  const query = `*[_type == "post" && slug.current == '${categoryId}' ] | order(_updatedAt desc) {
 _id,
 slug,
 body,
