@@ -66,7 +66,7 @@ if (blogDetailData) {
   singlePostResponse = JSON.parse(blogDetailData);
 }
 
-const blogPostData = sessionStorage.getItem("blogDetail");
+const blogPostData = sessionStorage.getItem("MainBlog");
 let blogpostResponse;
 if (blogPostData || typeof blogPostData === "string") {
   blogpostResponse = JSON.parse(blogPostData);
