@@ -47,7 +47,10 @@ const BlogProfileLayout = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                <BlogProfileMainLayout />
+                {blogsByAuthorSlug &&
+                  blogsByAuthorSlug?.map(({ posts }: TBlogs, index) =>
+                    posts?.map((post) => <BlogProfileMainLayout {...post} />)
+                  )}
               </div>
             </div>
             <div
@@ -56,7 +59,10 @@ const BlogProfileLayout = () => {
               )}
             >
               {/* <BlogMore /> */}
-              <ProfileWrapper {...blogsByAuthorSlug[0]} />
+              {blogsByAuthorSlug.map((blogByAuthorSlug: TBlogs) => (
+                //@ts-ignore
+                <ProfileWrapper {...blogByAuthorSlug} />
+              ))}
               {/* New / popular Blogs Display  */}
             </div>
           </div>

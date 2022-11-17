@@ -2,13 +2,26 @@ import React from "react";
 import cx from "classnames";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { TypedObject } from "@sanity/types/dist/dts";
+
 import {
   flexLayout,
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
 
-const BlogProfileMainLayout = () => {
+const BlogProfileMainLayout = ({
+  title,
+}: {
+  title?: string;
+  body?: TypedObject[];
+  categories?: {
+    title?: string;
+    description?: string;
+    image?: string;
+  }[];
+  tags: {}[];
+}) => {
   const {
     flexCol,
     flexRow,
@@ -77,9 +90,7 @@ const BlogProfileMainLayout = () => {
             <div
               className={`${XFull} ${flexStart} line-clamp-1 ${mainLayout} ${textCustom} text-lg `}
             >
-              <h1 className={`font-cascadiacode font-bold`}>
-                Make your store stand out from the others by converting
-              </h1>
+              <h1 className={`font-cascadiacode font-bold`}>{title}</h1>
             </div>
             {/* Descition */}
             <div

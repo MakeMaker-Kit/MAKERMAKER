@@ -62,7 +62,12 @@ export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
     "slug": slug.current,
 body,
 "categories": categories[]->{_id, description, title, image},
-"tags": tags[]->{_id, name}
+"tags": tags[]->{_id, name},
+"date": publishedAt,
+mainImage,
+author-> {
+  name,
+  },
   }
 }`;
 };

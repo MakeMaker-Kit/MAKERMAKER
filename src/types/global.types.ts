@@ -153,6 +153,16 @@ export interface TBlogs {
   publishedAt?: string;
   mainImage?: string;
   author: TAUTHOR;
+  posts: {
+    title?: string;
+    body?: TypedObject[];
+    categories?: {
+      title?: string;
+      description?: string;
+      image?: string;
+    }[];
+    tags: {}[];
+  }[];
   tags: { name?: string; _id: string }[];
   categories: {
     title?: string;

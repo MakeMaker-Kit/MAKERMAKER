@@ -8,8 +8,8 @@ type AwesomeContextType = {
   setAwesomeState: React.Dispatch<React.SetStateAction<number>>;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  blogsByAuthorSlug: null;
-  setBlogsByAuthorSlug: React.Dispatch<React.SetStateAction<null>>;
+  blogsByAuthorSlug: [];
+  setBlogsByAuthorSlug: React.Dispatch<React.SetStateAction<never[]>>;
   fetchBlogsByAuthorSlug: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
@@ -21,7 +21,7 @@ type Props = {
 type ValidationError = { errorMessage: string };
 export const AwesomeContextProvider = ({ children }: Props) => {
   const [awesomeState, setAwesomeState] = React.useState(0);
-  const [blogsByAuthorSlug, setBlogsByAuthorSlug] = React.useState(null);
+  const [blogsByAuthorSlug, setBlogsByAuthorSlug] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
