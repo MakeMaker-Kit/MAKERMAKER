@@ -44,7 +44,7 @@ bio,
 occupation,
 social,
 },
-"categories": categories[]->{id, title},
+"categories": categories[]->{_id, title, description, imagw},
 }
 }`;
 /**
@@ -53,5 +53,13 @@ social,
     title,
    description,
    image,
+   mainImage
+: 
+asset
+: 
+{_ref: 'image-cdbf30f20968bbb015ca8e8c4d72b2cc89083f52-850x400-webp', _type: 'reference'}
+_type
+: 
+"image"
   },
  */

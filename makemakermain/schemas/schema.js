@@ -25,6 +25,7 @@ import productDisplay from "./products/productDisplay";
 import contactinfo from "./home/contact/contactinfo";
 import contactForm from "./home/contact/contactForm";
 import blogmore from "./blog/blogmore";
+import blogTags from "./blog/blogTags";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -56,5 +57,6 @@ export default createSchema({
     contactinfo,
     contactForm,
     blogmore,
+    blogTags,
   ]),
 });

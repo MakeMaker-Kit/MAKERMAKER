@@ -33,7 +33,7 @@ const MainHeader = ({
       <div className={classNames(`${flexCol} gap-y-10`)}>
         <div className={`${XFull} h-[350px]  rounded-xl`}>
           <img
-            src={urlFor(mainImage)}
+            src={urlFor(mainImage).url()}
             alt=""
             className={classNames(
               `max-w-full w-full h-full object-cover rounded-xl `
