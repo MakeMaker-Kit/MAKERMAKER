@@ -4,6 +4,7 @@ import { flexLayout, textStyles, themes } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogMainLayout from "./blogmain/BlogMainLayout";
 import { useParams } from "react-router-dom";
+import { ProfileWrapper } from "../../appwrapper";
 // import { getBlogDetail } from "../../../utils/GROC";
 import { useDispatch, useSelector } from "react-redux";
 import { TBlogs } from "../../../types/global.types";
@@ -36,6 +37,8 @@ const BlogDetailContentLayout = () => {
     dispatch(fetchSingleBlog(ID));
   }, [dispatch, blogDetail]);
   console.log("Blog Detail Response", blogDetail, testdetail);
+  const AuthorProfile = blogDetail.map(({ author }: TBlogs) => author);
+  console.log("Autho Respone", AuthorProfile);
   return (
     <>
       <div className={`${mainMarX}`}>
@@ -60,7 +63,8 @@ const BlogDetailContentLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              <BlogMore />
+              {/* <BlogMore /> */}
+              <ProfileWrapper {...AuthorProfile[0]} />
               {/* New / popular Blogs Display  */}
             </div>
           </div>
