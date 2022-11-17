@@ -44,7 +44,7 @@ const TagLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              <BlogMore />
+              {/* <BlogMore /> */}
               {/* New / popular Blogs Display  */}
             </div>
           </div>

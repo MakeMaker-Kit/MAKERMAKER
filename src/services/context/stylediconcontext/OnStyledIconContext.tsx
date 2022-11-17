@@ -1,10 +1,16 @@
 import React from "react";
+import { TBlogs } from "../../../types/global.types";
+import { client } from "../../../client";
+import { AxiosError } from "axios";
 
 type AwesomeContextType = {
   awesomeState: number;
   setAwesomeState: React.Dispatch<React.SetStateAction<number>>;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  blogsByAuthorSlug: null;
+  setBlogsByAuthorSlug: React.Dispatch<React.SetStateAction<null>>;
+  fetchBlogsByAuthorSlug: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -12,22 +18,57 @@ export const AwesomeContext = React.createContext<null | AwesomeContextType>(
 type Props = {
   children: React.ReactNode;
 };
-
+type ValidationError = { errorMessage: string };
 export const AwesomeContextProvider = ({ children }: Props) => {
   const [awesomeState, setAwesomeState] = React.useState(0);
+  const [blogsByAuthorSlug, setBlogsByAuthorSlug] = React.useState(null);
   const [page, setPage] = React.useState(0);
-
+  const fetchBlogsByAuthorSlug = (queryResponse: string) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        if (response) {
+          return setBlogsByAuthorSlug(response);
+        }
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
       setAwesomeState,
       page,
       setPage,
+      blogsByAuthorSlug,
+      setBlogsByAuthorSlug,
+      fetchBlogsByAuthorSlug,
     }),
-    [awesomeState, setAwesomeState, page, setPage]
+    [
+      awesomeState,
+      setAwesomeState,
+      page,
+      setPage,
+      blogsByAuthorSlug,
+      setBlogsByAuthorSlug,
+      fetchBlogsByAuthorSlug,
+    ]
   );
   return (
-    <AwesomeContext.Provider value={memiosedContextValue}>
+    <AwesomeContext.Provider
+      value={{
+        awesomeState,
+        setAwesomeState,
+        page,
+        setPage,
+        blogsByAuthorSlug,
+        setBlogsByAuthorSlug,
+        fetchBlogsByAuthorSlug,
+      }}
+    >
       {children}
     </AwesomeContext.Provider>
   );

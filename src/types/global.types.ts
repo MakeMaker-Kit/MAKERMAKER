@@ -168,3 +168,5 @@ export interface TCategory {
   image?: string;
   _id?: string;
 }
+
+export interface TAuthorBlogs {}

@@ -5,16 +5,21 @@ import { themes, flexLayout } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogProfileMainLayout from "./blogprofilemain/BlogProfileMainLayout";
 import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrapper";
-
+import { blogsByAuthorSlugs } from "../../../utils/GROC";
+import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const { flexResponsive } = flexLayout;
+  const { fetchBlogsByAuthorSlug, blogsByAuthorSlug } = useAwesomwContext();
   let tagId;
   const param = useParams();
   tagId = param.profileID;
-  console.log("Profile param Respkne", param);
 
+  React.useEffect(() => {
+    fetchBlogsByAuthorSlug(blogsByAuthorSlugs);
+  }, [blogsByAuthorSlug]);
+  console.log("BlogByAuthorSlug", blogsByAuthorSlug);
   return (
     <>
       <div>
