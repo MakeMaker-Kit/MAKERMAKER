@@ -44,11 +44,14 @@ bio,
 occupation,
 social,
 },
-categories[] {
+"categories": categories[]->{id, title},
+}
+}`;
+/**
+ * categories[] {
   category-> {
     title,
    description,
    image,
   },
-}
-}`;
+ */

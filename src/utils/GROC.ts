@@ -22,12 +22,7 @@ slug,
 image,
 bio
 },
-categories[] {
-  category-> {
-    title,
-   description
-  }
-}
+"categories": categories[]->{_id, title, image, description},
   }`;
   return query;
 };
