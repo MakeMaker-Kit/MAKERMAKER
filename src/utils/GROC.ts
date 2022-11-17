@@ -47,7 +47,7 @@ export const blogCategoryQuery = `*[_type == "category"]{
   image
 }`;
 
-export const blogsByAuthorSlug = `*[_type == "author"]{
+export const blogsByAuthorSlugs = `*[_type == "author"]{
   _id, 
   name,
   bio,
