@@ -36,7 +36,11 @@ const MainFooter = ({
           <p>Tags: </p>
           <ul className={`${flexRowCenter} gap-x-2`}>
             {tags?.map(({ name, _id }, index) => (
-              <Link to={`/tag/${name}`} key={_id} className={`text-gray-600`}>
+              <Link
+                to={`/tag/${name}`}
+                key={_id}
+                className={`text-gray-600 hover:underline`}
+              >
                 {name}
               </Link>
             ))}
