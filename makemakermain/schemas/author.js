@@ -34,7 +34,7 @@ export default {
       name: "bio",
       title: "Bio",
       type: "array",
-      of: [
+      of: [t
         {
           title: "Block",
           type: "block",
