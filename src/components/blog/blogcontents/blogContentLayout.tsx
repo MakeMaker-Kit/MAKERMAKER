@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { flexLayout, themes } from "../../../styles/themes/theme";
+import { client } from "../../../client";
 import BlogMore from "./blogmore/BlogMore";
 import BlogMain from "./blogmain/BlogMain";
 import BlogCategories from "./blogcategories/BlogCategories";
@@ -14,6 +15,7 @@ import {
   fetchBlog,
   Text,
 } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 import { BlogQuery } from "../../../utils/querypaths";
 import { blogCategoryQuery } from "../../../utils/GROC";
 const BlogContentLayout = () => {
@@ -23,22 +25,22 @@ const BlogContentLayout = () => {
 
   const { mainMarX } = themeWrapper;
   const dispatch = useDispatch();
-  const blogPosts = useSelector(BlogPosts);
+  // const blogPosts = useSelector(BlogPosts);
+  const { blogPosts, fetchBlogPosts } = useAwesomwContext();
   const text = useSelector(Text);
   const blogCategories = useSelector(BlogCategory);
   React.useEffect(() => {
     // @ts-ignore
-    dispatch(getBlogPosts(BlogQuery));
+    // dispatch(getBlogPosts(BlogQuery));
     // @ts-ignore
     dispatch(getBlogCategories(blogCategoryQuery));
-    dispatch(fetchBlog(BlogQuery));
+    // dispatch(fetchBlog(BlogQuery));
   }, [dispatch, blogCategories]);
+  React.useEffect(() => {
+    fetchBlogPosts(BlogQuery);
+  }, [BlogQuery]);
   console.log("BlogPots Details", blogPosts);
-  console.log("BlogPots Details TWo", text);
-  console.log(
-    "kjgjjjg"
-    // text.map((texts) => texts?.author)
-  );
+
   return (
     <>
       <div>

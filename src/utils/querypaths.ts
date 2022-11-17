@@ -46,7 +46,6 @@ social,
 },
 "categories": categories[]->{_id, title, description, imagw},
 "tags": tags[]->{_id, name},
-}
 }`;
 /**
  * categories[] {

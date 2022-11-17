@@ -9,9 +9,11 @@ import {
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { TAUTHOR } from "../../../../types/global.types";
 
 const BlogProfileMainLayout = ({
   title,
+  author,
 }: {
   title?: string;
   body?: TypedObject[];
@@ -21,6 +23,7 @@ const BlogProfileMainLayout = ({
     image?: string;
   }[];
   tags: {}[];
+  author: TAUTHOR;
 }) => {
   const {
     flexCol,
@@ -39,10 +42,10 @@ const BlogProfileMainLayout = ({
     <>
       <div className={cx(`${flexCol} space-y-6`)}>
         <div
-          className={`${flexRowCenter} space-x-2 ${textCustom} ${mainLayout} text-lg font-black`}
+          className={`${flexRowCenter} space-x-2 ${textCustom} ${mainLayout} text-lg font-black capitalize`}
         >
           <p>Author : </p>
-          <p>Wilson</p>
+          <p>{author.name}</p>
         </div>
         {/* Main Blog Profile Main Container */}
         <div className={cx(`${flexCol} gap-y-5`)}>
@@ -73,7 +76,7 @@ const BlogProfileMainLayout = ({
                 </div>
                 {/*  */}
                 <p>
-                  By <span>Wilson</span>
+                  By <span>{author.name}</span>
                 </p>
               </div>
               {/*  */}
@@ -101,7 +104,7 @@ const BlogProfileMainLayout = ({
                 text. It has roots in a piece of classical literature from 459,
                 making it over 2000 years old. Richard McClintock, a Latin
                 professor at Virginia looked up one of the more obscure Latin
-                wor…
+                wor…c
               </p>
             </div>
             {/*  */}

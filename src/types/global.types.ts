@@ -156,6 +156,7 @@ export interface TBlogs {
   posts: {
     title?: string;
     body?: TypedObject[];
+    mainImage?: string;
     categories?: {
       title?: string;
       description?: string;

@@ -37,7 +37,7 @@ const BlogDetailContentLayout = () => {
     dispatch(fetchSingleBlog(ID));
   }, [dispatch, blogDetail]);
   console.log("Blog Detail Response", blogDetail, testdetail);
-  const AuthorProfile = blogDetail.map(({ author }: TBlogs) => author);
+  const AuthorProfile = blogDetail?.map(({ author }: TBlogs) => author);
   console.log("Autho Respone", AuthorProfile);
   return (
     <>

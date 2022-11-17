@@ -15,21 +15,24 @@ import {
 } from "../../../../styles/themes/theme";
 import { TBlogs } from "../../../../types/global.types";
 import { urlFor } from "../../../../client";
+import { useAwesomwContext } from "../../../../services/context/stylediconcontext/OnStyledIconContext";
 
 const BlogMain = () => {
   const { flexCol, flexRow, flexRowCenter, flexCenter, flexRowCenterBetween } =
     flexLayout;
   const blogMainContent = useSelector(BlogPosts);
+  const { blogPosts } = useAwesomwContext();
   const { themeWrapper, boxFull, XFull, containerWrapper, YFull } = themes;
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
   const { HeartFilledIcon, HeartIcon, ReaderIcon, ArchiveIcon } = useIcon();
+  console.log("Blogs ", blogPosts);
   return (
     <>
       <div className={cx(`${boxFull}`)}>
         <div className={`p-3`}>
           <div className={cx(`${XFull} ${flexCol} space-y-5`)}>
-            {blogMainContent?.map(
+            {blogPosts?.map(
               (
                 {
                   _id,
@@ -53,7 +56,7 @@ const BlogMain = () => {
                       )}
                     >
                       <img
-                        src={urlFor(mainImage)}
+                        src={urlFor(mainImage).url()}
                         alt=""
                         className={cx(
                           `w-full max-w-full h-full object-center object-cover rounded-md border border-dotted border-gray-600`
