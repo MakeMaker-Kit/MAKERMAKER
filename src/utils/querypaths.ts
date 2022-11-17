@@ -45,6 +45,7 @@ occupation,
 social,
 },
 "categories": categories[]->{_id, title, description, imagw},
+"tags": tag[]->{_id, name},
 }
 }`;
 /**

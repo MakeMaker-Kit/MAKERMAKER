@@ -23,6 +23,7 @@ image,
 bio
 },
 "categories": categories[]->{_id, title, image, description},
+"tags": tag[]->{_id, name},
   }`;
   return query;
 };

@@ -57,7 +57,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
     types: {
       image: ({ value }: { value: any }) => {
         console.log("logged Imaeg", value);
-        return <img src={value} className={`${imageLayout}`} />;
+        return <img src={value} className={`${imageLayout} block`} />;
       },
       // image: SanityImageComponent,
       callToAction: ({
@@ -78,20 +78,10 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
 
     marks: {
       em: ({ children }: { children: JSX.Element }) => (
-        <em className="text-xs"> {children}</em>
+        <em className="text-xs tracking-wider leading-8"> {children}</em>
       ),
-      span: ({ children }: ChildProps) => (
-        <span className="text-xs text-teal-500">{children}</span>
-      ),
-      text: ({ children }: ChildProps) => (
-        <h1 className={`${textCustom} ${mainLayout} text-xs text-appRed`}>
-          {children}
-        </h1>
-      ),
-      blockquote: ({ children }: ChildProps) => (
-        <blockquote className={`${textCustom} ${mainLayout} text-xs`}>
-          {children}
-        </blockquote>
+      strong: ({ children }: { children: JSX.Element }) => (
+        <strong className="text-9xl text-orange"> {children}</strong>
       ),
 
       customHeading: ({ children }: ChildProps) => (
@@ -114,21 +104,19 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
           <a
             href={value.href}
             rel={rel}
-            className={`${textCustom} ${mainLayout} text-xs underline`}
+            className={`${textCustom} ${mainLayout} text-xs hover:underline  text-appBlue`}
           >
             {children}
           </a>
         );
       },
     },
-    children: {
-      text: ({ children }: ChildProps) => (
-        <span className="text-xs text-teal-500">{children}</span>
-      ),
-    },
+
     block: {
       h1: ({ children }: ChildProps) => (
-        <h1 className={`${textCustom} ${mainLayout} text-xs text-appRed`}>
+        <h1
+          className={`${textCustom} ${mainLayout} text-2xl text-appRed font-bold`}
+        >
           {children}
         </h1>
       ),
@@ -147,7 +135,11 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
         <h2 className={`${textCustom} ${mainLayout} text-xs`}>{children}</h2>
       ),
       p: ({ children }: ChildProps) => (
-        <p className={`${textCustom} ${mainLayout} text-xs`}>{children}</p>
+        <p
+          className={`${textCustom} ${mainLayout} text-xs tracking-wider leading-8`}
+        >
+          {children}
+        </p>
       ),
     },
     list: {
@@ -224,6 +216,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
           dataset="production"
           content={body}
         /> */}
+
         <PortableText value={body} components={BlogPotabletextComponents} />
       </div>
     </>
