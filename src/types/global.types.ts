@@ -127,7 +127,7 @@ export interface TContact {
 
 export type TAUTHOR = {
   name?: string;
-  slug?: string;
+  slug?: { _type?: string; current?: string };
   image?: string;
   readonly bio?: Object[];
   occupation?: string;

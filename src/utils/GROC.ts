@@ -46,3 +46,21 @@ export const blogCategoryQuery = `*[_type == "category"]{
   description,
   image
 }`;
+
+export const blogsByAuthorSlug = `*[_type == "author"]{
+  _id, 
+  name,
+  bio,
+  "authorImage": image.asset->url,
+  image,
+  occupation,
+  slug,
+  social,
+  "posts": *[_type == "post" && author._ref in *[_type=="author" && name == name ]._id ]{
+    title,
+    "slug": slug.current,
+body,
+"categories": categories[]->{_id, description, title, image},
+"tags": tags[]->{_id, name}
+  }
+}`;

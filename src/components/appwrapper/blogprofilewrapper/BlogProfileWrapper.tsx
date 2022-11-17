@@ -9,7 +9,7 @@ import { useIcon } from "../../../hooks/dispatchContext";
 type TProps = Omit<React.ComponentProps<"div">, "classNames"> & {};
 interface MoreProps extends TProps {
   name?: string;
-  slug?: string;
+  slug: { _type?: string; current?: string };
   image?: string;
   readonly bio?: Object[];
   occupation?: string;
@@ -73,7 +73,7 @@ const ProfileWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
               <MainButton
                 isRounded={true}
                 handleClick={() =>
-                  navigate(`/profile/${name}`, { replace: true })
+                  navigate(`/profile/${slug.current}`, { replace: true })
                 }
               >
                 View Profile

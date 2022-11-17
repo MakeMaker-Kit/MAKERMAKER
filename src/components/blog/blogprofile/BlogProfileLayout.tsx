@@ -1,5 +1,6 @@
 import React from "react";
 import cx from "classnames";
+import { useParams } from "react-router-dom";
 import { themes, flexLayout } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogProfileMainLayout from "./blogprofilemain/BlogProfileMainLayout";
@@ -9,11 +10,19 @@ const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const { flexResponsive } = flexLayout;
+  let tagId;
+  const param = useParams();
+  tagId = param.profileID;
+  console.log("Profile param Respkne", param);
 
   return (
     <>
       <div>
-        <BannerPageWrapper />
+        <BannerPageWrapper
+          home="home"
+          routePath="profile"
+          routePathID={`${tagId}`}
+        />
       </div>
       <div className={`${mainMarX}`}>
         <div className={cx(`${boxExtend}`)}>
