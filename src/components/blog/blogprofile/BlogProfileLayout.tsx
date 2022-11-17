@@ -5,21 +5,28 @@ import { themes, flexLayout } from "../../../styles/themes/theme";
 import BlogMore from "../blogcontents/blogmore/BlogMore";
 import BlogProfileMainLayout from "./blogprofilemain/BlogProfileMainLayout";
 import BannerPageWrapper from "../../appwrapper/bannerPageWrapper/BannerPageWrapper";
+import { TBlogs } from "../../../types/global.types";
 import { blogsByAuthorSlugs } from "../../../utils/GROC";
 import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
+import { ProfileWrapper } from "../../appwrapper";
 const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const { flexResponsive } = flexLayout;
   const { fetchBlogsByAuthorSlug, blogsByAuthorSlug } = useAwesomwContext();
-  let tagId;
+  let tagId: string | undefined;
   const param = useParams();
   tagId = param.profileID;
-
   React.useEffect(() => {
-    fetchBlogsByAuthorSlug(blogsByAuthorSlugs);
-  }, [blogsByAuthorSlug]);
+    let cancelled = false;
+    const query = blogsByAuthorSlugs(tagId);
+    !cancelled && fetchBlogsByAuthorSlug(query);
+    return () => {
+      cancelled = true;
+    };
+  }, [tagId]);
   console.log("BlogByAuthorSlug", blogsByAuthorSlug);
+  // const AuthorDetails = blogsByAuthorSlug?.map((slug: TBlogs)=> slug )
   return (
     <>
       <div>
@@ -49,6 +56,7 @@ const BlogProfileLayout = () => {
               )}
             >
               {/* <BlogMore /> */}
+              <ProfileWrapper {...blogsByAuthorSlug[0]} />
               {/* New / popular Blogs Display  */}
             </div>
           </div>
@@ -58,4 +66,4 @@ const BlogProfileLayout = () => {
   );
 };
 
-export default BlogProfileLayout;
+export default React.memo(BlogProfileLayout);

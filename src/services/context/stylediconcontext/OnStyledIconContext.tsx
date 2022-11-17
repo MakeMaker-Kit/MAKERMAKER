@@ -46,28 +46,10 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       setBlogsByAuthorSlug,
       fetchBlogsByAuthorSlug,
     }),
-    [
-      awesomeState,
-      setAwesomeState,
-      page,
-      setPage,
-      blogsByAuthorSlug,
-      setBlogsByAuthorSlug,
-      fetchBlogsByAuthorSlug,
-    ]
+    [awesomeState, setAwesomeState, page, setPage, blogsByAuthorSlug]
   );
   return (
-    <AwesomeContext.Provider
-      value={{
-        awesomeState,
-        setAwesomeState,
-        page,
-        setPage,
-        blogsByAuthorSlug,
-        setBlogsByAuthorSlug,
-        fetchBlogsByAuthorSlug,
-      }}
-    >
+    <AwesomeContext.Provider value={memiosedContextValue}>
       {children}
     </AwesomeContext.Provider>
   );
