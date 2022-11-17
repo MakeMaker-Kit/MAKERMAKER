@@ -20,10 +20,12 @@ author-> {
 name,
 slug,
 image,
-bio
+bio,
+occupation,
+social,
 },
 "categories": categories[]->{_id, title, image, description},
-"tags": tag[]->{_id, name},
+"tags": tags[]->{_id, name},
   }`;
   return query;
 };

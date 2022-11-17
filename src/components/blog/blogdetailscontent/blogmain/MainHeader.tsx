@@ -18,7 +18,7 @@ const MainHeader = ({
   author,
 }: {
   mainImage?: string;
-  categories: Array<{ title: string; _id: string }>;
+  categories: Array<{ title?: string; description?: string; image?: string }>;
   publishedAt?: string;
   author?: TAUTHOR;
 }) => {

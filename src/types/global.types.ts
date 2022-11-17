@@ -1,4 +1,6 @@
 import { NumberSchemaType } from "@sanity/types/dist/dts";
+import { TypedObject } from "@sanity/types/dist/dts";
+
 import React from "react";
 import { NonIndexRouteObject, OutletProps } from "react-router-dom";
 
@@ -129,7 +131,7 @@ export type TAUTHOR = {
   image?: string;
   readonly bio?: Object[];
   occupation?: string;
-  social?: string[];
+  social: string[];
 };
 export interface TBlogs {
   [key: string]:
@@ -140,14 +142,18 @@ export interface TBlogs {
     | number
     | {}[]
     | {}
-    | TAUTHOR;
+    | TAUTHOR
+    | TAUTHOR[]
+    | TypedObject
+    | TypedObject[];
   _id: string;
   slug: { current: string; _type?: string };
-  body: {}[];
+  body: {}[] | TypedObject | TypedObject[];
   title?: string;
   publishedAt?: string;
   mainImage?: string;
   author: TAUTHOR;
+  tags: { name?: string; _id: string }[];
   categories: {
     title?: string;
     description?: string;

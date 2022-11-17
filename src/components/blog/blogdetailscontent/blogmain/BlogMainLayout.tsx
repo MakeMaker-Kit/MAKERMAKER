@@ -20,6 +20,7 @@ const BlogMainLayout: React.FC<TBlogs> = ({
   publishedAt,
   categories,
   detail,
+  tags,
 }: TBlogs) => {
   console.log("fjfjfjfjf", body);
   const { themeWrapper } = themes;
@@ -41,7 +42,7 @@ const BlogMainLayout: React.FC<TBlogs> = ({
           <MainDesc body={body} />
         </div>
         <div>
-          <MainFooter />
+          <MainFooter author={author} tags={tags} />
         </div>
       </div>
     </>
