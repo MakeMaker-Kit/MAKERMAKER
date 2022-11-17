@@ -47,7 +47,8 @@ export const blogCategoryQuery = `*[_type == "category"]{
   image
 }`;
 
-export const blogsByAuthorSlugs = `*[_type == "author"]{
+export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
+  return `*[_type == "author" && slug.current == '${authorSlug}']{
   _id, 
   name,
   bio,
@@ -64,3 +65,4 @@ body,
 "tags": tags[]->{_id, name}
   }
 }`;
+};

@@ -4,6 +4,8 @@ import cx from "classnames";
 import BannerPageWrapper from "../../../appwrapper/bannerPageWrapper/BannerPageWrapper";
 import BlogProfileMainLayout from "../../blogprofile/blogprofilemain/BlogProfileMainLayout";
 import BlogMore from "../../blogcontents/blogmore/BlogMore";
+import { ProfileWrapper } from "../../../appwrapper";
+
 import {
   themes,
   textStyles,
@@ -45,6 +47,7 @@ const TagLayout = () => {
               )}
             >
               {/* <BlogMore /> */}
+              <ProfileWrapper />
               {/* New / popular Blogs Display  */}
             </div>
           </div>

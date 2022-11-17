@@ -27,9 +27,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     client
       .fetch(queryResponse)
       .then((response) => {
-        if (response) {
-          return setBlogsByAuthorSlug(response);
-        }
+        console.log("kkdjdfjfj");
+        setBlogsByAuthorSlug(response);
       })
       .catch((err: any) => {
         let Error: AxiosError<ValidationError> = err;
