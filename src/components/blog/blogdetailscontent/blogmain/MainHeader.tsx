@@ -18,7 +18,7 @@ const MainHeader = ({
   author,
 }: {
   mainImage?: string;
-  categories: Array<{}>;
+  categories: Array<{ title: string; _id: string }>;
   publishedAt?: string;
   author?: TAUTHOR;
 }) => {
@@ -28,6 +28,7 @@ const MainHeader = ({
     flexLayout;
   const { textCustom, mainLayout } = textStyles;
   const { ArchiveIcon, HeartFilledIcon, ReaderIcon } = useIcon();
+  console.log("bLOG cATEGORIES iTEM", categories);
   return (
     <>
       <div className={classNames(`${flexCol} gap-y-10`)}>
@@ -50,7 +51,9 @@ const MainHeader = ({
               clasNames={`${boxFull}  ${flexCenter}`}
               isRounded={true}
             >
-              Marketing
+              {categories.map(({ title }, index) => (
+                <span className={`hover:underline text-xs`}>{title}</span>
+              ))}
             </ButtonText>
             <p>
               By <span>{author?.name}</span>
