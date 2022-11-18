@@ -82,6 +82,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     client
       .fetch(queryResponse)
       .then((response) => {
+        response && setIsLoading(false);
         setSingleBlog(response);
       })
       .catch((err: any) => {

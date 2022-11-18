@@ -25,7 +25,7 @@ occupation,
 social,
 },
 "categories": categories[]->{_id, title, image, description, "slug": slug.current},
-"tags": tags[]->{_id, name},
+"tags": tags[]->{_id, name, "slug": slug.current},
   }`;
   return query;
 };
@@ -121,7 +121,7 @@ export const blogTagPosts: TGROCID = (tagSlug) => {
       "slug": slug.current,
       body,
       "categories": categories[]->{_id, description, title, image, "slug": slug.current},
-      "tags": tags[]->{_id, name},
+      "tags": tags[]->{_id, name, "slug": slug.current},
       "date": publishedAt,
       mainImage,
       author-> {

@@ -9,8 +9,8 @@ export default {
       name: "blogemailcontact",
       title: "Blog News Letter Email",
       description: "This is where all the newlettter s will be populated ",
-      type: "array",
-      of: [{ type: "string", title: "Users Email" }],
+      type: "string",
+      // of: [{ type: "string", title: "Users Email" }],
     },
   ],
 };

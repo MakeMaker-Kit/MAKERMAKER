@@ -22,7 +22,7 @@ const MainFooter = ({
     occupation?: string;
     social: string[];
   };
-  tags: { name?: string; _id: string }[];
+  tags: { name?: string; _id: string; slug: string }[];
 }) => {
   const { mainLayout, textCustom } = textStyles;
   const { containerWrapper, themeWrapper, boxFull, XFull } = themes;
@@ -35,11 +35,11 @@ const MainFooter = ({
         <div className={`${flexRowCenter} gap-x-4`}>
           <p>Tags: </p>
           <ul className={`${flexRowCenter} gap-x-2`}>
-            {tags?.map(({ name, _id }, index) => (
+            {tags?.map(({ name, _id, slug }, index) => (
               <Link
-                to={`/tag/${name}`}
+                to={`/tag/${slug}`}
                 key={_id}
-                className={`text-gray-600 hover:underline`}
+                className={`text-gray-600 hover:underline lowercase`}
               >
                 {name}
               </Link>

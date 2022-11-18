@@ -39,11 +39,7 @@ const TagLayout = () => {
     <>
       <MainSpinner />
       <div>
-        <BannerPageWrapper
-          home="home"
-          routePath="tag"
-          routePathID="how to be a better programmer"
-        />
+        <BannerPageWrapper home="home" routePath="tag" routePathID={`${ID}`} />
       </div>
       <div className={`${mainMarX}`}>
         <div className={cx(`${boxExtend}`)}>
