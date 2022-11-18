@@ -5,6 +5,10 @@ import BannerPageWrapper from "../../../appwrapper/bannerPageWrapper/BannerPageW
 import BlogProfileMainLayout from "../../blogprofile/blogprofilemain/BlogProfileMainLayout";
 import BlogMore from "../../blogcontents/blogmore/BlogMore";
 import { ProfileWrapper } from "../../../appwrapper";
+import { useAwesomwContext } from "../../../../services/context/stylediconcontext/OnStyledIconContext";
+import { blogTagPosts } from "../../../../utils/GROC";
+import { useParams } from "react-router-dom";
+import { TBlogs } from "../../../../types/global.types";
 
 import {
   themes,
@@ -13,11 +17,23 @@ import {
 } from "../../../../styles/themes/theme";
 
 const TagLayout = () => {
+  let ID: string | undefined;
+  let params = useParams();
+  ID = params.tagID;
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const {} = textStyles;
   const { flexResponsive } = flexLayout;
-
+  const { blogTagPost, fetchTagPosts } = useAwesomwContext();
+  React.useEffect(() => {
+    let cancelled = false;
+    const query = blogTagPosts(ID);
+    !cancelled && fetchTagPosts(query);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  console.log("BlogTagPosts", blogTagPost, params);
   return (
     <>
       <div>
@@ -38,7 +54,11 @@ const TagLayout = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                <BlogProfileMainLayout />
+                {blogTagPost &&
+                  blogTagPost?.map(({ posts }: TBlogs, index) =>
+                    // @ts-ignore
+                    posts?.map((post) => <BlogProfileMainLayout {...post} />)
+                  )}
               </div>
             </div>
             <div
@@ -46,9 +66,11 @@ const TagLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              {/* <BlogMore /> */}
-              <ProfileWrapper />
-              {/* New / popular Blogs Display  */}
+              {blogTagPost &&
+                blogTagPost?.map(({ author }: TBlogs, index) => (
+                  // @ts-ignore
+                  <ProfileWrapper {...author} />
+                ))}
             </div>
           </div>
         </div>

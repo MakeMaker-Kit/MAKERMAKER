@@ -106,6 +106,7 @@ export const blogCategoryPosts: TGROCID = (categorySlug) => {
 };
 
 export const blogTagPosts: TGROCID = (tagSlug) => {
+  //*[_type == "post"  &&  'programming' in tags[]->slug.current]
   return `*[_type == "post"  &&  '${tagSlug}' in tags[]->slug.current]{
     author-> {
       name,

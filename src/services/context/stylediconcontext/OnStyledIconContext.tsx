@@ -21,6 +21,9 @@ type AwesomeContextType = {
   blogCategoryBySlug: [];
   setBlogCategoryBySlug: React.Dispatch<React.SetStateAction<never[]>>;
   fetchCategoryBlogs: <T>(queryResponse: T) => void;
+  blogTagPost: [];
+  setBlogTagPost: React.Dispatch<React.SetStateAction<never[]>>;
+  fetchTagPosts: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -36,6 +39,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [blogPosts, setBlogPosts] = React.useState([]);
   const [singleBlog, setSingleBlog] = React.useState([]);
   const [blogCategoryBySlug, setBlogCategoryBySlug] = React.useState([]);
+  const [blogTagPost, setBlogTagPost] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
@@ -90,6 +94,19 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data;
       });
   };
+  ///  fetch tags posts
+  const fetchTagPosts: TFunction = (queryResponse) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        setBlogTagPost(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -105,6 +122,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       singleBlog,
       blogCategoryBySlug,
       fetchCategoryBlogs,
+      blogTagPost,
+      fetchTagPosts,
     }),
     [
       awesomeState,
@@ -118,6 +137,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       singleBlog,
       blogCategoryBySlug,
       fetchCategoryBlogs,
+      blogTagPost,
+      fetchTagPosts,
     ]
   );
   return (
