@@ -10,6 +10,7 @@ import ButtonText from "../../../../hooks/text/buttonText";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { TBlogs, TAUTHOR } from "../../../../types/global.types";
 import { urlFor } from "../../../../client";
+import { Link } from "react-router-dom";
 
 const MainHeader = ({
   mainImage,
@@ -18,7 +19,12 @@ const MainHeader = ({
   author,
 }: {
   mainImage?: string;
-  categories: Array<{ title?: string; description?: string; image?: string }>;
+  categories: Array<{
+    title?: string;
+    description?: string;
+    image?: string;
+    slug: string;
+  }>;
   publishedAt?: string;
   author?: TAUTHOR;
 }) => {
@@ -51,8 +57,13 @@ const MainHeader = ({
               clasNames={`${boxFull}  ${flexCenter}`}
               isRounded={true}
             >
-              {categories.map(({ title }, index) => (
-                <span className={`hover:underline text-xs`}>{title}</span>
+              {categories.map(({ title, slug }, index) => (
+                <Link
+                  to={`/category/${slug}`}
+                  className={`hover:underline text-xs`}
+                >
+                  {title}
+                </Link>
               ))}
             </ButtonText>
             <p>

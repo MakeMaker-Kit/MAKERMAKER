@@ -44,7 +44,7 @@ bio,
 occupation,
 social,
 },
-"categories": categories[]->{_id, title, description, imagw},
+"categories": categories[]->{_id, title, description, image, slug},
 "tags": tags[]->{_id, name},
 }`;
 /**

@@ -10,13 +10,18 @@ import {
   textStyles,
 } from "../../../../styles/themes/theme";
 import { TAUTHOR } from "../../../../types/global.types";
+import { urlFor } from "../../../../client";
 
 const BlogProfileMainLayout = ({
   title,
   author,
+  image,
+  authorImage,
 }: {
   title?: string;
   body?: TypedObject[];
+  image?: string;
+  authorImage?: string;
   categories?: {
     title?: string;
     description?: string;
@@ -55,7 +60,8 @@ const BlogProfileMainLayout = ({
             )}
           >
             <img
-              src="https://bunzo-react.pages.dev/static/f67d1f2ca6e80a3cbde72499f0bf17c1/1d064/05.webp"
+              // src="https://bunzo-react.pages.dev/static/f67d1f2ca6e80a3cbde72499f0bf17c1/1d064/05.webp"
+              src={authorImage}
               alt=""
               title=""
               data-loading="lazy"

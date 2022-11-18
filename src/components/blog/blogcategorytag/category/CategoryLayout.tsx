@@ -8,13 +8,26 @@ import {
 import BlogProfileMainLayout from "../../blogprofile/blogprofilemain/BlogProfileMainLayout";
 import BlogMore from "../../blogcontents/blogmore/BlogMore";
 import BannerPageWrapper from "../../../appwrapper/bannerPageWrapper/BannerPageWrapper";
+import { useAwesomwContext } from "../../../../services/context/stylediconcontext/OnStyledIconContext";
+import { useParams } from "react-router-dom";
+import { fetchBlogCategories } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientServiceMain";
+import { blogCategoryPosts } from "../../../../utils/GROC";
 
 const CategoryLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const {} = textStyles;
   const { flexResponsive, flexCol, flexRow } = flexLayout;
-
+  const { blogCategoryBySlug, fetchCategoryBlogs } = useAwesomwContext();
+  let ID;
+  const params = useParams();
+  const { id } = params;
+  React.useEffect(() => {
+    let cancelled = false;
+    const query = blogCategoryPosts(id);
+    !cancelled && fetchCategoryBlogs(query);
+  }, []);
+  console.log("Category details", fetchCategoryBlogs);
   return (
     <>
       <div>

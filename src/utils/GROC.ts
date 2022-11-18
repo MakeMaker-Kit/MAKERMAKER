@@ -24,7 +24,7 @@ bio,
 occupation,
 social,
 },
-"categories": categories[]->{_id, title, image, description},
+"categories": categories[]->{_id, title, image, description, "slug": slug.current},
 "tags": tags[]->{_id, name},
   }`;
   return query;
@@ -61,7 +61,7 @@ export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
     title,
     "slug": slug.current,
 body,
-"categories": categories[]->{_id, description, title, image},
+"categories": categories[]->{_id, description, title, image, "slug": slug.current},
 "tags": tags[]->{_id, name},
 "date": publishedAt,
 mainImage,
@@ -70,4 +70,24 @@ author-> {
   },
   }
 }`;
+};
+
+export const blogCategoryPosts: TGROCID = (categorySlug) => {
+  return `*[_type == "post"  &&  '${categorySlug}' in categories[]->slug.current]{
+  _id,
+  title,
+  description,
+  mainImage,
+  author-> {
+    name,
+    slug,
+    image,
+    bio,
+    occupation,
+    social,
+    },
+    "categories": categories[]->{_id, title, image, description, "slug": slug.current},
+"tags": tags[]->{_id, name},
+}
+`;
 };

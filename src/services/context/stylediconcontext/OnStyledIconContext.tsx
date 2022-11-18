@@ -18,10 +18,9 @@ type AwesomeContextType = {
   singleBlog: [];
   setSingleBlog: React.Dispatch<React.SetStateAction<never[]>>;
   fetchSingleBlog: <T>(queryResponse: T) => void;
-  blogCategoryBySlug:[];
+  blogCategoryBySlug: [];
   setBlogCategoryBySlug: React.Dispatch<React.SetStateAction<never[]>>;
   fetchCategoryBlogs: <T>(queryResponse: T) => void;
-
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -29,7 +28,7 @@ export const AwesomeContext = React.createContext<null | AwesomeContextType>(
 type Props = {
   children: React.ReactNode;
 };
-type TFunction = (queryResponse: string) => void
+type TFunction = (queryResponse: string) => void;
 type ValidationError = { errorMessage: string };
 export const AwesomeContextProvider = ({ children }: Props) => {
   const [awesomeState, setAwesomeState] = React.useState(0);
@@ -78,19 +77,19 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data;
       });
   };
-  // 
-  const fetchCategoryBlogs: TFunction= (queryResponse) => {
+  //
+  const fetchCategoryBlogs: TFunction = (queryResponse) => {
     client
-    .fetch(queryResponse)
-    .then((response) => {
-      setSingleBlog(response);
-    })
-    .catch((err: any) => {
-      let Error: AxiosError<ValidationError> = err;
-      if (!Error.response) throw Error;
-      return Error.response.data;
-    });
-  }
+      .fetch(queryResponse)
+      .then((response) => {
+        setSingleBlog(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -103,8 +102,9 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchBlogPosts,
       blogPosts,
       fetchSingleBlog,
-      singleBlog,blogCategoryBySlug;
-      fetchCategoryBlogs
+      singleBlog,
+      blogCategoryBySlug,
+      fetchCategoryBlogs,
     }),
     [
       awesomeState,
@@ -116,6 +116,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       blogPosts,
       fetchSingleBlog,
       singleBlog,
+      blogCategoryBySlug,
+      fetchCategoryBlogs,
     ]
   );
   return (
