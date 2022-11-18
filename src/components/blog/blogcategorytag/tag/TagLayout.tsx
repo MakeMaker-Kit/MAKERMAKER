@@ -9,6 +9,7 @@ import { useAwesomwContext } from "../../../../services/context/stylediconcontex
 import { blogTagPosts } from "../../../../utils/GROC";
 import { useParams } from "react-router-dom";
 import { TBlogs } from "../../../../types/global.types";
+import { MainSpinner } from "../../../spinner/Spinners";
 
 import {
   themes,
@@ -36,6 +37,7 @@ const TagLayout = () => {
   console.log("BlogTagPosts", blogTagPost, params);
   return (
     <>
+      <MainSpinner />
       <div>
         <BannerPageWrapper
           home="home"
