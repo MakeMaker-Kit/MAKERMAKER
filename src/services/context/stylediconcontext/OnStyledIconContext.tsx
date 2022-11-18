@@ -18,6 +18,10 @@ type AwesomeContextType = {
   singleBlog: [];
   setSingleBlog: React.Dispatch<React.SetStateAction<never[]>>;
   fetchSingleBlog: <T>(queryResponse: T) => void;
+  blogCategoryBySlug:[];
+  setBlogCategoryBySlug: React.Dispatch<React.SetStateAction<never[]>>;
+  fetchCategoryBlogs: <T>(queryResponse: T) => void;
+
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -25,12 +29,14 @@ export const AwesomeContext = React.createContext<null | AwesomeContextType>(
 type Props = {
   children: React.ReactNode;
 };
+type TFunction = (queryResponse: string) => void
 type ValidationError = { errorMessage: string };
 export const AwesomeContextProvider = ({ children }: Props) => {
   const [awesomeState, setAwesomeState] = React.useState(0);
   const [blogsByAuthorSlug, setBlogsByAuthorSlug] = React.useState([]);
   const [blogPosts, setBlogPosts] = React.useState([]);
   const [singleBlog, setSingleBlog] = React.useState([]);
+  const [blogCategoryBySlug, setBlogCategoryBySlug] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
@@ -72,6 +78,19 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data;
       });
   };
+  // 
+  const fetchCategoryBlogs: TFunction= (queryResponse) => {
+    client
+    .fetch(queryResponse)
+    .then((response) => {
+      setSingleBlog(response);
+    })
+    .catch((err: any) => {
+      let Error: AxiosError<ValidationError> = err;
+      if (!Error.response) throw Error;
+      return Error.response.data;
+    });
+  }
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -84,7 +103,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchBlogPosts,
       blogPosts,
       fetchSingleBlog,
-      singleBlog,
+      singleBlog,blogCategoryBySlug;
+      fetchCategoryBlogs
     }),
     [
       awesomeState,
