@@ -8,6 +8,7 @@ import { ProfileWrapper } from "../../appwrapper";
 // import { getBlogDetail } from "../../../utils/GROC";
 import { useDispatch, useSelector } from "react-redux";
 import { TBlogs } from "../../../types/global.types";
+import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 import {
   fetchSingleBlog,
   TextDetails,
@@ -16,6 +17,7 @@ import {
   BlogDetails,
   getBlogDetails,
 } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { getBlogDetail } from "../../../utils/GROC";
 
 const BlogDetailContentLayout = () => {
   let ID: string | undefined;
@@ -26,18 +28,26 @@ const BlogDetailContentLayout = () => {
   const testdetail = useSelector(TextDetails);
   const { flexResponsive } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
+  const { fetchSingleBlog, singleBlog } = useAwesomwContext();
   // gerneate Query
 
   const { themeWrapper, boxFull, XFull, containerWrapper, boxExtend } = themes;
   const { mainMarX } = themeWrapper;
   console.log("Params Id Respone", ID);
   React.useEffect(() => {
+    let cancelled = false;
+    const query = getBlogDetail(ID);
     // @ts-ignore
-    dispatch(getBlogDetails(ID));
-    dispatch(fetchSingleBlog(ID));
-  }, [dispatch, blogDetail]);
-  console.log("Blog Detail Response", blogDetail, testdetail);
-  const AuthorProfile = blogDetail?.map(({ author }: TBlogs) => author);
+    // dispatch(getBlogDetails(ID));
+    // dispatch(fetchSingleBlog(ID));
+    !cancelled && fetchSingleBlog(query);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  console.log("Blog Detail Response", blogDetail, singleBlog);
+  const AuthorProfile =
+    singleBlog && singleBlog?.map(({ author }: TBlogs) => author);
   console.log("Autho Respone", AuthorProfile);
   return (
     <>
@@ -52,8 +62,8 @@ const BlogDetailContentLayout = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                {blogDetail &&
-                  blogDetail?.map((detail: TBlogs) => (
+                {singleBlog &&
+                  singleBlog?.map((detail: TBlogs) => (
                     <BlogMainLayout {...detail} detail={detail} />
                   ))}
               </div>
@@ -64,7 +74,10 @@ const BlogDetailContentLayout = () => {
               )}
             >
               {/* <BlogMore /> */}
-              <ProfileWrapper {...AuthorProfile[0]} />
+              {AuthorProfile.map((auth) => (
+                // @ts-ignore
+                <ProfileWrapper {...auth} />
+              ))}
               {/* New / popular Blogs Display  */}
             </div>
           </div>

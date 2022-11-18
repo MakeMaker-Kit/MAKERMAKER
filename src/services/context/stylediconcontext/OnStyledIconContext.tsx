@@ -83,6 +83,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchBlogsByAuthorSlug,
       fetchBlogPosts,
       blogPosts,
+      fetchSingleBlog,
+      singleBlog,
     }),
     [
       awesomeState,
