@@ -14,6 +14,7 @@ import { fetchBlogCategories } from "../../../../services/redux/features/sanityt
 import { blogCategoryPosts } from "../../../../utils/GROC";
 import { TBlogs } from "../../../../types/global.types";
 import { ProfileWrapper } from "../../../appwrapper";
+import { MainSpinner } from "../../../spinner/Spinners";
 
 const CategoryLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
@@ -32,6 +33,7 @@ const CategoryLayout = () => {
   console.log("Category details", singleBlog, params);
   return (
     <>
+      <MainSpinner />
       <div>
         <BannerPageWrapper
           home="home"

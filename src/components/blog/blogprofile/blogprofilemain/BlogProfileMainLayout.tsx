@@ -1,5 +1,7 @@
 import React from "react";
 import cx from "classnames";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { TypedObject } from "@sanity/types/dist/dts";
@@ -16,15 +18,20 @@ const BlogProfileMainLayout = ({
   title,
   author,
   mainImage,
+  categories,
+  date,
 }: {
   title?: string;
   body?: TypedObject[];
   image?: string;
   mainImage?: string;
-  categories?: {
+  slug?: string;
+  date?: string;
+  categories: {
     title?: string;
     description?: string;
     image?: string;
+    slug: { current: string };
   }[];
   tags: {}[];
   author: TAUTHOR;
@@ -41,6 +48,7 @@ const BlogProfileMainLayout = ({
     themes;
   const {} = themeWrapper;
   const { textCustom, mainLayout } = textStyles;
+  const navigate = useNavigate();
   const { ArchiveIcon } = useIcon();
   return (
     <>
@@ -59,7 +67,6 @@ const BlogProfileMainLayout = ({
             )}
           >
             <img
-              // src="https://bunzo-react.pages.dev/static/f67d1f2ca6e80a3cbde72499f0bf17c1/1d064/05.webp"
               src={urlFor(mainImage).url()}
               alt=""
               title=""
@@ -75,8 +82,11 @@ const BlogProfileMainLayout = ({
                     isRounded={true}
                     bgColor={`bg-blue-100`}
                     textColor={`text-gray-800`}
+                    handleClick={() =>
+                      navigate(`/categories/${categories[0].slug}`)
+                    }
                   >
-                    Progamming{" "}
+                    {categories[0].title}
                   </MainButton>
                 </div>
                 {/*  */}
@@ -89,7 +99,7 @@ const BlogProfileMainLayout = ({
                 className={`${flexRowCenter} space-x-3 text-xs ${textCustom} ${mainLayout}`}
               >
                 <ArchiveIcon />
-                <p>6th june 2002</p>
+                <p>{moment(date).utc().format("YYYY/MMM/DD")}</p>
                 <p>.</p>
                 <p>10 min Read</p>
               </div>

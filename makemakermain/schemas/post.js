@@ -32,6 +32,11 @@ export default {
       },
     },
     {
+      name: "description",
+      title: "Description",
+      type: "text",
+    },
+    {
       name: "categories",
       title: "Categories",
       type: "array",

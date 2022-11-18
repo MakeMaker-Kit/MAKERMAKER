@@ -27,6 +27,9 @@ type AwesomeContextType = {
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   toggleLoader: () => (curState: boolean) => boolean;
+  blogCategories: [];
+  setBlogCategories: React.Dispatch<React.SetStateAction<never[]>>;
+  fetchBlogCategories: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -44,6 +47,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [blogCategoryBySlug, setBlogCategoryBySlug] = React.useState([]);
   const [blogTagPost, setBlogTagPost] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [blogCategories, setBlogCategories] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const toggleLoader = () => setIsLoading((curState) => !curState);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
@@ -91,6 +95,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     client
       .fetch(queryResponse)
       .then((response) => {
+        response && setIsLoading(false);
         setSingleBlog(response);
       })
       .catch((err: any) => {
@@ -106,8 +111,6 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       .then((response) => {
         response && setIsLoading(false);
         setBlogTagPost(response);
-
-        // toggleLoader();
       })
       .catch((err: any) => {
         let Error: AxiosError<ValidationError> = err;
