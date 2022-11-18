@@ -78,6 +78,7 @@ export const blogCategoryPosts: TGROCID = (categorySlug) => {
   title,
   description,
   mainImage,
+  "authorImage": image.asset->url,
   author-> {
     name,
     slug,

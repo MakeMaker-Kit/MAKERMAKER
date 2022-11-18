@@ -49,6 +49,7 @@ const BlogProfileLayout = () => {
               <div className={cx(`${boxFull} `)}>
                 {blogsByAuthorSlug &&
                   blogsByAuthorSlug?.map(({ posts }: TBlogs, index) =>
+                    // @ts-ignore
                     posts?.map((post) => <BlogProfileMainLayout {...post} />)
                   )}
               </div>

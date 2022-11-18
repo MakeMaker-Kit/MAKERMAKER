@@ -15,13 +15,12 @@ import { urlFor } from "../../../../client";
 const BlogProfileMainLayout = ({
   title,
   author,
-  image,
-  authorImage,
+  mainImage,
 }: {
   title?: string;
   body?: TypedObject[];
   image?: string;
-  authorImage?: string;
+  mainImage?: string;
   categories?: {
     title?: string;
     description?: string;
@@ -61,7 +60,7 @@ const BlogProfileMainLayout = ({
           >
             <img
               // src="https://bunzo-react.pages.dev/static/f67d1f2ca6e80a3cbde72499f0bf17c1/1d064/05.webp"
-              src={authorImage}
+              src={urlFor(mainImage).url()}
               alt=""
               title=""
               data-loading="lazy"

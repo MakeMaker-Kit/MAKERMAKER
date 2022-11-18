@@ -12,29 +12,31 @@ import { useAwesomwContext } from "../../../../services/context/stylediconcontex
 import { useParams } from "react-router-dom";
 import { fetchBlogCategories } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientServiceMain";
 import { blogCategoryPosts } from "../../../../utils/GROC";
+import { TBlogs } from "../../../../types/global.types";
+import { ProfileWrapper } from "../../../appwrapper";
 
 const CategoryLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
   const {} = textStyles;
   const { flexResponsive, flexCol, flexRow } = flexLayout;
-  const { blogCategoryBySlug, fetchCategoryBlogs } = useAwesomwContext();
-  let ID;
+  const { singleBlog, fetchCategoryBlogs } = useAwesomwContext();
+  let ID: string | undefined;
   const params = useParams();
-  const { id } = params;
+  ID = params.categoryID;
   React.useEffect(() => {
     let cancelled = false;
-    const query = blogCategoryPosts(id);
+    const query = blogCategoryPosts(ID);
     !cancelled && fetchCategoryBlogs(query);
   }, []);
-  console.log("Category details", fetchCategoryBlogs);
+  console.log("Category details", singleBlog, params);
   return (
     <>
       <div>
         <BannerPageWrapper
           home="home"
           routePath="category"
-          routePathID="how to be a better programmer"
+          routePathID={`${ID}`}
         />
       </div>
       <div className={`${mainMarX}`}>
@@ -48,7 +50,10 @@ const CategoryLayout = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                <BlogProfileMainLayout />
+                {singleBlog &&
+                  singleBlog?.map((post: TBlogs, index) => (
+                    <BlogProfileMainLayout {...post} />
+                  ))}
               </div>
             </div>
             <div
@@ -56,7 +61,11 @@ const CategoryLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              <BlogMore />
+              {singleBlog &&
+                singleBlog?.map(({ author }: TBlogs, index) => (
+                  <ProfileWrapper {...author} />
+                ))}
+              {/* <BlogMore /> */}
               {/* New / popular Blogs Display  */}
             </div>
           </div>
