@@ -5,12 +5,14 @@ import cx from "classnames";
 import { Transition, Dialog } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { themes, flexLayout } from "../../styles/themes/theme";
+import { useAwesomwContext } from "../../services/context/stylediconcontext/OnStyledIconContext";
 export const MainSpinner = () => {
   const { boxFull } = themes;
   const { flexCenter, flexRow, flexCol } = flexLayout;
+  const { isLoading, toggleLoader } = useAwesomwContext();
   return (
     <>
-      <Transition appear show={true} as={React.Fragment}>
+      <Transition appear show={isLoading} as={React.Fragment}>
         <Dialog as="div" className={"relative z-[999]"} onClose={() => {}}>
           <Transition.Child
             as={React.Fragment}

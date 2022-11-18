@@ -24,6 +24,9 @@ type AwesomeContextType = {
   blogTagPost: [];
   setBlogTagPost: React.Dispatch<React.SetStateAction<never[]>>;
   fetchTagPosts: (queryResponse: string) => void;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleLoader: () => (curState: boolean) => boolean;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -40,7 +43,9 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [singleBlog, setSingleBlog] = React.useState([]);
   const [blogCategoryBySlug, setBlogCategoryBySlug] = React.useState([]);
   const [blogTagPost, setBlogTagPost] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [page, setPage] = React.useState(0);
+  const toggleLoader = () => setIsLoading((curState) => !curState);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
       .fetch(queryResponse)
@@ -99,7 +104,10 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     client
       .fetch(queryResponse)
       .then((response) => {
+        response && setIsLoading(false);
         setBlogTagPost(response);
+
+        // toggleLoader();
       })
       .catch((err: any) => {
         let Error: AxiosError<ValidationError> = err;
@@ -124,6 +132,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchCategoryBlogs,
       blogTagPost,
       fetchTagPosts,
+      isLoading,
+      toggleLoader,
     }),
     [
       awesomeState,
@@ -139,6 +149,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchCategoryBlogs,
       blogTagPost,
       fetchTagPosts,
+      isLoading,
+      toggleLoader,
     ]
   );
   return (
