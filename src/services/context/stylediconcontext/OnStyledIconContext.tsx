@@ -54,7 +54,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     client
       .fetch(queryResponse)
       .then((response) => {
-        console.log("kkdjdfjfj");
+        response && setIsLoading(false);
         setBlogsByAuthorSlug(response);
       })
       .catch((err: any) => {
@@ -68,8 +68,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     client
       .fetch(queryResponse)
       .then((response) => {
+        response && setIsLoading(false);
         setBlogPosts(response);
-        console.log("BlogPosts Response", response);
       })
       .catch((err: any) => {
         if (err instanceof Error) {
@@ -118,6 +118,20 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data;
       });
   };
+  ///
+  const fetchBlogCategories: TFunction = (queryResponse) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        response && setIsLoading(false);
+        setBlogCategories(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -137,6 +151,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchTagPosts,
       isLoading,
       toggleLoader,
+      blogCategories,
+      fetchBlogCategories,
     }),
     [
       awesomeState,
@@ -154,6 +170,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       fetchTagPosts,
       isLoading,
       toggleLoader,
+      blogCategories,
+      fetchBlogCategories,
     ]
   );
   return (

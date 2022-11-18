@@ -9,6 +9,7 @@ import { TBlogs } from "../../../../types/global.types";
 import MainHeader from "./MainHeader";
 import MainDesc from "./MainDesc";
 import MainFooter from "./MainFooter";
+import { MainSpinner } from "../../../spinner/Spinners";
 
 const BlogMainLayout: React.FC<TBlogs> = ({
   _id,
@@ -29,6 +30,7 @@ const BlogMainLayout: React.FC<TBlogs> = ({
   const {} = textStyles;
   return (
     <>
+      <MainSpinner />
       <div className={classNames(`${flexCol} space-y-5`)}>
         <div>
           <MainHeader

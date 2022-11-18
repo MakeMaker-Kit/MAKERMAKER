@@ -18,6 +18,7 @@ import {
 import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 import { BlogQuery } from "../../../utils/querypaths";
 import { blogCategoryQuery } from "../../../utils/GROC";
+import { MainSpinner } from "../../spinner/Spinners";
 const BlogContentLayout = () => {
   const { flexRow, flexResponsive } = flexLayout;
   const { themeWrapper, containerWrapper, boxFull, boxExtend, XExtend } =
@@ -43,6 +44,7 @@ const BlogContentLayout = () => {
 
   return (
     <>
+      <MainSpinner />
       <div>
         <BannerPageWrapper home="Home " routePath="Blog" />
       </div>

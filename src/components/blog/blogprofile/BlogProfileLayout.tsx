@@ -9,6 +9,7 @@ import { TBlogs } from "../../../types/global.types";
 import { blogsByAuthorSlugs } from "../../../utils/GROC";
 import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 import { ProfileWrapper } from "../../appwrapper";
+import { MainSpinner } from "../../spinner/Spinners";
 const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
@@ -29,6 +30,7 @@ const BlogProfileLayout = () => {
   // const AuthorDetails = blogsByAuthorSlug?.map((slug: TBlogs)=> slug )
   return (
     <>
+      <MainSpinner />
       <div>
         <BannerPageWrapper
           home="home"
