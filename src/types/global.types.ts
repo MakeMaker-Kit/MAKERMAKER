@@ -133,6 +133,12 @@ export type TAUTHOR = {
   occupation?: string;
   social: string[];
 };
+export type TCategories = {
+  title?: string;
+  description?: string;
+  image?: string;
+  slug?: string;
+};
 export interface TBlogs {
   [key: string]:
     | string
@@ -153,15 +159,12 @@ export interface TBlogs {
   publishedAt?: string;
   mainImage?: string;
   author: TAUTHOR;
+  description?: string;
   posts: {
     title?: string;
     body?: TypedObject[];
     mainImage?: string;
-    categories?: {
-      title?: string;
-      description?: string;
-      image?: string;
-    }[];
+    categories?: TCategories[] | TCategories;
     tags: {}[];
   }[];
   tags: { name?: string; _id: string }[];

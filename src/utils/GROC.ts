@@ -131,3 +131,23 @@ export const blogTagPosts: TGROCID = (tagSlug) => {
   }
   `;
 };
+
+export const homeBlogQuery = `*[_type == "post"][0..6]{
+  _id,
+  slug,
+  body,
+  publishedAt,
+  mainImage,
+  description,
+  title, 
+  author-> {
+  name,
+  slug,
+  image,
+  bio,
+  occupation,
+  social,
+  },
+  "categories": categories[0]->{_id, title, description, image,"slug": slug.current},
+  "tags": tags[]->{_id, name, "slug": slug.current},
+}`;

@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/profile/:profileID" element={<BlogProfile />} />
         {/* Tag Collection Route */}
         <Route path="/tag/:tagID" element={<BlogTag />} />
-        <Route path="/categories/:categoryID" element={<BlogCategory />} />
+        <Route path="/category/:categoryID" element={<BlogCategory />} />
         {/* Categories Collections */}
         {/* Shop / Ecommerce Routes */}
         <Route path="/shop" element={<Shop />} />
