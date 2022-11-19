@@ -28,6 +28,7 @@ import {
 } from "../../../modals/authmodal/Regex";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { TextDisplay } from "../../../../hooks";
+import { ButtonSpinner } from "../../../spinner/Spinners";
 
 const Contact = () => {
   const { flexCenter, flexRow, flexCol, flexRowCenter } = flexLayout;
@@ -108,8 +109,8 @@ const Contact = () => {
             };
             // @ts-ignore
             dispatch(getUserContact(UserRequest));
-            alert(JSON.stringify(UserRequest, null));
             setSubmitting(false);
+            toast.success(`Message Submitted successfully`);
             resetForm();
             // if (values) return dispatch(getUserContact(UserRequest));
           } catch (error) {
@@ -217,7 +218,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   type={"submit"}
                 >
-                  {isSubmitting ? "Submitting" : "Submit"}
+                  {isSubmitting ? "Submitting" && <ButtonSpinner /> : "Submit"}
                 </MainButton>
               </div>
             </form>

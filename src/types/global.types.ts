@@ -168,11 +168,7 @@ export interface TBlogs {
     tags: {}[];
   }[];
   tags: { name?: string; _id: string }[];
-  categories: {
-    title?: string;
-    description?: string;
-    image?: string;
-  }[];
+  categories: TCategories;
 }
 
 export interface TCategory {

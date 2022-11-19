@@ -59,7 +59,7 @@ const MainHeader = ({
             >
               {categories.map(({ title, slug }, index) => (
                 <Link
-                  to={`/categories/${slug}`}
+                  to={`/category/${slug}`}
                   className={`hover:underline text-xs`}
                 >
                   {title}

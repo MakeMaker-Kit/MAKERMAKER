@@ -52,11 +52,14 @@ const CategoryLayout = () => {
               )}
             >
               <div className={cx(`${boxFull} `)}>
-                {singleBlog &&
+                {singleBlog ? (
                   singleBlog?.map(({ posts }: TBlogs, index) =>
                     // @ts-ignore
                     posts?.map((post) => <BlogProfileMainLayout {...post} />)
-                  )}
+                  )
+                ) : (
+                  <p>No CATEGORY POST FOUND</p>
+                )}
               </div>
             </div>
             <div

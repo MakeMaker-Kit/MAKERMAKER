@@ -21,6 +21,7 @@ const BlogProfileMainLayout = ({
   categories,
   date,
   slug,
+  description,
 }: {
   title?: string;
   body?: TypedObject[];
@@ -28,6 +29,7 @@ const BlogProfileMainLayout = ({
   mainImage?: string;
   slug?: string;
   date?: string;
+  description?: string;
   categories: {
     title?: string;
     description?: string;
@@ -85,7 +87,7 @@ const BlogProfileMainLayout = ({
                     bgColor={`bg-blue-100`}
                     textColor={`text-gray-800`}
                     handleClick={() =>
-                      navigate(`/categories/${categories[0].slug}`)
+                      navigate(`/category/${categories[0].slug}`)
                     }
                   >
                     {categories[0].title}
@@ -93,7 +95,7 @@ const BlogProfileMainLayout = ({
                 </div>
                 {/*  */}
                 <p>
-                  By <span>{author.name}</span>
+                  By <Link to={`/profile/${author.name}`}>{author.name}</Link>
                 </p>
               </div>
               {/*  */}
@@ -117,11 +119,7 @@ const BlogProfileMainLayout = ({
               className={`${XFull} max-w-full line-clamp-2 ${mainLayout} ${textCustom}`}
             >
               <p className={`tracking-wider leading-relaxed text-xs`}>
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical literature from 459,
-                making it over 2000 years old. Richard McClintock, a Latin
-                professor at Virginia looked up one of the more obscure Latin
-                wor…c
+                {description}
               </p>
             </div>
             {/*  */}

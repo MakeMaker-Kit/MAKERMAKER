@@ -16,6 +16,7 @@ slug,
 body,
 publishedAt,
 mainImage,
+description,
 author-> {
 name,
 slug,
@@ -60,6 +61,7 @@ export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
   "posts": *[_type == "post" && author._ref in *[_type=="author" && slug.current == '${authorSlug}' ]._id]{
     title,
     "slug": slug.current,
+    description,
 body,
 "categories": categories[]->{_id, description, title, image, "slug": slug.current},
 "tags": tags[]->{_id, name},
@@ -91,6 +93,7 @@ export const blogCategoryPosts: TGROCID = (categorySlug) => {
   "tags": tags[]->{_id, name},
   "posts": *[_type == "post" &&  categories[0]._ref in *[_type=="category" && slug.current == '${categorySlug}' ]._id ]{
     title,
+    description,
     "slug": slug.current,
     body,
     "categories": categories[]->{_id, description, title, image, "slug": slug.current},
@@ -120,6 +123,7 @@ export const blogTagPosts: TGROCID = (tagSlug) => {
       title,
       "slug": slug.current,
       body,
+      deescription,
       "categories": categories[]->{_id, description, title, image, "slug": slug.current},
       "tags": tags[]->{_id, name, "slug": slug.current},
       "date": publishedAt,

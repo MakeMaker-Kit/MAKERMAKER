@@ -85,11 +85,12 @@ const HomeBlog = () => {
                           )}
                         >
                           <span className={cx(`${boxFull} ${flexCenter}`)}>
-                            <p
+                            <Link
+                              to={`/category/${categories.slug}`}
                               className={`${textCustom} ${mainLayout} text-gray-700 whitespace-nowrap text-xs italic group-hover:text-black `}
                             >
-                              {categories.slug}
-                            </p>
+                              {categories.title}
+                            </Link>
                           </span>
                         </div>
                         {/* Absolute Div */}
@@ -134,9 +135,12 @@ const HomeBlog = () => {
                             <p className={`${textCustom} text-xs font-medium`}>
                               {""}
                               BY:{" "}
-                              <span className="text-gray-700">
+                              <Link
+                                to={`/profile/${author.name}`}
+                                className="text-gray-700 hover:underline"
+                              >
                                 {author.name}{" "}
-                              </span>
+                              </Link>
                             </p>
                           </div>
                           <MinusCircledIcon className={`w-3 h-3 `} />
