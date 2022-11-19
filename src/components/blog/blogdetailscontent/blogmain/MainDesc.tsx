@@ -153,7 +153,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
     list: {
       // Ex. 1: customizing common list types
       bullet: ({ children }: ChildProps) => (
-        <ul className="text-xs text-red-600 list-none decoration-slice">
+        <ul className="text-xs text-gray-500 list-decimal decoration-slice">
           {children}
         </ul>
       ),
@@ -166,9 +166,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
         <ol className={`${textCustom} ${mainLayout} text-xs`}>{children}</ol>
       ),
       li: ({ children }: ChildProps) => (
-        <li className={`${textCustom} ${mainLayout} text-red-400`}>
-          {children}
-        </li>
+        <li className={`${textCustom} ${mainLayout} text-black`}>{children}</li>
       ),
     },
     listItem: {

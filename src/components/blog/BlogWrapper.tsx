@@ -5,6 +5,7 @@ import AuthLayout from "../modals/authmodal/AuthLayout";
 import BlogHeader from "./blogcontents/blogheader/BlogHeader";
 import BlogContact from "./blogcontents/blogcontact/BlogContact";
 import BannerPageWrapper from "../appwrapper/bannerPageWrapper/BannerPageWrapper";
+import ShopDetailLayout from "../shop/shopdetail/ShopDetailLayout";
 interface Props {
   children: React.ReactNode;
 }
@@ -20,15 +21,9 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
           <BlogHeader />
           <div className={`w-full h-px bg-gray-200 my-4`} />
           {/*  BnnaerPage Wrappers*/}
-          {/* <div>
-            <BannerPageWrapper
-              home="home"
-              routePath="Blog"
-              routePathID="How to be a good Man"
-            />
-          </div> */}
         </div>
         <AuthLayout />
+        <ShopDetailLayout />
         <div className={`${pageCenter} bg-white`}>
           <div className={`h-auto  my-10`}>{children}</div>
           <div className="mb-10">

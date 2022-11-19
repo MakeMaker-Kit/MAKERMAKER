@@ -6,6 +6,8 @@ import BlogMainLayout from "./blogmain/BlogMainLayout";
 import { useParams } from "react-router-dom";
 import { ProfileWrapper } from "../../appwrapper";
 // import { getBlogDetail } from "../../../utils/GROC";
+import BlogMainComments from "./blogmain/blogmaincomments/BlogMainComments";
+import BlogMainRelated from "./blogmain/blogmainrelated/BlogMainRelated";
 import { useDispatch, useSelector } from "react-redux";
 import { TBlogs } from "../../../types/global.types";
 import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
@@ -66,6 +68,10 @@ const BlogDetailContentLayout = () => {
                   singleBlog?.map((detail: TBlogs) => (
                     <BlogMainLayout {...detail} detail={detail} />
                   ))}
+                {/* Related Blogs */}
+                <BlogMainRelated />
+                {/* Blog Comments */}
+                <BlogMainComments />
               </div>
             </div>
             <div

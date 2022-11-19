@@ -1,5 +1,9 @@
 import React from "react";
-import { AiOutlineGooglePlus, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineGooglePlus,
+  AiOutlineShoppingCart,
+  AiFillCalendar,
+} from "react-icons/ai";
 import { BiSearchAlt, BiMenu, BiCartAlt } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
@@ -45,6 +49,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         BiCartAlt,
         AiOutlineShoppingCart,
         FiShoppingCart,
+        AiFillCalendar,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,
