@@ -120,6 +120,14 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
           {children}
         </h1>
       ),
+      h4: ({ children }: ChildProps) => (
+        <h4
+          className={`${textCustom} ${mainLayout} text-sm text-appRed font-bold`}
+        >
+          {children}
+        </h4>
+      ),
+
       blockquote: ({ children }: ChildProps) => (
         <blockquote className={`${textCustom} ${mainLayout} text-xs`}>
           {children}
@@ -145,7 +153,9 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
     list: {
       // Ex. 1: customizing common list types
       bullet: ({ children }: ChildProps) => (
-        <ul className="text-xs text-gray-600">{children}</ul>
+        <ul className="text-xs text-red-600 list-none decoration-slice">
+          {children}
+        </ul>
       ),
       number: ({ children }: ChildProps) => (
         <ol className={`${textCustom} ${mainLayout} text-xs`}>{children}</ol>
@@ -154,6 +164,11 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
       // Ex. 2: rendering custom lists
       checkmarks: ({ children }: ChildProps) => (
         <ol className={`${textCustom} ${mainLayout} text-xs`}>{children}</ol>
+      ),
+      li: ({ children }: ChildProps) => (
+        <li className={`${textCustom} ${mainLayout} text-red-400`}>
+          {children}
+        </li>
       ),
     },
     listItem: {

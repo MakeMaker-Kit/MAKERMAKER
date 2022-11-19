@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
@@ -20,6 +20,7 @@ const BlogProfileMainLayout = ({
   mainImage,
   categories,
   date,
+  slug,
 }: {
   title?: string;
   body?: TypedObject[];
@@ -61,7 +62,8 @@ const BlogProfileMainLayout = ({
         </div>
         {/* Main Blog Profile Main Container */}
         <div className={cx(`${flexCol} gap-y-5`)}>
-          <div
+          <Link
+            to={`/blog/${slug}`}
             className={cx(
               `max-w-full h-[350px] max-h-[350px] border border-dotted border-gray-500`
             )}
@@ -73,7 +75,7 @@ const BlogProfileMainLayout = ({
               data-loading="lazy"
               className={cx(`${imageLayout} object-center rounded-lg `)}
             />
-          </div>
+          </Link>
           <div className={cx(`${flexCol} gap-y-3`)}>
             <div className={`${XFull} ${flexRowCenterBetween}`}>
               <div className={cx(`${flexRowCenter} `)}>

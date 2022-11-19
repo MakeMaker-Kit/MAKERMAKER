@@ -35,7 +35,7 @@ const BlogContact = () => {
                 initialValues={{
                   blogemailcontact: " ",
                 }}
-                onSubmit={async (values, { setSubmitting }) => {
+                onSubmit={async (values, { setSubmitting, resetForm }) => {
                   setSubmitting(true);
                   const Response: { _type: string; blogemailcontact: string } =
                     {
@@ -46,6 +46,8 @@ const BlogContact = () => {
                     .create(Response)
                     .then(() => {
                       toast.success(`Email Submitted`);
+                      setSubmitting(false);
+                      resetForm();
                     })
                     .catch((err) => {
                       if (err instanceof Error) {

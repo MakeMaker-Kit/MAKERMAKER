@@ -21,7 +21,7 @@ type AwesomeContextType = {
   blogCategoryBySlug: [];
   setBlogCategoryBySlug: React.Dispatch<React.SetStateAction<never[]>>;
   fetchCategoryBlogs: <T>(queryResponse: T) => void;
-  blogTagPost: [];
+  blogTagPost: {} | null;
   setBlogTagPost: React.Dispatch<React.SetStateAction<never[]>>;
   fetchTagPosts: (queryResponse: string) => void;
   isLoading: boolean;
@@ -45,7 +45,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [blogPosts, setBlogPosts] = React.useState([]);
   const [singleBlog, setSingleBlog] = React.useState([]);
   const [blogCategoryBySlug, setBlogCategoryBySlug] = React.useState([]);
-  const [blogTagPost, setBlogTagPost] = React.useState([]);
+  const [blogTagPost, setBlogTagPost] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
   const [blogCategories, setBlogCategories] = React.useState([]);
   const [page, setPage] = React.useState(0);

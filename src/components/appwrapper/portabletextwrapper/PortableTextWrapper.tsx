@@ -37,7 +37,7 @@ const PortableTextWrapper = ({ body }: IProps) => {
         children: JSX.Element;
         value: { href: string };
       }) => {
-        const rel = !value.href.startsWith("/")
+        const rel = !value.href?.startsWith("/")
           ? "noreferrer noopener"
           : undefined;
         return (

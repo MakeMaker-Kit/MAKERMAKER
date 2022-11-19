@@ -6,17 +6,19 @@ import MainButton from "../../../hooks/button/mainBTN";
 import { textStyles, themes, flexLayout } from "../../../styles/themes/theme";
 import { urlFor } from "../../../client";
 import { useIcon } from "../../../hooks/dispatchContext";
+import PortableTextWrapper from "../portabletextwrapper/PortableTextWrapper";
+import { TypedObject } from "@sanity/types/dist/dts";
 type TProps = Omit<React.ComponentProps<"div">, "classNames"> & {};
 interface MoreProps extends TProps {
   name?: string;
   slug: { _type?: string; current?: string };
   image?: string;
-  readonly bio?: Object[];
+  readonly bio: TypedObject | TypedObject[];
   occupation?: string;
   social: string[];
 }
 const ProfileWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
-  ({ children, name, slug, image, social, occupation }) => {
+  ({ children, name, slug, image, social, occupation, bio }) => {
     const { boxFull, imageLayout } = themes;
     const { flexColCenter, flexRowCenter, flexCenter } = flexLayout;
     const { mainLayout, textCustom } = textStyles;
@@ -45,17 +47,20 @@ const ProfileWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
               </div>
             </div>
             {/*  */}
-            <div className={`${flexColCenter}`}>
+            <div
+              className={`${flexColCenter} ${textCustom} ${mainLayout} text-xs`}
+            >
               <p>{name}</p>
-              <p>Nigeria</p>
+              <p>{occupation}</p>
             </div>
             {/*  */}
             <div className={`${flexCenter} text-center`}>
               {/* MAIN DESTRUCTION */}
+              <PortableTextWrapper body={bio} />
             </div>
             {/*  */}
             <ul className={`${flexRowCenter} gap-x-4`}>
-              {social.map((items: string, index: number) => (
+              {social?.map((items: string, index: number) => (
                 <Link
                   to={`/${items}`}
                   rel="no-referee"

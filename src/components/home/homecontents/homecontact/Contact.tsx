@@ -96,7 +96,7 @@ const Contact = () => {
         }}
         onSubmit={async (
           values,
-          { setSubmitting, validateField, setTouched }
+          { setSubmitting, validateField, setTouched, resetForm }
         ) => {
           try {
             // event.preventDefault()
@@ -110,9 +110,11 @@ const Contact = () => {
             dispatch(getUserContact(UserRequest));
             alert(JSON.stringify(UserRequest, null));
             setSubmitting(false);
+            resetForm();
             // if (values) return dispatch(getUserContact(UserRequest));
           } catch (error) {
             setSubmitting(false);
+            resetForm();
             if (error instanceof Error) return console.error(error.message);
           }
         }}
