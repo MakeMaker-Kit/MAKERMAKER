@@ -19,7 +19,8 @@ import {
   BlogDetails,
   getBlogDetails,
 } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
-import { getBlogDetail } from "../../../utils/GROC";
+import { getBlogDetail, blogRelatedPost } from "../../../utils/GROC";
+import { MainSpinner } from "../../spinner/Spinners";
 
 const BlogDetailContentLayout = () => {
   let ID: string | undefined;
@@ -30,12 +31,12 @@ const BlogDetailContentLayout = () => {
   const testdetail = useSelector(TextDetails);
   const { flexResponsive } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
-  const { fetchSingleBlog, singleBlog } = useAwesomwContext();
+  const { fetchSingleBlog, singleBlog, fetchRelatedBlog, relatedBlog } =
+    useAwesomwContext();
   // gerneate Query
 
   const { themeWrapper, boxFull, XFull, containerWrapper, boxExtend } = themes;
   const { mainMarX } = themeWrapper;
-  console.log("Params Id Respone", ID);
   React.useEffect(() => {
     let cancelled = false;
     const query = getBlogDetail(ID);
@@ -47,12 +48,25 @@ const BlogDetailContentLayout = () => {
       cancelled = true;
     };
   }, []);
-  console.log("Blog Detail Response", blogDetail, singleBlog);
   const AuthorProfile =
     singleBlog && singleBlog?.map(({ author }: TBlogs) => author);
-  console.log("Autho Respone", AuthorProfile);
+  // const postId = singleBlog[0]?._id;
+
+  // // singleBlog && singleBlog?.map(({ _id }: TBlogs) => _id);
+  // const postSlug = singleBlog[0]?.slug.current;
+  // // singleBlog && singleBlog?.map(({ slug }: TBlogs) => slug.current);
+  // React.useEffect(() => {
+  //   let cancelled = true;
+  //   const query = blogRelatedPost(singleBlog[0]);
+  //   fetchRelatedBlog(query);
+  //   return () => {
+  //     cancelled = true;
+  //   };
+  // }, []);
+  console.log("Autho Respone", relatedBlog);
   return (
     <>
+      <MainSpinner />
       <div className={`${mainMarX}`}>
         <div className={cx(`${boxExtend}`)}>
           <div
@@ -69,7 +83,7 @@ const BlogDetailContentLayout = () => {
                     <BlogMainLayout {...detail} detail={detail} />
                   ))}
                 {/* Related Blogs */}
-                <BlogMainRelated />
+                {relatedBlog && <BlogMainRelated {...relatedBlog} />}
                 {/* Blog Comments */}
                 <BlogMainComments />
               </div>

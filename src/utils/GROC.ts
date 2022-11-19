@@ -160,3 +160,47 @@ export const contactInfoQuery = `*[_type == "contactInfo"][0]{
   addressinfo,
   companyinfo[0..3]->{title, details},
 }`;
+
+export const blogRelatedPosts = <T, Y>(categoryId: T, blogId: Y): string => {
+  return `*[_type == "post" && _id != '${categoryId} ' &&   categories[1]->slug.current ==  '${blogId}' ][0..4]{
+    _id,
+    title,
+    "slug": slug.current,
+   
+  } `;
+};
+export const blogRelatedPost = (mainBlogId: {
+  slug: { current?: string };
+  _id?: string;
+}) => {
+  return `*[_type == "post" && slug.current == '${mainBlogId?.slug.current}'][0] {
+    title,
+    "categories": categories[0]->{_id, title, description, image,"slug": slug.current},
+    "related": *[_type == "post" && _id != '${mainBlogId?._id}' && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc, _createdAt desc) [0..5] {
+       title,
+       "slug": slug.current,
+      body, 
+      mainImage,
+      description,  
+      "categories": categories[0]->{_id, title, description, image,"slug": slug.current},
+  "tags": tags[0]->{_id, name, "slug": slug.current},
+  author-> {name, "slug": slug.current},
+  publishedAt,
+     }
+  }`;
+};
+// *[_type == "post" && _id != "cfbfe0ea-4e98-4efa-a565-ebb923d7d7ad"  &&    categories[1]->slug.current == "design"][0..4]
+/**
+ * 
+ * *[_type == "post" && slug.current == "enhancing-productivity"][0] {
+  title,
+  categories[]->,
+  "related": *[_type == "post" && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc, _createdAt desc) [0..5] {
+     title,
+     slug,
+    body, 
+    description,
+    
+   }
+}
+ */

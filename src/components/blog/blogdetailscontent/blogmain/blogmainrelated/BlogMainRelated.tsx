@@ -6,7 +6,21 @@ import {
 } from "../../../../../styles/themes/theme";
 import cx from "classnames";
 import { useIcon } from "../../../../../hooks/dispatchContext";
-const RelatedCard = () => {
+import { useAwesomwContext } from "../../../../../services/context/stylediconcontext/OnStyledIconContext";
+import { TRelatedBlogs, TRelated } from "../../../../../types/global.types";
+import { urlFor } from "../../../../../client";
+import moment from "moment";
+const RelatedCard = ({
+  _id,
+  body,
+  description,
+  slug,
+  title,
+  mainImage,
+  author,
+  categories,
+  publishedAt,
+}: TRelated) => {
   const { imageLayout, boxFull } = themes;
   const {
     flexCol,
@@ -18,12 +32,16 @@ const RelatedCard = () => {
   } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { AiFillCalendar } = useIcon();
+  const { fetchRelatedBlog, relatedBlog } = useAwesomwContext();
+  React.useEffect(() => {
+    // fetchRelatedBlog()
+  }, []);
   return (
     <>
       <div className={`w-full ${flexCol} h-auto`}>
         <div className={cx(`h-[300px] relative`)}>
           <img
-            src={`http://metropolitanhost.com/themes/templatemoster/html/taylum/assets/img/blog/details/4.jpg`}
+            src={urlFor(mainImage).url()}
             alt=""
             className={`${imageLayout} max-h-full`}
           />
@@ -34,7 +52,7 @@ const RelatedCard = () => {
             <p
               className={`${boxFull} ${flexCenter} ${mainLayout} ${textCustom}`}
             >
-              <span>programming</span>
+              <span>{categories.title}</span>
             </p>
           </div>
         </div>
@@ -46,25 +64,17 @@ const RelatedCard = () => {
             <div className={cx(`${flexRowCenterBetween}`)}>
               <div className={`${flexRowCenter} space-x-1`}>
                 <AiFillCalendar />
-                <p>may 30 2019</p>
+                <p>{moment(publishedAt).utc().format("YYYY-MMM-DD")}</p>
               </div>
-              <p>wilson ibekason</p>
+              <p>{author.name}</p>
             </div>
             {/*  */}
             <div className={`line-clamp-3`}>
-              <h4>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex,
-                amet consectetur illum in consequatur totam tenetur dolorum
-                error obcaecati qui?
-              </h4>
+              <h4>{title}</h4>
             </div>
             {/*  */}
             <div className={`line-clamp-3 `}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-                aperiam unde. Esse quod ipsam aperiam nemo asperiores, illo
-                dolores fugit!
-              </p>
+              <p>{description}</p>
             </div>
           </div>
         </div>
@@ -72,7 +82,7 @@ const RelatedCard = () => {
     </>
   );
 };
-const BlogMainRelated = () => {
+const BlogMainRelated = ({ categories, related, title }: TRelatedBlogs) => {
   const { boxFull, XFull, containerWrapper } = themes;
   const { flexCol, flexRow, flexWrap, flexColBetween } = flexLayout;
   const {} = textStyles;
@@ -82,16 +92,14 @@ const BlogMainRelated = () => {
         <h1>Related Posts</h1>
         {/*  */}
         <div className={cx(`w-full ${flexRow} ${flexWrap} gap-4`)}>
-          {Array(4)
-            .fill(0)
-            .map((i) => (
-              <div
-                key={i}
-                className={cx(`w-full max-w-four flex-[0_0_40%] border`)}
-              >
-                <RelatedCard />
-              </div>
-            ))}
+          {related?.map((post) => (
+            <div
+              key={post._id}
+              className={cx(`w-full max-w-four flex-[0_0_40%] border`)}
+            >
+              <RelatedCard {...post} />
+            </div>
+          ))}
         </div>
       </div>
     </>

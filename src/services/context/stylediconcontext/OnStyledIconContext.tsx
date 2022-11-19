@@ -1,8 +1,9 @@
 import React from "react";
-import { TBlogs } from "../../../types/global.types";
+import { TBlogs, TRelatedBlogs } from "../../../types/global.types";
 import { BlogQuery } from "../../../utils/querypaths";
 import { client } from "../../../client";
 import { AxiosError } from "axios";
+import { blogRelatedPost } from "../../../utils/GROC";
 
 type AwesomeContextType = {
   awesomeState: number;
@@ -42,6 +43,9 @@ type AwesomeContextType = {
   };
   setContacInfo: React.Dispatch<React.SetStateAction<never[]>>;
   fetchContactInfo: (queryResponse: string) => void;
+  setRelatedBlog: React.Dispatch<React.SetStateAction<never[]>>;
+  relatedBlog: TRelatedBlogs;
+  fetchRelatedBlog: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
   null
@@ -63,6 +67,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [page, setPage] = React.useState(0);
   const [homeBlog, setHomeBlog] = React.useState([]);
   const [contactInfo, setContacInfo] = React.useState({});
+  const [relatedBlog, setRelatedBlog] = React.useState([]);
   const toggleLoader = () => setIsLoading((curState) => !curState);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
@@ -98,6 +103,13 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       .then((response) => {
         response && setIsLoading(false);
         setSingleBlog(response);
+        if (response[0]) {
+          const query = blogRelatedPost(response[0]);
+          client.fetch(query).then((data) => {
+            setRelatedBlog(data);
+            console.log("related respine", data);
+          });
+        }
       })
       .catch((err: any) => {
         let Error: AxiosError<ValidationError> = err;
@@ -175,6 +187,20 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data.errorMessage;
       });
   };
+
+  const fetchRelatedBlog: TFunction = (queryResponse) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        response && setIsLoading(false);
+        setRelatedBlog(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data.errorMessage;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -201,6 +227,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       homeBlog,
       fetchContactInfo,
       contactInfo,
+      fetchRelatedBlog,
+      relatedBlog,
     }),
     [
       awesomeState,
@@ -224,6 +252,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       homeBlog,
       fetchContactInfo,
       contactInfo,
+      fetchRelatedBlog,
+      relatedBlog,
     ]
   );
   return (

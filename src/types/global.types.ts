@@ -177,6 +177,33 @@ export interface TCategory {
   _type?: number;
   image?: string;
   _id?: string;
+  slug?: string;
 }
 
-export interface TAuthorBlogs {}
+export interface TRelated {
+  title?: string;
+  description?: string;
+  image?: string;
+  _id?: string;
+  slug?: string;
+  body?: TypedObject | TypedObject;
+  mainImage?: string;
+  author: TAUTHOR;
+  categories: TCategories;
+  tags: { name?: string; _id: string; slug?: string };
+  publishedAt?: string;
+}
+
+export interface TRelatedBlogs {
+  [key: string]:
+    | string
+    | undefined
+    | Boolean
+    | boolean
+    | TCategory
+    | TRelated
+    | TRelated[];
+  title?: string;
+  categories: TCategory;
+  related: TRelated[];
+}
