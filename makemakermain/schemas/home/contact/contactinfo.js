@@ -27,14 +27,12 @@ export default {
       type: "array",
       of: [
         {
-          name: "title",
-          title: "Contact Title",
-          type: "string",
-        },
-        {
-          name: "details",
-          title: "Details",
-          type: "string",
+          type: "reference",
+          to: [
+            {
+              type: "info",
+            },
+          ],
         },
       ],
     },

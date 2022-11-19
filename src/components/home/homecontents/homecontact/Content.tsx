@@ -13,6 +13,8 @@ import {
   ContactInformation,
 } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { ContactInfoQuery, ContactQuery } from "../../../../utils/querypaths";
+import { useAwesomwContext } from "../../../../services/context/stylediconcontext/OnStyledIconContext";
+import { contactInfoQuery } from "../../../../utils/GROC";
 const LocationContainer = ({ text }: LocationProps) => <p>{text}</p>;
 const Content = () => {
   const { flexCenter, flexStart, flexCol, flexRowCenter } = flexLayout;
@@ -20,7 +22,8 @@ const Content = () => {
   const { themeWrapper, boxFull } = themes;
   const {} = themeWrapper;
   const dispatch = useDispatch();
-  const contactInfo = useSelector(ContactInformation);
+  // const contactInfo = useSelector(ContactInformation);
+  const { contactInfo, fetchContactInfo } = useAwesomwContext();
   const defaultProps: defaultProps = {
     center: {
       lat: 10.99835602,
@@ -32,10 +35,9 @@ const Content = () => {
   React.useLayoutEffect(() => {
     // @ts-ignore
     dispatch(getContactInfo(ContactInfoQuery));
+    fetchContactInfo(contactInfoQuery);
   }, [dispatch]);
-  console.log("====================================");
-  console.log("Contaxct Information ", contactInfo);
-  console.log("====================================");
+  console.log("cjfhf", contactInfo);
   return (
     <>
       <div className={cx(`${flexCenter}`)}>
@@ -49,31 +51,29 @@ const Content = () => {
           className={`${flexCol} ${mainLayout} ${textCustom} text-sm text-gray-50`}
         >
           <p className="text-gray-200">Our Address</p>
-          <p>No 9 Stallion Rd</p>
-          <p>Abia State, Nigeria</p>
+          <p>{contactInfo.addressinfo?.address}</p>
+          <p>{contactInfo.addressinfo?.state}</p>
         </div>
 
-        {Array(5)
-          .fill(0)
-          .map((i) => (
-            <>
-              <p
-                className={cx(
-                  `${mainLayout} ${textCustom} text-sm text-gray-50 whitespace-nowrap ${flexRowCenter} space-x-2`
-                )}
-                key={i + 1}
+        {contactInfo.companyinfo?.map(({ details, title }, i) => (
+          <>
+            <p
+              className={cx(
+                `${mainLayout} ${textCustom} text-sm text-gray-50 whitespace-nowrap ${flexRowCenter} space-x-2`
+              )}
+              key={i + 1}
+            >
+              {" "}
+              {title}:{" "}
+              <span
+                className={`w-auto max-w-five p-2 h-4 bg-white ${flexCenter}`}
               >
                 {" "}
-                Email:{" "}
-                <span
-                  className={`w-auto max-w-five p-2 h-4 bg-white ${flexCenter}`}
-                >
-                  {" "}
-                  <p className="text-xs text-gray-800">Makemaker@info.com</p>
-                </span>
-              </p>
-            </>
-          ))}
+                <p className="text-xs text-gray-800">{details}</p>
+              </span>
+            </p>
+          </>
+        ))}
         {/* Map  
         <div className="w-56 h-40">
           <div className={cx(`${boxFull}`)}>

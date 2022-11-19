@@ -155,3 +155,8 @@ export const homeBlogQuery = `*[_type == "post"][0..6]{
   "categories": categories[0]->{_id, title, description, image,"slug": slug.current},
   "tags": tags[]->{_id, name, "slug": slug.current},
 }`;
+
+export const contactInfoQuery = `*[_type == "contactInfo"][0]{
+  addressinfo,
+  companyinfo[0..3]->{title, details},
+}`;
