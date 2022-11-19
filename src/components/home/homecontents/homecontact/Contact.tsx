@@ -153,7 +153,6 @@ const Contact = () => {
                     <TextField
                       label=""
                       name="email"
-                      // onChange={() => handleChange}
                       placeholder="Your Email Address"
                       value={email}
                       error={errors.email}

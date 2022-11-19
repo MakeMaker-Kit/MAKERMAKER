@@ -32,7 +32,7 @@ const BannerPageWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
                 </Link>
                 {routePath && <span>/</span>}
                 <Link
-                  to={`/${routePath}`}
+                  to={`/${routePath}/${routePathID}`}
                   className={classNames(
                     `capitalize cursor-pointer hover:underline`,
                     `${!routePathID ? "text-gray-900" : ""}`
