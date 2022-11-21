@@ -198,3 +198,14 @@ export const blogReviewQuery = `*[_type == "blogreview"][0..5]{
   message,
   _createdAt
 }`;
+
+export const blogFooterMain = `*[_type == "footermain"][0]{
+  _id,
+  name,
+  desc,
+  "socials": socials[0]->{_id, name, twitter, instagram, facebook},
+  "about": *[_type == "footerabout" ][0]{
+    logo,
+    desc
+  },
+}`;

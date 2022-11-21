@@ -49,6 +49,12 @@ export default {
       of: [{ type: "reference", to: [{ type: "tag" }] }],
     },
     {
+      name: "reviews",
+      title: "Blog Reviews",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "blogreview" }] }],
+    },
+    {
       name: "publishedAt",
       title: "Published at",
       type: "datetime",

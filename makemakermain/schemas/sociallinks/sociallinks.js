@@ -1,5 +1,5 @@
 export default {
-  type: "object",
+  type: "document",
   name: "sociallinks",
   fieldsets: [{ name: "social", title: "Social media handles" }],
   options: {

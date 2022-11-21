@@ -36,6 +36,8 @@ type AwesomeContextType = {
   fetchHomeBlog: (queryResponse: string) => void;
   setBlogReview: React.Dispatch<React.SetStateAction<never[]>>;
   fetchBlogReview: (queryResponse: string) => void;
+  setFooterMain: React.Dispatch<React.SetStateAction<null>>;
+  footerMain: {};
   blogReview: [];
   contactInfo: {
     addressinfo: {
@@ -72,6 +74,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [contactInfo, setContacInfo] = React.useState({});
   const [relatedBlog, setRelatedBlog] = React.useState([]);
   const [blogReview, setBlogReview] = React.useState([]);
+  const [footerMain, setFooterMain] = React.useState(null);
   const toggleLoader = () => setIsLoading((curState) => !curState);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
@@ -219,6 +222,21 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data.errorMessage;
       });
   };
+
+  const fetchFoooterMain: TFunction = (queryResponse) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        response && setIsLoading(false);
+        // setBlogReview(response);
+        setFooterMain(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data.errorMessage;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -249,6 +267,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       relatedBlog,
       blogReview,
       fetchBlogReview,
+      fetchFoooterMain,
+      footerMain,
     }),
     [
       awesomeState,
@@ -276,6 +296,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       relatedBlog,
       blogReview,
       fetchBlogReview,
+      fetchFoooterMain,
+      footerMain,
     ]
   );
   return (

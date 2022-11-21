@@ -14,5 +14,11 @@ export default {
       title: "Description  of the Footer Main",
       type: "blockContent",
     },
+    {
+      name: "socials",
+      title: "SOCIALS",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "sociallinks" }] }],
+    },
   ],
 };
