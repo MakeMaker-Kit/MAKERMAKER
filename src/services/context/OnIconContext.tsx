@@ -11,8 +11,9 @@ import { MdOutlineKeyboardArrowDown, MdMarkEmailUnread } from "react-icons/md";
 import { BsTwitter, BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { IconContextProps } from "./context.type";
-import { CiFaceMeh } from "react-icons/ci";
+import { CiFaceMeh, CiClock2 } from "react-icons/ci";
 import { HiChatAlt2 } from "react-icons/hi";
+import { RiShareForwardLine } from "react-icons/ri";
 import {
   PaperPlaneIcon,
   MinusCircledIcon,
@@ -56,6 +57,8 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         MdMarkEmailUnread,
         CiFaceMeh,
         HiChatAlt2,
+        RiShareForwardLine,
+        CiClock2,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,
