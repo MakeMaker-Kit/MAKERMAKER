@@ -19,7 +19,7 @@ const BlogMainComments = () => {
   const {} = useAwesomwContext();
   return (
     <>
-      <div className={`${XFull} ${containerWrapper} ${flexCol}`}>
+      <div className={`${XFull} ${containerWrapper} ${flexCol} p-10`}>
         <div className={`${flexStart}`}>
           <h1>Leave a Comment</h1>
         </div>

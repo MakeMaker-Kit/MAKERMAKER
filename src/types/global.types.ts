@@ -54,6 +54,7 @@ export interface InputRef {
   onCompositionStart?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionUpdate?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+  icon?: JSX.Element | React.ReactElement;
 }
 export declare function Outlet(props: OutletProps): React.ReactElement | null;
 export interface PathRouteProps {

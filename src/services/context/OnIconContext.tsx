@@ -7,10 +7,11 @@ import {
 import { BiSearchAlt, BiMenu, BiCartAlt } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { BsTwitter } from "react-icons/bs";
+import { MdOutlineKeyboardArrowDown, MdMarkEmailUnread } from "react-icons/md";
+import { BsTwitter, BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { IconContextProps } from "./context.type";
+import { CiFaceMeh } from "react-icons/ci";
 import {
   PaperPlaneIcon,
   MinusCircledIcon,
@@ -50,6 +51,9 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         AiOutlineShoppingCart,
         FiShoppingCart,
         AiFillCalendar,
+        BsFillTelephoneOutboundFill,
+        MdMarkEmailUnread,
+        CiFaceMeh,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,
