@@ -43,7 +43,17 @@ export interface InputRef {
   disabled?: boolean;
   name?: string;
   type?: string;
+  error?: string;
+  touched?: boolean;
   placeholder?: string;
+  handleChange?: {
+    (e: React.ChangeEvent<any>): void;
+    <T = string | React.ChangeEvent<any>>(
+      field: T
+    ): T extends React.ChangeEvent<any>
+      ? void
+      : (e: string | React.ChangeEvent<any>) => void;
+  };
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -207,4 +217,12 @@ export interface TRelatedBlogs {
   title?: string;
   categories: TCategory;
   related: TRelated[];
+}
+
+export interface TReviews {
+  _type?: string;
+  fullname?: string;
+  email?: string;
+  phonenumber?: string;
+  message?: string;
 }

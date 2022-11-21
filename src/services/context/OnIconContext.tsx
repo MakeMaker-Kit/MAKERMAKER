@@ -12,6 +12,7 @@ import { BsTwitter, BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { IconContextProps } from "./context.type";
 import { CiFaceMeh } from "react-icons/ci";
+import { HiChatAlt2 } from "react-icons/hi";
 import {
   PaperPlaneIcon,
   MinusCircledIcon,
@@ -54,6 +55,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         BsFillTelephoneOutboundFill,
         MdMarkEmailUnread,
         CiFaceMeh,
+        HiChatAlt2,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,

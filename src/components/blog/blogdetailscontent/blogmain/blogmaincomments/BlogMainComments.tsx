@@ -14,14 +14,16 @@ const CommentsForm = () => {
 const BlogMainComments = () => {
   const { XFull, boxFull, imageLayout, containerWrapper } = themes;
   const { flexCol, flexStart } = flexLayout;
-  const {} = textStyles;
+  const { mainLayout, textCustom } = textStyles;
   const {} = useIcon();
   const {} = useAwesomwContext();
   return (
     <>
       <div className={`${XFull} ${containerWrapper} ${flexCol} p-10`}>
         <div className={`${flexStart}`}>
-          <h1>Leave a Comment</h1>
+          <h1 className={`${textCustom} ${mainLayout} text-lg`}>
+            Leave a Comment
+          </h1>
         </div>
         {/* comments form */}
         <CommentsForm />
