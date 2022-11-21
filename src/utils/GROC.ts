@@ -189,3 +189,12 @@ export const blogRelatedPost = (mainBlogId: {
      }
   }`;
 };
+
+export const blogReviewQuery = `*[_type == "blogreview"][0..5]{
+  _id,
+  fullname,
+  email,
+  phonenumber,
+  message,
+  _createdAt
+}`;
