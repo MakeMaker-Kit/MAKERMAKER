@@ -189,18 +189,3 @@ export const blogRelatedPost = (mainBlogId: {
      }
   }`;
 };
-// *[_type == "post" && _id != "cfbfe0ea-4e98-4efa-a565-ebb923d7d7ad"  &&    categories[1]->slug.current == "design"][0..4]
-/**
- * 
- * *[_type == "post" && slug.current == "enhancing-productivity"][0] {
-  title,
-  categories[]->,
-  "related": *[_type == "post" && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc, _createdAt desc) [0..5] {
-     title,
-     slug,
-    body, 
-    description,
-    
-   }
-}
- */
