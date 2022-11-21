@@ -188,7 +188,7 @@ export interface TRelated {
   slug?: string;
   body?: TypedObject | TypedObject;
   mainImage?: string;
-  author: TAUTHOR;
+  author: { name?: string; slug?: string };
   categories: TCategories;
   tags: { name?: string; _id: string; slug?: string };
   publishedAt?: string;

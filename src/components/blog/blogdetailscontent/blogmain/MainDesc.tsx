@@ -237,3 +237,11 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
 };
 
 export default MainDesc;
+/**
+ * "baseUrl": "src",
+    "paths": {
+      "@services/*": ["app/path/to/services/*"],
+      "@components/*": ["app/somewhere/deeply/nested/*"],
+      "@environments/*": ["environments/*"]
+    }
+ */
