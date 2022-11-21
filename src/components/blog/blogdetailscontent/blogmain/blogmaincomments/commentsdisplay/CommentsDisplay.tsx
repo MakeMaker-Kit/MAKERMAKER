@@ -39,9 +39,11 @@ const TextField = ({
           <input
             className={`w-full h-full p-5 rounded-full capitalize shadow-md border border-gray-500 tracking-wider`}
             placeholder={placeholder}
-            onClick={handleChange}
+            onChange={handleChange}
             value={value}
             name={name}
+            type={type}
+            onBlur={onBlur}
           />
         </div>
 
@@ -120,6 +122,7 @@ const CommentsDisplay = () => {
             errors,
             touched,
             isSubmitting,
+            handleBlur,
           }) => {
             const { fullname, message, phonenumber, email } = values;
             return (
@@ -135,6 +138,11 @@ const CommentsDisplay = () => {
                     className={`text-start resize-none pt-3 pl-3 rounded-2xl mb-2`}
                     rows={7}
                     cols={0}
+                    onChange={handleChange}
+                    name={"message"}
+                    value={message}
+                    // type={"text"}
+                    onBlur={handleBlur}
                   ></textarea>
                   {errors.message && touched.message && (
                     <TextDisplay>{errors.message}</TextDisplay>
@@ -155,6 +163,7 @@ const CommentsDisplay = () => {
                   type={"text"}
                   name={"fullname"}
                   placeholder={"Enter Your FullName"}
+                  onBlur={handleBlur}
                 />
 
                 {/* Email Address */}
@@ -166,6 +175,12 @@ const CommentsDisplay = () => {
                     />
                   }
                   placeholder={"Enter Your Email Address"}
+                  error={errors.email}
+                  value={email}
+                  handleChange={handleChange}
+                  touched={touched.email}
+                  type={"email"}
+                  name={"email"}
                 />
                 {/*  Phone Number*/}
                 <TextField
@@ -176,6 +191,12 @@ const CommentsDisplay = () => {
                       size={20}
                     />
                   }
+                  error={errors.phonenumber}
+                  value={phonenumber}
+                  handleChange={handleChange}
+                  touched={touched.phonenumber}
+                  type={"text"}
+                  name={"phonenumber"}
                 />
                 {/* Button */}
 
