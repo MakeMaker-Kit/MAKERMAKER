@@ -203,7 +203,7 @@ export const blogFooterMain = `*[_type == "footermain"][0]{
   _id,
   name,
   desc,
-  "socials": socials[0]->{_id, name, twitter, instagram, facebook},
+  "socials": socials[0]->{_id, name, socialName[0..3]},
   "about": *[_type == "footerabout" ][0]{
     logo,
     desc

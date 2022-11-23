@@ -33,5 +33,11 @@ export default {
       type: "string",
       fieldset: "social",
     },
+    {
+      name: "socialName",
+      title: "Social Name",
+      type: "array",
+      of: [{ type: "string", title: "SocialMediaLink" }],
+    },
   ],
 };

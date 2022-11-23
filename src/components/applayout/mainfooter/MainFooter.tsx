@@ -5,7 +5,8 @@ import { generatedId } from "../../../hooks/localuuid/uuid";
 import Input from "../../../hooks/Input";
 import MainButton from "../../../hooks/button/mainBTN";
 import { useIcon } from "../../../hooks/dispatchContext";
-
+import { blogFooterMain } from "../../../utils/GROC";
+import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 const MainFooter = () => {
   const {
     flexRow,
@@ -19,6 +20,11 @@ const MainFooter = () => {
   const { marX, padY } = themeWrapper;
   const { textCustom, mainLayout } = textStyles;
   const { FaWhatsapp } = useIcon();
+  const { fetchFoooterMain, footerMain } = useAwesomwContext();
+  React.useEffect(() => {
+    fetchFoooterMain(blogFooterMain);
+  }, []);
+  console.log("Footer MAIN", footerMain);
   return (
     <>
       <div className={cx(`${marX} py-20`)}>
@@ -39,7 +45,7 @@ const MainFooter = () => {
                         )}
                       >
                         <img
-                          src="https://bunzo-react.pages.dev/static/3a02a06d11da91a4432f68ac04eda68d/e75ad/logo-white.webp"
+                          src={footerMain?.about.logo}
                           alt=""
                           className={cx(
                             `max-w-full w-full h-full object-center object-contain`
@@ -51,23 +57,20 @@ const MainFooter = () => {
                         <p
                           className={`${textCustom} text-sm font-playfair tracking-wider leading-relaxed text-gray-50`}
                         >
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Quasi, esse.
+                          {footerMain?.about.desc}
                         </p>
                       </div>
                       <ul className={`${flexRowCenter} space-x-4`}>
-                        {Array(4)
-                          .fill(0)
-                          .map((i) => (
-                            <li
-                              className={`w-10 h-10 p-2  border-none bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 shadow-xl rounded-md`}
-                              key={generatedId(i)}
-                            >
-                              <div className={cx(`${boxFull} ${flexCenter}`)}>
-                                <FaWhatsapp size={20} className={``} />
-                              </div>
-                            </li>
-                          ))}
+                        {footerMain?.socials.socialName.map((i) => (
+                          <li
+                            className={`w-10 h-10 p-2  border-none bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 shadow-xl rounded-md`}
+                            key={i}
+                          >
+                            <div className={cx(`${boxFull} ${flexCenter}`)}>
+                              <FaWhatsapp size={20} className={``} />
+                            </div>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>

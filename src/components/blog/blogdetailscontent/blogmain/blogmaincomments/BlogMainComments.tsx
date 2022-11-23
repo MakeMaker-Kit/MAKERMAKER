@@ -26,7 +26,6 @@ const CommentsForm = () => {
   React.useEffect(() => {
     fetchBlogReview(blogReviewQuery);
   }, []);
-  console.log("Bllog Review ", blogReview);
   return (
     <>
       <div className={`${XFull} ${flexCol} ${mainLayout} ${textCustom} `}>

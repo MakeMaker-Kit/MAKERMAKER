@@ -1,7 +1,7 @@
 export default {
   name: "product",
   title: "Products  ",
-  desciption: "This isn the Ecommerce or Products Query ",
+  desciption: "This is  the Ecommerce or Products Query ",
   type: "document",
   fields: [
     {
@@ -15,13 +15,23 @@ export default {
       name: "slug",
       title: "Slug",
       type: "slug",
-      option: {
+      options: {
         source: "title",
         maxLength: 96,
       },
     },
     {
-      title: "Default Variant",
+      name: "price",
+      title: "Standard Price (NAIRA)",
+      type: "string",
+    },
+    {
+      name: "updatedprice",
+      title: "Updated Price (NAIRA)",
+      type: "string",
+    },
+    {
+      title: "Default Variant ",
       name: "DefaultProductVariant",
       type: "productVariant",
     },

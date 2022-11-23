@@ -9,7 +9,7 @@ export default {
       title: "Logo",
       type: "image",
       options: { hotspot: true },
-      description: "Thisis the company's Logo",
+      description: "This is the company's Logo",
       required: true,
     },
     {

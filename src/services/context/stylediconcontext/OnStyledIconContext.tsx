@@ -37,7 +37,20 @@ type AwesomeContextType = {
   setBlogReview: React.Dispatch<React.SetStateAction<never[]>>;
   fetchBlogReview: (queryResponse: string) => void;
   setFooterMain: React.Dispatch<React.SetStateAction<null>>;
-  footerMain: {};
+  footerMain: {
+    _id?: string;
+    name?: string;
+    desc?: string;
+    socials: {
+      _id?: string;
+      name?: string;
+      twitter?: string;
+      instagram?: string;
+      facebook?: string;
+      socialName: string[];
+    };
+    about: { logo?: string; desc?: string };
+  };
   blogReview: [];
   contactInfo: {
     addressinfo: {
@@ -50,6 +63,7 @@ type AwesomeContextType = {
   fetchContactInfo: (queryResponse: string) => void;
   setRelatedBlog: React.Dispatch<React.SetStateAction<never[]>>;
   relatedBlog: TRelatedBlogs;
+  fetchFoooterMain: (queryResponse: string) => void;
   fetchRelatedBlog: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
