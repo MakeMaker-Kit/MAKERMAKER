@@ -30,7 +30,7 @@ const AppContext = createContext<{
 });
 
 const mainReducer = ({ products, shoppingCart }: InitialStateType, action: ProductActions | ShoppingCartActions) => ({
-  products: productReducer(products, action),
+  products: productReducer(products, action as ProductActions),
   shoppingCart: shoppingCartReducer(shoppingCart, action),
 });
 

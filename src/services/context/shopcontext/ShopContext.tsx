@@ -37,6 +37,7 @@ export const ShopContextProvider = ({
 }: {
   children: JSX.Element;
 }) => {
+  //@ts-ignore
   const [state, dispatch] = React.useReducer(mainReducer, initialState);
   return (
     <ProductContext.Provider value={{ state, dispatch }}>

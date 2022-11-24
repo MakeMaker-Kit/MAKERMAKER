@@ -209,3 +209,35 @@ export const blogFooterMain = `*[_type == "footermain"][0]{
     desc
   },
 }`;
+
+export const ProductsQuery = `*[_type == "product"][0..9]{
+title,
+"slug": slug.current,
+_id,
+price,
+updatedPrice,
+"defaultVariant": DefaultProductVariant,
+quantity,
+variants,
+stockItems,
+tags[0..2],
+"cateSpec": specificCategory[0..3],
+categories[0..3]->[_id, "slug": slug.current, name,"desc": description],
+}`;
+
+export const SingleProduct = <T>(slugId: T): string => {
+  return `*[_type == "product" && slug.current == '${slugId}'][0]{
+    title,
+"slug": slug.current,
+_id,
+price,
+updatedPrice,
+"defaultVariant": DefaultProductVariant,
+quantity,
+variants,
+stockItems,
+tags[0..2],
+"cateSpec": specificCategory[0..3],
+categories[0..3]->[_id, "slug": slug.current, name,"desc": description],
+  }`;
+};

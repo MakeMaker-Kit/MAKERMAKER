@@ -11,6 +11,7 @@ import { AwesomeContextProvider } from "./services/context/stylediconcontext/OnS
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "react-hot-toast";
+import { ShopContextProvider } from "./services/context/shopcontext/ShopContext";
 
 let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -21,8 +22,12 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <IconContextProvider>
             <AwesomeContextProvider>
               {/* <PersistGate persistor={persistor} loading={null}> */}
+
               <Toaster />
-              <App />
+              <ShopContextProvider>
+                <App />
+              </ShopContextProvider>
+
               {/* </PersistGate> */}
             </AwesomeContextProvider>
           </IconContextProvider>
