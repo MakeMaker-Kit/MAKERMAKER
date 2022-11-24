@@ -225,6 +225,11 @@ tags[0..2],
 categories[0..3]->[_id, "slug": slug.current, name,"desc": description],
 }`;
 
+/**
+ * @param slugId
+ * @export slugId
+ */
+
 export const SingleProduct = <T>(slugId: T): string => {
   return `*[_type == "product" && slug.current == '${slugId}'][0]{
     title,
@@ -234,7 +239,7 @@ price,
 updatedPrice,
 "defaultVariant": DefaultProductVariant,
 quantity,
-variants,
+variants[0],
 stockItems,
 tags[0..2],
 "cateSpec": specificCategory[0..3],

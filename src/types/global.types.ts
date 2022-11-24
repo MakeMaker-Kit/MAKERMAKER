@@ -226,3 +226,35 @@ export interface TReviews {
   phonenumber?: string;
   message?: string;
 }
+
+export type TVariant = {
+  title: string;
+  description?: string;
+  grams?: string;
+  sku?: string;
+  taxable: boolean;
+  images: string[];
+};
+
+export interface TProduct {
+  [key: string]:
+    | string
+    | {}[]
+    | {}
+    | boolean
+    | Boolean
+    | undefined
+    | null
+    | unknown
+    | number;
+  _id?: string;
+  title?: string;
+  price?: string;
+  updatedPrice?: string;
+  readonly defaultVariant?: TVariant;
+  quantity?: number;
+  variants?: TVariant[];
+  stockItems?: number;
+  tags?: string[];
+  categories?: { _id?: string; slug?: string; name?: string };
+}
