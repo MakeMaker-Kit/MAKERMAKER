@@ -36,7 +36,7 @@ const initialState: ProductStateTypes = {
   productQuantity: 0,
   totalPrice: 0,
   totalQuantity: 0,
-  cart: cartItemData ? cartItemData : null || {},
+  cart: cartItemData ? cartItemData : null || [],
   ShouldCartBeCleared: false,
   ShouldCartBeReset: false,
 };
@@ -85,15 +85,17 @@ export const ProductSlice = createSlice({
     },
     getIdentifiedProduct: (state, action: PayloadAction) => {},
     removeFromCart: (state, action) => {
-      let updatedItemIndex = state.cart?.find(
-        (item) => item.id === action.payload?.product?._id
+      let updatedItemIndex = state.cart.find(
+        (item) => item._id === action.payload?.product?._id
       );
       const newCartItem = state.cart?.filter(
-        (cartItem) => cartItem.id !== action.payload.id
+        (cartItem) => cartItem.id !== action.payload._id
       );
-      let cartItem = state.cart?.splice(updatedItemIndex, 1);
+      // let cartItem = state.cart?.splice(updatedItemIndex, 1);
+
       state.totalPrice =
-        state.totalPrice - updatedItemIndex.amount * state.productQuantity;
+        // @ts-ignore
+        state.totalPrice - updatedItemIndex.price * state.productQuantity;
       state.totalQuantity = state.totalQuantity - state.productQuantity;
       state.cart = newCartItem;
     },
@@ -101,6 +103,7 @@ export const ProductSlice = createSlice({
       state.productQuantity = state.productQuantity + 1;
     },
     decrementProduct: (state, action) => {
+      // @ts-ignore
       state.productQuantity =
         state.productQuantity - 1 > 1
           ? toast.error(`Don't do that to ${action.payload.product?.name}`) && 1
@@ -115,12 +118,13 @@ export const ProductSlice = createSlice({
       typeof updatedItemindex === "undefined" || updatedItemindex
         ? toast.error(`Please we cannot update the cart item check if it exist`)
         : { ...state.cart[updatedItemindex] };
+      //@ts-ignore
       state.productQuantity =
         state.productQuantity + 1 > 1 &&
         state.productQuantity > PriceInProductStock
           ? toast.error(``) && 1
           : 1;
-      return state.productQuantity;
+      // return state.productQuantity;
     },
     decreaseProductInCart: (state, action) => {
       let PriceInProductStock = action.payload.stockitems;
@@ -140,7 +144,7 @@ export const ProductSlice = createSlice({
     },
     removeAllSingularProductInCart: (state, action) => {
       const CartitemsList = state.cart?.map((CartItem) => {
-        if (CartItem.stockitems > 1) {
+        if ((CartItem.stockItems as number) > 1) {
           let updatedItem = state.cart?.find(
             (item) => item.id === action.payload.product.id
           );
@@ -154,7 +158,7 @@ export const ProductSlice = createSlice({
     increaseAllSingularProductInCart: (state, action: PayloadAction) => {
       const CheckIfItemExits = state.cart?.map((CartItem) => {
         if (
-          CartItem.stockitems > 1 ||
+          (CartItem.stockItems as number) > 1 ||
           typeof CartItem.stockitems === "undefined"
         ) {
         }
@@ -183,7 +187,7 @@ export const {
   addToCart,
   getIdentifiedProduct,
   removeFromCart,
-  incrementProdut,
+  incrementProduct,
   decreaseProductInCart,
   decrementProduct,
   removeAllProductInCart,

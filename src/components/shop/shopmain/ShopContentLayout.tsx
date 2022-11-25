@@ -43,13 +43,6 @@ const ShopContentLayout = () => {
           <CartModalLayout />
           {/* <CartButtonModal /> */}
           {/* Shop Header Carousel */}
-          <div>
-            {vehicles.map((v) => (
-              <div key={v.vehicleId} onClick={() => addVehicle(dispatch, v)}>
-                {v.model} {v.trimLevel} {v.vehicleId}
-              </div>
-            ))}
-          </div>
           <div
             className={cx(
               `border border-dotted border-slate-500 px-1 py-4 mb-4`
