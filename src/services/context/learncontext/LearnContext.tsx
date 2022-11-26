@@ -1,9 +1,9 @@
 import * as React from "react";
-import { IVehicle, fetchProducts } from "./types/IVehicle";
+import { IVehicle, fetchProducts, fetchSingleProducts } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
 import { TProduct } from "../../../types/global.types";
 import { client } from "../../../client";
-import { ProductsQuery } from "../../../utils/GROC";
+import { ProductsQuery, SingleProduct } from "../../../utils/GROC";
 export type TFunction = (payloadResponse: string) => Promise<string>;
 
 export interface IAppState {
@@ -11,6 +11,8 @@ export interface IAppState {
   selectedVehicles: IVehicle[];
   features: IFeature[];
   products: TProduct[];
+  singleProduct: TProduct | null;
+  loading: boolean;
 }
 
 export const initialState: IAppState = {
@@ -43,6 +45,8 @@ export const initialState: IAppState = {
   selectedVehicles: [],
   features: [],
   products: [],
+  singleProduct: null,
+  loading: false,
 };
 
 export interface IAppContext {
@@ -56,7 +60,10 @@ const AppContext = React.createContext<IAppContext>({
     selectedVehicles: [],
     features: [],
     products: [],
+    singleProduct: null,
+    loading: false,
   },
+
   dispatch: () => {},
 });
 
@@ -70,6 +77,7 @@ export enum ActionType {
   PRODUCT_PENDING = "PRODUCT_PENDING",
   PRODUCT_SUCCESS = "PRODUCT_SUCCESS",
   PRODUCT_REJECTED = "PRODUCT_REJECTED",
+  SINGLE_PRODUCT_SUCCESS = "SINGLE_PRODUCT_SUCCESS",
 }
 
 export type IAction = {
@@ -77,6 +85,8 @@ export type IAction = {
   vehicle?: IVehicle;
   feature?: IFeature;
   products?: TProduct[];
+  singleProduct?: TProduct | null;
+  loading?: boolean;
 };
 
 const vehicleReducer = (
@@ -120,10 +130,22 @@ const vehicleReducer = (
         ...state,
         selectedVehicles: [state.vehicles.pop() as IVehicle],
       };
+    case "PRODUCT_PENDING":
+      return {
+        ...state,
+        loading: true,
+      };
     case "PRODUCT_SUCCESS":
       return {
         ...state,
         products: action.products as TProduct[],
+        loading: false,
+      };
+    case "SINGLE_PRODUCT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        singleProduct: action.singleProduct as TProduct | null,
       };
     default:
       throw new Error();
@@ -146,10 +168,20 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
+  const fetchSingleProduct: TFunction = async (payloadResponse) => {
+    return await client
+      .fetch(payloadResponse)
+      .then((res) => {
+        if (res) {
+          return res && fetchSingleProducts(dispatch, res);
+        }
+        return res && console.log("response  ", res);
+      })
+      .catch((err) => err instanceof Error && err.message);
+  };
   React.useEffect(() => {
     let cancelled = false;
     !cancelled && fetchProduct(ProductsQuery);
-
     return () => {
       cancelled = true;
     };

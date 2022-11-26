@@ -1,3 +1,5 @@
+import { TProduct } from "./../../../types/global.types";
+
 export interface globalInitialState {
   message: string;
   page: number;
@@ -71,11 +73,12 @@ export interface TCart {
   stockitems: number;
 }
 export interface ProductStateTypes {
+  [key: string]: string | undefined | number | Boolean | boolean | TProduct[];
   productQuantity: number;
   totalQuantity: number;
   readonly totalPrice: number;
   productIndexQuantity: number;
-  cart?: TCart[];
+  cart: TProduct[];
   isItemsAdded: boolean | Boolean;
   ShouldCartBeCleared: Boolean | boolean;
   ShouldCartBeReset: Boolean | boolean;

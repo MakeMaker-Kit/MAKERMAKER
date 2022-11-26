@@ -249,12 +249,13 @@ export interface TProduct {
     | number;
   _id?: string;
   title?: string;
-  price?: string;
+  price: number;
   updatedPrice?: string;
   readonly defaultVariant?: TVariant;
   quantity?: number;
   variants?: TVariant[];
   stockItems?: number;
   tags?: string[];
+  slug?: string;
   categories?: { _id?: string; slug?: string; name?: string };
 }

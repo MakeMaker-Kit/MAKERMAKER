@@ -10,6 +10,14 @@ import {
 import DetailMoreWrapper from "./detailmain/DetailMoreWrapper";
 import DetailMore from "./detailmore/DetailMore";
 import ProductMore from "./detailproducts/ProductMore";
+import {
+  TFunction,
+  USEContext,
+} from "../../../services/context/learncontext/LearnContext";
+import { client } from "../../../client";
+import { fetchSingleProducts } from "../../../services/context/learncontext/types/IVehicle";
+import { SingleProduct } from "../../../utils/GROC";
+import { useParams } from "react-router-dom";
 
 const ShopDetailLayout = () => {
   const { containerWrapper, boxFull } = themes;
@@ -18,6 +26,32 @@ const ShopDetailLayout = () => {
   const dispatch = useDispatch();
   const modalState = useSelector(openShopModal);
   const closeModal = () => dispatch(closeShopComponent());
+  const { state } = USEContext();
+  const params = useParams();
+  const { id } = params;
+  const fetchSingleProduct: TFunction = async (payloadResponse) => {
+    return await client
+      .fetch(payloadResponse)
+      .then((res) => {
+        if (res) {
+          return res && fetchSingleProducts(dispatch, res);
+        }
+        return res && fetchSingleProducts(dispatch, res);
+      })
+      .catch((err) => err instanceof Error && err.message);
+  };
+  function show<T>(id: T) {
+    return console.log("it is well with you", id);
+  }
+  React.useEffect(() => {
+    let cancelled = false;
+    !cancelled && fetchSingleProduct(SingleProduct(id));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  console.log("product Detail Response", state.singleProduct, id);
+
   return (
     <>
       <div>

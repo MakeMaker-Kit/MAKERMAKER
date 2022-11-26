@@ -6,36 +6,56 @@ import {
   textStyles,
 } from "../../../../../styles/themes/theme";
 import { useIcon } from "../../../../../hooks/dispatchContext";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openShopComponent } from "../../../../../services/redux/features/globalslice/GlobalStateSlice";
+import { TProduct } from "../../../../../types/global.types";
+import { urlFor } from "../../../../../client";
+import { addToCart } from "../../../../../services/redux/features/productslice/ProductSlice";
 
-const ShopProducts = () => {
+const ShopProducts = ({
+  _id,
+  categories,
+  defaultVariant,
+  price,
+  quantity,
+  stockItems,
+  title,
+  product,
+  slug,
+}: TProduct) => {
+  const navigate = useNavigate();
   const { boxFull, imageLayout, transitions, transitionEase } = themes;
   const { flexCol, flexRowCenter, flexCenter } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
   const { ArchiveIcon } = useIcon();
   const dispatch = useDispatch();
-  const openModal = () => dispatch(openShopComponent());
+  const openModal = () =>
+    dispatch(openShopComponent()) &&
+    navigate(`/shop/${slug}`, { replace: true });
+
+  const AddToCart = () => dispatch(addToCart({ product }));
   return (
     <>
       <li
         className={cx(
           `flex-[0_0_23.5%] w-full max-w-[23.5%] shadow-md p-4 rounded-md bg-white hover:shadow-lg hover:translate-x-1 hover:translate-y-1 hover:backdrop-blur-md hover:opacity-70 ${transitions}`
         )}
-        onClick={openModal}
       >
-        <div className={cx(`${boxFull} ${flexCol} `)}>
+        <div className={cx(`${boxFull} ${flexCol} `)} onClick={openModal}>
           <div className={cx(`h-64 w-full relative`)}>
             {/* Absolute */}
             <div
               className={`py-1 px-2 rounded-md shadow absolute top-0 right-0 text-xs border border-dotted border-orange whitespace-nowrap`}
             >
               <div className={`${flexCenter} ${boxFull} `}>
-                <p>20%</p>
+                <p> {price} NGN</p>
               </div>
             </div>
             <img
-              src="https://pickbazar-react.vercel.app/_next/image?url=https%3A%2F%2Fpickbazarlaravel.s3.ap-southeast-1.amazonaws.com%2F184%2Fcodfillet_u0mti1.jpg&w=1920&q=75"
+              src={urlFor(
+                defaultVariant?.images && defaultVariant?.images[0]
+              ).url()}
               alt=""
               className={cx(`${imageLayout} object-center`)}
             />
@@ -49,11 +69,11 @@ const ShopProducts = () => {
             <div
               className={`${flexRowCenter} space-x-2 font-semibold text-gray-800 tracking-wide`}
             >
-              <p className={``}>$49</p>
+              <p className={``}>{`${price} NGN`}</p>
               <p className={`line-through`}>00</p>
             </div>
             <div>
-              <p className={`font-semibold tracking-wide`}>Arduino Uno Board</p>
+              <p className={`font-semibold tracking-wide`}>{title}</p>
             </div>
             <div
               className={cx(`${flexRowCenter} w-full group ${transitionEase}`)}
@@ -63,7 +83,7 @@ const ShopProducts = () => {
                   `w-eight h-8 p-2 border border-orange group-hover:bg-orange group-hover:text-gray-50 rounded-l-md `
                 )}
               >
-                <div className={`${boxFull} ${flexCenter}`}>
+                <div className={`${boxFull} ${flexCenter}`} onClick={AddToCart}>
                   <p>ADD TO CART</p>
                 </div>
               </div>

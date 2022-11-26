@@ -24,7 +24,7 @@ const App = () => {
         {/* Shop / Ecommerce Routes */}
         <Route path="/shop" element={<Shop />} />
         <Route path="/categories/:id" element={""} />
-        <Route path="/shop/:id" element={""} />
+        <Route path="/shop/:id" element={<Shop />} />
       </Routes>
     </>
   );

@@ -55,7 +55,7 @@ export default {
       ],
     },
     {
-      name: "stockitems",
+      name: "stockItems",
       title: "Stock Items <OPTIONAL>",
       description:
         "This is the number of product remaining for each product in the Schema",

@@ -27,3 +27,13 @@ export const fetchProducts = (
 ) => {
   dispatch({ type: ActionType.PRODUCT_SUCCESS, products: products });
 };
+
+export const fetchSingleProducts = (
+  dispatch: Dispatch<IAction>,
+  singleProduct: TProduct
+) => {
+  dispatch({
+    type: ActionType.SINGLE_PRODUCT_SUCCESS,
+    singleProduct: singleProduct,
+  });
+};
