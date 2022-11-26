@@ -7,7 +7,18 @@ import {
 } from "../../../../styles/themes/theme";
 import Contents from "./Contents";
 import ImageViewer from "./ImageViewer";
-const DetailMoreWrapper = () => {
+import { TProduct, TVariant } from "../../../../types/global.types";
+const DetailMoreWrapper = ({
+  price,
+  defaultVariant,
+  categories,
+  title,
+  tags,
+  slug,
+  stockItems,
+}: TProduct) => {
+  const { images } = defaultVariant as TVariant;
+
   const { XFull } = themes;
   const { flexCol, flexRow, flexRowCenter } = flexLayout;
   const {} = textStyles;
@@ -17,7 +28,7 @@ const DetailMoreWrapper = () => {
         {/* IMAGE LAYOUT  */}
         <div className={cx(`w-full max-w-five flex-[0_0_47%]`)}>
           <div className={cx(`${XFull}`)}>
-            <ImageViewer />
+            <ImageViewer images={images} />
           </div>
         </div>
         {/* CONTENT LAYOUT */}

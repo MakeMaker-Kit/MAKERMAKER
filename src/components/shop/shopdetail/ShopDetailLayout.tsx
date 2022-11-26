@@ -23,10 +23,11 @@ const ShopDetailLayout = () => {
   const { containerWrapper, boxFull } = themes;
   const { flexCol } = flexLayout;
   const {} = textStyles;
-  const dispatch = useDispatch();
+  const dispatchs = useDispatch();
   const modalState = useSelector(openShopModal);
-  const closeModal = () => dispatch(closeShopComponent());
-  const { state } = USEContext();
+  const closeModal = () => dispatchs(closeShopComponent());
+  const { state, dispatch } = USEContext();
+  const { singleProduct } = state;
   const params = useParams();
   const { id } = params;
   const fetchSingleProduct: TFunction = async (payloadResponse) => {
@@ -40,9 +41,7 @@ const ShopDetailLayout = () => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
-  function show<T>(id: T) {
-    return console.log("it is well with you", id);
-  }
+
   React.useEffect(() => {
     let cancelled = false;
     !cancelled && fetchSingleProduct(SingleProduct(id));
@@ -50,7 +49,6 @@ const ShopDetailLayout = () => {
       cancelled = true;
     };
   }, []);
-  console.log("product Detail Response", state.singleProduct, id);
 
   return (
     <>
@@ -85,7 +83,8 @@ const ShopDetailLayout = () => {
                       // ${containerWrapper}
                     >
                       {/* Product maain */}
-                      <DetailMoreWrapper />
+                      {/* @ts-ignore */}
+                      <DetailMoreWrapper {...singleProduct} />
                       {/* prodcut moe  */}
                       <div className="w-full h-2 bg-gray-900" />
                       <DetailMore />

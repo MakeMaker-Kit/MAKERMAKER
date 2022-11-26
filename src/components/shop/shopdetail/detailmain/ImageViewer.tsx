@@ -8,7 +8,7 @@ import {
 import { shops } from "../../../../assets/images";
 import { useIcon } from "../../../../hooks/dispatchContext";
 
-const ImageViewer = () => {
+const ImageViewer = ({ images }: { images: string[] }) => {
   const { flexCol, flexRowCenter, flexCenter } = flexLayout;
   const { XFull, boxFull } = themes;
   const {} = textStyles;

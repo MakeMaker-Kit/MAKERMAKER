@@ -11,7 +11,7 @@ export interface IAppState {
   selectedVehicles: IVehicle[];
   features: IFeature[];
   products: TProduct[];
-  singleProduct: TProduct | null;
+  singleProduct: TProduct | {};
   loading: boolean;
 }
 
@@ -45,7 +45,7 @@ export const initialState: IAppState = {
   selectedVehicles: [],
   features: [],
   products: [],
-  singleProduct: null,
+  singleProduct: {},
   loading: false,
 };
 
@@ -60,7 +60,7 @@ const AppContext = React.createContext<IAppContext>({
     selectedVehicles: [],
     features: [],
     products: [],
-    singleProduct: null,
+    singleProduct: {},
     loading: false,
   },
 
@@ -85,7 +85,7 @@ export type IAction = {
   vehicle?: IVehicle;
   feature?: IFeature;
   products?: TProduct[];
-  singleProduct?: TProduct | null;
+  singleProduct?: TProduct | {};
   loading?: boolean;
 };
 
@@ -145,8 +145,9 @@ const vehicleReducer = (
       return {
         ...state,
         loading: false,
-        singleProduct: action.singleProduct as TProduct | null,
+        singleProduct: action.singleProduct as TProduct | {},
       };
+    // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
   }
@@ -179,6 +180,8 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
+
+  const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
     !cancelled && fetchProduct(ProductsQuery);

@@ -6,12 +6,15 @@ import {
   textStyles,
 } from "../../../../../styles/themes/theme";
 import { useIcon } from "../../../../../hooks/dispatchContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openShopComponent } from "../../../../../services/redux/features/globalslice/GlobalStateSlice";
 import { TProduct } from "../../../../../types/global.types";
-import { urlFor } from "../../../../../client";
+import { urlFor, client } from "../../../../../client";
 import { addToCart } from "../../../../../services/redux/features/productslice/ProductSlice";
+import { TFunction } from "../../../../../services/context/learncontext/LearnContext";
+import { fetchSingleProducts } from "../../../../../services/context/learncontext/types/IVehicle";
+import { SingleProduct } from "../../../../../utils/GROC";
 
 const ShopProducts = ({
   _id,
@@ -35,6 +38,7 @@ const ShopProducts = ({
     navigate(`/shop/${slug}`, { replace: true });
 
   const AddToCart = () => dispatch(addToCart({ product }));
+
   return (
     <>
       <li
