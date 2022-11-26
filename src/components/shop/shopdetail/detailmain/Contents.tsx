@@ -2,13 +2,23 @@ import React from "react";
 import cx from "classnames";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import MainButton from "../../../../hooks/button/mainBTN";
+import { TProduct } from "../../../../types/global.types";
+import { useDispatch } from "react-redux";
 import {
   flexLayout,
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { addToCart } from "../../../../services/redux/features/productslice/ProductSlice";
 
-const Contents = () => {
+const Contents = ({
+  price,
+  title,
+  stockItems,
+  categories,
+  defaultVariant,
+  single,
+}: TProduct) => {
   const {
     flexCol,
     flexStart,
@@ -19,6 +29,8 @@ const Contents = () => {
   const { boxFull } = themes;
   const { mainLayout, textCustom } = textStyles;
   const { HeartIcon } = useIcon();
+  const dispatch = useDispatch();
+  const AddToCart = () => dispatch(addToCart({ single }));
 
   return (
     <>
@@ -26,7 +38,7 @@ const Contents = () => {
         {/*  */}
         <div className={`${flexCol} space-y-12`}>
           <div className={`${flexRowCenterBetween}`}>
-            <h1>Swordfish Fillet</h1>
+            <h1>{title}</h1>
             <div
               className={cx(
                 `h-10 w-10 p-2 border border-orange outline-fuchsia-50 rounded-full`
@@ -55,11 +67,7 @@ const Contents = () => {
           <div
             className={`${flexStart} font-light tracking-wide text-start leading-relaxed`}
           >
-            <p>
-              The swordfish meat has a very delicate flavour, meaty and mild.
-              Swordfish, also known as broadbills, is an oily fish similar to
-              tuna, chunky meat without bones.
-            </p>
+            <p>{defaultVariant?.description}</p>
           </div>
           {/*  */}
           <p className={cx(`text-start`)}>Read More</p>
@@ -67,7 +75,7 @@ const Contents = () => {
 
         {/*  */}
         <div className={cx(`${flexStart} ${flexRowCenter} space-x-3`)}>
-          <h1 className={`text-4xl`}>$75.1 </h1>
+          <h1 className={`text-4xl`}>{price}NGN</h1>
           <p className={`text-lg`}>$23</p>
         </div>
         {/*  */}
@@ -75,9 +83,13 @@ const Contents = () => {
           {/*  */}
           <div className={`${flexRowCenterBetween}`}>
             <div className={`w-full max-w-seven`}>
-              <MainButton isRounded={true}>Add To Shopping Cart</MainButton>
+              <MainButton isRounded={true} onClick={AddToCart}>
+                Add To Shopping Cart
+              </MainButton>
             </div>
-            <p className={`whitespace-nowrap`}>9 items Remaining </p>
+            <p className={`whitespace-nowrap`}>
+              {stockItems ? stockItems : "only one "}item(s) Remaining{" "}
+            </p>
           </div>
           {/*  */}
           <div className="w-full h-px bg-gray-900" />
