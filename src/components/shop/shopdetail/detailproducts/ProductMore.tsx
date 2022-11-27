@@ -7,20 +7,23 @@ import {
 } from "../../../../styles/themes/theme";
 import ShopProducts from "../../shopmain/shopcontent/shopproducts/ShopProducts";
 import DetailCard from "./DetailCard";
+import { TProduct } from "../../../../types/global.types";
 
-const ProductMore = () => {
+const ProductMore = ({ related }: { related?: TProduct[] }) => {
   const { flexRow } = flexLayout;
   const { boxFull } = themes;
+
   return (
     <>
       <div className={cx(`${boxFull}`)}>
         {/* Similar Product Layout */}
         <ul className={cx(`${flexRow} basis-full flex-wrap gap-4`)}>
-          {Array(10)
-            .fill(0)
-            .map((i) => (
+          {/* @ts-ignore */}
+          {related?.length &&
+            related.map((product, index) => (
               // Single Image Card
-              <DetailCard key={i} />
+              // @ts-ignore
+              <DetailCard key={product._id} product={product} />
             ))}
         </ul>
       </div>

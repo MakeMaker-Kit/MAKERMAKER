@@ -14,6 +14,7 @@ export interface IAppState {
   singleProduct: TProduct | {};
   loading: boolean;
   imageIndex: number;
+  relatedProducts: { related: TProduct[] } | {};
 }
 
 export const initialState: IAppState = {
@@ -49,6 +50,7 @@ export const initialState: IAppState = {
   singleProduct: {},
   loading: false,
   imageIndex: 1,
+  relatedProducts: {},
 };
 
 export interface IAppContext {
@@ -65,6 +67,7 @@ const AppContext = React.createContext<IAppContext>({
     singleProduct: {},
     loading: false,
     imageIndex: 1,
+    relatedProducts: {},
   },
 
   dispatch: () => {},
@@ -82,6 +85,7 @@ export enum ActionType {
   PRODUCT_REJECTED = "PRODUCT_REJECTED",
   SINGLE_PRODUCT_SUCCESS = "SINGLE_PRODUCT_SUCCESS",
   CHANGE_IMAGE = "CHANGE_IMAGE",
+  RELATED_PRODUCTS_SUCCESS = "RELATED_PRODUCTS_SUCCESS",
 }
 
 export type IAction = {
@@ -92,6 +96,7 @@ export type IAction = {
   singleProduct?: TProduct | {};
   loading?: boolean;
   imageIndex?: number;
+  relatedProducts?: { related: TProduct[] };
 };
 
 const vehicleReducer = (
@@ -156,6 +161,11 @@ const vehicleReducer = (
       return {
         ...state,
         imageIndex: action.imageIndex as number,
+      };
+    case "RELATED_PRODUCTS_SUCCESS":
+      return {
+        ...state,
+        relatedProducts: action.singleProduct as { related: TProduct[] },
       };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:

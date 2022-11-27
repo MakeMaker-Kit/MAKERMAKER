@@ -44,3 +44,13 @@ export const ChangeImageIndex = (
 ) => {
   dispatch({ type: ActionType.CHANGE_IMAGE, imageIndex: imageIndex });
 };
+
+export const fetchRelatedProducts = (
+  dispatch: Dispatch<IAction>,
+  relatedProducts: { related: TProduct[] }
+) => {
+  dispatch({
+    type: ActionType.SINGLE_PRODUCT_SUCCESS,
+    relatedProducts: relatedProducts,
+  });
+};

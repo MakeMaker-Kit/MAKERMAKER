@@ -15,8 +15,11 @@ import {
   USEContext,
 } from "../../../services/context/learncontext/LearnContext";
 import { client } from "../../../client";
-import { fetchSingleProducts } from "../../../services/context/learncontext/types/IVehicle";
-import { SingleProduct } from "../../../utils/GROC";
+import {
+  fetchRelatedProducts,
+  fetchSingleProducts,
+} from "../../../services/context/learncontext/types/IVehicle";
+import { RelatedProducts, SingleProduct } from "../../../utils/GROC";
 import { useParams } from "react-router-dom";
 
 const ShopDetailLayout = () => {
@@ -27,15 +30,22 @@ const ShopDetailLayout = () => {
   const modalState = useSelector(openShopModal);
   const closeModal = () => dispatchs(closeShopComponent());
   const { state, dispatch } = USEContext();
-  const { singleProduct } = state;
+  const { singleProduct, relatedProducts } = state;
   const params = useParams();
   const { id } = params;
   const fetchSingleProduct: TFunction = async (payloadResponse) => {
+    let RelatedQuery: string;
     return await client
       .fetch(payloadResponse)
       .then((res) => {
         if (res) {
           return res && fetchSingleProducts(dispatch, res);
+        } else if (res) {
+          RelatedQuery = RelatedProducts(res);
+          client.fetch(RelatedQuery).then((response) => {
+            response && fetchRelatedProducts(dispatch, response);
+            return fetchRelatedProducts(dispatch, response);
+          });
         }
         return res && fetchSingleProducts(dispatch, res);
       })
@@ -94,7 +104,7 @@ const ShopDetailLayout = () => {
                       <DetailMore />
                       <div className="w-full h-1 bg-gray-900" />
                       {/* more products display @apply  */}
-                      <ProductMore />
+                      <ProductMore {...relatedProducts} />
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>
