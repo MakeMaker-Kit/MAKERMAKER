@@ -246,3 +246,29 @@ tags[0..2],
 categories[0..3]->{_id, "slug": slug.current, name,"desc": description},
   }`;
 };
+
+/**
+ * @param productSingle
+ */
+
+export const RelatedProducts = (productSingle: {
+  slug?: { current: string };
+  _id?: string;
+}) => {
+  return `*[_type ==  "product" && slug.current == '${productSingle.slug?.current}' ][0]{
+"related": *[_type == "product"  && _id != '${productSingle._id}' && count(categories[@._ref in ".".categories[]._ref ]) > 0] | order(publishedAt desc, _createdAt desc)[0..5]{
+  title,
+  "slug": slug.current,
+  _id,
+  price,
+  updatedPrice,
+  "defaultVariant": DefaultProductVariant,
+  quantity,
+  variants[0],
+  stockItems,
+  tags[0..2],
+  "cateSpec": specificCategory[0..3],
+  categories[0..3]->{_id, "slug": slug.current, name,"desc": description},
+}
+  } `;
+};
