@@ -49,6 +49,7 @@ const ShopDetailLayout = () => {
       cancelled = true;
     };
   }, []);
+  console.log("single Product", singleProduct);
 
   return (
     <>
@@ -84,7 +85,10 @@ const ShopDetailLayout = () => {
                     >
                       {/* Product maain */}
                       {/* @ts-ignore */}
-                      <DetailMoreWrapper {...singleProduct} />
+                      <DetailMoreWrapper
+                        {...singleProduct}
+                        product={singleProduct}
+                      />
                       {/* prodcut moe  */}
                       <div className="w-full h-2 bg-gray-900" />
                       <DetailMore />

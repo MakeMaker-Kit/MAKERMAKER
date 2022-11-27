@@ -37,3 +37,10 @@ export const fetchSingleProducts = (
     singleProduct: singleProduct,
   });
 };
+
+export const ChangeImageIndex = (
+  dispatch: Dispatch<IAction>,
+  imageIndex: number
+) => {
+  dispatch({ type: ActionType.CHANGE_IMAGE, imageIndex: imageIndex });
+};

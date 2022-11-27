@@ -7,12 +7,17 @@ import {
 } from "../../../../styles/themes/theme";
 import { shops } from "../../../../assets/images";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { USEContext } from "../../../../services/context/learncontext/LearnContext";
+import { urlFor } from "../../../../client";
+import { ChangeImageIndex } from "../../../../services/context/learncontext/types/IVehicle";
 
 const ImageViewer = ({ images }: { images: string[] }) => {
   const { flexCol, flexRowCenter, flexCenter } = flexLayout;
   const { XFull, boxFull } = themes;
   const {} = textStyles;
   const { ArrowLeftIcon, ArrowRightIcon } = useIcon();
+  const { state, dispatch } = USEContext();
+  const { imageIndex } = state;
   return (
     <>
       <div className={`${XFull}`}>
@@ -43,7 +48,7 @@ const ImageViewer = ({ images }: { images: string[] }) => {
             </div>
             {/*  */}
             <img
-              src={shops}
+              src={urlFor(images[imageIndex]).url()}
               alt=""
               title=""
               data-loading="lazy"
@@ -56,21 +61,20 @@ const ImageViewer = ({ images }: { images: string[] }) => {
               <ul
                 className={`${flexRowCenter} space-x-4 basis-full overflow-x-scroll snap-x snap-proximity scrollbar-hide `}
               >
-                {Array(5)
-                  .fill(0)
-                  .map((i) => (
-                    <li
-                      className={`w-28 h-28 border border-dotted border-gray-700 flex-shrink-0 rounded-md shadow-md snap-center`}
-                      key={i}
-                    >
-                      <div className={`${boxFull}`}>
-                        <img
-                          src={shops}
-                          className={`max-w-full w-full h-full object-cover object-center`}
-                        />
-                      </div>
-                    </li>
-                  ))}
+                {images.map((image, index) => (
+                  <li
+                    className={`w-28 h-28 border border-dotted border-gray-700 flex-shrink-0 rounded-md shadow-md snap-center`}
+                    key={index}
+                  >
+                    <div className={`${boxFull}`}>
+                      <img
+                        src={urlFor(image).url()}
+                        className={`max-w-full w-full h-full object-cover object-center`}
+                        onMouseEnter={() => ChangeImageIndex(dispatch, index)}
+                      />
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

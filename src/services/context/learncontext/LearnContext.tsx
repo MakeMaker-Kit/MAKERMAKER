@@ -13,6 +13,7 @@ export interface IAppState {
   products: TProduct[];
   singleProduct: TProduct | {};
   loading: boolean;
+  imageIndex: number;
 }
 
 export const initialState: IAppState = {
@@ -47,6 +48,7 @@ export const initialState: IAppState = {
   products: [],
   singleProduct: {},
   loading: false,
+  imageIndex: 1,
 };
 
 export interface IAppContext {
@@ -62,6 +64,7 @@ const AppContext = React.createContext<IAppContext>({
     products: [],
     singleProduct: {},
     loading: false,
+    imageIndex: 1,
   },
 
   dispatch: () => {},
@@ -78,6 +81,7 @@ export enum ActionType {
   PRODUCT_SUCCESS = "PRODUCT_SUCCESS",
   PRODUCT_REJECTED = "PRODUCT_REJECTED",
   SINGLE_PRODUCT_SUCCESS = "SINGLE_PRODUCT_SUCCESS",
+  CHANGE_IMAGE = "CHANGE_IMAGE",
 }
 
 export type IAction = {
@@ -87,6 +91,7 @@ export type IAction = {
   products?: TProduct[];
   singleProduct?: TProduct | {};
   loading?: boolean;
+  imageIndex?: number;
 };
 
 const vehicleReducer = (
@@ -147,6 +152,11 @@ const vehicleReducer = (
         loading: false,
         singleProduct: action.singleProduct as TProduct | {},
       };
+    case "CHANGE_IMAGE":
+      return {
+        ...state,
+        imageIndex: action.imageIndex as number,
+      };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
@@ -180,7 +190,11 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
-
+  const imageIndex = (index: number): number => {
+    if (index < 0) {
+      return 0;
+    } else return index;
+  };
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;

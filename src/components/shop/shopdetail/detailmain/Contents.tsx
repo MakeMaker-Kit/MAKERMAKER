@@ -3,13 +3,18 @@ import cx from "classnames";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { TProduct } from "../../../../types/global.types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   flexLayout,
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
-import { addToCart } from "../../../../services/redux/features/productslice/ProductSlice";
+import {
+  addToCart,
+  decrementProduct,
+  incrementProduct,
+  ProductQuantity,
+} from "../../../../services/redux/features/productslice/ProductSlice";
 
 const Contents = ({
   price,
@@ -17,7 +22,7 @@ const Contents = ({
   stockItems,
   categories,
   defaultVariant,
-  single,
+  product,
 }: TProduct) => {
   const {
     flexCol,
@@ -29,8 +34,12 @@ const Contents = ({
   const { boxFull } = themes;
   const { mainLayout, textCustom } = textStyles;
   const { HeartIcon } = useIcon();
+  const productQuan = useSelector(ProductQuantity);
   const dispatch = useDispatch();
-  const AddToCart = () => dispatch(addToCart({ single }));
+  const increaseProduct = () => dispatch(incrementProduct());
+  const decreaseProduct = () => dispatch(decrementProduct({ product }));
+  const AddToCart = () => dispatch(addToCart({ product }));
+  console.log("product", product, title);
 
   return (
     <>
@@ -82,10 +91,20 @@ const Contents = ({
         <div className={`${flexCol} space-y-6`}>
           {/*  */}
           <div className={`${flexRowCenterBetween}`}>
-            <div className={`w-full max-w-seven`}>
-              <MainButton isRounded={true} onClick={AddToCart}>
+            <div className={`w-full max-w-seven ${flexRowCenter}`}>
+              <MainButton isRounded={true} handleClick={AddToCart}>
                 Add To Shopping Cart
               </MainButton>
+              <div
+                className={cx(
+                  `${flexRowCenter} space-x-1 ${mainLayout} ${textCustom} text-2xl`,
+                  `cursor-pointer`
+                )}
+              >
+                <span onClick={decreaseProduct}>- </span>
+                <span>{productQuan} </span>
+                <span onClick={increaseProduct}>+ </span>
+              </div>
             </div>
             <p className={`whitespace-nowrap`}>
               {stockItems ? stockItems : "only one "}item(s) Remaining{" "}

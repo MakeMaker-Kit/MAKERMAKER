@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { ProductStateTypes, TCart } from "../type.types";
 import { toast } from "react-hot-toast";
 import { RootState } from "../../app/rootReducer";
+import { TProduct } from "../../../../types/global.types";
 const IndexData = localStorage.getItem("productIndexQuantity");
 let productIndexData;
 if (IndexData || typeof IndexData === "string") {
@@ -32,8 +33,8 @@ if (cartData || typeof cartData === "string") {
 }
 const initialState: ProductStateTypes = {
   isItemsAdded: false,
-  productIndexQuantity: 0,
-  productQuantity: 0,
+  productIndexQuantity: 1,
+  productQuantity: 1,
   totalPrice: 0,
   totalQuantity: 0,
   cart: cartItemData ? cartItemData : null || [],
@@ -48,13 +49,16 @@ export const ProductSlice = createSlice({
     setCart: (state, action: PayloadAction) => {
       // state.cart = action.payload;
     },
-    addToCart: (state, action) => {
+    addToCart: (
+      state,
+      action: { type: string; payload: { product: TProduct } }
+    ) => {
       let updatedItemIndex = state?.cart?.find(
-        (item) => item?.id === action.payload.product?._id
+        (item) => item?._id === action.payload.product?._id
       );
       if (updatedItemIndex) {
-        const updatedCartItems = state.cart?.map((cartProduct) => {
-          if (cartProduct.id === action.payload.product?._id) {
+        state.cart?.map((cartProduct) => {
+          if (cartProduct._id === action.payload.product?._id) {
             toast(
               `Your product ${action.payload.product?.title} has already been added to your cart`,
               { duration: 5000 }
@@ -64,6 +68,7 @@ export const ProductSlice = createSlice({
             state.productQuantity = 1;
           }
         });
+        // return updatedCartItems;
       } else {
         if (state.productQuantity > 1) {
           toast.error(
@@ -72,13 +77,13 @@ export const ProductSlice = createSlice({
           state.productQuantity = 1;
         } else {
           state.cart?.push(action.payload.product);
-          state.totalQuantity = state.totalQuantity + action.payload?.quantity;
+          state.totalQuantity = state.totalQuantity + 1;
           state.totalPrice =
             state.totalPrice +
-            action.payload?.product?.amount * action.payload.quantity;
+            action.payload?.product?.price * state.productQuantity;
           state.isItemsAdded = true;
           toast.success(
-            `${action.payload.quantity} ${action.payload.product?.title} has been successfully added `
+            ` ${action.payload.product?.title} has been successfully added `
           );
         }
       }
@@ -126,8 +131,8 @@ export const ProductSlice = createSlice({
           : 1;
       // return state.productQuantity;
     },
-    decreaseProductInCart: (state, action) => {
-      let PriceInProductStock = action.payload.stockitems;
+    decreaseProductInCart: (state) => {
+      // let PriceInProductStock = action.payload.stockitems;
       state.productQuantity =
         state.productQuantity - 1 < 1 ? 1 : state.productQuantity - 1;
     },

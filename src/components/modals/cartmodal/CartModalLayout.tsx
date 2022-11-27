@@ -9,6 +9,12 @@ import {
   unToggleCartModal,
 } from "../../../services/redux/features/globalslice/GlobalStateSlice";
 import CartProducts from "./CartProducts";
+import { TotalQuantity } from "../../../services/redux/features/productslice/ProductSlice";
+import {
+  Cart,
+  TotalPrice,
+} from "../../../services/redux/features/productslice/ProductSlice";
+import { TProduct } from "../../../types/global.types";
 
 const CartModalLayout = () => {
   const { themeWrapper, boxFull, XExtend, containerWrapper } = themes;
@@ -23,6 +29,10 @@ const CartModalLayout = () => {
   const dispatch = useDispatch();
   const cartState = useSelector(cartModalState);
   const closeModal = () => dispatch(unToggleCartModal());
+  const cartItems = useSelector(Cart);
+  const totalPrice = useSelector(TotalPrice);
+  const totalQuan = useSelector(TotalQuantity);
+  console.log("cartItem eponse", cartItems);
   return (
     <div>
       <Transition appear show={cartState} as={React.Fragment}>
@@ -60,9 +70,9 @@ const CartModalLayout = () => {
                         className={`${boxFull} ${flexRowCenterBetween} ${textCustom} ${mainLayout}`}
                       >
                         {/*  */}
-                        <div className={`${flexRowCenter}`}>
+                        <div className={`${flexRowCenter} space-x-2`}>
                           <p>icon</p>
-                          <p> 1 Item</p>
+                          <p> {totalQuan} Item</p>
                         </div>
                         {/*  */}
                         <div
@@ -72,7 +82,7 @@ const CartModalLayout = () => {
                           )}
                           onClick={closeModal}
                         >
-                          <p>kf</p>
+                          <p className="text-xl">x </p>
                         </div>
                       </div>
                     </div>
@@ -83,11 +93,14 @@ const CartModalLayout = () => {
                         `h-[700px] max-h-[700px]`
                       )}
                     >
-                      {Array(20)
+                      {/* {Array(20)
                         .fill(0)
                         .map((i) => (
                           <CartProducts key={i} />
-                        ))}
+                        ))} */}
+                      {cartItems.map((cart: TProduct, index: number) => (
+                        <CartProducts key={index} {...cart} product={cart} />
+                      ))}
                     </div>
                     {/* Cart Checkout  */}
                     <div className={`p-3`}>
@@ -110,7 +123,7 @@ const CartModalLayout = () => {
                           {/*  */}
                           <div className={`px-4 py-3 bg-white rounded-full`}>
                             <div className={`${boxFull} ${flexCenter}`}>
-                              <p>$3.00</p>
+                              <p>{totalPrice} NGN</p>
                             </div>
                           </div>
                         </div>
