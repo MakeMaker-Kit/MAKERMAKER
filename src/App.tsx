@@ -10,6 +10,7 @@ import {
   Home,
   Shop,
   ShopDetail,
+  Checkout,
 } from "./views";
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/categories/:id" element={""} />
         <Route path="/shop/:id" element={<Shop />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </>
   );
