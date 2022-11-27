@@ -73,7 +73,8 @@ const BlogMain = () => {
                           <div className={`w-auto h-8 p-1 border rounded-md`}>
                             <div className={cx(`${boxFull} ${flexCenter}`)}>
                               <p className={`text-sm font-gordita`}>
-                                {categories[0].title}
+                                {/*TODO */}
+                                {categories && categories.title}
                               </p>
                             </div>
                           </div>
