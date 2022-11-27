@@ -16,6 +16,7 @@ import {
 import { TFunction } from "../../../services/context/learncontext/LearnContext";
 import { ProductsQuery } from "../../../utils/GROC";
 import { client } from "../../../client";
+import { useParams } from "react-router-dom";
 import {
   USEContext,
   IAppState,
@@ -30,12 +31,18 @@ const ShopContentLayout = () => {
   const { state, dispatch } = USEContext();
   const { vehicles, selectedVehicles, features, products } = state as IAppState;
   console.log("response from product", state, products);
+  const param = useParams();
+  const { id } = param;
 
   return (
     <>
       {/*   Shop Wrapper Layout  */}
       <div>
-        <BannerPageWrapper home="home" routePath="Shop" />
+        <BannerPageWrapper
+          home="home"
+          routePath="Shop"
+          routePathID={window.location.pathname === `shop/${id}` ? id : ""}
+        />
       </div>
       <div className={`${mainMarX} relative`}>
         <div className={cx(`${boxExtend}`)}>

@@ -258,4 +258,5 @@ export interface TProduct {
   tags?: string[];
   slug?: string;
   categories?: { _id?: string; slug?: string; name?: string };
+  discount?: string;
 }

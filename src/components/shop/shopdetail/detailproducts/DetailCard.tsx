@@ -15,8 +15,16 @@ import { TProduct } from "../../../../types/global.types";
 import { urlFor } from "../../../../client";
 
 const DetailCard = ({ product }: TProduct) => {
-  const { _id, price, categories, defaultVariant, slug, stockItems, title } =
-    product as TProduct;
+  const {
+    _id,
+    price,
+    categories,
+    defaultVariant,
+    slug,
+    stockItems,
+    title,
+    discount,
+  } = product as TProduct;
   const { boxFull, imageLayout, transitions, transitionEase } = themes;
   const { flexCol, flexRowCenter, flexCenter, flexRowCenterBetween } =
     flexLayout;
@@ -40,7 +48,7 @@ const DetailCard = ({ product }: TProduct) => {
               className={`py-1 px-2 rounded-md shadow absolute top-0 right-0 text-xs border border-dotted border-orange whitespace-nowrap`}
             >
               <div className={`${flexCenter} ${boxFull} `}>
-                <p>20%</p>
+                <p>{discount}%</p>
               </div>
             </div>
             <img
@@ -83,7 +91,7 @@ const DetailCard = ({ product }: TProduct) => {
               )}
             >
               <div className="">
-                <h2>$90.00</h2>
+                <h2>{price} NGN </h2>
               </div>
               {/*  */}
               <div

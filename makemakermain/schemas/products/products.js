@@ -62,6 +62,14 @@ export default {
       type: "number",
       required: true,
     },
+    {
+      name: "discount",
+      title: "  Discount",
+      description:
+        "This query should in percentage and it is used to  shoul the percentage in discount given to a product",
+      type: "string",
+      required: true,
+    },
     //
     {
       title: "Tags",
