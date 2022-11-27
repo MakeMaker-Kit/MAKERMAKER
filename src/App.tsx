@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Blogs from "./views/Blogs";
+import ShopDetailLayout from "./components/shop/shopdetail/ShopDetailLayout";
 import {
   BlogCategory,
   BlogProfile,
@@ -8,6 +9,7 @@ import {
   BlogTag,
   Home,
   Shop,
+  ShopDetail,
 } from "./views";
 const App = () => {
   return (

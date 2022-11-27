@@ -18,7 +18,8 @@ const DetailMoreWrapper = ({
   stockItems,
   product,
 }: TProduct) => {
-  const { images } = defaultVariant as TVariant;
+  const { images } =
+    !!defaultVariant?.images.length && (defaultVariant as TVariant);
 
   const { XFull } = themes;
   const { flexCol, flexRow, flexRowCenter } = flexLayout;
