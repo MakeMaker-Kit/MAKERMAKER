@@ -10,6 +10,7 @@ import { NavbarBtnDropdown } from "../dropdowns";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { TotalQuantity } from "../../services/redux/features/productslice/ProductSlice";
+import { IsLoggedIn } from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import {
   onModalState,
   openAuthModal,
@@ -32,6 +33,7 @@ const Navbar = () => {
   const totalQuantity = useSelector(TotalQuantity);
   const openNodal = () => dispatch(openAuthModal());
   const openCartMenu = () => dispatch(toggleCartModal());
+  const isLoggedIn = useSelector(IsLoggedIn);
   return (
     <>
       <div className={classNames(`${marX} my-2 py-3 border-y`, ``)}>
@@ -109,7 +111,8 @@ const Navbar = () => {
                   <div
                     className={classNames(
                       ` ${boxFull} ${flexCenter}`,
-                      `rounded  border border-orange p-2 cursor-pointer group-hover:bg-orange `
+                      `rounded  border border-orange p-2 cursor-pointer group-hover:bg-orange `,
+                      isLoggedIn ? "hidden" : "block"
                     )}
                   >
                     <p

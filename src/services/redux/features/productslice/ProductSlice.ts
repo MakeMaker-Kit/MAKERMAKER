@@ -151,7 +151,7 @@ export const ProductSlice = createSlice({
       //@ts-ignore
       state.productQuantity =
         state.productQuantity - 1 < 1
-          ? 1 && toast.error("Don't do that ")
+          ? toast.error("Don't do that ") && 1
           : state.productQuantity - 1;
     },
     removeAllProductInCart: (state, action) => {

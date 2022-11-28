@@ -13,14 +13,15 @@ import {
   addVehicle,
   fetchProducts,
 } from "../../../services/context/learncontext/types/IVehicle";
-import { TFunction } from "../../../services/context/learncontext/LearnContext";
+import {
+  TFunction,
+  USEContext,
+} from "../../../services/context/learncontext/LearnContext";
 import { ProductsQuery } from "../../../utils/GROC";
 import { client } from "../../../client";
 import { useParams } from "react-router-dom";
-import {
-  USEContext,
-  IAppState,
-} from "../../../services/context/learncontext/LearnContext";
+import { MainSpinner } from "../../spinner/Spinners";
+import { IAppState } from "../../../services/context/learncontext/LearnContext";
 
 const ShopContentLayout = () => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
@@ -31,12 +32,14 @@ const ShopContentLayout = () => {
   const { state, dispatch } = USEContext();
   const { vehicles, selectedVehicles, features, products } = state as IAppState;
   console.log("response from product", state, products);
+  const { loading } = state;
   const param = useParams();
   const { id } = param;
 
   return (
     <>
       {/*   Shop Wrapper Layout  */}
+      {loading && <MainSpinner />}
       <div>
         <BannerPageWrapper
           home="home"

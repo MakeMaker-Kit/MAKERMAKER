@@ -22,6 +22,7 @@ import { PASSWORD_REGEX, EMAIL_ADDREESS_REGEX } from "../Regex";
 import { supabase } from "../../../db/database/Database";
 import TextField from "../../../home/homecontents/homecontact/textfield/TextField";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import {
   Formik,
   FormikErrors,
@@ -29,6 +30,7 @@ import {
   FormikProps,
   FormikRegistration,
 } from "formik";
+import { setLogIn } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 
 const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
   const {
@@ -42,6 +44,7 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
   const { mainLayout, mainText, textCustom } = textStyles;
   const { boxFull, XFull, containerWrapper } = themes;
   const { AiOutlineGooglePlus } = useIcon();
+  const dispatch = useDispatch();
   return (
     <>
       <div className={cx(`${boxFull} ${flexCol}`)}>
@@ -104,6 +107,7 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
               if (data) {
                 client.create(UserLogin).then(() => {
                   toast.success(`Your Login was successful`);
+                  dispatch(setLogIn());
                   resetForm();
                   setSubmitting(false);
                 });

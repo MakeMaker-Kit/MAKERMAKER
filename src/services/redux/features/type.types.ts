@@ -51,6 +51,7 @@ export interface sanityInitialState {
   blogCategories?: null | {} | TBlogCat;
   text?: null | {};
   testdetails?: null | {};
+  isLoggedIn?: boolean;
 }
 export interface TContactForm {
   [key: string]: string | undefined;
