@@ -5,7 +5,7 @@ const CheckoutSummary = () => {
   const { XFull, boxFull, YFull, containerWrapper, themeWrapper, border } =
     themes;
   const { marX } = themeWrapper;
-  const {} = textStyles;
+  const { mainLayout, textCustom } = textStyles;
   const {
     flexRow,
     flexCol,
@@ -20,7 +20,9 @@ const CheckoutSummary = () => {
       <div className={`${flexCol} bg-gray-50 ${containerWrapper}`}>
         {/* Summary Header */}
         <div className={cx(`p-4`)}>
-          <div className={`${boxFull} ${flexRowCenterBetween}`}>
+          <div
+            className={`${boxFull} ${flexRowCenterBetween} ${textCustom} ${mainLayout} text-xs`}
+          >
             <p>Order</p>
             <p>MakeMaker </p>
           </div>
@@ -28,7 +30,7 @@ const CheckoutSummary = () => {
         <div className={border} />
         {/* Summary Main */}
         <div
-          className={`h-[400px] max-h-[400px] p-4 bg-white overflow-y-scroll  `}
+          className={`h-[400px] max-h-[400px] p-4 bg-white overflow-y-scroll  scrollbar-hide `}
         >
           <ul className={`${boxFull} ${flexCol}`}>
             {Array(10)
@@ -52,7 +54,9 @@ const CheckoutSummary = () => {
                           />
                         </div>
                         {/* content */}
-                        <div className={`${flexColBetween} h-full`}>
+                        <div
+                          className={`${flexColBetween} h-full ${textCustom} ${mainLayout} text-xs `}
+                        >
                           <h3>dkkdkd</h3>
                           <span>hell wordl</span>
                           <p>kdkdkk</p>
@@ -75,18 +79,20 @@ const CheckoutSummary = () => {
         {/* Border */}
         <div className={border} />
         <div className={`p-4 `}>
-          <div className={`${boxFull} ${flexCol} gap-y-4`}>
+          <div
+            className={`${boxFull} ${flexCol} gap-y-4 ${mainLayout} ${textCustom} text-xs `}
+          >
             <div className={` ${flexRowCenterBetween}`}>
-              <p>Order</p>
-              <p>MakeMaker </p>
+              <p>SubTotal</p>
+              <p>2000 NGN </p>
             </div>
             <div className={` ${flexRowCenterBetween}`}>
-              <p>Order</p>
-              <p>MakeMaker </p>
+              <p>Shipping</p>
+              <p>2000 NGN </p>
             </div>
             <div className={` ${flexRowCenterBetween}`}>
-              <p>Order</p>
-              <p>MakeMaker </p>
+              <p>Total</p>
+              <p>3000 NGN </p>
             </div>
           </div>
         </div>
