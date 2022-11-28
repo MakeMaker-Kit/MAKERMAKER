@@ -245,7 +245,7 @@ stockItems,
 discount,
 tags[0..2],
 "cateSpec": specificCategory[0..3],
-categories[0..3]->{_id, "slug": slug.current, name,"desc": description},
+categories[0..3]->{_id, "slug": slug.current, name,"desc": description, title},
   }`;
 };
 

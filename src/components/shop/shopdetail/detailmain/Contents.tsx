@@ -39,7 +39,6 @@ const Contents = ({
   const increaseProduct = () => dispatch(incrementProduct());
   const decreaseProduct = () => dispatch(decrementProduct({ product }));
   const AddToCart = () => dispatch(addToCart({ product }));
-  console.log("product", product, title);
 
   return (
     <>
@@ -121,7 +120,7 @@ const Contents = ({
                 </div>
               </div>
             </div>
-            <p className={`whitespace-nowrap`}>
+            <p className={`whitespace-nowrap tracking-wider`}>
               {stockItems ? stockItems : "only one "} item(s) Remaining{" "}
             </p>
           </div>
@@ -131,20 +130,30 @@ const Contents = ({
           <div className={`${flexRowCenter} space-x-4`}>
             <p>Categories</p>
             <div className={`${flexRowCenter} space-x-3`}>
-              {Array(3)
-                .fill(0)
-                .map((i) => (
+              {/* @ts-ignore */}
+              {categories.map(
+                ({
+                  title,
+                  slug,
+                  _id,
+                }: {
+                  _id?: string;
+                  slug?: string;
+                  name?: string;
+                  title?: string;
+                }) => (
                   <div
-                    key={i}
+                    key={_id}
                     className={`p-2 border border-orange rounded-md`}
                   >
                     <div
                       className={`${flexCenter} ${boxFull} whitespace-nowrap`}
                     >
-                      <p>Rice and Beans</p>
+                      <p>{title}</p>
                     </div>
                   </div>
-                ))}
+                )
+              )}
             </div>
           </div>
           {/*  */}

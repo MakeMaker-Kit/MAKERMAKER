@@ -259,6 +259,6 @@ export interface TProduct {
   stockItems?: number;
   tags?: string[];
   slug?: string;
-  categories?: { _id?: string; slug?: string; name?: string };
+  categories?: { _id?: string; slug?: string; name?: string; title?: string }[];
   discount?: string;
 }

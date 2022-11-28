@@ -10,6 +10,7 @@ import {
 } from "../../../services/redux/features/productslice/ProductSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { TProduct } from "../../../types/global.types";
+import { urlFor } from "../../../client";
 
 const CartProducts = ({
   product,
@@ -34,6 +35,8 @@ const CartProducts = ({
   const IncreaseProductInCart = () =>
     dispatchRedux(increaseProductInCart({ product }));
   const DecreaseProductInCart = () => dispatchRedux(decreaseProductInCart());
+  console.log("image ", defaultVariant);
+
   return (
     <div className={cx(`p-3 border-y border-dotted border-gray-900 `)}>
       <div
@@ -51,8 +54,16 @@ const CartProducts = ({
           </div>
           {/* Cart Image */}
           <div className={`w-20 h-20 rounded-full`}>
-            <Image
-              src={shops}
+            <img
+              src={urlFor(defaultVariant && defaultVariant.images[0])
+                .width(200)
+                .height(200)
+                .maxHeight(300)
+                .maxWidth(300)
+                .minHeight(200)
+                .minWidth(200)
+                .crop("center")
+                .url()}
               className={`max-w-full w-full h-full object-cover object-center rounded-full shadow`}
             />
           </div>

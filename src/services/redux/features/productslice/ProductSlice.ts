@@ -15,9 +15,9 @@ if (productData || typeof productData === "string") {
 }
 //
 const totalData = localStorage.getItem("totalPrice");
-let totalPricwData;
+let totalPriceData;
 if (totalData || typeof totalData === "string") {
-  totalPricwData = JSON.parse(totalData);
+  totalPriceData = JSON.parse(totalData);
 }
 //
 const totalQuan = localStorage.getItem("totalQuantity");
@@ -35,11 +35,11 @@ const initialState: ProductStateTypes = {
   isItemsAdded: false,
   productIndexQuantity: 1,
   // @ts-ignore
-  productQuantity: productData ? productData : 1,
+  productQuantity: productQuanData ? productQuanData : 1,
   // @ts-ignore
-  totalPrice: totalData ? totalData : 0,
+  totalPrice: totalPriceData ? totalPriceData : 0,
   // @ts-ignore
-  totalQuantity: totalQuan ? totalQuan : 0,
+  totalQuantity: totalQuantityData ? totalQuantityData : 0,
   cart: cartItemData ? cartItemData : null || [],
   ShouldCartBeCleared: false,
   ShouldCartBeReset: false,
@@ -124,8 +124,9 @@ export const ProductSlice = createSlice({
     decrementProduct: (state, action) => {
       // @ts-ignore
       state.productQuantity =
-        state.productQuantity - 1 > 1
-          ? toast.error(`Don't do that to ${action.payload.product?.name}`) && 1
+        state.productQuantity - 1 < 1
+          ? toast.error(`Don't do that to ${action.payload.product?.title}`) &&
+            1
           : state.productQuantity - 1;
     },
     increaseProductInCart: (state, action) => {
@@ -147,8 +148,11 @@ export const ProductSlice = createSlice({
     },
     decreaseProductInCart: (state) => {
       // let PriceInProductStock = action.payload.stockitems;
+      //@ts-ignore
       state.productQuantity =
-        state.productQuantity - 1 < 1 ? 1 : state.productQuantity - 1;
+        state.productQuantity - 1 < 1
+          ? 1 && toast.error("Don't do that ")
+          : state.productQuantity - 1;
     },
     removeAllProductInCart: (state, action) => {
       if (
