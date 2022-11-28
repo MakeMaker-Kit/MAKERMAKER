@@ -6,6 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   cartModalState,
+  openAuthModal,
   unToggleCartModal,
 } from "../../../services/redux/features/globalslice/GlobalStateSlice";
 import CartProducts from "./CartProducts";
@@ -15,6 +16,8 @@ import {
   TotalPrice,
 } from "../../../services/redux/features/productslice/ProductSlice";
 import { TProduct } from "../../../types/global.types";
+import { IsLoggedIn } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { useNavigate } from "react-router-dom";
 
 const CartModalLayout = () => {
   const { themeWrapper, boxFull, XExtend, containerWrapper } = themes;
@@ -25,6 +28,7 @@ const CartModalLayout = () => {
     flexCenter,
     flexRowCenter,
   } = flexLayout;
+  const navigate = useNavigate();
   const { mainLayout, textCustom } = textStyles;
   const dispatch = useDispatch();
   const cartState = useSelector(cartModalState);
@@ -32,6 +36,12 @@ const CartModalLayout = () => {
   const cartItems = useSelector(Cart);
   const totalPrice = useSelector(TotalPrice);
   const totalQuan = useSelector(TotalQuantity);
+  const isLoggedin = useSelector(IsLoggedIn);
+  const toggleCheckout = () => {
+    isLoggedin
+      ? navigate("/checkout", { replace: true })
+      : dispatch(openAuthModal());
+  };
   console.log("cartItem eponse", cartItems);
   return (
     <div>
@@ -115,6 +125,7 @@ const CartModalLayout = () => {
                           {/*  */}
                           <div
                             className={`px-4 py-3 bg-transparent rounded-full cursor-pointer`}
+                            onClick={toggleCheckout}
                           >
                             <div className={`${boxFull} ${flexCenter}`}>
                               <p>Checkout</p>
