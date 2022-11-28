@@ -1,8 +1,19 @@
 import * as React from "react";
 import cx from "classnames";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
+import {
+  USER_REGEX,
+  PASSWORD_REGEX,
+  EMAIL_ADDREESS_REGEX,
+  CITY_REGEX,
+  PHONE_NUMBER_REGEX,
+} from "../../../components/modals/authmodal/Regex";
 import CheckoutTextField from "./CheckoutTextfield";
 import { Formik, FormikErrors } from "formik";
+import { AxiosError } from "axios";
+import { ValidationError } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { client } from "../../../client";
+import toast from "react-hot-toast";
 
 const CheckoutForm = () => {
   const {
@@ -32,11 +43,14 @@ const CheckoutForm = () => {
     phonenumber: string;
     email: string;
     streetaddress: string;
-    suite?: string;
+    suite: string;
     city: string;
     state: string;
     zipcode: string;
   };
+  interface TCheckout extends InitialValuesTypes {
+    _type: string;
+  }
   const initialValues: InitialValuesTypes = {
     firstname: "",
     lastname: "",
@@ -62,8 +76,90 @@ const CheckoutForm = () => {
             initialValues={initialValues}
             validate={(values) => {
               const errors: FormikErrors<InitialValuesTypes> = {};
+              // firstname
+              if (!values.firstname) {
+                errors.firstname = "Field is required";
+              } else if (!USER_REGEX.test(values.firstname)) {
+                errors.firstname = "Please enter a valid name";
+              }
+              // lastname
+              if (!values.lastname) {
+                errors.lastname = "Field is Required";
+              } else if (!USER_REGEX.test(values.lastname)) {
+                errors.lastname = "Please enter a valid name";
+              }
+              // phonenumber
+              if (!values.phonenumber) {
+                errors.phonenumber = "Enter your phonenumber";
+              } else if (!PHONE_NUMBER_REGEX.test(values.phonenumber)) {
+                errors.phonenumber =
+                  "Field must be a valid 10-digit phone number";
+              }
+              // email address
+              if (!values.email) {
+                errors.email = "Enter your Email Address";
+              } else if (!EMAIL_ADDREESS_REGEX.test(values.email)) {
+                errors.email = "Enter  a  valid email address";
+              }
+              // streetaddress
+              if (!values.streetaddress) {
+                errors.streetaddress = "Enter a Street Name";
+              } else if (!CITY_REGEX.test(values.city)) {
+                errors.streetaddress = "Enter a valid Address";
+              }
+              // suite
+              // city
+              if (!values.city) {
+                errors.city = "Field cannot be empty";
+              } else if (!CITY_REGEX.test(values.city)) {
+                errors.city = "Enter a valid city ";
+              }
+              // state
+              if (!values.state) {
+                errors.state = "State Field cannot be empty";
+              } else if (!CITY_REGEX.test(values.state)) {
+                errors.state = "Enter  a valid state";
+              }
+              // zipcode
+              if (!values.zipcode) {
+                errors.zipcode = "Field cannot be empty";
+              } else if (
+                !PHONE_NUMBER_REGEX.test(values.zipcode) &&
+                values.lastname.length > 11
+              ) {
+                errors.zipcode = "Enter a valid zip code";
+              }
+              return errors;
             }}
-            onSubmit={() => {}}
+            onSubmit={(
+              values,
+              { resetForm, validateField, setStatus, setSubmitting, setValues }
+            ) => {
+              setSubmitting(true);
+              try {
+                let CheckoutRequest: TCheckout = {
+                  _type: "checkoutdata",
+                  ...values,
+                };
+                if (values) {
+                  client.create(CheckoutRequest).then(() => {
+                    toast.success(`Successfully Submitted`);
+                    resetForm();
+                    setSubmitting(false);
+                  });
+                }
+              } catch (err: any | unknown) {
+                let error: AxiosError<ValidationError> = err;
+                if (!error.response) throw error;
+                toast.error(`Bad Request`);
+                resetForm();
+                validateField(error.message);
+                setValues(values, false);
+                setStatus("400");
+                setSubmitting(false);
+                return error.request;
+              }
+            }}
           >
             {({
               errors,
@@ -77,7 +173,7 @@ const CheckoutForm = () => {
             }) => {
               return (
                 <form
-                  onSubmit={() => {}}
+                  onSubmit={handleSubmit}
                   className={`lg:w-full md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative gap-x-10`}
                 >
                   {/* Flex 1 */}
@@ -85,47 +181,63 @@ const CheckoutForm = () => {
                     {/*  */}
                     <CheckoutTextField
                       type={"firstname"}
-                      label={`first name`}
+                      label={
+                        errors.firstname && touched.firstname
+                          ? errors.firstname
+                          : `first name`
+                      }
                       placeholder={`Enter your First Name`}
                       name={`firstname`}
                       id={`firstname`}
-                      touched={false}
+                      touched={touched.firstname}
                       handleChange={handleChange}
                       value={values.firstname}
                       onBlur={handleBlur}
                     />
                     <CheckoutTextField
-                      type={""}
-                      label={`last name`}
-                      placeholder={``}
-                      name={``}
-                      id={``}
-                      touched={false}
-                      handleChange={() => {}}
-                      value={``}
-                      onBlur={() => {}}
+                      type={"lastname"}
+                      label={
+                        errors.lastname && touched.lastname
+                          ? errors.lastname
+                          : `last name`
+                      }
+                      placeholder={`Enter your Last Name`}
+                      name={`lastname`}
+                      id={`lastname`}
+                      touched={touched.lastname}
+                      handleChange={handleChange}
+                      value={values.lastname}
+                      onBlur={handleBlur}
                     />
                     <CheckoutTextField
-                      type={""}
-                      label={`phone number`}
-                      placeholder={``}
-                      name={``}
-                      id={``}
-                      touched={false}
-                      handleChange={() => {}}
-                      value={``}
-                      onBlur={() => {}}
+                      type={"phonenumber"}
+                      label={
+                        errors.phonenumber && touched.phonenumber
+                          ? errors.phonenumber
+                          : `phone number`
+                      }
+                      placeholder={`Enter your phone number`}
+                      name={`phonenumber`}
+                      id={`phonenumber`}
+                      touched={touched.phonenumber}
+                      handleChange={handleChange}
+                      value={values.phonenumber}
+                      onBlur={handleBlur}
                     />
                     <CheckoutTextField
-                      type={""}
-                      label={`Email Address for order notifications`}
-                      placeholder={``}
-                      name={``}
-                      id={``}
+                      type={"email"}
+                      label={
+                        errors.email && touched.email
+                          ? errors.email
+                          : `Email Address for order notifications`
+                      }
+                      placeholder={`Enter your Email Address`}
+                      name={`email`}
+                      id={`email`}
                       touched={false}
-                      handleChange={() => {}}
-                      value={``}
-                      onBlur={() => {}}
+                      handleChange={handleChange}
+                      value={values.email}
+                      onBlur={handleBlur}
                     />
 
                     {/*  */}
@@ -141,62 +253,76 @@ const CheckoutForm = () => {
                   <div className={`flex flex-col`}>
                     {/*  */}
                     <CheckoutTextField
-                      type={""}
-                      label={`street address`}
-                      placeholder={``}
-                      name={``}
-                      id={``}
-                      touched={false}
-                      handleChange={() => {}}
-                      value={``}
-                      onBlur={() => {}}
+                      type={"streetaddress"}
+                      label={
+                        errors.streetaddress && touched.streetaddress
+                          ? errors.streetaddress
+                          : `street address`
+                      }
+                      placeholder={`Enter your Street Address`}
+                      name={`streetaddress`}
+                      id={`streetaddress`}
+                      touched={touched.streetaddress}
+                      handleChange={handleChange}
+                      value={values.streetaddress}
+                      onBlur={handleBlur}
                     />
                     <CheckoutTextField
-                      type={""}
-                      label={`Apt, suite, etc (optional)`}
-                      placeholder={``}
-                      name={``}
-                      id={``}
-                      touched={false}
-                      handleChange={() => {}}
-                      value={``}
-                      onBlur={() => {}}
+                      type={"suite"}
+                      label={
+                        errors.suite && touched.suite
+                          ? errors.suite
+                          : `Apt, suite, etc (optional)`
+                      }
+                      placeholder={`Enter your Suite`}
+                      name={`suite`}
+                      id={`suite`}
+                      touched={touched.suite}
+                      handleChange={handleChange}
+                      value={values.suite}
+                      onBlur={handleBlur}
                     />
                     <CheckoutTextField
-                      type={""}
-                      label={`city`}
-                      placeholder={``}
-                      name={``}
-                      id={``}
-                      touched={false}
-                      handleChange={() => {}}
-                      value={``}
-                      onBlur={() => {}}
+                      type={"city"}
+                      label={errors.city && touched.city ? errors.city : `city`}
+                      placeholder={`Enter your city`}
+                      name={`city`}
+                      id={`city`}
+                      touched={touched.city}
+                      handleChange={handleChange}
+                      value={values.city}
+                      onBlur={handleBlur}
                     />
                     <div className={`${flexResponsive.flexRowCol} space-x-2`}>
                       {/*  */}
                       <CheckoutTextField
-                        type={""}
-                        label={`state`}
-                        placeholder={``}
-                        name={``}
-                        id={``}
-                        touched={false}
-                        handleChange={() => {}}
-                        value={``}
-                        onBlur={() => {}}
+                        type={"state"}
+                        label={
+                          errors.state && touched.state ? errors.state : `state`
+                        }
+                        placeholder={`Enter your current State`}
+                        name={`state`}
+                        id={`state`}
+                        touched={touched.state}
+                        handleChange={handleChange}
+                        value={values.state}
+                        onBlur={handleBlur}
                       />
                       {/*  */}
                       <CheckoutTextField
-                        type={""}
-                        label={`zip code`}
-                        placeholder={``}
-                        name={``}
-                        id={``}
-                        touched={false}
-                        handleChange={() => {}}
-                        value={``}
-                        onBlur={() => {}}
+                        type={"zipcode"}
+                        label={
+                          errors.zipcode && touched.zipcode
+                            ? errors.zipcode
+                            : `zip code`
+                        }
+                        placeholder={`Enter your Zip Code`}
+                        name={`zipcode`}
+                        id={`zipcode`}
+                        touched={touched.zipcode}
+                        handleChange={handleChange}
+                        value={values.zipcode}
+                        onBlur={handleBlur}
                       />
                     </div>
 

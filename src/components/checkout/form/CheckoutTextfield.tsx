@@ -20,7 +20,9 @@ const CheckoutTextField = ({
     <>
       <div className="relative mb-4">
         <label
-          className={`leading-7 text-xs text-gray-600 ${mainLayout} ${textCustom} capitalize `}
+          className={`leading-7 text-xs  ${mainLayout} ${textCustom} capitalize ${
+            !!error?.length && touched ? "text-appRed" : " text-gray-700"
+          } `}
         >
           {label} *
         </label>
