@@ -1,10 +1,23 @@
 import * as React from "react";
-import { IVehicle, fetchProducts, fetchSingleProducts } from "./types/IVehicle";
+import {
+  IVehicle,
+  fetchProducts,
+  fetchSingleProducts,
+  fetchCheckout,
+} from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
 import { TProduct } from "../../../types/global.types";
 import { client } from "../../../client";
-import { ProductsQuery, SingleProduct } from "../../../utils/GROC";
-export type TFunction = (payloadResponse: string) => Promise<string>;
+import {
+  CheckoutDataQuery,
+  ProductsQuery,
+  SingleProduct,
+} from "../../../utils/GROC";
+import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
+import toast from "react-hot-toast";
+export type TFunction = (
+  payloadResponse: string
+) => Promise<string | false | void>;
 
 export interface IAppState {
   vehicles: IVehicle[];
@@ -15,6 +28,7 @@ export interface IAppState {
   loading: boolean;
   imageIndex: number;
   relatedProducts: { related: TProduct[] } | {};
+  checkoutData: InitialValuesTypes | {};
 }
 
 export const initialState: IAppState = {
@@ -51,6 +65,7 @@ export const initialState: IAppState = {
   loading: false,
   imageIndex: 1,
   relatedProducts: {},
+  checkoutData: {},
 };
 
 export interface IAppContext {
@@ -68,6 +83,7 @@ const AppContext = React.createContext<IAppContext>({
     loading: false,
     imageIndex: 1,
     relatedProducts: {},
+    checkoutData: {},
   },
 
   dispatch: () => {},
@@ -86,6 +102,7 @@ export enum ActionType {
   SINGLE_PRODUCT_SUCCESS = "SINGLE_PRODUCT_SUCCESS",
   CHANGE_IMAGE = "CHANGE_IMAGE",
   RELATED_PRODUCTS_SUCCESS = "RELATED_PRODUCTS_SUCCESS",
+  CHECKOUT_DATA_SUCCESS = "CHECKOUT_DATA_SUCCESS",
 }
 
 export type IAction = {
@@ -97,6 +114,7 @@ export type IAction = {
   loading?: boolean;
   imageIndex?: number;
   relatedProducts?: { related: TProduct[] };
+  checkoutData?: InitialValuesTypes;
 };
 
 const vehicleReducer = (
@@ -167,6 +185,11 @@ const vehicleReducer = (
         ...state,
         relatedProducts: action.singleProduct as { related: TProduct[] },
       };
+    case "CHECKOUT_DATA_SUCCESS":
+      return {
+        ...state,
+        checkoutData: action.checkoutData as InitialValuesTypes,
+      };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
@@ -178,6 +201,7 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     vehicleReducer,
     initialState as IAppState
   );
+
   const fetchProduct: TFunction = async (payloadResponse) => {
     return await client
       .fetch(payloadResponse)
@@ -189,6 +213,7 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
+
   const fetchSingleProduct: TFunction = async (payloadResponse) => {
     return await client
       .fetch(payloadResponse)
@@ -200,15 +225,30 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
+
   const imageIndex = (index: number): number => {
     if (index < 0) {
       return 0;
     } else return index;
   };
+
+  const fetchCheckoutData: TFunction = async (payloadResponse) => {
+    return await client
+      .fetch(payloadResponse)
+      .then((res) => {
+        res && fetchCheckout(dispatch, res);
+        return fetchCheckout(dispatch, res);
+      })
+      .finally(() => {
+        toast.error("Hello world");
+      })
+      .catch((err) => err instanceof Error && err.message);
+  };
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
     !cancelled && fetchProduct(ProductsQuery);
+    !cancelled && fetchCheckoutData(CheckoutDataQuery);
     return () => {
       cancelled = true;
     };

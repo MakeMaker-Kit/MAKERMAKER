@@ -2,6 +2,7 @@ import { IFeature } from "./IFeature";
 import { ActionType, IAction } from "../LearnContext";
 import { Dispatch } from "react";
 import { TProduct } from "../../../../types/global.types";
+import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
 export interface IVehicle {
   vehicleId: string;
   make: string;
@@ -52,5 +53,15 @@ export const fetchRelatedProducts = (
   dispatch({
     type: ActionType.SINGLE_PRODUCT_SUCCESS,
     relatedProducts: relatedProducts,
+  });
+};
+
+export const fetchCheckout = (
+  dispatch: Dispatch<IAction>,
+  checkoutData: InitialValuesTypes
+) => {
+  dispatch({
+    type: ActionType.CHECKOUT_DATA_SUCCESS,
+    checkoutData: checkoutData,
   });
 };

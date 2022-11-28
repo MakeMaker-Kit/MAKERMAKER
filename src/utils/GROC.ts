@@ -275,3 +275,16 @@ export const RelatedProducts = (productSingle: {
 }
   } `;
 };
+
+export const CheckoutDataQuery = `*[_type == "checkoutdata"]{
+  firstname,
+lastname,
+email,
+phonenumber,
+streetaddress,
+ name, 
+ suite,
+state,
+city,
+zipcode
+}`;

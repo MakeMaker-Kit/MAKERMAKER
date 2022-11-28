@@ -1,4 +1,12 @@
-import React from "react";
+import React, {
+  useDebugValue,
+  useSyncExternalStore,
+  useDeferredValue,
+  useId,
+  useImperativeHandle,
+  useInsertionEffect,
+  useTransition,
+} from "react";
 import cx from "classnames";
 import { client } from "../../../../client";
 import { AuthContentType, LoginType } from "../../../../types/global.types";

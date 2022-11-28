@@ -1,5 +1,8 @@
 import * as React from "react";
 import cx from "classnames";
+import toast from "react-hot-toast";
+import { Formik, FormikErrors } from "formik";
+import { AxiosError } from "axios";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
 import {
   USER_REGEX,
@@ -9,12 +12,20 @@ import {
   PHONE_NUMBER_REGEX,
 } from "../../../components/modals/authmodal/Regex";
 import CheckoutTextField from "./CheckoutTextfield";
-import { Formik, FormikErrors } from "formik";
-import { AxiosError } from "axios";
 import { ValidationError } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { client } from "../../../client";
-import toast from "react-hot-toast";
-
+// import tw, { theme, globalStyles, GlobalStyles } from "twin.macro";
+export type InitialValuesTypes = {
+  firstname: string;
+  lastname: string;
+  phonenumber: string;
+  email: string;
+  streetaddress: string;
+  suite: string;
+  city: string;
+  state: string;
+  zipcode: string;
+};
 const CheckoutForm = () => {
   const {
     XFull,
@@ -37,17 +48,7 @@ const CheckoutForm = () => {
     flexColBetween,
     flexResponsive,
   } = flexLayout;
-  type InitialValuesTypes = {
-    firstname: string;
-    lastname: string;
-    phonenumber: string;
-    email: string;
-    streetaddress: string;
-    suite: string;
-    city: string;
-    state: string;
-    zipcode: string;
-  };
+
   interface TCheckout extends InitialValuesTypes {
     _type: string;
   }
@@ -62,12 +63,14 @@ const CheckoutForm = () => {
     state: "",
     zipcode: "",
   };
+
+  // const FORMLAYOUT = tw.div` text-2xl`;
   return (
     <>
       <section className={cx(`relative w-full`)}>
         <div
           className={cx(
-            `container py-24 mx-auto flex sm:flex-nowrap flex-wrap `
+            `container py-24 mx-auto flex sm:flex-nowrap flex-wrap`
           )}
         >
           {/* FORM LAYOUT  */}
@@ -174,7 +177,9 @@ const CheckoutForm = () => {
               return (
                 <form
                   onSubmit={handleSubmit}
-                  className={`lg:w-full md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative gap-x-10`}
+                  className={cx(
+                    `lg:w-full md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative gap-x-10 `
+                  )}
                 >
                   {/* Flex 1 */}
                   <div className={`flex flex-col`}>
@@ -186,7 +191,7 @@ const CheckoutForm = () => {
                           ? errors.firstname
                           : `first name`
                       }
-                      placeholder={`Enter your First Name`}
+                      placeholder={`Enter your First Name `}
                       name={`firstname`}
                       id={`firstname`}
                       touched={touched.firstname}
