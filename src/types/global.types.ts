@@ -46,6 +46,8 @@ export interface InputRef {
   error?: string;
   touched?: boolean;
   placeholder?: string;
+  id?: string;
+  label?: string;
   handleChange?: {
     (e: React.ChangeEvent<any>): void;
     <T = string | React.ChangeEvent<any>>(

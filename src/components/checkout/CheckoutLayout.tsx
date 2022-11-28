@@ -10,7 +10,7 @@ const CheckoutLayout = () => {
   const { flexRow, flexCol } = flexLayout;
   return (
     <>
-      <div className={`${marX} h-screen max-h-[75vh]`}>
+      <div className={`mx-10 h-auto`}>
         <div className={`${boxFull} ${flexRow} `}>
           {/*  */}
 
@@ -22,7 +22,7 @@ const CheckoutLayout = () => {
           </div>
           {/*  */}
           <div className={cx(`w-full max-w-four`)}>
-            <div className={`${boxFull}`}>
+            <div className={`${boxFull} py-24`}>
               <CheckoutSummary />
             </div>
           </div>

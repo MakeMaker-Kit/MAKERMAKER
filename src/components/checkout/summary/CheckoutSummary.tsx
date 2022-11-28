@@ -1,9 +1,17 @@
 import * as React from "react";
 import cx from "classnames";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
+import { banner1 } from "../../../assets/images";
 const CheckoutSummary = () => {
-  const { XFull, boxFull, YFull, containerWrapper, themeWrapper, border } =
-    themes;
+  const {
+    XFull,
+    boxFull,
+    YFull,
+    containerWrapper,
+    themeWrapper,
+    border,
+    imageLayout,
+  } = themes;
   const { marX } = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
   const {
@@ -17,7 +25,7 @@ const CheckoutSummary = () => {
   } = flexLayout;
   return (
     <>
-      <div className={`${flexCol} bg-gray-50 ${containerWrapper}`}>
+      <div className={`${flexCol} bg-gray-50 ${containerWrapper} rounded`}>
         {/* Summary Header */}
         <div className={cx(`p-4`)}>
           <div
@@ -48,9 +56,10 @@ const CheckoutSummary = () => {
                         {/* Imaegs */}
                         <div className={`w-16 h-16 border   `}>
                           <img
-                            src={``}
+                            src={banner1}
                             alt={`image_checkout`}
                             title={`cart_checkout_image`}
+                            className={`${imageLayout}`}
                           />
                         </div>
                         {/* content */}
