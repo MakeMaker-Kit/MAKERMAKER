@@ -239,9 +239,6 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
         res && fetchCheckout(dispatch, res);
         return fetchCheckout(dispatch, res);
       })
-      .finally(() => {
-        toast.error("Hello world");
-      })
       .catch((err) => err instanceof Error && err.message);
   };
   const configureReactStore = () => {};

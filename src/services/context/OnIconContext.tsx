@@ -3,6 +3,8 @@ import {
   AiOutlineGooglePlus,
   AiOutlineShoppingCart,
   AiFillCalendar,
+  AiFillPlusCircle,
+  AiFillMinusCircle,
 } from "react-icons/ai";
 import { BiSearchAlt, BiMenu, BiCartAlt } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
@@ -59,6 +61,8 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         HiChatAlt2,
         RiShareForwardLine,
         CiClock2,
+        AiFillPlusCircle,
+        AiFillMinusCircle,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,

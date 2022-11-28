@@ -26,7 +26,9 @@ const ImageViewer = ({ images }: { images: string[] }) => {
           className={`${flexCol} overflow-scroll scrollbar-hide w-[500px] space-y-5`}
         >
           {/* MIAIN image display */}
-          <div className={`w-[400px] h-[400px] overscroll-none relative`}>
+          <div
+            className={`w-[400px] h-[400px] overscroll-none relative flex items-center justify-center`}
+          >
             {/* NEXT/ PREVIOUS BUTTONS  */}
             <div
               className={cx(

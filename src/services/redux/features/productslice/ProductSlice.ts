@@ -34,9 +34,12 @@ if (cartData || typeof cartData === "string") {
 const initialState: ProductStateTypes = {
   isItemsAdded: false,
   productIndexQuantity: 1,
-  productQuantity: 1,
-  totalPrice: 0,
-  totalQuantity: 0,
+  // @ts-ignore
+  productQuantity: productData ? productData : 1,
+  // @ts-ignore
+  totalPrice: totalData ? totalData : 0,
+  // @ts-ignore
+  totalQuantity: totalQuan ? totalQuan : 0,
   cart: cartItemData ? cartItemData : null || [],
   ShouldCartBeCleared: false,
   ShouldCartBeReset: false,
@@ -85,6 +88,17 @@ export const ProductSlice = createSlice({
           toast.success(
             ` ${action.payload.product?.title} has been successfully added `
           );
+          // Store cartItem in the localStorage
+          localStorage.setItem("cart", JSON.stringify(state.cart));
+          localStorage.setItem(
+            " totalQuantity",
+            JSON.stringify(state.totalQuantity)
+          );
+          localStorage.setItem(
+            "productQuantity",
+            JSON.stringify(state.productQuantity)
+          );
+          localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
         }
       }
     },
@@ -127,7 +141,7 @@ export const ProductSlice = createSlice({
       state.productQuantity =
         state.productQuantity + 1 > 1 &&
         state.productQuantity > PriceInProductStock
-          ? toast.error(``) && 1
+          ? toast.error(`Hey don't do that please, thank you`) && 1
           : 1;
       // return state.productQuantity;
     },

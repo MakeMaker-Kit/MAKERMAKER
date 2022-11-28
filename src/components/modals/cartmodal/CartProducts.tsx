@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { TProduct } from "../../../types/global.types";
 
 const CartProducts = ({
-  cart,
+  product,
   _id,
   title,
   slug,
@@ -32,7 +32,7 @@ const CartProducts = ({
   const productQuan = useSelector(ProductQuantity);
   const dispatchRedux = useDispatch();
   const IncreaseProductInCart = () =>
-    dispatchRedux(increaseProductInCart({ cart }));
+    dispatchRedux(increaseProductInCart({ product }));
   const DecreaseProductInCart = () => dispatchRedux(decreaseProductInCart());
   return (
     <div className={cx(`p-3 border-y border-dotted border-gray-900 `)}>

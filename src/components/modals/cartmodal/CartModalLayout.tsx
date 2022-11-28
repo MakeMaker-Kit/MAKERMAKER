@@ -114,7 +114,7 @@ const CartModalLayout = () => {
                         >
                           {/*  */}
                           <div
-                            className={`px-4 py-3 bg-transparent rounded-full`}
+                            className={`px-4 py-3 bg-transparent rounded-full cursor-pointer`}
                           >
                             <div className={`${boxFull} ${flexCenter}`}>
                               <p>Checkout</p>

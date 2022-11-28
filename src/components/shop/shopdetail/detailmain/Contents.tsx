@@ -33,7 +33,7 @@ const Contents = ({
   } = flexLayout;
   const { boxFull } = themes;
   const { mainLayout, textCustom } = textStyles;
-  const { HeartIcon } = useIcon();
+  const { HeartIcon, AiFillPlusCircle, AiFillMinusCircle } = useIcon();
   const productQuan = useSelector(ProductQuantity);
   const dispatch = useDispatch();
   const increaseProduct = () => dispatch(incrementProduct());
@@ -92,22 +92,37 @@ const Contents = ({
           {/*  */}
           <div className={`${flexRowCenterBetween}`}>
             <div className={`w-full max-w-seven ${flexRowCenter}`}>
-              <MainButton isRounded={true} handleClick={AddToCart}>
-                Add To Shopping Cart
-              </MainButton>
-              <div
-                className={cx(
-                  `${flexRowCenter} space-x-1 ${mainLayout} ${textCustom} text-2xl`,
-                  `cursor-pointer`
-                )}
-              >
-                <span onClick={decreaseProduct}>- </span>
-                <span>{productQuan} </span>
-                <span onClick={increaseProduct}>+ </span>
+              <div className={`w-full max-w-six`}>
+                <MainButton isRounded={true} handleClick={AddToCart}>
+                  Add To Shopping Cart
+                </MainButton>
+              </div>
+              <div className={`w-full max-w-six`}>
+                <div
+                  className={cx(
+                    `${flexRowCenter} space-x-1 ${mainLayout} ${textCustom} text-2xl`,
+                    `cursor-pointer`
+                  )}
+                >
+                  <span
+                    onClick={decreaseProduct}
+                    className={`w-8 h-8 border rounded-full`}
+                  >
+                    <p className={`${boxFull} ${flexCenter}`}>
+                      <AiFillMinusCircle />
+                    </p>
+                  </span>
+                  <span className={`${mainLayout} ${textCustom} text-sm`}>
+                    {productQuan}{" "}
+                  </span>
+                  <span onClick={increaseProduct}>
+                    <AiFillPlusCircle />
+                  </span>
+                </div>
               </div>
             </div>
             <p className={`whitespace-nowrap`}>
-              {stockItems ? stockItems : "only one "}item(s) Remaining{" "}
+              {stockItems ? stockItems : "only one "} item(s) Remaining{" "}
             </p>
           </div>
           {/*  */}
