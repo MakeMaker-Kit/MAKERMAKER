@@ -16,6 +16,7 @@ import { IconContextProps } from "./context.type";
 import { CiFaceMeh, CiClock2 } from "react-icons/ci";
 import { HiChatAlt2 } from "react-icons/hi";
 import { RiShareForwardLine } from "react-icons/ri";
+import { GiCancel } from "react-icons/gi";
 import {
   PaperPlaneIcon,
   MinusCircledIcon,
@@ -63,6 +64,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         CiClock2,
         AiFillPlusCircle,
         AiFillMinusCircle,
+        GiCancel,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,

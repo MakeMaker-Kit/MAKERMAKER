@@ -4,6 +4,8 @@ import { useIcon } from "../../../../hooks/dispatchContext";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { TProduct } from "../../../../types/global.types";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { urlFor } from "../../../../client";
 import {
   flexLayout,
   themes,
@@ -14,6 +16,7 @@ import {
   decrementProduct,
   incrementProduct,
   ProductQuantity,
+  removeFromCart,
 } from "../../../../services/redux/features/productslice/ProductSlice";
 
 const Contents = ({
@@ -23,6 +26,7 @@ const Contents = ({
   categories,
   defaultVariant,
   product,
+  _id,
 }: TProduct) => {
   const {
     flexCol,
@@ -46,7 +50,7 @@ const Contents = ({
         {/*  */}
         <div className={`${flexCol} space-y-12`}>
           <div className={`${flexRowCenterBetween}`}>
-            <h1>{title}</h1>
+            <h1 className={`text-2xl font-bold  tracking-widest`}>{title}</h1>
             <div
               className={cx(
                 `h-10 w-10 p-2 border border-orange outline-fuchsia-50 rounded-full`
@@ -73,7 +77,7 @@ const Contents = ({
           </div>
           {/*  */}
           <div
-            className={`${flexStart} font-light tracking-wide text-start leading-relaxed`}
+            className={`${flexStart} font-light tracking-widest leading-9 text-start `}
           >
             <p>{defaultVariant?.description}</p>
           </div>
@@ -90,13 +94,13 @@ const Contents = ({
         <div className={`${flexCol} space-y-6`}>
           {/*  */}
           <div className={`${flexRowCenterBetween}`}>
-            <div className={`w-full max-w-seven ${flexRowCenter}`}>
+            <div className={`w-full max-w-seven ${flexRowCenter} space-x-4`}>
               <div className={`w-full max-w-six`}>
                 <MainButton isRounded={true} handleClick={AddToCart}>
                   Add To Shopping Cart
                 </MainButton>
               </div>
-              <div className={`w-full max-w-six`}>
+              <div className={`w-full max-w-four`}>
                 <div
                   className={cx(
                     `${flexRowCenter} space-x-1 ${mainLayout} ${textCustom} text-2xl`,
@@ -111,16 +115,21 @@ const Contents = ({
                       <AiFillMinusCircle />
                     </p>
                   </span>
-                  <span className={`${mainLayout} ${textCustom} text-sm`}>
+                  <span className={`${mainLayout} ${textCustom} text-sm px-2`}>
                     {productQuan}{" "}
                   </span>
-                  <span onClick={increaseProduct}>
-                    <AiFillPlusCircle />
+                  <span
+                    onClick={increaseProduct}
+                    className={`w-8 h-8 border rounded-full`}
+                  >
+                    <p className={`${boxFull} ${flexCenter}`}>
+                      <AiFillPlusCircle />
+                    </p>
                   </span>
                 </div>
               </div>
             </div>
-            <p className={`whitespace-nowrap tracking-wider`}>
+            <p className={`whitespace-nowrap tracking-widest`}>
               {stockItems ? stockItems : "only one "} item(s) Remaining{" "}
             </p>
           </div>
@@ -128,7 +137,7 @@ const Contents = ({
           <div className="w-full h-px bg-gray-900" />
           {/*  */}
           <div className={`${flexRowCenter} space-x-4`}>
-            <p>Categories</p>
+            <p className={`font-black tracking-wider`}>Categories</p>
             <div className={`${flexRowCenter} space-x-3`}>
               {/* @ts-ignore */}
               {categories.map(

@@ -7,10 +7,13 @@ import {
   increaseProductInCart,
   ProductQuantity,
   decreaseProductInCart,
+  removeFromCart,
 } from "../../../services/redux/features/productslice/ProductSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { TProduct } from "../../../types/global.types";
 import { urlFor } from "../../../client";
+import { useIcon } from "../../../hooks/dispatchContext";
+import toast from "react-hot-toast";
 
 const CartProducts = ({
   product,
@@ -19,6 +22,7 @@ const CartProducts = ({
   slug,
   defaultVariant,
   price,
+  stockItems,
 }: TProduct) => {
   const { containerWrapper, boxFull } = themes;
   const {
@@ -35,8 +39,48 @@ const CartProducts = ({
   const IncreaseProductInCart = () =>
     dispatchRedux(increaseProductInCart({ product }));
   const DecreaseProductInCart = () => dispatchRedux(decreaseProductInCart());
-  console.log("image ", defaultVariant);
-
+  const notificationToast = () =>
+    toast.custom((t) => (
+      <div
+        className={`${
+          t.visible ? "animate-enter" : "animate-leave"
+        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <img
+                className="h-10 w-10 rounded-full"
+                src={urlFor(defaultVariant?.images[0])
+                  .width(500)
+                  .height(500)
+                  .blur(1)
+                  .url()}
+                alt=""
+              />
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">{title}</p>
+              <p className="mt-1 text-sm text-gray-500">
+                Are sure you want to remove {title}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-200">
+          <button
+            onClick={() => {
+              toast.dismiss(t.id);
+              dispatchRedux(removeFromCart({ _id, title }));
+            }}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    ));
+  const { GiCancel } = useIcon();
   return (
     <div className={cx(`p-3 border-y border-dotted border-gray-900 `)}>
       <div
@@ -77,7 +121,9 @@ const CartProducts = ({
 
         <div className={cx(`${flexRowCenter} space-x-3`)}>
           <p>{price} NGN</p>
-          <p>x</p>
+          <p onClick={notificationToast}>
+            <GiCancel />
+          </p>
         </div>
       </div>
     </div>

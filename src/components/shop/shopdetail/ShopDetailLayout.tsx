@@ -103,7 +103,8 @@ const ShopDetailLayout = () => {
                       />
                       {/* prodcut moe  */}
                       <div className="w-full h-2 bg-gray-900" />
-                      <DetailMore />
+                      {/* @ts-ignore */}
+                      <DetailMore {...singleProduct} />
                       <div className="w-full h-1 bg-gray-900" />
                       {/* more products display @apply  */}
                       <ProductMore {...relatedProducts} />

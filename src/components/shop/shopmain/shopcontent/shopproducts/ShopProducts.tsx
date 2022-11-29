@@ -33,9 +33,11 @@ const ShopProducts = ({
   const { mainLayout, textCustom } = textStyles;
   const { ArchiveIcon } = useIcon();
   const dispatch = useDispatch();
-  const openModal = () =>
-    dispatch(openShopComponent()) &&
+  const openModal = () => {
+    dispatch(openShopComponent());
     navigate(`/shop/${slug}`, { replace: true });
+    // window.location.reload();
+  };
 
   const AddToCart = () => dispatch(addToCart({ product }));
 

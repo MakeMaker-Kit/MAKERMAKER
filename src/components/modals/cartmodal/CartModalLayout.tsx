@@ -108,9 +108,16 @@ const CartModalLayout = () => {
                         .map((i) => (
                           <CartProducts key={i} />
                         ))} */}
-                      {cartItems.map((cart: TProduct, index: number) => (
-                        <CartProducts key={index} {...cart} product={cart} />
-                      ))}
+                      {cartItems.length > 0 ? (
+                        cartItems.map((cart: TProduct, index: number) => (
+                          <CartProducts key={index} {...cart} product={cart} />
+                        ))
+                      ) : (
+                        <h1>
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Corporis, cum.
+                        </h1>
+                      )}
                     </div>
                     {/* Cart Checkout  */}
                     <div className={`p-3`}>
