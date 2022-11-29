@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { Formik, FormikErrors } from "formik";
 import { AxiosError } from "axios";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
-import PhoneInput from "../../../hooks/input/PhoneInput";
 
 import {
   USER_REGEX,
@@ -18,18 +17,16 @@ import { ValidationError } from "../../../services/redux/features/sanitytoclient
 import { client } from "../../../client";
 import { USEContext } from "../../../services/context/learncontext/LearnContext";
 // import tw, { theme, globalStyles, GlobalStyles } from "twin.macro";
-/**
- * <PhoneInput
-  placeholder="Enter phone number"
-  value={value}
-  onChange={setValue}
-  error={value ? (isValidPhoneNumber(value) ? undefined : 'Invalid phone number') : 'Phone number required'}/>
+import PhoneInputs from "../../../hooks/input/PhoneInput";
+import PhoneInput, {
+  formatPhoneNumber,
+  formatPhoneNumberIntl,
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
+  Flags,
+} from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
-Is possible: {value && isPossiblePhoneNumber(value) ? 'true' : 'false'}
-Is valid: {value && isValidPhoneNumber(value) ? 'true' : 'false'}
-National: {value && formatPhoneNumber(value)}
-International: {value && formatPhoneNumberIntl(value)}
- */
 export type InitialValuesTypes = {
   firstname: string;
   lastname: string;
@@ -109,14 +106,14 @@ const CheckoutForm = () => {
               }
               // phonenumber
               if (!values.phonenumber) {
-                errors.phonenumber = "Enter your phonenumber";
+                errors.phonenumber = " phone number cannot be empty";
               } else if (!PHONE_NUMBER_REGEX.test(values.phonenumber)) {
                 errors.phonenumber =
                   "Field must be a valid 10-digit phone number";
               }
               // email address
               if (!values.email) {
-                errors.email = "Enter your Email Address";
+                errors.email = " Email Address cannot be empty";
               } else if (!EMAIL_ADDREESS_REGEX.test(values.email)) {
                 errors.email = "Enter  a  valid email address";
               }
@@ -169,7 +166,6 @@ const CheckoutForm = () => {
                   client.create(CheckoutRequest).then(() => {
                     resetForm();
                     toast.success(`Successfully Submitted`);
-
                     setSubmitting(false);
                   });
                 }
@@ -239,7 +235,7 @@ const CheckoutForm = () => {
                       onBlur={handleBlur}
                       error={errors.lastname}
                     />
-                    {/* <CheckoutTextField
+                    <CheckoutTextField
                       type={"phonenumber"}
                       label={
                         errors.phonenumber && touched.phonenumber
@@ -254,44 +250,61 @@ const CheckoutForm = () => {
                       value={values.phonenumber}
                       onBlur={handleBlur}
                       error={errors.phonenumber}
-                    /> */}
-                    <PhoneInput
-                      label={
-                        errors.phonenumber && touched.phonenumber
+                    />
+                    <div className={cx(`${flexCol} relative mb-4`)}>
+                      <label
+                        className={`leading-7 text-xs  ${mainLayout} ${textCustom} capitalize ${
+                          !!errors.phonenumber?.length && touched.phonenumber
+                            ? "text-appRed"
+                            : " text-gray-700"
+                        } `}
+                      >
+                        {errors.phonenumber && touched.phonenumber
                           ? errors.phonenumber
-                          : `phone number`
-                      }
-                      values={values.phonenumber}
-                      onChange={handleChange}
-                      name={`phonenumber`}
-                      type={`phonenumber`}
-                      onBlur={handleBlur}
-                      error={errors.phonenumber}
-                      placeholder={"+234 0813914403"}
-                    />
-                    <CheckoutTextField
-                      type={"email"}
-                      label={
-                        errors.email && touched.email
-                          ? errors.email
-                          : `Email Address for order notifications`
-                      }
-                      placeholder={`Enter your Email Address`}
-                      name={`email`}
-                      id={`email`}
-                      touched={false}
-                      handleChange={handleChange}
-                      value={values.email}
-                      onBlur={handleBlur}
-                      error={errors.email}
-                    />
+                          : `phone number `}{" "}
+                        {"  *"}
+                      </label>
+                      <PhoneInput
+                        value={values.phonenumber}
+                        onChange={() => {}}
+                        name={`phonenumber`}
+                        onBlur={handleBlur}
+                        placeholder={"+234 0813914403"}
+                        international
+                        defaultCountry="RU"
+                        countryCallingCodeEditable={false}
+                        className={cx(
+                          "w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:text-xs text-xs",
+                          `${textCustom} ${mainLayout}`,
+                          errors.phonenumber &&
+                            touched.phonenumber &&
+                            "border-appRed"
+                        )}
+                      />
+                      <CheckoutTextField
+                        type={"email"}
+                        label={
+                          errors.email && touched.email
+                            ? errors.email
+                            : `Email Address for order notifications`
+                        }
+                        placeholder={`Enter your Email Address`}
+                        name={`email`}
+                        id={`email`}
+                        touched={touched.email}
+                        handleChange={handleChange}
+                        value={values.email}
+                        onBlur={handleBlur}
+                        error={errors.email}
+                      />
+                    </div>
 
                     {/*  */}
                     {/* <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-xs">
                       Button
                     </button> */}
                     <div className={`${flexRowCenter} gap-x-2 py-2`}>
-                      <input type="checkbox" defaultChecked={true} />
+                      <input type="checkbox" defaultChecked={true} name={""} />
                       <p className={`text-xs`}>
                         Email about hot items, great products and more
                       </p>

@@ -118,7 +118,9 @@ const CheckoutSummary = () => {
                           </span>
                         </div>
                         <div
-                          className={cx(`${mainLayout} ${textCustom} text-xs`)}
+                          className={cx(
+                            `${mainLayout} ${textCustom} text-xs whitespace-nowrap`
+                          )}
                         >
                           {price} NGN{" "}
                         </div>

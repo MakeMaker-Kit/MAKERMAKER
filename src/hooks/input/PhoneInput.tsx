@@ -84,17 +84,27 @@ const PhoneInputs = ({
   label,
   name,
   id,
-  handleChange,
   onBlur,
   error,
   touched,
-  onChanged,
-  values,
   onChange,
+  onFocus,
 }: Props<any>) => {
   const { flexCol } = flexLayout;
   const {} = themes;
   const { mainLayout, textCustom } = textStyles;
+  /**
+ * <PhoneInput
+  placeholder="Enter phone number"
+  value={value}
+  onChange={setValue}
+  error={value ? (isValidPhoneNumber(value) ? undefined : 'Invalid phone number') : 'Phone number required'}/>
+
+Is possible: {value && isPossiblePhoneNumber(value) ? 'true' : 'false'}
+Is valid: {value && isValidPhoneNumber(value) ? 'true' : 'false'}
+National: {value && formatPhoneNumber(value)}
+International: {value && formatPhoneNumberIntl(value)}
+ */
   return (
     <>
       <div className={cx(`${flexCol} relative mb-4`)}>
@@ -106,7 +116,7 @@ const PhoneInputs = ({
           {label} *
         </label>
         <PhoneInput
-          value={values}
+          value={value}
           onChange={onChange}
           international
           defaultCountry="RU"
@@ -117,11 +127,17 @@ const PhoneInputs = ({
             error && touched && "border-appRed"
           )}
           name={name}
-          type={type}
-          id={id}
-          required
+          onFocus={onFocus}
+          autoComplete={""}
           onBlur={onBlur}
           placeholder={placeholder}
+          error={
+            value
+              ? isValidPhoneNumber(value)
+                ? undefined
+                : "Invalid Phone Number"
+              : "Phone Number required"
+          }
         />
       </div>
     </>
