@@ -1,5 +1,6 @@
 import { NumberSchemaType } from "@sanity/types/dist/dts";
 import { TypedObject } from "@sanity/types/dist/dts";
+import { E164Number } from "libphonenumber-js/core";
 // import {Value} from "@react-phone-number-input/index.d.ts"
 
 import React from "react";
@@ -35,6 +36,8 @@ export interface AuthContentType {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+type Value = E164Number;
+
 export interface InputRef {
   focus?: () => void;
   blur?: () => void;
@@ -68,7 +71,9 @@ export interface InputRef {
   onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionUpdate?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   icon?: JSX.Element | React.ReactElement;
-  onChanged?: (value?: Value) => void;
+  // onChanged?: (value?: E164Number) => void;
+  onChanged?(value?: Value | undefined): void;
+  values?: Value;
 }
 export declare function Outlet(props: OutletProps): React.ReactElement | null;
 export interface PathRouteProps {

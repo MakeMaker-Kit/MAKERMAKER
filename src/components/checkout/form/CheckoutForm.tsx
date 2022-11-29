@@ -261,7 +261,7 @@ const CheckoutForm = () => {
                           ? errors.phonenumber
                           : `phone number`
                       }
-                      value={values.phonenumber}
+                      values={values.phonenumber}
                       onChange={handleChange}
                       name={`phonenumber`}
                       type={`phonenumber`}

@@ -8,7 +8,75 @@ import PhoneInput, {
   formatPhoneNumberIntl,
   isValidPhoneNumber,
   isPossiblePhoneNumber,
+  Flags,
 } from "react-phone-number-input";
+import { CountryCode, E164Number } from "libphonenumber-js/core";
+
+///
+type Value = E164Number;
+
+type Locale = string;
+
+type LocaleProperty = Locale | Locale[];
+
+interface FlagProps {
+  country: Country;
+  countryName: string;
+  flagUrl?: string;
+  flags?: Flags;
+}
+
+type Flag = (props: FlagProps) => JSX.Element;
+
+type Country = CountryCode;
+
+type CountryOption = "XX" | "🌐" | "|" | "..." | "…" | Country;
+// `LabelKey` is imported in `/locale/{locale}.json.d.ts`.
+export type LabelKey = Country | "ZZ" | "ext" | "country" | "phone";
+
+// `Labels` are imported in `/core/index.d.ts`.
+export type Labels = Partial<Record<LabelKey, string>>;
+
+export type FeatureProps<InputComponentProps> = Omit<
+  InputComponentProps,
+  "value" | "onChange"
+> & {
+  onFocus?(event: React.FocusEvent<HTMLElement>): void;
+  onBlur?(event: React.FocusEvent<HTMLElement>): void;
+  disabled?: boolean;
+  readOnly?: boolean;
+  autoComplete?: string;
+  initialValueFormat?: "national";
+  defaultCountry?: Country;
+  countries?: Country[];
+  labels?: Labels;
+  locales?: LocaleProperty;
+  flagUrl?: string;
+  flags?: Flags;
+  flagComponent?: Flag;
+  addInternationalOption?: boolean;
+  internationalIcon?: React.ElementType;
+  countryOptionsOrder?: CountryOption[];
+  style?: object;
+  className?: string;
+  countrySelectComponent?: React.ElementType;
+  countrySelectProps?: object;
+  inputComponent?: React.ElementType;
+  containerComponent?: React.ElementType;
+  numberInputProps?: object;
+  smartCaret?: boolean;
+  international?: boolean;
+  limitMaxLength?: boolean;
+  countryCallingCodeEditable?: boolean;
+  onCountryChange?(country?: Country): void;
+  focusInputOnCountrySelection?: boolean;
+};
+export type Props<InputComponentProps> = FeatureProps<InputComponentProps> & {
+  value?: Value;
+  onChange(value?: Value): void;
+  error?: string;
+  touched?: string;
+};
 const PhoneInputs = ({
   placeholder,
   type,
@@ -21,7 +89,9 @@ const PhoneInputs = ({
   error,
   touched,
   onChanged,
-}: InputRef) => {
+  values,
+  onChange,
+}: Props<any>) => {
   const { flexCol } = flexLayout;
   const {} = themes;
   const { mainLayout, textCustom } = textStyles;
@@ -36,8 +106,8 @@ const PhoneInputs = ({
           {label} *
         </label>
         <PhoneInput
-          value={value}
-          onChange={onChanged}
+          value={values}
+          onChange={onChange}
           international
           defaultCountry="RU"
           countryCallingCodeEditable={false}
