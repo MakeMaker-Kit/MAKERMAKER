@@ -3,6 +3,7 @@ import { ProductStateTypes, TCart } from "../type.types";
 import { toast } from "react-hot-toast";
 import { RootState } from "../../app/rootReducer";
 import { TProduct } from "../../../../types/global.types";
+import { LocalStorageStore } from "../../../../hooks/storageStore";
 const IndexData = localStorage.getItem("productIndexQuantity");
 let productIndexData;
 if (IndexData || typeof IndexData === "string") {
@@ -79,36 +80,56 @@ export const ProductSlice = createSlice({
           );
           state.productQuantity = 1;
         } else {
-          state.cart?.push(action.payload.product);
-          state.totalQuantity = state.totalQuantity + 1;
-          state.totalPrice =
-            state.totalPrice +
-            action.payload?.product?.price * state.productQuantity;
-          state.isItemsAdded = true;
-          toast.success(
-            ` ${action.payload.product?.title} has been successfully added `
-          );
-          // Store cartItem in the localStorage
-          localStorage.setItem("cart", JSON.stringify(state.cart));
-          localStorage.setItem(
-            " totalQuantity",
-            JSON.stringify(state.totalQuantity)
-          );
-          localStorage.setItem(
-            "productQuantity",
-            JSON.stringify(state.productQuantity)
-          );
-          localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
+          // @ts-ignore
+          if (state.productQuantity > action.payload.product.stockItems) {
+            toast("Please our stockitems dosen't reach the selected quantity", {
+              duration: 5000,
+            });
+            state.totalQuantity = state.totalQuantity;
+            state.totalPrice = state.totalPrice;
+            state.productQuantity = 1;
+          } else if (action.payload.product.stockItems === 0) {
+            toast(
+              `Sorry the product you chosed is not in stock or is out  of stock for now`
+            );
+            state.totalQuantity = state.totalQuantity;
+            state.totalPrice = state.totalPrice;
+            state.productQuantity = 1;
+          } else {
+            state.cart?.push(action.payload.product);
+            state.totalQuantity = state.totalQuantity + 1;
+            state.totalPrice =
+              state.totalPrice +
+              action.payload?.product?.price * state.productQuantity;
+            state.isItemsAdded = true;
+            toast.success(
+              ` ${action.payload.product?.title} has been successfully added `
+            );
+            // Store cartItem in the localStorage
+            localStorage.setItem("cart", JSON.stringify(state.cart));
+            localStorage.setItem(
+              " totalQuantity",
+              JSON.stringify(state.totalQuantity)
+            );
+            localStorage.setItem(
+              "productQuantity",
+              JSON.stringify(state.productQuantity)
+            );
+            localStorage.setItem(
+              "totalPrice",
+              JSON.stringify(state.totalPrice)
+            );
+          }
         }
       }
     },
     getIdentifiedProduct: (state, action: PayloadAction) => {},
     removeFromCart: (state, action) => {
       let updatedItemIndex = state.cart.find(
-        (item) => item._id === action.payload?.product?._id
+        (item) => item._id === action.payload
       );
       const newCartItem = state.cart?.filter(
-        (cartItem) => cartItem.id !== action.payload._id
+        (cartItem) => cartItem._id !== action.payload
       );
       // let cartItem = state.cart?.splice(updatedItemIndex, 1);
 
@@ -117,6 +138,7 @@ export const ProductSlice = createSlice({
         state.totalPrice - updatedItemIndex.price * state.productQuantity;
       state.totalQuantity = state.totalQuantity - state.productQuantity;
       state.cart = newCartItem;
+      LocalStorageStore(state.cart);
     },
     incrementProduct: (state, action: PayloadAction) => {
       state.productQuantity = state.productQuantity + 1;
