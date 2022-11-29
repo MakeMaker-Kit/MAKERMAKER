@@ -4,13 +4,8 @@ import toast from "react-hot-toast";
 import { Formik, FormikErrors } from "formik";
 import { AxiosError } from "axios";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
-import "react-phone-number-input/style.css";
-import PhoneInput, {
-  formatPhoneNumber,
-  formatPhoneNumberIntl,
-  isValidPhoneNumber,
-  isPossiblePhoneNumber,
-} from "react-phone-number-input";
+import PhoneInput from "../../../hooks/input/PhoneInput";
+
 import {
   USER_REGEX,
   PASSWORD_REGEX,
@@ -226,6 +221,7 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.firstname}
                       onBlur={handleBlur}
+                      error={errors.firstname}
                     />
                     <CheckoutTextField
                       type={"lastname"}
@@ -241,8 +237,9 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.lastname}
                       onBlur={handleBlur}
+                      error={errors.lastname}
                     />
-                    <CheckoutTextField
+                    {/* <CheckoutTextField
                       type={"phonenumber"}
                       label={
                         errors.phonenumber && touched.phonenumber
@@ -256,19 +253,21 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.phonenumber}
                       onBlur={handleBlur}
-                    />
+                      error={errors.phonenumber}
+                    /> */}
                     <PhoneInput
+                      label={
+                        errors.phonenumber && touched.phonenumber
+                          ? errors.phonenumber
+                          : `phone number`
+                      }
                       value={values.phonenumber}
                       onChange={handleChange}
-                      international
-                      defaultCountry="RU"
-                      countryCallingCodeEditable={false}
-                      className={cx(
-                        "w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:text-xs text-xs",
-                        `${textCustom} ${mainLayout}`
-                      )}
                       name={`phonenumber`}
                       type={`phonenumber`}
+                      onBlur={handleBlur}
+                      error={errors.phonenumber}
+                      placeholder={"+234 0813914403"}
                     />
                     <CheckoutTextField
                       type={"email"}
@@ -284,6 +283,7 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.email}
                       onBlur={handleBlur}
+                      error={errors.email}
                     />
 
                     {/*  */}
@@ -319,6 +319,7 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.streetaddress}
                       onBlur={handleBlur}
+                      error={errors.streetaddress}
                     />
                     <CheckoutTextField
                       type={"suite"}
@@ -334,6 +335,7 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.suite}
                       onBlur={handleBlur}
+                      error={errors.suite}
                     />
                     <CheckoutTextField
                       type={"city"}
@@ -345,6 +347,7 @@ const CheckoutForm = () => {
                       handleChange={handleChange}
                       value={values.city}
                       onBlur={handleBlur}
+                      error={errors.city}
                     />
                     <div className={`${flexResponsive.flexRowCol} space-x-2`}>
                       {/*  */}
@@ -360,6 +363,7 @@ const CheckoutForm = () => {
                         handleChange={handleChange}
                         value={values.state}
                         onBlur={handleBlur}
+                        error={errors.state}
                       />
                       {/*  */}
                       <CheckoutTextField
@@ -376,6 +380,7 @@ const CheckoutForm = () => {
                         handleChange={handleChange}
                         value={values.zipcode}
                         onBlur={handleBlur}
+                        error={errors.zipcode}
                       />
                     </div>
 

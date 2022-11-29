@@ -1,5 +1,6 @@
 import { NumberSchemaType } from "@sanity/types/dist/dts";
 import { TypedObject } from "@sanity/types/dist/dts";
+// import {Value} from "@react-phone-number-input/index.d.ts"
 
 import React from "react";
 import { NonIndexRouteObject, OutletProps } from "react-router-dom";
@@ -67,6 +68,7 @@ export interface InputRef {
   onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionUpdate?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   icon?: JSX.Element | React.ReactElement;
+  onChanged?: (value?: Value) => void;
 }
 export declare function Outlet(props: OutletProps): React.ReactElement | null;
 export interface PathRouteProps {

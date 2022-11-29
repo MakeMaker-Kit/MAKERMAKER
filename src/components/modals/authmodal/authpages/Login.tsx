@@ -94,11 +94,13 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
             { setSubmitting, setFieldTouched, resetForm }
           ) => {
             const { comfirmPassword, email, password } = values;
+            const AuthValue = { email, password };
             setSubmitting(true);
             try {
               const { error, data } = await supabase.auth.signInWithPassword(
-                values
+                AuthValue
               );
+              if (error) throw error;
               const UserLogin = {
                 _type: "userData",
                 email,
@@ -112,11 +114,14 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
                   setSubmitting(false);
                 });
               } else if (error) {
-                throw new Error("User Login UnSuccessful, parameters inflated");
+                throw (
+                  new Error("User Login UnSuccessful, parameters inflated") &&
+                  toast.error(error)
+                );
               }
             } catch (error: unknown) {
               if (error instanceof Error) {
-                return error.message;
+                return toast.error(error.message);
               }
             }
           }}
