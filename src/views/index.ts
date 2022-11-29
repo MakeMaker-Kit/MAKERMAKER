@@ -6,3 +6,4 @@ export { default as BlogTag } from "./blog/BlogTag";
 export { default as Shop } from "./shop/Shop";
 export { default as ShopDetail } from "./shop/ShopDetail";
 export { default as Checkout } from "./Checkout";
+export { default as NotFound } from "./NotFound";

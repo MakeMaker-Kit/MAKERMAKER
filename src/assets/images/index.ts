@@ -18,6 +18,7 @@ import banner4 from "./shop/banner4.webp";
 import banner5 from "./shop/banner5.webp";
 import shops from "./shops.png";
 import emptycart from "./emptycart.png";
+import pagenotfoundBg from "./404.png";
 export {
   logoImage,
   backgroundHeader,
@@ -38,4 +39,5 @@ export {
   banner5,
   shops,
   emptycart,
+  pagenotfoundBg,
 };

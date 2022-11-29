@@ -2,6 +2,10 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Blogs from "./views/Blogs";
 import ShopDetailLayout from "./components/shop/shopdetail/ShopDetailLayout";
+import { useSelector } from "react-redux";
+import { IsLoggedIn } from "./services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { Cart } from "./services/redux/features/productslice/ProductSlice";
+import { toast } from "react-hot-toast";
 import {
   BlogCategory,
   BlogProfile,
@@ -11,8 +15,12 @@ import {
   Shop,
   ShopDetail,
   Checkout,
+  NotFound,
 } from "./views";
+
 const App = () => {
+  const isLogged = useSelector(IsLoggedIn);
+  const cartItems = useSelector(Cart);
   return (
     <>
       <Routes>
@@ -28,7 +36,17 @@ const App = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/categories/:id" element={""} />
         <Route path="/shop/:id" element={<Shop />} />
-        <Route path="/checkout" element={<Checkout />} />
+        {(isLogged && cartItems.length == 0) ||
+        (cartItems.length > 1 &&
+          toast.error("You are not yet Authenticated ", {
+            duration: 4000,
+            className: `text-xs`,
+          })) ? (
+          <Route path="/" element={<Home />} />
+        ) : (
+          <Route path="/checkout" element={<Checkout />} />
+        )}
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
   );
