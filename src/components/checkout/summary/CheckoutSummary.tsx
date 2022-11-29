@@ -50,7 +50,7 @@ const CheckoutSummaryCard = ({
   const productQuantity = useSelector(ProductQuantity);
   const increase = () => dispatch(increaseProductInCart({ stockItems }));
   const decrease = () => dispatch(decreaseProductInCart());
-  const removeItem = () => dispatch(removeFromCart(_id));
+  const removeItem = () => dispatch(removeFromCart({ _id, title }));
   const totalQuan = useSelector(TotalQuantity);
   console.log("total Quantity Response", totalQuan);
   return (

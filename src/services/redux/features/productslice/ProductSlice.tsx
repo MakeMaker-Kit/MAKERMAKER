@@ -126,19 +126,30 @@ export const ProductSlice = createSlice({
     getIdentifiedProduct: (state, action: PayloadAction) => {},
     removeFromCart: (state, action) => {
       let updatedItemIndex = state.cart.find(
-        (item) => item._id === action.payload
+        (item) => item._id === action.payload._id
       );
       const newCartItem = state.cart?.filter(
-        (cartItem) => cartItem._id !== action.payload
+        (cartItem) => cartItem._id !== action.payload._id
       );
       // let cartItem = state.cart?.splice(updatedItemIndex, 1);
-
+      toast.success(
+        `${action.payload.title} has been removed from cart successfully`,
+        { duration: 4000, position: "bottom-right" }
+      );
       state.totalPrice =
         // @ts-ignore
         state.totalPrice - updatedItemIndex.price * state.productQuantity;
-      state.totalQuantity = state.totalQuantity - state.productQuantity;
+      // @ts-ignore
+      state.totalQuantity =
+        state.totalQuantity - state.productQuantity < 0
+          ? 0 &&
+            toast.error("Sorry this is our fault", {
+              duration: 4000,
+              position: "top-center",
+            })
+          : state.totalQuantity - state.productQuantity;
       state.cart = newCartItem;
-      LocalStorageStore(state.cart);
+      LocalStorageStore("cart", state.cart);
     },
     incrementProduct: (state, action: PayloadAction) => {
       state.productQuantity = state.productQuantity + 1;
