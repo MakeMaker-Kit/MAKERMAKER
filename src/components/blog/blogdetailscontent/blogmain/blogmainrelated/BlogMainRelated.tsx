@@ -39,7 +39,13 @@ const RelatedCard = ({
   }, []);
   return (
     <>
-      <div className={`w-full ${flexCol} h-auto`}>
+      <div
+        className={`w-full ${flexCol} h-auto`}
+        onClick={() => {
+          window.location.reload();
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
         <Link to={`/blog/${slug}`} className={cx(`h-[300px] relative`)}>
           <img
             src={urlFor(mainImage).url()}
