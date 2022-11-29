@@ -4,6 +4,13 @@ import toast from "react-hot-toast";
 import { Formik, FormikErrors } from "formik";
 import { AxiosError } from "axios";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
+import "react-phone-number-input/style.css";
+import PhoneInput, {
+  formatPhoneNumber,
+  formatPhoneNumberIntl,
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
+} from "react-phone-number-input";
 import {
   USER_REGEX,
   PASSWORD_REGEX,
@@ -14,7 +21,20 @@ import {
 import CheckoutTextField from "./CheckoutTextfield";
 import { ValidationError } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { client } from "../../../client";
+import { USEContext } from "../../../services/context/learncontext/LearnContext";
 // import tw, { theme, globalStyles, GlobalStyles } from "twin.macro";
+/**
+ * <PhoneInput
+  placeholder="Enter phone number"
+  value={value}
+  onChange={setValue}
+  error={value ? (isValidPhoneNumber(value) ? undefined : 'Invalid phone number') : 'Phone number required'}/>
+
+Is possible: {value && isPossiblePhoneNumber(value) ? 'true' : 'false'}
+Is valid: {value && isValidPhoneNumber(value) ? 'true' : 'false'}
+National: {value && formatPhoneNumber(value)}
+International: {value && formatPhoneNumberIntl(value)}
+ */
 export type InitialValuesTypes = {
   firstname: string;
   lastname: string;
@@ -63,7 +83,8 @@ const CheckoutForm = () => {
     state: "",
     zipcode: "",
   };
-
+  const { state } = USEContext();
+  console.log("checkout daat", state.checkoutData);
   // const FORMLAYOUT = tw.div` text-2xl`;
   return (
     <>
@@ -111,6 +132,11 @@ const CheckoutForm = () => {
                 errors.streetaddress = "Enter a valid Address";
               }
               // suite
+              if (!values.suite) {
+                errors.suite = "Field cannot be empty";
+              } else if (!USER_REGEX.test(values.suite)) {
+                errors.suite = "Suite must be entered";
+              }
               // city
               if (!values.city) {
                 errors.city = "Field cannot be empty";
@@ -146,8 +172,9 @@ const CheckoutForm = () => {
                 };
                 if (values) {
                   client.create(CheckoutRequest).then(() => {
-                    toast.success(`Successfully Submitted`);
                     resetForm();
+                    toast.success(`Successfully Submitted`);
+
                     setSubmitting(false);
                   });
                 }
@@ -173,6 +200,7 @@ const CheckoutForm = () => {
               handleSubmit,
               handleChange,
               values,
+              isSubmitting,
             }) => {
               return (
                 <form
@@ -229,6 +257,19 @@ const CheckoutForm = () => {
                       value={values.phonenumber}
                       onBlur={handleBlur}
                     />
+                    <PhoneInput
+                      value={values.phonenumber}
+                      onChange={handleChange}
+                      international
+                      defaultCountry="RU"
+                      countryCallingCodeEditable={false}
+                      className={cx(
+                        "w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:text-xs text-xs",
+                        `${textCustom} ${mainLayout}`
+                      )}
+                      name={`phonenumber`}
+                      type={`phonenumber`}
+                    />
                     <CheckoutTextField
                       type={"email"}
                       label={
@@ -246,9 +287,16 @@ const CheckoutForm = () => {
                     />
 
                     {/*  */}
-                    <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                    {/* <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-xs">
                       Button
-                    </button>
+                    </button> */}
+                    <div className={`${flexRowCenter} gap-x-2 py-2`}>
+                      <input type="checkbox" defaultChecked={true} />
+                      <p className={`text-xs`}>
+                        Email about hot items, great products and more
+                      </p>
+                    </div>
+
                     <p className="text-xs text-gray-500 mt-3">
                       Chicharrones blog helvetica normcore iceland tousled brook
                       viral artisan.
@@ -335,6 +383,7 @@ const CheckoutForm = () => {
                     <button
                       className={`text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded  ${textCustom} ${mainLayout} text-xs`}
                       type="submit"
+                      disabled={isSubmitting}
                     >
                       continue
                     </button>

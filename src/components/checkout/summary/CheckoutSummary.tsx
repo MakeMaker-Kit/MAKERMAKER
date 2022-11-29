@@ -5,6 +5,8 @@ import { banner1 } from "../../../assets/images";
 import { useSelector, useDispatch } from "react-redux";
 import { TProduct } from "../../../types/global.types";
 import { urlFor } from "../../../client";
+import { useIcon } from "../../../hooks/dispatchContext";
+
 import {
   Cart,
   TotalPrice,
@@ -34,6 +36,7 @@ const CheckoutSummary = () => {
     flexColBetween,
   } = flexLayout;
   const dispatch = useDispatch();
+  const { AiFillPlusCircle, AiFillMinusCircle } = useIcon();
   const cartItems = useSelector(Cart);
   const totalPrice = useSelector(TotalPrice);
   const productQuantity = useSelector(ProductQuantity);
@@ -95,9 +98,9 @@ const CheckoutSummary = () => {
                         <div
                           className={`${flexColBetween} h-full ${textCustom} ${mainLayout} text-xs `}
                         >
-                          <h3>dkkdkd</h3>
-                          <span>{title}</span>
-                          <p>kdkdkk</p>
+                          <h3>{title}</h3>
+                          <span>MakeMaker approved </span>
+                          <p className={`hover:underline`}>Remove</p>
                         </div>
                       </div>
                     </div>
@@ -105,14 +108,20 @@ const CheckoutSummary = () => {
                       <div
                         className={`${XFull} h-full  ${flexColBetween} items-center`}
                       >
-                        <div className={cx(`${flexRowCenter}`)}>
-                          <span onClick={increase}>+ </span>
+                        <div className={cx(`${flexRowCenter} space-x-3`)}>
+                          <span onClick={increase}>
+                            <AiFillPlusCircle />
+                          </span>
                           <span>{productQuantity}</span>
                           <span className={``} onClick={decrease}>
-                            -
+                            <AiFillMinusCircle />
                           </span>
                         </div>
-                        <div>{price} NGN </div>
+                        <div
+                          className={cx(`${mainLayout} ${textCustom} text-xs`)}
+                        >
+                          {price} NGN{" "}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -132,7 +141,7 @@ const CheckoutSummary = () => {
               <p>{totalPrice} NGN </p>
             </div>
             <div className={` ${flexRowCenterBetween}`}>
-              <p>Shipping</p>
+              <p>Shipping / Taxes</p>
               <p>Free </p>
             </div>
             <div className={` ${flexRowCenterBetween}`}>
