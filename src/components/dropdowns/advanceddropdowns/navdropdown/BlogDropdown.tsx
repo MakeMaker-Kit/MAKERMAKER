@@ -5,6 +5,7 @@ import {
   textStyles,
   flexLayout,
 } from "../../../../styles/themes/theme";
+import Links from "../../../../hooks/links";
 import { NavItemTypes, TBlogs } from "../../../../types/global.types";
 
 import tw from "twin.macro";
@@ -16,7 +17,7 @@ type BlogType = {
   id: number | string;
   navContents: NavItemTypes[];
 };
-const BlogDropdown = () => {
+const BlogDropdown = (props: BlogType) => {
   const { containerWrapper, boxFull, XFull } = themes;
   const {
     flexRowCenter,
@@ -37,20 +38,36 @@ const BlogDropdown = () => {
       <div className={`relative inline-block text-center `}>
         <DropdownMenuPrimitive.Root>
           <DropdownMenuPrimitive.Trigger asChild>
-            NavContent Name
+            <Links
+              key={props.id}
+              link={props.link}
+              onClick={() => alert("How ae you")}
+            >
+              {props.name}
+            </Links>
           </DropdownMenuPrimitive.Trigger>
           <DropdownMenuPrimitive.Content
             align={"center"}
             sideOffset={5}
             className={cx(
               `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
-              `w-48 rounded px-1.5 py-1 shadow-md md:w-screen h-auto`,
-              `bg-orange `,
-              `border-2 border-dotted border-white`
+              ` rounded  shadow-sm  `,
+
+              `border-2 border-solid border-gray-300`
             )}
           >
             <DropdownMenuPrimitive.Item>
-              <div className={`h-56 bg-gray-400 border shadow-2xl`}></div>
+              <div className={`p-5  bg-gray-50 -z-[10] border shadow-2xl`}>
+                <ul className={`${boxFull} ${flexCol} `}>
+                  {props.navContents.map(({ name }: { name: string }) => (
+                    <li
+                      className={`${mainLayout} ${textCustom} text-start tracking-widest  leading-9 text-[12px] whitespace-nowrap`}
+                    >
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </DropdownMenuPrimitive.Item>
           </DropdownMenuPrimitive.Content>
         </DropdownMenuPrimitive.Root>

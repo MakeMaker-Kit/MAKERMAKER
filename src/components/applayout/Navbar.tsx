@@ -6,7 +6,7 @@ import { themes, flexLayout, textStyles } from "../../styles/themes/theme";
 import { useIcon } from "../../hooks/dispatchContext";
 import { NavbarData } from "../../utils/homeData";
 import { logoImage } from "../../assets/images";
-import { NavbarBtnDropdown } from "../dropdowns";
+import { NavbarBtnDropdown, BlogDropdown } from "../dropdowns";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { TotalQuantity } from "../../services/redux/features/productslice/ProductSlice";
@@ -61,7 +61,13 @@ const Navbar = () => {
                 {NavbarData.map((nav, index: number) => {
                   const { id, link, name, navContents } = nav;
                   return (
-                    <NavbarBtnDropdown
+                    // <NavbarBtnDropdown
+                    //   name={name}
+                    //   link={link}
+                    //   id={id}
+                    //   navContents={navContents}
+                    // />
+                    <BlogDropdown
                       name={name}
                       link={link}
                       id={id}
