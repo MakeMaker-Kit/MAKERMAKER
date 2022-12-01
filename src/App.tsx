@@ -16,6 +16,7 @@ import {
   ShopDetail,
   Checkout,
   NotFound,
+  Gallery,
 } from "./views";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/review" element={<Checkout />} />
         )}
         <Route path="/*" element={<NotFound />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </>
   );

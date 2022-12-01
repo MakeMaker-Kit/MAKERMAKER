@@ -29,6 +29,8 @@ import blogTags from "./blog/blogTags";
 import blogreview from "./blog/blogreview";
 import info from "./home/contact/info";
 import checkoutdata from "./checkout/checkoutdata";
+import gallery from "./gallery/gallery";
+import gallerycontent from "./gallery/gallerycontent";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -64,5 +66,7 @@ export default createSchema({
     info,
     blogreview,
     checkoutdata,
+    gallery,
+    gallerycontent,
   ]),
 });

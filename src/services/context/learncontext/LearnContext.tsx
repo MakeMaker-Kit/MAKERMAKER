@@ -5,6 +5,7 @@ import {
   fetchSingleProducts,
   fetchCheckout,
   fetchFooterData,
+  fetchGallery,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
 import { TProduct, TFooters } from "../../../types/global.types";
@@ -14,6 +15,7 @@ import {
   ProductsQuery,
   SingleProduct,
   footerQueries,
+  GalleryQuery,
 } from "../../../utils/GROC";
 import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
 import toast from "react-hot-toast";
@@ -32,6 +34,7 @@ export interface IAppState {
   relatedProducts: { related: TProduct[] } | {};
   checkoutData: InitialValuesTypes | {};
   footerData: {} | TFooters;
+  galleryData: {};
 }
 
 export const initialState: IAppState = {
@@ -52,6 +55,7 @@ export const initialState: IAppState = {
   relatedProducts: {},
   checkoutData: {},
   footerData: {},
+  galleryData: {},
 };
 
 export interface IAppContext {
@@ -71,6 +75,7 @@ const AppContext = React.createContext<IAppContext>({
     relatedProducts: {},
     checkoutData: {},
     footerData: {},
+    galleryData: {},
   },
 
   dispatch: () => {},
@@ -91,6 +96,7 @@ export enum ActionType {
   RELATED_PRODUCTS_SUCCESS = "RELATED_PRODUCTS_SUCCESS",
   CHECKOUT_DATA_SUCCESS = "CHECKOUT_DATA_SUCCESS",
   FOOTER_DATA_SUCCESS = "FOOTER_DATA_SUCCESS",
+  GALLERY_DATA_SUCCESS = "GALLERY_DATA_SUCCESS",
 }
 
 export type IAction = {
@@ -104,6 +110,7 @@ export type IAction = {
   relatedProducts?: { related: TProduct[] };
   checkoutData?: InitialValuesTypes;
   footerData?: {} | TFooters;
+  galleryData?: {};
 };
 
 const vehicleReducer = (
@@ -185,6 +192,11 @@ const vehicleReducer = (
         ...state,
         footerData: action.footerData as TFooters,
       };
+    case "GALLERY_DATA_SUCCESS":
+      return {
+        ...state,
+        galleryData: action.galleryData as {},
+      };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
@@ -250,12 +262,23 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     [state.footerData]
   );
 
+  const fetchGalleries: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client.fetch(payloadResponse).then((response) => {
+        response && fetchFooterData(dispatch, response);
+        return response && fetchGallery(dispatch, response);
+      });
+    },
+    []
+  );
+
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
     !cancelled && fetchProduct(ProductsQuery);
     !cancelled && fetchCheckoutData(CheckoutDataQuery);
     !cancelled && fetchFooterDatas(footerQueries);
+    !cancelled && fetchGalleries(GalleryQuery);
     return () => {
       cancelled = true;
     };

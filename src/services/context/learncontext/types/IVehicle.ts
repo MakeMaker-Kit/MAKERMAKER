@@ -75,3 +75,10 @@ export const fetchFooterData = (
     footerData: footerData,
   });
 };
+
+export const fetchGallery = (dispatch: Dispatch<IAction>, galleryData: {}) => {
+  dispatch({
+    type: ActionType.GALLERY_DATA_SUCCESS,
+    galleryData: galleryData,
+  });
+};

@@ -301,3 +301,11 @@ export const footerQueries = `*[_type in ["footermain", "footerabout"]][0]{
     desc
   }
 }`;
+
+// Gallery
+
+export const GalleryQuery = `*[type == 'gallery'][0]{
+  name,
+  desc,
+  "gallery": gallerycontent[0..20]-> {"sub": subtitle, title, desc, image}
+}`;
