@@ -44,7 +44,7 @@ const CartModalLayout = () => {
   const isLoggedin = useSelector(IsLoggedIn);
   const toggleCheckout = () => {
     isLoggedin
-      ? navigate("/checkout", { replace: true })
+      ? navigate("/review", { replace: true })
       : dispatch(openAuthModal()) && dispatch(toggleCartModal());
   };
   console.log("cartItem eponse", cartItems);

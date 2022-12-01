@@ -44,7 +44,7 @@ const App = () => {
           })) ? (
           <Route path="/" element={<Home />} />
         ) : (
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/review" element={<Checkout />} />
         )}
         <Route path="/*" element={<NotFound />} />
       </Routes>
