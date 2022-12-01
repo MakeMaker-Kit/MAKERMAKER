@@ -5,3 +5,5 @@ export const LocalStorageStore = (name: string, itemValue: any): void => {
   let mainValue = localStorage.setItem(`${name}`, JSON.stringify(itemValue));
   return mainValue;
 };
+
+export const localStorageGet = (itemName?: string, itemValue?: string) => {};

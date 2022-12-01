@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   cartModalState,
   openAuthModal,
+  toggleCartModal,
   unToggleCartModal,
 } from "../../../services/redux/features/globalslice/GlobalStateSlice";
 import CartProducts from "./CartProducts";
@@ -18,15 +19,19 @@ import {
 import { TProduct } from "../../../types/global.types";
 import { IsLoggedIn } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { useNavigate } from "react-router-dom";
+import { empty_cart } from "../../../assets/images";
+import MainButton from "../../../hooks/button/mainBTN";
 
 const CartModalLayout = () => {
-  const { themeWrapper, boxFull, XExtend, containerWrapper } = themes;
+  const { themeWrapper, boxFull, XExtend, containerWrapper, imageLayout } =
+    themes;
   const {
     flexCol,
     flexColBetween,
     flexRowCenterBetween,
     flexCenter,
     flexRowCenter,
+    flexColCenter,
   } = flexLayout;
   const navigate = useNavigate();
   const { mainLayout, textCustom } = textStyles;
@@ -40,7 +45,7 @@ const CartModalLayout = () => {
   const toggleCheckout = () => {
     isLoggedin
       ? navigate("/checkout", { replace: true })
-      : dispatch(openAuthModal());
+      : dispatch(openAuthModal()) && dispatch(toggleCartModal());
   };
   console.log("cartItem eponse", cartItems);
   return (
@@ -113,10 +118,40 @@ const CartModalLayout = () => {
                           <CartProducts key={index} {...cart} product={cart} />
                         ))
                       ) : (
-                        <h1>
-                          Lorem ipsum dolor, sit amet consectetur adipisicing
-                          elit. Corporis, cum.
-                        </h1>
+                        <div className={`p-4 `}>
+                          <div
+                            className={cx(
+                              `${flexColCenter} ${boxFull} gap-y-5`
+                            )}
+                          >
+                            {/* image */}
+                            <div className="h-40 w-40">
+                              <img
+                                src={empty_cart}
+                                alt=""
+                                className={imageLayout}
+                              />
+                            </div>
+                            {/* descrioption */}
+                            <p
+                              className={cx(
+                                `${mainLayout} ${textCustom} tracking-widest`
+                              )}
+                            >
+                              Your Cart is likely Empty, consider adding some
+                              products{" "}
+                            </p>
+                            {/* Button */}
+                            <MainButton
+                              isRounded={true}
+                              onClick={() =>
+                                navigate("/shop", { replace: true })
+                              }
+                            >
+                              continue shopping
+                            </MainButton>
+                          </div>
+                        </div>
                       )}
                     </div>
                     {/* Cart Checkout  */}

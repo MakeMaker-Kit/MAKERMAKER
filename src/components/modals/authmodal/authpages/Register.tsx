@@ -13,6 +13,7 @@ import { useIcon } from "../../../../hooks/dispatchContext";
 import { AiOutlineGooglePlus } from "react-icons/ai";
 import { supabase } from "../../../db/database/Database";
 import { client } from "../../../../client";
+import toast from "react-hot-toast";
 import {
   EMAIL_ADDREESS_REGEX,
   USER_REGEX,
@@ -89,26 +90,29 @@ const Register: React.FC<AuthContentType> = ({
               comfirmPassword = "Your Password dosen't match";
             }
           }}
-          // if (!values.)
-          onSubmit={async (values, { setStatus, setSubmitting }) => {
+          onSubmit={async (values, { setStatus, setSubmitting, resetForm }) => {
+            const { email, fullName, password, phoneNumber } = values;
+            setSubmitting(true);
+            toast.success("Submitting Your Response");
+            const AuthValues = { password, email, fullName, phoneNumber };
             try {
-              const { error, data } = await supabase.auth.signUp(values);
+              const { error, data } = await supabase.auth.signUp(AuthValues);
+
               const DBDetails = {
                 _type: "userData",
-                ...data,
+                ...AuthValues,
               };
-              if (data) {
-                client.create(DBDetails).then(() => {
-                  setSubmitting(false);
-                  setStatus(false);
-                  setPage((currentPage) => currentPage + 1);
-                });
+
+              if (data && !error) {
+                setSubmitting(false);
+                setStatus(false);
+                setPage((currentPage) => currentPage + 1);
               } else if (error) {
-                throw error;
+                throw error && toast.error(error.message) && resetForm();
               }
             } catch (error: unknown) {
               if (error instanceof Error) {
-                return error.message;
+                return error.message && toast.error("Signup error", 2000);
               }
             }
           }}
