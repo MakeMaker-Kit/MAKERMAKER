@@ -3,6 +3,7 @@ import cx from "classnames";
 import toast from "react-hot-toast";
 import { Formik, FormikErrors } from "formik";
 import { AxiosError } from "axios";
+import { PaystackButton } from "react-paystack";
 import { themes, flexLayout, textStyles } from "../../../styles/themes/theme";
 
 import {
@@ -26,6 +27,9 @@ import PhoneInput, {
   Flags,
 } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { useSelector } from "react-redux";
+import { TotalPrice } from "../../../services/redux/features/productslice/ProductSlice";
+import useState from "react";
 
 export type InitialValuesTypes = {
   firstname: string;
@@ -75,8 +79,34 @@ const CheckoutForm = () => {
     state: "",
     zipcode: "",
   };
+
+  const [success, setSuccess] = React.useState<boolean>(false);
+
+  const totalPrice = useSelector(TotalPrice);
   const { state } = USEContext();
   console.log("checkout daat", state.checkoutData);
+  const { email, city, firstname, lastname, phonenumber } =
+    state.checkoutData as InitialValuesTypes;
+  const componentProps = {
+    email,
+    amount: totalPrice,
+    metadata: {
+      name: `${firstname} ${lastname}`,
+      phone: phonenumber,
+      custom_fields: [
+        {
+          display_name: "",
+          variable_name: "",
+          value: "",
+        },
+      ],
+    },
+    publicKey: "",
+    text: "Pay Now",
+    onSuccess: () =>
+      alert("Thanks for doing business with us! Come back soon!!"),
+    onClose: () => alert("Are you sure you want to quit payment"),
+  };
   // const FORMLAYOUT = tw.div` text-2xl`;
   return (
     <>
@@ -167,6 +197,7 @@ const CheckoutForm = () => {
                     resetForm();
                     toast.success(`Successfully Submitted`);
                     setSubmitting(false);
+                    setSuccess((prev) => !prev);
                   });
                 }
               } catch (err: any | unknown) {
@@ -251,53 +282,53 @@ const CheckoutForm = () => {
                       onBlur={handleBlur}
                       error={errors.phonenumber}
                     />
-                    <div className={cx(`${flexCol} relative mb-4`)}>
-                      <label
-                        className={`leading-7 text-xs  ${mainLayout} ${textCustom} capitalize ${
-                          !!errors.phonenumber?.length && touched.phonenumber
-                            ? "text-appRed"
-                            : " text-gray-700"
-                        } `}
-                      >
-                        {errors.phonenumber && touched.phonenumber
-                          ? errors.phonenumber
-                          : `phone number `}{" "}
-                        {"  *"}
-                      </label>
-                      <PhoneInput
-                        value={values.phonenumber}
-                        onChange={() => {}}
-                        name={`phonenumber`}
-                        onBlur={handleBlur}
-                        placeholder={"+234 0813914403"}
-                        international
-                        defaultCountry="RU"
-                        countryCallingCodeEditable={false}
-                        className={cx(
-                          "w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:text-xs text-xs",
-                          `${textCustom} ${mainLayout}`,
-                          errors.phonenumber &&
-                            touched.phonenumber &&
-                            "border-appRed"
-                        )}
-                      />
-                      <CheckoutTextField
-                        type={"email"}
-                        label={
-                          errors.email && touched.email
-                            ? errors.email
-                            : `Email Address for order notifications`
-                        }
-                        placeholder={`Enter your Email Address`}
-                        name={`email`}
-                        id={`email`}
-                        touched={touched.email}
-                        handleChange={handleChange}
-                        value={values.email}
-                        onBlur={handleBlur}
-                        error={errors.email}
-                      />
-                    </div>
+                    {/* <div className={cx(`${flexCol} relative mb-4`)}>
+                        <label
+                          className={`leading-7 text-xs  ${mainLayout} ${textCustom} capitalize ${
+                            !!errors.phonenumber?.length && touched.phonenumber
+                              ? "text-appRed"
+                              : " text-gray-700"
+                          } `}
+                        >
+                          {errors.phonenumber && touched.phonenumber
+                            ? errors.phonenumber
+                            : `phone number `}{" "}
+                          {"  *"}
+                        </label>
+                        <PhoneInput
+                          value={values.phonenumber}
+                          onChange={() => {}}
+                          name={`phonenumber`}
+                          onBlur={handleBlur}
+                          placeholder={"+234 0813914403"}
+                          international
+                          defaultCountry="RU"
+                          countryCallingCodeEditable={false}
+                          className={cx(
+                            "w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:text-xs text-xs",
+                            `${textCustom} ${mainLayout}`,
+                            errors.phonenumber &&
+                              touched.phonenumber &&
+                              "border-appRed"
+                          )}
+                        />
+                      </div> */}
+                    <CheckoutTextField
+                      type={"email"}
+                      label={
+                        errors.email && touched.email
+                          ? errors.email
+                          : `Email Address for order notifications`
+                      }
+                      placeholder={`Enter your Email Address`}
+                      name={`email`}
+                      id={`email`}
+                      touched={touched.email}
+                      handleChange={handleChange}
+                      value={values.email}
+                      onBlur={handleBlur}
+                      error={errors.email}
+                    />
 
                     {/*  */}
                     {/* <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-xs">
@@ -398,13 +429,18 @@ const CheckoutForm = () => {
                     </div>
 
                     {/*  */}
-                    <button
-                      className={`text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded  ${textCustom} ${mainLayout} text-xs`}
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      continue
-                    </button>
+                    {!success ? (
+                      <button
+                        className={`text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded  ${textCustom} ${mainLayout} text-xs`}
+                        type="submit"
+                        disabled={isSubmitting}
+                      >
+                        continue
+                      </button>
+                    ) : (
+                      <PaystackButton {...componentProps} />
+                    )}
+
                     <p className="text-xs text-gray-500 mt-3">
                       Chicharrones blog helvetica normcore iceland tousled brook
                       viral artisan.

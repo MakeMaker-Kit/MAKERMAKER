@@ -85,7 +85,7 @@ const AuthLayout = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className=" align-middle h-[600px] bg-white w-[400px] rounded-md border border-solid border-orange pt-20  ">
+                  <Dialog.Panel className=" align-middle h-[650px] bg-white w-[400px] rounded-md border border-solid border-orange pt-20  ">
                     <div className={classNames(`${boxFull} `)}>
                       <AuthContainer generatedPage={displayAuthComtents} />
                     </div>
