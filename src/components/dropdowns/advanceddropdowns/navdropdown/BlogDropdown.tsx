@@ -18,7 +18,7 @@ type BlogType = {
   navContents: NavItemTypes[];
 };
 const BlogDropdown = (props: BlogType) => {
-  const { containerWrapper, boxFull, XFull } = themes;
+  const { containerWrapper, boxFull, XFull, transition } = themes;
   const {
     flexRowCenter,
     flexRowCenterBetween,
@@ -51,17 +51,16 @@ const BlogDropdown = (props: BlogType) => {
             sideOffset={5}
             className={cx(
               `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
-              ` rounded  shadow-sm  `,
-
-              `border-2 border-solid border-gray-300`
+              ` rounded  `,
+              `border border-solid border-gray-300`
             )}
           >
             <DropdownMenuPrimitive.Item>
-              <div className={`p-5  bg-gray-50 -z-[10] border shadow-2xl`}>
+              <div className={`p-5  bg-gray-50 -z-[10]`}>
                 <ul className={`${boxFull} ${flexCol} `}>
                   {props.navContents.map(({ name }: { name: string }) => (
                     <li
-                      className={`${mainLayout} ${textCustom} text-start tracking-widest  leading-9 text-[12px] whitespace-nowrap`}
+                      className={`${mainLayout} ${textCustom} text-start tracking-widest  leading-9 text-[12px] whitespace-nowrap hover:underline ${transition}`}
                     >
                       {name}
                     </li>

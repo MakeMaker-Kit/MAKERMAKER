@@ -6,3 +6,4 @@ export { default as AppTag } from "./blogs/AppTag";
 export { default as AppShop } from "./shop/AppShop";
 export { default as AppCheckout } from "./AppCheckout";
 export { default as AppNotFound } from "./AppNotFound";
+export { default as AppGalleryLayout } from "./AppGalleryLayout";
