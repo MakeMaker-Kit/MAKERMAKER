@@ -288,3 +288,16 @@ state,
 city,
 zipcode
 }`;
+
+export const footerQueries = `*[_type in ["footermain", "footerabout"]][0]{
+  "footermain": *[_type == "footermain" ][0] {
+    name,
+    desc,
+    socials
+   },
+  "footerabout":  *[_type == "footerabout"][0] {
+    // Your field selection for the blogPost type
+    logo,
+    desc
+  }
+}`;

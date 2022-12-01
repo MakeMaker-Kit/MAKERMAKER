@@ -61,16 +61,6 @@ const Navbar = () => {
                 {NavbarData.map((nav, index: number) => {
                   const { id, link, name, navContents } = nav;
                   return (
-                    // <li
-                    //   className={classNames(
-                    //     `${flexRowCenter}`,
-                    //     `${mainText} ${mainLayout} uppercase`
-                    //   )}
-                    //   key={id}
-                    // >
-                    //   <span>{name}</span>
-                    //   <MdOutlineKeyboardArrowDown />
-                    // </li>
                     <NavbarBtnDropdown
                       name={name}
                       link={link}

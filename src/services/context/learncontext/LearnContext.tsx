@@ -4,14 +4,16 @@ import {
   fetchProducts,
   fetchSingleProducts,
   fetchCheckout,
+  fetchFooterData,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
-import { TProduct } from "../../../types/global.types";
+import { TProduct, TFooters } from "../../../types/global.types";
 import { client } from "../../../client";
 import {
   CheckoutDataQuery,
   ProductsQuery,
   SingleProduct,
+  footerQueries,
 } from "../../../utils/GROC";
 import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
 import toast from "react-hot-toast";
@@ -29,28 +31,11 @@ export interface IAppState {
   imageIndex: number;
   relatedProducts: { related: TProduct[] } | {};
   checkoutData: InitialValuesTypes | {};
+  footerData: {} | TFooters;
 }
 
 export const initialState: IAppState = {
   vehicles: [
-    {
-      vehicleId: "44",
-      make: "ab",
-      model: "dk",
-      trimLevel: "jjjd",
-    },
-    {
-      vehicleId: "44",
-      make: "ab",
-      model: "dk",
-      trimLevel: "jjjd",
-    },
-    {
-      vehicleId: "44",
-      make: "ab",
-      model: "dk",
-      trimLevel: "jjjd",
-    },
     {
       vehicleId: "44",
       make: "ab",
@@ -66,6 +51,7 @@ export const initialState: IAppState = {
   imageIndex: 1,
   relatedProducts: {},
   checkoutData: {},
+  footerData: {},
 };
 
 export interface IAppContext {
@@ -84,6 +70,7 @@ const AppContext = React.createContext<IAppContext>({
     imageIndex: 1,
     relatedProducts: {},
     checkoutData: {},
+    footerData: {},
   },
 
   dispatch: () => {},
@@ -103,6 +90,7 @@ export enum ActionType {
   CHANGE_IMAGE = "CHANGE_IMAGE",
   RELATED_PRODUCTS_SUCCESS = "RELATED_PRODUCTS_SUCCESS",
   CHECKOUT_DATA_SUCCESS = "CHECKOUT_DATA_SUCCESS",
+  FOOTER_DATA_SUCCESS = "FOOTER_DATA_SUCCESS",
 }
 
 export type IAction = {
@@ -115,6 +103,7 @@ export type IAction = {
   imageIndex?: number;
   relatedProducts?: { related: TProduct[] };
   checkoutData?: InitialValuesTypes;
+  footerData?: {} | TFooters;
 };
 
 const vehicleReducer = (
@@ -190,6 +179,12 @@ const vehicleReducer = (
         ...state,
         checkoutData: action.checkoutData as InitialValuesTypes,
       };
+
+    case "FOOTER_DATA_SUCCESS":
+      return {
+        ...state,
+        footerData: action.footerData as TFooters,
+      };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
@@ -241,11 +236,26 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((err) => err instanceof Error && err.message);
   };
+
+  const fetchFooterDatas: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client
+        .fetch(payloadResponse)
+        .then((res) => {
+          res && fetchFooterData(dispatch, res);
+          return res && fetchFooterData(dispatch, res);
+        })
+        .catch((err) => err instanceof Error && err.message);
+    },
+    [state.footerData]
+  );
+
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
     !cancelled && fetchProduct(ProductsQuery);
     !cancelled && fetchCheckoutData(CheckoutDataQuery);
+    !cancelled && fetchFooterDatas(footerQueries);
     return () => {
       cancelled = true;
     };

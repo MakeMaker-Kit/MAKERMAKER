@@ -8,7 +8,11 @@ import {
   footerAbout,
   fetchFooterLinks,
 } from "../../services/redux/features/sanitytoclient/SanityToClient";
-import { footeraboutQuery } from "../../utils/querypaths";
+import { footerMainQuery } from "../../utils/querypaths";
+import { USEContext } from "../../services/context/learncontext/LearnContext";
+import { TFooters } from "../../types/global.types";
+import { NavbarData } from "../../utils/homeData";
+import { navType } from "../../utils/utils.types";
 
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
@@ -17,12 +21,9 @@ const Footer = () => {
   const { flexRow, flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
   const { MinusIcon } = useIcon();
   const dispatch = useDispatch();
-  const footer = useSelector(footerAbout);
-  React.useEffect(() => {
-    // @ts-ignore
-    dispatch(fetchFooterLinks(footeraboutQuery));
-  }, [dispatch, footer]);
-  console.log("Footer Data", footer);
+  const { state } = USEContext();
+  const { footerData } = state;
+  const { footerabout, footermain }: TFooters = footerData;
 
   return (
     <>
@@ -35,13 +36,11 @@ const Footer = () => {
               )}
             >
               <div className={cx(`${flexCenter}`)}>
-                <h1 className={`text-4xl font-black`}>MAKEMAKER</h1>
+                <h1 className={`text-4xl font-black`}>{}</h1>
               </div>
               <div className={cx(`${flexCenter} max-w-nine line-clamp-5`)}>
                 <p className="text-sm font-normal tracking-wide text-center">
-                  MakeMaker is a science aimed at debveloping science kits that
-                  would improve the practical section of anything ask to come in
-                  at lunch to experiment
+                  {footerabout?.desc}
                 </p>
               </div>
               {/*  */}
@@ -49,23 +48,21 @@ const Footer = () => {
                 <ul
                   className={cx(`${flexRowCenter} space-x-3 flex-1 flex-wrap`)}
                 >
-                  {Array(4)
-                    .fill(0)
-                    .map((i) => (
-                      <>
-                        <li
-                          key={i + Math.floor(Math.random() * 4)}
-                          className={`${flexRowCenter} flex-[0_0_20%] whitespace-nowrap space-x-2`}
+                  {NavbarData.map(({ name, link, id }: navType) => (
+                    <>
+                      <li
+                        key={id}
+                        className={`${flexRowCenter} flex-[0_0_20%] whitespace-nowrap space-x-2`}
+                      >
+                        <MinusIcon />
+                        <span
+                          className={`${mainLayout} ${textCustom} text-sm font-playfair`}
                         >
-                          <MinusIcon />
-                          <span
-                            className={`${mainLayout} ${textCustom} text-sm font-playfair`}
-                          >
-                            Our policy
-                          </span>
-                        </li>
-                      </>
-                    ))}
+                          {name}
+                        </span>
+                      </li>
+                    </>
+                  ))}
                 </ul>
               </div>
             </div>

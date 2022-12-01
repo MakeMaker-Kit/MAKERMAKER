@@ -1,7 +1,7 @@
 import { IFeature } from "./IFeature";
 import { ActionType, IAction } from "../LearnContext";
 import { Dispatch } from "react";
-import { TProduct } from "../../../../types/global.types";
+import { TProduct, TFooters } from "../../../../types/global.types";
 import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
 export interface IVehicle {
   vehicleId: string;
@@ -63,5 +63,15 @@ export const fetchCheckout = (
   dispatch({
     type: ActionType.CHECKOUT_DATA_SUCCESS,
     checkoutData: checkoutData,
+  });
+};
+
+export const fetchFooterData = (
+  dispatch: Dispatch<IAction>,
+  footerData: TFooters
+) => {
+  dispatch({
+    type: ActionType.FOOTER_DATA_SUCCESS,
+    footerData: footerData,
   });
 };

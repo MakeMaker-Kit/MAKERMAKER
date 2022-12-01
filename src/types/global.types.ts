@@ -269,3 +269,18 @@ export interface TProduct {
   categories?: { _id?: string; slug?: string; name?: string; title?: string }[];
   discount?: string;
 }
+
+export interface TFooters {
+  footermain?: { name: string; desc: string; socials: string };
+  footerabout?: { logo: string; desc: string };
+}
+
+export interface TFooters {
+  [key: string]:
+    | string
+    | number
+    | boolean
+    | { name: string; desc: string; socials: string }
+    | { logo: string; desc: string }
+    | undefined;
+}

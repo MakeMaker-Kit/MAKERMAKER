@@ -4,6 +4,7 @@ export const homebrandsQuery = `*[_type == "homebrand"]`;
 export const hometestimonialsQuery = `*[_type == "hometestimonials"]`;
 export const sociallinksQuery = `*[_type == "sociallinks"]`;
 export const footeraboutQuery = `*[_type == "footerabout"]`;
+export const footerMainQuery = `[_type == "footerabout"][0]`;
 export const productDisplayQuery = `*[_type == "productDisplay"]{
     title,
     _id,
