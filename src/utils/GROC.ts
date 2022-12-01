@@ -293,7 +293,7 @@ export const footerQueries = `*[_type in ["footermain", "footerabout"]][0]{
   "footermain": *[_type == "footermain" ][0] {
     name,
     desc,
-    socials
+    socials-> {name, twitter, instagram, facebook, "socialname": socialName}
    },
   "footerabout":  *[_type == "footerabout"][0] {
     // Your field selection for the blogPost type

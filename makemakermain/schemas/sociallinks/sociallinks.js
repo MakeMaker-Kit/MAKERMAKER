@@ -1,7 +1,14 @@
 export default {
   type: "document",
   name: "sociallinks",
-  fieldsets: [{ name: "social", title: "Social media handles" }],
+  fieldsets: [
+    {
+      name: "social",
+      title: "Social media handles",
+      description:
+        "Assign the links of the social media you are trying to add, contact the developer for any other adjustments",
+    },
+  ],
   options: {
     collapsible: true,
     collapsed: false,
@@ -14,6 +21,7 @@ export default {
       title: "Name",
       name: "name",
       type: "string",
+      description: "Not imaortant,it just acts as a headline",
     },
     {
       title: "Twitter",
@@ -34,10 +42,15 @@ export default {
       fieldset: "social",
     },
     {
-      name: "socialName",
-      title: "Social Name",
-      type: "array",
-      of: [{ type: "string", title: "SocialMediaLink" }],
+      name: "linkedin",
+      title: "LinkedIn",
+      type: "string",
     },
+    // {
+    //   name: "socialName",
+    //   title: "Social Name",
+    //   type: "array",
+    //   of: [{ type: "string", title: "Social Media Link" , description: "Add the link address "}],
+    // },
   ],
 };

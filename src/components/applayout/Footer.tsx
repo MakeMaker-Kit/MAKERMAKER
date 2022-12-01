@@ -4,6 +4,7 @@ import { textStyles, themes, flexLayout } from "../../styles/themes/theme";
 import Button from "../../hooks/button";
 import { useIcon } from "../../hooks/dispatchContext";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import {
   footerAbout,
   fetchFooterLinks,
@@ -50,7 +51,8 @@ const Footer = () => {
                 >
                   {NavbarData.map(({ name, link, id }: navType) => (
                     <>
-                      <li
+                      <Link
+                        to={`/${link}`}
                         key={id}
                         className={`${flexRowCenter} flex-[0_0_20%] whitespace-nowrap space-x-2`}
                       >
@@ -60,7 +62,7 @@ const Footer = () => {
                         >
                           {name}
                         </span>
-                      </li>
+                      </Link>
                     </>
                   ))}
                 </ul>
@@ -105,16 +107,30 @@ const Footer = () => {
                   Follow Us
                 </h2>
                 <ul className={cx(`${flexRowCenter} gap-x-4`)}>
-                  {Array(4)
-                    .fill(0)
-                    .map((i) => (
-                      <li
-                        className={cx(`w-10 h-10 ${flexCenter} border`)}
-                        key={i + Math.floor(Math.random() * 4)}
-                      >
-                        <p>fkf</p>
-                      </li>
-                    ))}
+                  <NavLink
+                    to={`/${footermain?.socials?.facebook}`}
+                    className={cx(` p-2 ${flexCenter} border`)}
+                  >
+                    <p>facebook</p>
+                  </NavLink>
+                  <NavLink
+                    to={`/${footermain?.socials?.twitter}`}
+                    className={cx(` p-2 ${flexCenter} border`)}
+                  >
+                    <p>twitter</p>
+                  </NavLink>
+                  <NavLink
+                    to={`/${footermain?.socials?.instagram}`}
+                    className={cx(` p-2 ${flexCenter} border`)}
+                  >
+                    <p>instagram</p>
+                  </NavLink>
+                  <NavLink
+                    to={`/${footermain?.socials?.linkedIn}`}
+                    className={cx(` p-2 ${flexCenter} border`)}
+                  >
+                    <p>linkedIn</p>
+                  </NavLink>
                 </ul>
               </div>
             </div>

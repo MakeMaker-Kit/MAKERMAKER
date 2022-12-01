@@ -271,7 +271,16 @@ export interface TProduct {
 }
 
 export interface TFooters {
-  footermain?: { name: string; desc: string; socials: string };
+  footermain?: {
+    name: string;
+    desc: string;
+    socials: {
+      twitter: string;
+      linkedIn: string;
+      instagram: string;
+      facebook?: string;
+    };
+  };
   footerabout?: { logo: string; desc: string };
 }
 
@@ -280,7 +289,16 @@ export interface TFooters {
     | string
     | number
     | boolean
-    | { name: string; desc: string; socials: string }
+    | {
+        name: string;
+        desc: string;
+        socials: {
+          twitter: string;
+          linkedIn: string;
+          instagram: string;
+          facebook?: string;
+        };
+      }
     | { logo: string; desc: string }
     | undefined;
 }
