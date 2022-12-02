@@ -19,6 +19,8 @@ import {
 
 const galleryContentss = [banner2, banner3, banner4, banner5];
 
+import { Offline, Online } from "react-detect-offline";
+
 const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
   const {} = themes;
   const { mainLayout, textCustom } = textStyles;
@@ -70,7 +72,7 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 tracking-wider ">
+            <h1 className="sm:text-3xl text-4xxl font-black title-font mb-4 text-gray-900 tracking-wider caret-pocket capitalize">
               {title}
             </h1>
             <p
@@ -80,6 +82,12 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
             </p>
           </div>
           <div className="flex flex-wrap -m-4">
+            <div>
+              <Offline>
+                You're offline right now. Check your connection.
+              </Offline>
+              <Online>You're online right now.</Online>
+            </div>
             {/* {isOpen && (
               <Lightbox
                 mainSrc={galleryContents.length && galleryContents[photoIndex]}

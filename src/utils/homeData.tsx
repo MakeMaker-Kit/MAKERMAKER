@@ -79,40 +79,10 @@ export const NavbarData: Array<navType> = [
     id: uuid(),
     navContents: [
       {
-        name: "Brand",
-        link: "",
+        name: "Shop",
+        link: "/shop",
         id: uuid(),
         icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Works",
-        link: "",
-        id: uuid(),
-        icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Testimonials",
-        link: "",
-        id: uuid(),
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Brand",
-        link: "",
-        id: uuid(),
-        icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Works",
-        link: "",
-        id: uuid(),
-        icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Testimonials",
-        link: "",
-        id: uuid(),
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
       },
     ],
   },
