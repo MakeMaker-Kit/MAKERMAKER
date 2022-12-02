@@ -3,6 +3,7 @@ import cx from "classnames";
 import { themes, flexLayout } from "../../styles/themes/theme";
 import GalleryContents from "./contents/GalleryContents";
 import { USEContext } from "../../services/context/learncontext/LearnContext";
+import { MainSpinner } from "../spinner/Spinners";
 const GalleryLayout = () => {
   const { boxFull, themeWrapper, Centralised } = themes;
   const { marX } = themeWrapper;
@@ -11,7 +12,7 @@ const GalleryLayout = () => {
 
   const [height, setHeight] = React.useState<number>(0);
   const [width, setWidth] = React.useState<number>(0);
-  const { galleryData } = state;
+  const { galleryData, loading } = state;
 
   console.log("GALLERY LAYOUT", state.galleryData);
   /**
@@ -29,6 +30,7 @@ const GalleryLayout = () => {
   }, []);
   return (
     <>
+      {loading && <MainSpinner />}
       <div className={cx(`${Centralised} `)}>
         <div className={`${boxFull}`}>
           {/* @ts-ignore */}

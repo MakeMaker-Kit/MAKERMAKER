@@ -50,7 +50,7 @@ export const initialState: IAppState = {
   features: [],
   products: [],
   singleProduct: {},
-  loading: false,
+  loading: true,
   imageIndex: 1,
   relatedProducts: {},
   checkoutData: {},
@@ -196,6 +196,7 @@ const vehicleReducer = (
       return {
         ...state,
         galleryData: action.galleryData as GalleryType,
+        loading: action.loading as boolean,
       };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
@@ -267,8 +268,8 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       return await client
         .fetch(payloadResponse)
         .then((response) => {
-          response && fetchGallery(dispatch, response);
-          return response && fetchGallery(dispatch, response);
+          response && fetchGallery(dispatch, response, false);
+          return response && fetchGallery(dispatch, response, false);
         })
         .catch((err) => err instanceof Error && err.message);
     },

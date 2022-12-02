@@ -39,6 +39,7 @@
     "react-google-recaptcha": "^2.1.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.6.0",
+    "react-image-lightbox": "^5.1.4",
     "react-loader-spinner": "^5.3.4",
     "react-paystack": "^4.0.1",
     "react-phone-number-input": "^3.2.12",

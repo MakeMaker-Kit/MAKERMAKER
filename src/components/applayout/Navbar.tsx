@@ -16,6 +16,7 @@ import {
   openAuthModal,
   toggleCartModal,
 } from "../../services/redux/features/globalslice/GlobalStateSlice";
+import SearchDropdown from "../dropdowns/advanceddropdowns/SearchDropdown";
 
 const Navbar = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
@@ -102,7 +103,9 @@ const Navbar = () => {
                   </div>
                 </div>
                 {/* Search Component */}
-                <BiSearchAlt size={25} />
+                {/* <BiSearchAlt size={25} /> */}
+                <SearchDropdown />
+                {/* Search  */}
                 <span className={classNames(`h-6 w-auto group`)}>
                   <div
                     className={classNames(

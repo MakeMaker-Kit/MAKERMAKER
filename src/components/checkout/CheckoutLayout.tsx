@@ -3,6 +3,7 @@ import cx from "classnames";
 import { themes, flexLayout, textStyles } from "../../styles/themes/theme";
 import CheckoutForm from "./form/CheckoutForm";
 import CheckoutSummary from "./summary/CheckoutSummary";
+import CartModalLayout from "../modals/cartmodal/CartModalLayout";
 const CheckoutLayout = () => {
   const { XFull, boxFull, YFull, containerWrapper, themeWrapper } = themes;
   const { marX } = themeWrapper;
@@ -10,6 +11,7 @@ const CheckoutLayout = () => {
   const { flexRow, flexCol } = flexLayout;
   return (
     <>
+      {/* <CartModalLayout /> */}
       <div className={`mx-10 h-auto`}>
         <div className={`${boxFull} ${flexRow} `}>
           {/*  */}

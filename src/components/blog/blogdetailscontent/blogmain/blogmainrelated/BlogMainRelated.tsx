@@ -11,6 +11,7 @@ import { TRelatedBlogs, TRelated } from "../../../../../types/global.types";
 import { urlFor } from "../../../../../client";
 import moment from "moment";
 import { Link } from "react-router-dom";
+
 const RelatedCard = ({
   _id,
   body,

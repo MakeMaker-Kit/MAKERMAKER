@@ -82,10 +82,12 @@ export const fetchFooterData = (
 
 export const fetchGallery = (
   dispatch: Dispatch<IAction>,
-  galleryData: GalleryType
+  galleryData: GalleryType,
+  loading: boolean
 ) => {
   dispatch({
     type: ActionType.GALLERY_DATA_SUCCESS,
     galleryData: galleryData,
+    loading: loading,
   });
 };

@@ -18,7 +18,17 @@ const SearchDropdown = React.forwardRef<HTMLDivElement, MoreProps>(
               {/* Search Elements */}
               <BiSearchAlt size={25} />
             </DropdownMenuPrimitive.Trigger>
-            <DropdownMenuPrimitive.Content>
+            <DropdownMenuPrimitive.Content
+              align="center"
+              sideOffset={5}
+              className={cx(
+                `radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down`,
+                `w-48 rounded px-1.5 py-1 shadow-md md:w-screen h-auto`,
+                `bg-orange `,
+                `border-2 border-dotted border-white`
+              )}
+            >
+              <input className={``} />
               {/*  */}
             </DropdownMenuPrimitive.Content>
           </DropdownMenuPrimitive.Root>
