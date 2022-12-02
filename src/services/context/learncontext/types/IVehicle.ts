@@ -1,7 +1,11 @@
 import { IFeature } from "./IFeature";
 import { ActionType, IAction } from "../LearnContext";
 import { Dispatch } from "react";
-import { TProduct, TFooters } from "../../../../types/global.types";
+import {
+  TProduct,
+  TFooters,
+  GalleryType,
+} from "../../../../types/global.types";
 import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
 export interface IVehicle {
   vehicleId: string;
@@ -76,7 +80,10 @@ export const fetchFooterData = (
   });
 };
 
-export const fetchGallery = (dispatch: Dispatch<IAction>, galleryData: {}) => {
+export const fetchGallery = (
+  dispatch: Dispatch<IAction>,
+  galleryData: GalleryType
+) => {
   dispatch({
     type: ActionType.GALLERY_DATA_SUCCESS,
     galleryData: galleryData,

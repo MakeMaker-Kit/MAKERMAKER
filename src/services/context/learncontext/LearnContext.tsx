@@ -8,7 +8,7 @@ import {
   fetchGallery,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
-import { TProduct, TFooters } from "../../../types/global.types";
+import { TProduct, TFooters, GalleryType } from "../../../types/global.types";
 import { client } from "../../../client";
 import {
   CheckoutDataQuery,
@@ -34,7 +34,7 @@ export interface IAppState {
   relatedProducts: { related: TProduct[] } | {};
   checkoutData: InitialValuesTypes | {};
   footerData: {} | TFooters;
-  galleryData: {};
+  galleryData: {} | GalleryType;
 }
 
 export const initialState: IAppState = {
@@ -110,7 +110,7 @@ export type IAction = {
   relatedProducts?: { related: TProduct[] };
   checkoutData?: InitialValuesTypes;
   footerData?: {} | TFooters;
-  galleryData?: {};
+  galleryData?: {} | GalleryType;
 };
 
 const vehicleReducer = (
@@ -195,7 +195,7 @@ const vehicleReducer = (
     case "GALLERY_DATA_SUCCESS":
       return {
         ...state,
-        galleryData: action.galleryData as {},
+        galleryData: action.galleryData as GalleryType,
       };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:

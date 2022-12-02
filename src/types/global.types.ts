@@ -303,11 +303,12 @@ export interface TFooters {
     | undefined;
 }
 
-interface TGALLERY {
+export interface TGALLERY {
   sub: string;
   title: string;
   desc: string;
   image: string;
+  _id: string;
 }
 
 export interface GalleryType {
@@ -316,6 +317,6 @@ export interface GalleryType {
   gallery: TGALLERY[];
 }
 
-export interface GalleryType {
-  [key: string]: string | undefined | TGALLERY[];
-}
+// export interface GalleryType {
+//   [key: string]: string | undefined | TGALLERY[];
+// }
