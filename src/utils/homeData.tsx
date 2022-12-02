@@ -30,7 +30,7 @@ export const NavbarData: Array<navType> = [
     navContents: [
       {
         name: "Brand",
-        link: "",
+        link: "#",
         id: uuid(),
         icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
       },
@@ -55,19 +55,19 @@ export const NavbarData: Array<navType> = [
     navContents: [
       {
         name: "What is Progammig",
-        link: "",
+        link: "/blog",
         id: uuid(),
         icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
       },
       {
         name: "Science Stories ",
-        link: "",
+        link: "/blog",
         id: uuid(),
         icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
       },
       {
         name: "Moon Light Stories",
-        link: "",
+        link: "/blog",
         id: uuid(),
         icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
       },
@@ -88,24 +88,24 @@ export const NavbarData: Array<navType> = [
   },
   {
     name: "Gallery",
-    link: "",
+    link: "/gallery",
     id: uuid(),
     navContents: [
       {
         name: "Brand",
-        link: "",
+        link: "/gallery",
         id: uuid(),
         icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
       },
       {
         name: "Works",
-        link: "",
+        link: "/gallery",
         id: uuid(),
         icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
       },
       {
         name: "Testimonials",
-        link: "",
+        link: "/gallery",
         id: uuid(),
         icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
       },
@@ -118,19 +118,19 @@ export const NavbarData: Array<navType> = [
     navContents: [
       {
         name: "Brand",
-        link: "",
+        link: "/tutorial",
         id: uuid(),
         icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
       },
       {
         name: "Works",
-        link: "",
+        link: "/tutorial",
         id: uuid(),
         icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
       },
       {
         name: "Testimonials",
-        link: "",
+        link: "/tutorial",
         id: uuid(),
         icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
       },
