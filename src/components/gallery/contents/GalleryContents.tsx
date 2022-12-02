@@ -47,7 +47,6 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
               .maxHeight(500)
               .url()}
           />
-
           <div
             className={`px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100 rounded-md ${mainLayout} ${textCustom}
 `}
@@ -82,12 +81,6 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
             </p>
           </div>
           <div className="flex flex-wrap -m-4">
-            <div>
-              <Offline>
-                You're offline right now. Check your connection.
-              </Offline>
-              <Online>You're online right now.</Online>
-            </div>
             {/* {isOpen && (
               <Lightbox
                 mainSrc={galleryContents.length && galleryContents[photoIndex]}

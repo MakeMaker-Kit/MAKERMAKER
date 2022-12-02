@@ -50,6 +50,7 @@
     "react-scroll-to-top": "^3.0.0",
     "react-select": "^5.6.1",
     "react-spinners": "^0.13.6",
+    "react-top-loading-bar": "^2.3.1",
     "react-use": "^17.4.0",
     "react-uuid": "^2.0.0",
     "react-whatsapp-widget": "^2.1.0",
@@ -70,6 +71,7 @@
   "devDependencies": {
     "@types/google-map-react": "^2.1.7",
     "@types/react": "^18.0.24",
+    "@types/react-detect-offline": "^2.4.1",
     "@types/react-dom": "^18.0.7",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",

@@ -7,4 +7,4 @@ import React, {
   ValidationMap,
 } from "react";
 
-declare type Func = 
+// declare type Func =
