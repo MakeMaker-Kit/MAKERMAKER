@@ -32,7 +32,8 @@ const GalleryLayout = () => {
       <div className={cx(`${Centralised} `)}>
         <div className={`${boxFull}`}>
           {/* @ts-ignore */}
-          <GalleryContents {...galleryData} />
+
+          {galleryData && <GalleryContents {...galleryData} />}
         </div>
       </div>
     </>

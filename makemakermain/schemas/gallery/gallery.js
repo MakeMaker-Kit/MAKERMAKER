@@ -20,4 +20,18 @@ export default {
       of: [{ type: "reference", to: [{ type: "gallerycontent" }] }],
     },
   ],
+
+  // preview
+  preview: {
+    select: {
+      title: "title",
+      gallerycontent: "gallerycontent.name",
+    },
+    prepare(selection) {
+      const { gallerycontent } = selection;
+      return Object.assign({}, selection, {
+        subtitle: gallerycontent && `bg ${gallerycontent}`,
+      });
+    },
+  },
 };

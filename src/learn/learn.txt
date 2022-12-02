@@ -1,0 +1,60 @@
+create table users(
+    id serail primary key (incement uni  )
+    first_name varchar(255) not null
+    last_name text,
+agr init,
+email text unique  not null
+)
+
+alter table users drop column age
+alter table users add column age init default 20
+
+drop table users
+
+
+insert table users (first_name, last_name, age, email)
+values
+("bob", "bobby", 19, "wilsonibekason@gmail")
+
+// see the daat
+select firt_name, last_name, age from users
+seelct * from users
+
+select * from uswrs whee id  = 2 | id in (3,3,3)  and | or firt_name = "bob" and coalesce(age, 10)  > 30 and age is not null
+
+update users
+set age  = 20, last_name =  "wilon " || last_name
+where id  = 333
+
+
+delete fom users
+where id = 3
+
+create table posts(
+    id serial primary key
+    text not null
+    body text default  "...."
+    creatorId init referecnces users(id) not null
+)
+
+
+insert into posts (title, body, creatorId)
+values ()
+
+select * from users 
+select firt_name from uers
+inner join posts on users.id= posts."ceaedId"
+
+
+select u.id user_id, p.id post_id,  first_name, p.title from users u inner join posts p on u.id  = p."creatorId" where p.title like or ilike "thre%" and u.id = 1
+
+
+create table comments {
+    id serial primaey ey
+    message text not null,
+    post_id int reference posts(id),
+    creator_id  int reference users(id)
+}
+
+insert into comments (message, post_id, id)
+values 9

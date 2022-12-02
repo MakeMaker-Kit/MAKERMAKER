@@ -305,8 +305,7 @@ export const footerQueries = `*[_type in ["footermain", "footerabout"]][0]{
 // Gallery
 
 export const GalleryQuery = `*[_type == 'gallery'][0]{
-
-  name,
+  title,
   desc,
   "gallery": gallerycontent[0..20]-> {"sub": subtitle, title, desc, image, _id}
 }`;

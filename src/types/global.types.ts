@@ -312,7 +312,7 @@ export interface TGALLERY {
 }
 
 export interface GalleryType {
-  name: string;
+  title: string;
   desc: string;
   gallery: TGALLERY[];
 }

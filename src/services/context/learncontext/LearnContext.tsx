@@ -264,12 +264,15 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
 
   const fetchGalleries: TFunction = React.useCallback(
     async (payloadResponse) => {
-      return await client.fetch(payloadResponse).then((response) => {
-        response && fetchFooterData(dispatch, response);
-        return response && fetchGallery(dispatch, response);
-      });
+      return await client
+        .fetch(payloadResponse)
+        .then((response) => {
+          response && fetchGallery(dispatch, response);
+          return response && fetchGallery(dispatch, response);
+        })
+        .catch((err) => err instanceof Error && err.message);
     },
-    []
+    [state.galleryData]
   );
 
   const configureReactStore = () => {};
