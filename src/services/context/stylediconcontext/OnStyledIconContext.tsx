@@ -4,6 +4,7 @@ import { BlogQuery } from "../../../utils/querypaths";
 import { client } from "../../../client";
 import { AxiosError } from "axios";
 import { blogRelatedPost } from "../../../utils/GROC";
+import { toast } from "react-hot-toast";
 
 type AwesomeContextType = {
   awesomeState: number;
@@ -315,6 +316,7 @@ export const AwesomeContextProvider = ({ children }: Props) => {
     ]
   );
   return (
+    // @ts-ignore
     <AwesomeContext.Provider value={memiosedContextValue}>
       {children}
     </AwesomeContext.Provider>
@@ -324,6 +326,9 @@ export const AwesomeContextProvider = ({ children }: Props) => {
 export const useAwesomwContext = () => {
   const awesomeContext = React.useContext(AwesomeContext);
   if (!awesomeContext)
-    throw new Error(`You need to use these context in the provider `);
+    throw (
+      new Error(`You need to use these context in the provider `) &&
+      toast.error("You need to use these context in the provider ")
+    );
   return awesomeContext;
 };
