@@ -12,6 +12,7 @@ import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderApi } from "../../types/api.types";
 import { MainSpinner } from "../../components/spinner/Spinners";
+import { CartModalLayout } from "../../components/modals";
 
 import { TDisplayContentTypes } from "../../utils/utils.types";
 import {
@@ -31,6 +32,7 @@ import {
   hometestimonialsQuery,
 } from "../../utils/querypaths";
 import { USEContext } from "../../services/context/learncontext/LearnContext";
+import { FaqsOptions } from "../../types/global.types";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -38,9 +40,9 @@ const Border = () => {
 
 const HomeLayout = () => {
   const dispatch = useDispatch();
-  const productDisplay = useSelector(ProductDisplays);
+  // const productDisplay = useSelector(ProductDisplays);
   const { state } = USEContext();
-  const { homeHeader, loading } = state;
+  const { homeHeader, loading, productDisplay, homeFaqs } = state;
   // const homeHeader = useSelector(homeHeaderState);
   const hometestimonial = useSelector(testimonials);
   React.useEffect(() => {
@@ -54,6 +56,7 @@ const HomeLayout = () => {
   return (
     <>
       {loading && <MainSpinner />}
+      <CartModalLayout/>
       <div>
         {/* Header  */}
         {homeHeader?.map((content: HeaderApi) => (
@@ -62,18 +65,12 @@ const HomeLayout = () => {
         {/* Border */}
         <Border />
         {/* Product Display */}
-        {/* <Border /> */}
-        {productDisplay &&
-          productDisplay.map((display: TDisplayContentTypes, index: number) => {
-            return (
-              <div className="bg-grayWhite z-[10] " key={index}>
-                <ProductDisplay {...display} />
-              </div>
-            );
-          })}
-        <Border />
+
         <div>
-          <MoreDisplay />
+          {productDisplay && (
+            // @ts-ignore
+            <MoreDisplay {...productDisplay} isReversed={true} />
+          )}
         </div>
         <div>
           <Brand />
@@ -83,12 +80,12 @@ const HomeLayout = () => {
         <div>
           <HomeBlog />
         </div>
-        <Border />
+        {!!homeFaqs.length && <Border />}
         {/* HOME FAQS */}
-        <HomeFaqs />
+        {homeFaqs && !!homeFaqs.length && <HomeFaqs />}
       </div>
       {/* Border  */}
-      <Border />
+      {homeFaqs && <Border />}
       {/* HomeContact */}
       <div>
         <Testimonial />

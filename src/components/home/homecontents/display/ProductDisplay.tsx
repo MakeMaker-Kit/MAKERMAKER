@@ -14,17 +14,11 @@ import {
   DisplayContentTypes,
   TDisplayContentTypes,
 } from "../../../../utils/utils.types";
+import { productDisplayType } from "../../../../types/global.types";
 
-const ProductDisplay: React.FC<TDisplayContentTypes> = ({
-  coreTags,
-  desc,
-  // handleClick,
-  iconsValues,
-  // id,
-  image,
-  title,
-  isReversed,
-}) => {
+const ProductDisplay: React.FC<
+  productDisplayType & { isReversed: boolean }
+> = ({ _id, title, desc, image, isReversed }) => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRow, flexCol, flexResponsive, flexStart, flexRowCenter } =
@@ -101,14 +95,14 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             className={`${
               isReversed
                 ? flexResponsive.flexRowColReverse
                 : flexResponsive.flexRowReverseCol
             }`}
           >
-            {/* <div
+            <div
               className={cx(
                 `w-full md:w-full lg:w-four lg:max-w-four h-auto pl-3 `
               )}
@@ -125,7 +119,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                   </li>
                 ))}
               </ul>
-            </div> */}
+            </div>
             <div
               className={cx(`w-full md:w-full lg:w-six lg:max-w-six h-auto `)}
             >
@@ -146,7 +140,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                 ))}
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

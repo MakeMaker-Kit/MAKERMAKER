@@ -6,13 +6,23 @@ import Button from "../../../../../hooks/button";
 import { themes, flexLayout } from "../../../../../styles/themes/theme";
 import { displayProduct, otherDisplay } from "../../../../../assets/images";
 import { BackpackIcon } from "@radix-ui/react-icons";
+import { productDisplayType } from "../../../../../types/global.types";
+import { urlFor } from "../../../../../client";
+import { useNavigate } from "react-router-dom";
 
-const MoreDisplay = () => {
+const MoreDisplay: React.FC<productDisplayType & { isReversed: boolean }> = ({
+  _id,
+  title,
+  desc,
+  image,
+  isReversed,
+}) => {
   const { themeWrapper, boxFull } = themes;
   const { marX, padY } = themeWrapper;
   const { mainLayout, mainText, textCustom } = textStyles;
   const { flexRow, flexRowCenter, flexCol, flexStart, flexResponsive } =
     flexLayout;
+  const navigate = useNavigate();
   return (
     <>
       <div className={classNames(` `)}>
@@ -22,7 +32,7 @@ const MoreDisplay = () => {
             ``
           )}
           style={{
-            backgroundImage: `url(https://thescienceset.com/wp-content/uploads/2022/06/pack_hero_background.jpg)`,
+            backgroundImage: `url(https://cdn.fansshare.com/pictures/background/black-wallpaper-background-black-203157837.jpg)`,
           }}
         >
           <TextWrapper Zindex="z-[-1]" />
@@ -48,7 +58,7 @@ const MoreDisplay = () => {
                       <h1
                         className={`${mainLayout} ${textCustom} font-cascadiacodePLItalic text-4xl text-gray-500 break-words font-bold max-w-eight`}
                       >
-                        Make Maker Workspace.
+                        {title}
                       </h1>
                       <span
                         className={classNames(
@@ -63,14 +73,18 @@ const MoreDisplay = () => {
                       <p
                         className={`${mainLayout} ${textCustom} text-sm text-gray-100 break-words leading-normal tracking-wide`}
                       >
-                        Reasonably priced. Compact. The science set max,
-                        provides an unparalleled personalized learning
-                        experience and is the most effective way to introduce
-                        students to innovation, technology and problem solving.
+                        {desc}
                       </p>
                     </div>
                     <div>
-                      <Button handleClick={() => {}}> Contact Us</Button>
+                      <Button
+                        handleClick={() =>
+                          navigate("/contactus", { replace: true })
+                        }
+                      >
+                        {" "}
+                        Contact Us
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -85,9 +99,11 @@ const MoreDisplay = () => {
                       className={classNames(
                         `bg-center bg-no-repeat bg-cover bg-gradient-to-r from-gray-50 to-slate-200 max-w-full w-full h-full`
                       )}
-                      style={{
-                        backgroundImage: `url(${otherDisplay})`,
-                      }}
+                      style={
+                        {
+                          // backgroundImage: `url(${urlFor(image && image).url()})`,
+                        }
+                      }
                     />
                   </div>
                 </div>

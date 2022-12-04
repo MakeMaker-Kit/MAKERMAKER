@@ -69,6 +69,6 @@ export default createSchema({
     checkoutdata,
     gallery,
     gallerycontent,
-    faqs,
+    // faqs,
   ]),
 });

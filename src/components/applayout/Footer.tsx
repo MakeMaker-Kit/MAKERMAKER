@@ -60,7 +60,9 @@ const Footer = () => {
                 <h1 className={`text-4xl font-black`}>{}</h1>
               </div>
               <div className={cx(`${flexCenter} max-w-nine line-clamp-5`)}>
-                <p className="text-sm font-normal tracking-wide text-center">
+                <p
+                  className={` ${textCustom} ${mainLayout} text-xs font-normal tracking-widest leading-7 text-center `}
+                >
                   {footerabout?.desc}
                 </p>
               </div>
