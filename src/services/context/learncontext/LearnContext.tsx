@@ -8,6 +8,8 @@ import {
   fetchGallery,
   fetchTestimonial,
   fetchHomeHeader,
+  fetchProductDisplay,
+  fetchfaqs,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
 import {
@@ -16,6 +18,8 @@ import {
   GalleryType,
   TTestimonials,
   HomeHeaderType,
+  productDisplayType,
+  FaqsOptions,
 } from "../../../types/global.types";
 import { client } from "../../../client";
 import {
@@ -26,6 +30,8 @@ import {
   GalleryQuery,
   SingleTestimonial,
   HeadersQuery,
+  faqsQuery,
+  productDisplayQuery,
 } from "../../../utils/GROC";
 import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
 import toast from "react-hot-toast";
@@ -47,6 +53,8 @@ export interface IAppState {
   galleryData: {} | GalleryType;
   singleTestimonial: {} | TTestimonials;
   homeHeader: [] | HomeHeaderType[];
+  productDisplay: {} | productDisplayType;
+  homeFaqs: [] | FaqsOptions[];
 }
 
 export const initialState: IAppState = {
@@ -70,6 +78,8 @@ export const initialState: IAppState = {
   galleryData: {},
   singleTestimonial: {},
   homeHeader: [],
+  productDisplay: {},
+  homeFaqs: [],
 };
 
 export interface IAppContext {
@@ -92,6 +102,8 @@ const AppContext = React.createContext<IAppContext>({
     galleryData: {},
     singleTestimonial: {},
     homeHeader: [],
+    productDisplay: {},
+    homeFaqs: [],
   },
 
   dispatch: () => {},
@@ -115,6 +127,8 @@ export enum ActionType {
   GALLERY_DATA_SUCCESS = "GALLERY_DATA_SUCCESS",
   TESTIMONIAL_SUCCESS = "TESTIMONIAL_SUCCESS",
   HEADER_SUCCESS = "HEADER_SUCCESS",
+  DISPLAY_SUCCESS = "DISPLAY_SUCCESS",
+  FAQS_SUCCESS = "FAQS_SUCCESS",
 }
 
 export type IAction = {
@@ -131,6 +145,8 @@ export type IAction = {
   galleryData?: {} | GalleryType;
   singleTestimonial?: {} | TTestimonials;
   homeHeader?: [] | HomeHeaderType[];
+  productDisplay?: {} | productDisplayType;
+  homeFaqs?: [] | FaqsOptions[];
 };
 
 const vehicleReducer = (
@@ -229,6 +245,19 @@ const vehicleReducer = (
       return {
         ...state,
         homeHeader: action.homeHeader as HomeHeaderType[],
+      };
+    case "DISPLAY_SUCCESS":
+      return {
+        ...state,
+        productDisplay: action.productDisplay as productDisplayType,
+        loading: action.loading as boolean,
+      };
+
+    case "FAQS_SUCCESS":
+      return {
+        ...state,
+        homeFaqs: action.homeFaqs as FaqsOptions[],
+        loading: action.loading as boolean,
       };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
@@ -334,6 +363,32 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     [state.homeHeader]
   );
 
+  const fetchDisplays: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client
+        .fetch(payloadResponse)
+        .then((res) => {
+          res && fetchProductDisplay(dispatch, res, false);
+          return res && fetchProductDisplay(dispatch, res, false);
+        })
+        .catch((err) => err instanceof Error && err.message);
+    },
+    [state.productDisplay]
+  );
+
+  const fetchFaq: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client
+        .fetch(payloadResponse)
+        .then((res) => {
+          res && fetchfaqs(dispatch, res, false);
+          return res && fetchfaqs(dispatch, res, false);
+        })
+        .catch((err) => err instanceof Error && err.message);
+    },
+    [state.homeFaqs]
+  );
+
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
@@ -343,6 +398,8 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     !cancelled && fetchGalleries(GalleryQuery);
     !cancelled && fetchSingleTestimonial(SingleTestimonial);
     !cancelled && fetchHomeHeaders(HeadersQuery);
+    !cancelled && fetchDisplays(productDisplayQuery);
+    !cancelled && fetchFaq(faqsQuery);
     return () => {
       cancelled = true;
     };

@@ -11,6 +11,7 @@ import HomeContact from "./homecontents/homecontact/HomeContact";
 import { DisplayContentData } from "../../utils/homeData";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderApi } from "../../types/api.types";
+import { MainSpinner } from "../../components/spinner/Spinners";
 
 import { TDisplayContentTypes } from "../../utils/utils.types";
 import {
@@ -39,7 +40,7 @@ const HomeLayout = () => {
   const dispatch = useDispatch();
   const productDisplay = useSelector(ProductDisplays);
   const { state } = USEContext();
-  const { homeHeader } = state;
+  const { homeHeader, loading } = state;
   // const homeHeader = useSelector(homeHeaderState);
   const hometestimonial = useSelector(testimonials);
   React.useEffect(() => {
@@ -52,6 +53,7 @@ const HomeLayout = () => {
   console.log("Display more response data", homeHeader);
   return (
     <>
+      {loading && <MainSpinner />}
       <div>
         {/* Header  */}
         {homeHeader?.map((content: HeaderApi) => (

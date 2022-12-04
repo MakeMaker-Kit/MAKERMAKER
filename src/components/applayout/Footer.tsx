@@ -46,16 +46,16 @@ const Footer = () => {
                 `${XFull} h-auto  ${flexCol} space-y-5 ${textCustom} ${mainLayout}`
               )}
             >
-              <div className={`${flexCenter}`}>
+              {/* <div className={`${flexCenter}`}>
                 <div className={` w-40 h-20`}>
                   <img
                     src={logo_2}
                     alt={"footer_image"}
                     title="footer image"
-                    // className={`${imageLayout}`}
+                    className={`${imageLayout}`}
                   />
                 </div>
-              </div>
+              </div> */}
               <div className={cx(`${flexCenter}`)}>
                 <h1 className={`text-4xl font-black`}>{}</h1>
               </div>

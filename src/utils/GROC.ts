@@ -324,3 +324,19 @@ export const HeadersQuery = `*[_type == "header"]{
   desc,
   image
 }`;
+
+// product display
+
+export const productDisplayQuery = `*[_type == "productDisplay"][0]{
+  _id,
+title,
+desc,
+image,
+}`;
+
+export const faqsQuery = `*[_type == "homefaqs"][0..3]{
+  _id, 
+  title,
+  desc,
+  image,
+}`;

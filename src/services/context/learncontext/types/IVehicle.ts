@@ -7,6 +7,8 @@ import {
   GalleryType,
   TTestimonials,
   HomeHeaderType,
+  productDisplayType,
+  FaqsOptions,
 } from "../../../../types/global.types";
 import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
 export interface IVehicle {
@@ -114,6 +116,30 @@ export const fetchHomeHeader = (
   dispatch({
     type: ActionType.HEADER_SUCCESS,
     homeHeader: homeHeader,
+    loading: loading,
+  });
+};
+
+export const fetchProductDisplay = (
+  dispatch: React.Dispatch<IAction>,
+  productDisplay: productDisplayType,
+  loading: boolean
+) => {
+  dispatch({
+    type: ActionType.DISPLAY_SUCCESS,
+    productDisplay: productDisplay,
+    loading: loading,
+  });
+};
+
+export const fetchfaqs = (
+  dispatch: React.Dispatch<IAction>,
+  homeFaqs: FaqsOptions[],
+  loading: boolean
+) => {
+  dispatch({
+    type: ActionType.FAQS_SUCCESS,
+    homeFaqs: homeFaqs,
     loading: loading,
   });
 };

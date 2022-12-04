@@ -66,10 +66,10 @@ const Content = () => {
               {" "}
               {title}:{" "}
               <span
-                className={`w-auto max-w-five p-2 h-4 bg-white ${flexCenter}`}
+                className={`w-auto max-w-five p-3 h-4 bg-white ${flexCenter}`}
               >
                 {" "}
-                <p className="text-xs text-gray-800">{details}</p>
+                <p className="text-sm text-gray-800">{details}</p>
               </span>
             </p>
           </>

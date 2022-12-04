@@ -7,6 +7,7 @@ import {
   textStyles,
 } from "../../../../styles/themes/theme";
 import { TextWrapper } from "../../../appwrapper";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../hooks/button";
 import { displayProduct } from "../../../../assets/images";
 import {
@@ -29,6 +30,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
   const { flexRow, flexCol, flexResponsive, flexStart, flexRowCenter } =
     flexLayout;
   const { mainLayout, mainText, textCustom } = textStyles;
+  const navigate = useNavigate();
   return (
     <>
       <div className={cx(`${marX} ${padY} relative`)}>
@@ -73,7 +75,12 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                   </p>
                 </div>
                 <div>
-                  <Button handleClick={() => {}}> Buy Now</Button>
+                  <Button
+                    handleClick={() => navigate("/shop", { replace: true })}
+                  >
+                    {" "}
+                    Buy Our Product
+                  </Button>
                 </div>
               </div>
             </div>
@@ -101,7 +108,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                 : flexResponsive.flexRowReverseCol
             }`}
           >
-            <div
+            {/* <div
               className={cx(
                 `w-full md:w-full lg:w-four lg:max-w-four h-auto pl-3 `
               )}
@@ -118,7 +125,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
             <div
               className={cx(`w-full md:w-full lg:w-six lg:max-w-six h-auto `)}
             >

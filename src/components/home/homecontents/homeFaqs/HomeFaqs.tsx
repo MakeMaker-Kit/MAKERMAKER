@@ -43,7 +43,7 @@ const HomeFaqs = () => {
                   className={`w-full md:w-full lg:w-five h-auto border border-appGreen rounded-md  p-4`}
                 >
                   <div className={cx(`${boxFull} ${flexCol} space-y-4`)}>
-                    {Array(4)
+                    {Array(1)
                       .fill(0)
                       .map((i) => (
                         <div

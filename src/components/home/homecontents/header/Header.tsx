@@ -78,7 +78,11 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
               <div
                 className={`bg-[url(${backgroundHeader})] max-w-full w-full h-full bg-no-repeat bg-center bg-cover opacity-80 bg-gradient-to-r  from-gray-500 to-slate-200`}
                 style={{
-                  backgroundImage: `url(${urlFor(image)})`,
+                  backgroundImage: `url(${urlFor(image)
+                    .quality(1)
+                    .crop("center")
+                    .fit("scale")
+                    .url()})`,
                 }}
               ></div>
             </div>

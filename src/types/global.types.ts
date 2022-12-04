@@ -330,3 +330,17 @@ export interface HeadType<S> {
 }
 
 export interface HomeHeaderType extends HeadType<string> {}
+
+export interface productDisplayType {
+  _id?: string;
+  title: string;
+  desc: string;
+  image: string;
+}
+
+export interface FaqsOptions {
+  _id: string;
+  title: string;
+  desc: string;
+  image: string;
+}

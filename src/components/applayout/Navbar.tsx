@@ -20,7 +20,14 @@ import {
 import SearchDropdown from "../dropdowns/advanceddropdowns/SearchDropdown";
 
 const Navbar = () => {
-  const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
+  const {
+    themeWrapper,
+    boxFull,
+    XFull,
+    containerWrapper,
+    XExtend,
+    transitions,
+  } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
   const {
@@ -63,7 +70,7 @@ const Navbar = () => {
                     <Link
                       to={link}
                       key={id}
-                      className={`${mainLayout} ${textCustom} text-sm uppercase`}
+                      className={`${mainLayout} ${textCustom} text-sm uppercase hover:underline ${transitions} `}
                     >
                       {name}
                     </Link>
