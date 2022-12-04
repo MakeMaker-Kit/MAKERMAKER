@@ -22,9 +22,9 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
           {/* Footer */}
           <Footer />
         </div>
-        <div className={`bg-gray-800 border-2 border-solid border-white`}>
+        {/* <div className={`bg-gray-800 border-2 border-solid border-white`}>
           <MainFooter />
-        </div>
+        </div> */}
         {/* ScrollTotop */}
         <ScrollToTop
           smooth

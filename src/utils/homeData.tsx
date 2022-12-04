@@ -25,7 +25,7 @@ import {
 export const NavbarData: Array<navType> = [
   {
     name: "Home",
-    link: "",
+    link: "/",
     id: uuid(),
     navContents: [
       {
@@ -49,8 +49,8 @@ export const NavbarData: Array<navType> = [
     ],
   },
   {
-    name: "journals",
-    link: "",
+    name: "blog",
+    link: "/blog",
     id: uuid(),
     navContents: [
       {
@@ -75,7 +75,7 @@ export const NavbarData: Array<navType> = [
   },
   {
     name: "Shop",
-    link: "",
+    link: "/shop",
     id: uuid(),
     navContents: [
       {
@@ -111,31 +111,31 @@ export const NavbarData: Array<navType> = [
       },
     ],
   },
-  {
-    name: "Tutorials",
-    link: "",
-    id: uuid(),
-    navContents: [
-      {
-        name: "Brand",
-        link: "/tutorial",
-        id: uuid(),
-        icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Works",
-        link: "/tutorial",
-        id: uuid(),
-        icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-      {
-        name: "Testimonials",
-        link: "/tutorial",
-        id: uuid(),
-        icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
-      },
-    ],
-  },
+  // {
+  //   name: "Tutorials",
+  //   link: "",
+  //   id: uuid(),
+  //   navContents: [
+  //     {
+  //       name: "Brand",
+  //       link: "/tutorial",
+  //       id: uuid(),
+  //       icon: <HomeIcon className="mr-2 h-3.5 w-3.5" />,
+  //     },
+  //     {
+  //       name: "Works",
+  //       link: "/tutorial",
+  //       id: uuid(),
+  //       icon: <GearIcon className="mr-2 h-3.5 w-3.5" />,
+  //     },
+  //     {
+  //       name: "Testimonials",
+  //       link: "/tutorial",
+  //       id: uuid(),
+  //       icon: <EnvelopeClosedIcon className="mr-2 h-3.5 w-3.5" />,
+  //     },
+  //   ],
+  // },
 ];
 //  Home Navbar DropdownMenu
 export const homeNavData: NavItemTypes[] = [

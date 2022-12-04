@@ -20,6 +20,7 @@ import shops from "./shops.png";
 import emptycart from "./emptycart.png";
 import pagenotfoundBg from "./404.png";
 import empty_cart from "./empty_cart.png";
+import logo_2 from "./logo2.png";
 export {
   logoImage,
   backgroundHeader,
@@ -42,4 +43,5 @@ export {
   emptycart,
   pagenotfoundBg,
   empty_cart,
+  logo_2,
 };

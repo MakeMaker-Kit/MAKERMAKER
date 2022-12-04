@@ -75,10 +75,7 @@ const HomeLayout = () => {
         <div>
           <Brand />
         </div>
-        <div>
-          <Testimonial />
-        </div>
-        <Border />
+
         {/* Blog Home Display */}
         <div>
           <HomeBlog />
@@ -90,6 +87,10 @@ const HomeLayout = () => {
       {/* Border  */}
       <Border />
       {/* HomeContact */}
+      <div>
+        <Testimonial />
+      </div>
+      <Border />
       <div>
         <HomeContact />
       </div>

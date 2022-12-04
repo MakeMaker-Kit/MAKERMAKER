@@ -6,9 +6,15 @@ import {
   fetchCheckout,
   fetchFooterData,
   fetchGallery,
+  fetchTestimonial,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
-import { TProduct, TFooters, GalleryType } from "../../../types/global.types";
+import {
+  TProduct,
+  TFooters,
+  GalleryType,
+  TTestimonials,
+} from "../../../types/global.types";
 import { client } from "../../../client";
 import {
   CheckoutDataQuery,
@@ -16,6 +22,7 @@ import {
   SingleProduct,
   footerQueries,
   GalleryQuery,
+  SingleTestimonial,
 } from "../../../utils/GROC";
 import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
 import toast from "react-hot-toast";
@@ -35,6 +42,7 @@ export interface IAppState {
   checkoutData: InitialValuesTypes | {};
   footerData: {} | TFooters;
   galleryData: {} | GalleryType;
+  singleTestimonial: {} | TTestimonials;
 }
 
 export const initialState: IAppState = {
@@ -56,6 +64,7 @@ export const initialState: IAppState = {
   checkoutData: {},
   footerData: {},
   galleryData: {},
+  singleTestimonial: {},
 };
 
 export interface IAppContext {
@@ -76,6 +85,7 @@ const AppContext = React.createContext<IAppContext>({
     checkoutData: {},
     footerData: {},
     galleryData: {},
+    singleTestimonial: {},
   },
 
   dispatch: () => {},
@@ -97,6 +107,7 @@ export enum ActionType {
   CHECKOUT_DATA_SUCCESS = "CHECKOUT_DATA_SUCCESS",
   FOOTER_DATA_SUCCESS = "FOOTER_DATA_SUCCESS",
   GALLERY_DATA_SUCCESS = "GALLERY_DATA_SUCCESS",
+  TESTIMONIAL_SUCCESS = "TESTIMONIAL_SUCCESS",
 }
 
 export type IAction = {
@@ -111,6 +122,7 @@ export type IAction = {
   checkoutData?: InitialValuesTypes;
   footerData?: {} | TFooters;
   galleryData?: {} | GalleryType;
+  singleTestimonial?: {} | TTestimonials;
 };
 
 const vehicleReducer = (
@@ -198,6 +210,13 @@ const vehicleReducer = (
         galleryData: action.galleryData as GalleryType,
         loading: action.loading as boolean,
       };
+
+    case "TESTIMONIAL_SUCCESS":
+      return {
+        ...state,
+        singleTestimonial: action.singleTestimonial as {} | TTestimonials,
+        loading: action.loading as boolean,
+      };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
@@ -276,6 +295,19 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     [state.galleryData]
   );
 
+  const fetchSingleTestimonial: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client
+        .fetch(payloadResponse)
+        .then((response) => {
+          response && fetchTestimonial(dispatch, response, false);
+          return response && fetchTestimonial(dispatch, response, false);
+        })
+        .catch((err) => err instanceof Error && err.message);
+    },
+    [state.singleTestimonial]
+  );
+
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
@@ -283,6 +315,7 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     !cancelled && fetchCheckoutData(CheckoutDataQuery);
     !cancelled && fetchFooterDatas(footerQueries);
     !cancelled && fetchGalleries(GalleryQuery);
+    !cancelled && fetchSingleTestimonial(SingleTestimonial);
     return () => {
       cancelled = true;
     };

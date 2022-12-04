@@ -5,6 +5,7 @@ import {
   TProduct,
   TFooters,
   GalleryType,
+  TTestimonials,
 } from "../../../../types/global.types";
 import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
 export interface IVehicle {
@@ -88,6 +89,18 @@ export const fetchGallery = (
   dispatch({
     type: ActionType.GALLERY_DATA_SUCCESS,
     galleryData: galleryData,
+    loading: loading,
+  });
+};
+
+export const fetchTestimonial = (
+  dispatch: React.Dispatch<IAction>,
+  singleTestimonial: TTestimonials,
+  loading: boolean
+) => {
+  dispatch({
+    type: ActionType.TESTIMONIAL_SUCCESS,
+    singleTestimonial: singleTestimonial,
     loading: loading,
   });
 };

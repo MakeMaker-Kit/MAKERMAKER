@@ -309,3 +309,10 @@ export const GalleryQuery = `*[_type == 'gallery'][0]{
   desc,
   "gallery": gallerycontent[0..20]-> {"sub": subtitle, title, desc, image, _id}
 }`;
+
+export const SingleTestimonial = `*[_type == "hometestimonials"][0]{
+  image,
+  name,
+  description,
+  company,
+}`;

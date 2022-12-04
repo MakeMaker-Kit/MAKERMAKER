@@ -5,12 +5,13 @@ import {} from "@radix-ui/react-icons";
 import { themes, flexLayout, textStyles } from "../../styles/themes/theme";
 import { useIcon } from "../../hooks/dispatchContext";
 import { NavbarData } from "../../utils/homeData";
-import { logoImage } from "../../assets/images";
+import { logoImage, logo_2 } from "../../assets/images";
 import { NavbarBtnDropdown, BlogDropdown } from "../dropdowns";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { TotalQuantity } from "../../services/redux/features/productslice/ProductSlice";
 import { IsLoggedIn } from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import Links from "../../hooks/links";
 import {
   onModalState,
   openAuthModal,
@@ -43,10 +44,7 @@ const Navbar = () => {
             <div>
               <Link to={"/"} className={classNames(`w-10 h-10`)}>
                 <img
-                  //   src={logoImage}
-                  src={
-                    "https://thescienceset.com/wp-content/uploads/2021/09/Logo.png"
-                  }
+                  src={logo_2}
                   alt=""
                   className={`${XExtend} h-full object-contain`}
                 />
@@ -62,18 +60,19 @@ const Navbar = () => {
                 {NavbarData.map((nav, index: number) => {
                   const { id, link, name, navContents } = nav;
                   return (
-                    // <NavbarBtnDropdown
+                    <Link
+                      to={link}
+                      key={id}
+                      className={`${mainLayout} ${textCustom} text-sm uppercase`}
+                    >
+                      {name}
+                    </Link>
+                    // <BlogDropdown
                     //   name={name}
                     //   link={link}
                     //   id={id}
                     //   navContents={navContents}
                     // />
-                    <BlogDropdown
-                      name={name}
-                      link={link}
-                      id={id}
-                      navContents={navContents}
-                    />
                   );
                 })}
 
