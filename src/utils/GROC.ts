@@ -316,3 +316,11 @@ export const SingleTestimonial = `*[_type == "hometestimonials"][0]{
   description,
   company,
 }`;
+
+// homeHeader
+export const HeadersQuery = `*[_type == "header"]{
+  _id,
+  title,
+  desc,
+  image
+}`;

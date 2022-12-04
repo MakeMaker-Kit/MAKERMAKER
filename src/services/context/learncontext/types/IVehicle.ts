@@ -6,6 +6,7 @@ import {
   TFooters,
   GalleryType,
   TTestimonials,
+  HomeHeaderType,
 } from "../../../../types/global.types";
 import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
 export interface IVehicle {
@@ -101,6 +102,18 @@ export const fetchTestimonial = (
   dispatch({
     type: ActionType.TESTIMONIAL_SUCCESS,
     singleTestimonial: singleTestimonial,
+    loading: loading,
+  });
+};
+
+export const fetchHomeHeader = (
+  dispatch: React.Dispatch<IAction>,
+  homeHeader: HomeHeaderType[],
+  loading: boolean
+) => {
+  dispatch({
+    type: ActionType.HEADER_SUCCESS,
+    homeHeader: homeHeader,
     loading: loading,
   });
 };

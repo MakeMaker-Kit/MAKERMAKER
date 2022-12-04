@@ -80,7 +80,7 @@ const Testimonial = () => {
                     >
                       <img
                         className={`max-w-full w-full max-h-full h-full object-center object-cover rounded-full`}
-                        src={urlFor(image).url()}
+                        // src={urlFor(image).url()}
                         alt={`Testimonial_img`}
                         title=""
                       />
@@ -159,3 +159,5 @@ const Testimonial = () => {
 };
 
 export default Testimonial;
+
+//  Quartely goals learning resources who to become

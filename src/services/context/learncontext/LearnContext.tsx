@@ -7,6 +7,7 @@ import {
   fetchFooterData,
   fetchGallery,
   fetchTestimonial,
+  fetchHomeHeader,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
 import {
@@ -14,6 +15,7 @@ import {
   TFooters,
   GalleryType,
   TTestimonials,
+  HomeHeaderType,
 } from "../../../types/global.types";
 import { client } from "../../../client";
 import {
@@ -23,6 +25,7 @@ import {
   footerQueries,
   GalleryQuery,
   SingleTestimonial,
+  HeadersQuery,
 } from "../../../utils/GROC";
 import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
 import toast from "react-hot-toast";
@@ -43,6 +46,7 @@ export interface IAppState {
   footerData: {} | TFooters;
   galleryData: {} | GalleryType;
   singleTestimonial: {} | TTestimonials;
+  homeHeader: [] | HomeHeaderType[];
 }
 
 export const initialState: IAppState = {
@@ -65,6 +69,7 @@ export const initialState: IAppState = {
   footerData: {},
   galleryData: {},
   singleTestimonial: {},
+  homeHeader: [],
 };
 
 export interface IAppContext {
@@ -86,6 +91,7 @@ const AppContext = React.createContext<IAppContext>({
     footerData: {},
     galleryData: {},
     singleTestimonial: {},
+    homeHeader: [],
   },
 
   dispatch: () => {},
@@ -108,6 +114,7 @@ export enum ActionType {
   FOOTER_DATA_SUCCESS = "FOOTER_DATA_SUCCESS",
   GALLERY_DATA_SUCCESS = "GALLERY_DATA_SUCCESS",
   TESTIMONIAL_SUCCESS = "TESTIMONIAL_SUCCESS",
+  HEADER_SUCCESS = "HEADER_SUCCESS",
 }
 
 export type IAction = {
@@ -123,6 +130,7 @@ export type IAction = {
   footerData?: {} | TFooters;
   galleryData?: {} | GalleryType;
   singleTestimonial?: {} | TTestimonials;
+  homeHeader?: [] | HomeHeaderType[];
 };
 
 const vehicleReducer = (
@@ -217,6 +225,11 @@ const vehicleReducer = (
         singleTestimonial: action.singleTestimonial as {} | TTestimonials,
         loading: action.loading as boolean,
       };
+    case "HEADER_SUCCESS":
+      return {
+        ...state,
+        homeHeader: action.homeHeader as HomeHeaderType[],
+      };
     // return (state.singleProduct = action.singleProduct as TProduct | {});
     default:
       throw new Error();
@@ -308,6 +321,19 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     [state.singleTestimonial]
   );
 
+  const fetchHomeHeaders: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client
+        .fetch(payloadResponse)
+        .then((res) => {
+          res && fetchHomeHeader(dispatch, res, false);
+          return res && fetchHomeHeader(dispatch, res, false);
+        })
+        .catch((err) => err instanceof Error && err.message);
+    },
+    [state.homeHeader]
+  );
+
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
@@ -316,6 +342,7 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     !cancelled && fetchFooterDatas(footerQueries);
     !cancelled && fetchGalleries(GalleryQuery);
     !cancelled && fetchSingleTestimonial(SingleTestimonial);
+    !cancelled && fetchHomeHeaders(HeadersQuery);
     return () => {
       cancelled = true;
     };

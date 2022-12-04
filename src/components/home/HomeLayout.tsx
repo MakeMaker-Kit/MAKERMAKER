@@ -29,6 +29,7 @@ import {
   homeheaderQuery,
   hometestimonialsQuery,
 } from "../../utils/querypaths";
+import { USEContext } from "../../services/context/learncontext/LearnContext";
 const Border = () => {
   const { border } = themes;
   return <div className={border} />;
@@ -37,7 +38,9 @@ const Border = () => {
 const HomeLayout = () => {
   const dispatch = useDispatch();
   const productDisplay = useSelector(ProductDisplays);
-  const homeHeader = useSelector(homeHeaderState);
+  const { state } = USEContext();
+  const { homeHeader } = state;
+  // const homeHeader = useSelector(homeHeaderState);
   const hometestimonial = useSelector(testimonials);
   React.useEffect(() => {
     // @ts-ignore
@@ -46,8 +49,7 @@ const HomeLayout = () => {
     // @ts-ignore
     dispatch(getTestimonials(hometestimonialsQuery));
   }, [dispatch]);
-  console.log("Product Display Response", productDisplay);
-  console.log("Display more response data", homeHeader, hometestimonial);
+  console.log("Display more response data", homeHeader);
   return (
     <>
       <div>
@@ -59,11 +61,10 @@ const HomeLayout = () => {
         <Border />
         {/* Product Display */}
         {/* <Border /> */}
-
         {productDisplay &&
           productDisplay.map((display: TDisplayContentTypes, index: number) => {
             return (
-              <div className="bg-grayWhite z-[10]" key={index}>
+              <div className="bg-grayWhite z-[10] " key={index}>
                 <ProductDisplay {...display} />
               </div>
             );

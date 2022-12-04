@@ -272,6 +272,7 @@ export interface TProduct {
 
 export interface TFooters {
   footermain?: {
+    image: string;
     name: string;
     desc: string;
     socials: {
@@ -281,7 +282,7 @@ export interface TFooters {
       facebook?: string;
     };
   };
-  footerabout?: { logo: string; desc: string };
+  footerabout: { logo: string; desc: string };
 }
 
 export interface TFooters {
@@ -290,6 +291,7 @@ export interface TFooters {
     | number
     | boolean
     | {
+        image: string;
         name: string;
         desc: string;
         socials: {
@@ -320,3 +322,11 @@ export interface GalleryType {
 // export interface GalleryType {
 //   [key: string]: string | undefined | TGALLERY[];
 // }
+
+export interface HeadType<S> {
+  _id: S;
+  desc: S;
+  image: S;
+}
+
+export interface HomeHeaderType extends HeadType<string> {}

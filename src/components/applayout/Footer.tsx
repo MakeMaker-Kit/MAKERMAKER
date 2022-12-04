@@ -14,18 +14,28 @@ import { USEContext } from "../../services/context/learncontext/LearnContext";
 import { TFooters } from "../../types/global.types";
 import { NavbarData } from "../../utils/homeData";
 import { navType } from "../../utils/utils.types";
+import { urlFor } from "../../client";
+import { logo_2 } from "../../assets/images";
 
 const Footer = () => {
   const { textCustom, mainLayout, mainText } = textStyles;
-  const { themeWrapper, boxFull, XFull, containerWrapper, formLayout } = themes;
+  const {
+    themeWrapper,
+    boxFull,
+    XFull,
+    containerWrapper,
+    formLayout,
+    imageLayout,
+  } = themes;
   const { marX, padY, formPadL } = themeWrapper;
   const { flexRow, flexCol, flexRowCenter, flexCenter, flexStart } = flexLayout;
   const { MinusIcon } = useIcon();
   const dispatch = useDispatch();
   const { state } = USEContext();
   const { footerData } = state;
+  // @ts-ignore
   const { footerabout, footermain }: TFooters = footerData;
-
+  console.log("footer espon", footerData);
   return (
     <>
       <div className={cx(`${marX} py-6`)}>
@@ -36,6 +46,16 @@ const Footer = () => {
                 `${XFull} h-auto  ${flexCol} space-y-5 ${textCustom} ${mainLayout}`
               )}
             >
+              <div className={`${flexCenter}`}>
+                <div className={` w-40 h-20`}>
+                  <img
+                    src={logo_2}
+                    alt={"footer_image"}
+                    title="footer image"
+                    // className={`${imageLayout}`}
+                  />
+                </div>
+              </div>
               <div className={cx(`${flexCenter}`)}>
                 <h1 className={`text-4xl font-black`}>{}</h1>
               </div>
