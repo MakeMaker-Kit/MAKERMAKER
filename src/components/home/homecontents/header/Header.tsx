@@ -62,9 +62,9 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
               {/*  */}
               <div>
                 <Button
-                  handleClick={() => navigate("/shop", { replace: true })}
+                  handleClick={() => navigate("/contactus", { replace: true })}
                 >
-                  Book A Science Kit
+                  Contact Us
                 </Button>
               </div>
             </div>

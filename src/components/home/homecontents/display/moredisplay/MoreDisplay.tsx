@@ -85,7 +85,7 @@ const MoreDisplay: React.FC<productDisplayType & { isReversed: boolean }> = ({
                         handleClick={() => navigate("/shop", { replace: true })}
                       >
                         {" "}
-                        Buy now
+                        Buy a science kit
                       </Button>
                     </div>
                   </div>

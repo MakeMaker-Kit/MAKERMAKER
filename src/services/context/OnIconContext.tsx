@@ -6,6 +6,7 @@ import {
   AiFillPlusCircle,
   AiFillMinusCircle,
   AiFillEye,
+  AiOutlineCamera,
 } from "react-icons/ai";
 import { BiSearchAlt, BiMenu, BiCartAlt } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
@@ -67,6 +68,7 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         AiFillMinusCircle,
         GiCancel,
         AiFillEye,
+        AiOutlineCamera,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GalleryType, TGALLERY } from "../../../types/global.types";
 import { urlFor } from "../../../client";
-import { themes, textStyles } from "../../../styles/themes/theme";
+import { themes, textStyles, flexLayout } from "../../../styles/themes/theme";
 import { useIcon } from "../../../hooks/dispatchContext";
 import cx from "classnames";
 import Lightbox from "react-image-lightbox";
@@ -22,20 +22,21 @@ const galleryContentss = [banner2, banner3, banner4, banner5];
 import { Offline, Online } from "react-detect-offline";
 
 const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
-  const {} = themes;
+  const { boxFull, transition } = themes;
   const { mainLayout, textCustom } = textStyles;
+  const { flexCenter } = flexLayout;
   const [photoIndex, setPhotoIndex] = React.useState<number>(0);
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
-  const { AiFillEye } = useIcon();
+  const { AiFillEye, AiOutlineCamera } = useIcon();
 
   const galleryContents =
     gallery &&
     gallery?.map(({ _id, desc, image, sub, title }: TGALLERY) => (
-      <div className="lg:w-1/3 sm:w-1/2 p-4" key={_id}>
-        <div className="flex relative">
+      <div className="lg:w-1/3 sm:w-1/2 p-4 group" key={_id}>
+        <div className="flex relative w-full h-[400px]">
           <img
             alt="gallery"
-            className="absolute inset-0 max-w-full w-full h-full object-cover object-center rounded-lg "
+            className="absolute inset-0 max-w-full w-full h-full object-cover object-center rounded-lg hover:opacity-60 hover:blackdrop-blur-sm"
             loading-image={"lazy"}
             title={`gallery_image_title`}
             src={urlFor(image)
@@ -47,7 +48,7 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
               .maxHeight(500)
               .url()}
           />
-          <div
+          {/* <div
             className={`px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100 rounded-md ${mainLayout} ${textCustom}
 `}
           >
@@ -62,6 +63,16 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
               {title}
             </h1>
             <p className="leading-relaxed">{desc}</p>
+          </div> */}
+          {/*Abolute position element */}
+          <div className={cx(`absolute top-1/2 left-1/2  `)}>
+            <div
+              className={`${boxFull} ${flexCenter} invisible group-hover:visible`}
+            >
+              <h1 className={`text-sm ${transition}`}>
+                <AiFillEye size={40} />
+              </h1>
+            </div>
           </div>
         </div>
       </div>

@@ -97,12 +97,12 @@ const ProfileWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
             {/*  */}
             {/* var cleanString = dirtyString.replace(/[|&;$%@"<>()+,]/g, "");  str.replace(/\s+/g, '') */}
             <div className={`w-full max-w-five `}>
-              {ciEquals<string>(
+              {/* {ciEquals<string>(
                 (id as string)?.replace(/\s+[|&;$%@"<>()+,-]/g, ""),
                 (name as string)?.replace(/\s+[|&;$%@"<>()+,]/g, "")
               )
                 ? " you win"
-                : "you lose"}
+                : "you lose"} */}
               <MainButton
                 isRounded={true}
                 handleClick={() =>

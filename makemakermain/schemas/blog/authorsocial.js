@@ -1,5 +1,13 @@
 export default {
   name: "authorsocial",
+  fieldsets: [
+    {
+      name: "social",
+      title: "Social media handles",
+      description:
+        "Assign the links of the social media you are trying to add, contact the developer for any other adjustments",
+    },
+  ],
   title: "Author social",
   type: "document",
   fields: [
