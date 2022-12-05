@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import cx from "classnames";
 // import PortableText from "react-portable-text";
 import { PortableText } from "@portabletext/react";
@@ -17,10 +17,10 @@ interface ChildProps {
   children: JSX.Element;
 }
 const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
-  const { themeWrapper, imageLayout } = themes;
+  const { themeWrapper, imageLayout, boxFull } = themes;
   const {} = themeWrapper;
   const { textCustom, mainLayout } = textStyles;
-  const {} = flexLayout;
+  const { flexCenter } = flexLayout;
   // "SF Pro Display", -apple-system, acumin-pro, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol
   const SanityImageComponent = ({
     value,
@@ -57,7 +57,17 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
     types: {
       image: ({ value }: { value: any }) => {
         console.log("logged Imaeg", value);
-        return <img src={value} className={`${imageLayout} block`} />;
+        return (
+          <div className={`w-full h-[400px] my-10 border-2 rounded`}>
+            <img
+              src={urlFor(value && value)
+                .width(500)
+                .height(500)
+                .url()}
+              className={`${imageLayout} block rounded shadow`}
+            />
+          </div>
+        );
       },
       // image: SanityImageComponent,
       callToAction: ({
@@ -78,7 +88,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
 
     marks: {
       em: ({ children }: { children: JSX.Element }) => (
-        <em className="text-xs tracking-wider leading-8"> {children}</em>
+        <em className="text-sm tracking-wide leading-8"> {children}</em>
       ),
       strong: ({ children }: { children: JSX.Element }) => (
         <strong className="text-9xl text-orange"> {children}</strong>
@@ -115,14 +125,28 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
     block: {
       h1: ({ children }: ChildProps) => (
         <h1
-          className={`${textCustom} ${mainLayout} text-2xl text-appRed font-bold`}
+          className={`${textCustom} ${mainLayout} text-2xl text-appRed font-bold mt-6 mb-4`}
         >
           {children}
         </h1>
       ),
+      h2: ({ children }: ChildProps) => (
+        <h2
+          className={`${textCustom} ${mainLayout} text-2xl text-appRed font-bold mt-6 mb-4`}
+        >
+          {children}
+        </h2>
+      ),
+      h3: ({ children }: ChildProps) => (
+        <h3
+          className={`${textCustom} ${mainLayout} text-2xl text-appRed font-bold mt-6 mb-4 hover:underline`}
+        >
+          *{children}
+        </h3>
+      ),
       h4: ({ children }: ChildProps) => (
         <h4
-          className={`${textCustom} ${mainLayout} text-sm text-appRed font-bold`}
+          className={`${textCustom} ${mainLayout} text-2xl  text-appRed font-bold mt-6 mb-4 leading-9`}
         >
           {children}
         </h4>
@@ -144,7 +168,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
       ),
       p: ({ children }: ChildProps) => (
         <p
-          className={`${textCustom} ${mainLayout} text-xs tracking-wider leading-8`}
+          className={`${textCustom} ${mainLayout} text-sm tracking-wider leading-8 `}
         >
           {children}
         </p>
@@ -166,14 +190,18 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
         <ol className={`${textCustom} ${mainLayout} text-xs`}>{children}</ol>
       ),
       li: ({ children }: ChildProps) => (
-        <li className={`${textCustom} ${mainLayout} text-black`}>{children}</li>
+        <li
+          className={`${textCustom} ${mainLayout} text-black text-sm  leading-9`}
+        >
+          {children}
+        </li>
       ),
     },
     listItem: {
       bullet: ({ children }: ChildProps) => (
         <li
           style={{ listStyleType: "disclosure-closed" }}
-          className={`${textCustom} ${mainLayout} text-xs`}
+          className={`${textCustom} ${mainLayout} text-xs text-appRed`}
         >
           {children}
         </li>
@@ -186,50 +214,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
   return (
     <>
       <div>
-        {/* <PortableText
-          serializers={{
-            h1: (props: JSX.Element) => (
-              <h1
-                className={`text-xs font-poppins font-semibold text-gray-300  ${mainLayout} ${textCustom}`}
-                {...props}
-              >
-                {" "}
-              </h1>
-            ),
-            span: (props: React.ReactElement) => (
-              <span
-                className={cx(
-                  `${mainLayout} ${textCustom} text-4xl font-black text-white `
-                )}
-                {...props}
-              ></span>
-            ),
-            li: ({ children }: { children: React.ReactElement }) => (
-              <li className="ml-4 list-none  font-semibold capitalize text-red-700 text-xs   ">
-                {children}
-              </li>
-            ),
-            img: (src: string) => (
-              <img
-                className="rounded-full w-full max-w-full object-full "
-                alt="post_img"
-                src={src}
-              />
-            ),
-            link: ({
-              href,
-              children,
-            }: {
-              href?: string;
-              children: React.ReactElement;
-            }) => <a href={href}>{children}</a>,
-          }}
-          projectId="zkmc5a7m"
-          className={`${mainLayout} ${textCustom} text-xs text-red-900  p-3 `}
-          dataset="production"
-          content={body}
-        /> */}
-
+        {/* @ts-igmore */}
         <PortableText value={body} components={BlogPotabletextComponents} />
       </div>
     </>
@@ -237,11 +222,3 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
 };
 
 export default MainDesc;
-/**
- * "baseUrl": "src",
-    "paths": {
-      "@services/*": ["app/path/to/services/*"],
-      "@components/*": ["app/somewhere/deeply/nested/*"],
-      "@environments/*": ["environments/*"]
-    }
- */

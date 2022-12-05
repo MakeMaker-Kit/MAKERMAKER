@@ -19,7 +19,7 @@ export default {
       title: "Image",
       description: "Add a designed FAQ image",
       type: "image",
-      options: { hotspot: string },
+      options: { hotspot: true },
     },
   ],
 };

@@ -10,6 +10,7 @@ import {
   fetchHomeHeader,
   fetchProductDisplay,
   fetchfaqs,
+  fetchCategory,
 } from "./types/IVehicle";
 import { IFeature } from "./types/IFeature";
 import {
@@ -20,6 +21,7 @@ import {
   HomeHeaderType,
   productDisplayType,
   FaqsOptions,
+  TCategory,
 } from "../../../types/global.types";
 import { client } from "../../../client";
 import {
@@ -32,6 +34,7 @@ import {
   HeadersQuery,
   faqsQuery,
   productDisplayQuery,
+  blogCategoyQuery,
 } from "../../../utils/GROC";
 import { InitialValuesTypes } from "../../../components/checkout/form/CheckoutForm";
 import toast from "react-hot-toast";
@@ -55,6 +58,7 @@ export interface IAppState {
   homeHeader: [] | HomeHeaderType[];
   productDisplay: {} | productDisplayType;
   homeFaqs: [] | FaqsOptions[];
+  blogCategory: [] | TCategory[];
 }
 
 export const initialState: IAppState = {
@@ -80,6 +84,7 @@ export const initialState: IAppState = {
   homeHeader: [],
   productDisplay: {},
   homeFaqs: [],
+  blogCategory: [],
 };
 
 export interface IAppContext {
@@ -104,6 +109,7 @@ const AppContext = React.createContext<IAppContext>({
     homeHeader: [],
     productDisplay: {},
     homeFaqs: [],
+    blogCategory: [],
   },
 
   dispatch: () => {},
@@ -129,6 +135,7 @@ export enum ActionType {
   HEADER_SUCCESS = "HEADER_SUCCESS",
   DISPLAY_SUCCESS = "DISPLAY_SUCCESS",
   FAQS_SUCCESS = "FAQS_SUCCESS",
+  CATEGORY_SUCCESS = "CATEGORY_SUCCESS",
 }
 
 export type IAction = {
@@ -147,6 +154,7 @@ export type IAction = {
   homeHeader?: [] | HomeHeaderType[];
   productDisplay?: {} | productDisplayType;
   homeFaqs?: [] | FaqsOptions[];
+  blogCategory?: TCategory[];
 };
 
 const vehicleReducer = (
@@ -259,7 +267,12 @@ const vehicleReducer = (
         homeFaqs: action.homeFaqs as FaqsOptions[],
         loading: action.loading as boolean,
       };
-    // return (state.singleProduct = action.singleProduct as TProduct | {});
+    case "CATEGORY_SUCCESS":
+      return {
+        ...state,
+        blogCategory: action.blogCategory as TCategory[],
+        loading: action.loading as boolean,
+      };
     default:
       throw new Error();
   }
@@ -389,6 +402,19 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     [state.homeFaqs]
   );
 
+  const fetchCategories: TFunction = React.useCallback(
+    async (payloadResponse) => {
+      return await client
+        .fetch(payloadResponse)
+        .then((res) => {
+          res && fetchCategory(dispatch, res, false);
+          return res && fetchCategory(dispatch, res, false);
+        })
+        .catch((err) => err instanceof Error && err.message);
+    },
+    [state.blogCategory]
+  );
+
   const configureReactStore = () => {};
   React.useEffect(() => {
     let cancelled = false;
@@ -400,6 +426,7 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     !cancelled && fetchHomeHeaders(HeadersQuery);
     !cancelled && fetchDisplays(productDisplayQuery);
     !cancelled && fetchFaq(faqsQuery);
+    !cancelled && fetchCategories(blogCategoyQuery);
     return () => {
       cancelled = true;
     };
@@ -412,3 +439,15 @@ const AppContextProvider = ({ children }: { children: JSX.Element }) => {
 export const USEContext = () => React.useContext(AppContext);
 
 export { AppContext, AppContextProvider };
+
+//  create a simple function
+// create a user variable_name
+
+export const useAuth = () => {
+  const context = React.useContext(AppContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within a AppContextProvider");
+  }
+  return context;
+};
+// create email regex pattern validationMap

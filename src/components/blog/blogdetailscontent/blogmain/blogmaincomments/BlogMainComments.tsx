@@ -27,6 +27,7 @@ const CommentsForm = () => {
     fetchBlogReview(blogReviewQuery);
   }, []);
   return (
+    // TODO add random images
     <>
       <div className={`${XFull} ${flexCol} ${mainLayout} ${textCustom} `}>
         <h1 className={`text-2xl font-bold tracking-wider `}>

@@ -11,6 +11,7 @@ import {
   FaqsOptions,
 } from "../../../../types/global.types";
 import { InitialValuesTypes } from "../../../../components/checkout/form/CheckoutForm";
+import { TCategory } from "../../../../types/global.types";
 export interface IVehicle {
   vehicleId: string;
   make: string;
@@ -140,6 +141,18 @@ export const fetchfaqs = (
   dispatch({
     type: ActionType.FAQS_SUCCESS,
     homeFaqs: homeFaqs,
+    loading: loading,
+  });
+};
+
+export const fetchCategory = (
+  dispatch: React.Dispatch<IAction>,
+  blogCategory: TCategory[],
+  loading: boolean
+) => {
+  dispatch({
+    type: ActionType.CATEGORY_SUCCESS,
+    blogCategory: blogCategory,
     loading: loading,
   });
 };

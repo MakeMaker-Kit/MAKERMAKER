@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { BlogCategory } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { TCategory } from "../../../../types/global.types";
+import { USEContext } from "../../../../services/context/learncontext/LearnContext";
 import {
   flexLayout,
   themes,
@@ -24,12 +25,15 @@ const BlogCategories = () => {
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
   const { ArrowRightIcon } = useIcon();
+  const { state } = USEContext();
+  const { blogCategory } = state;
+  console.log("hblog category respoonse", blogCategory )
   return (
     <>
       <div className={`${boxFull}`}>
         <div className="py-3 ">
           <div className={cx(`${boxFull} ${flexCol} gap-y-5`)}>
-            {blogCategories?.map(
+            {blogCategory?.map(
               ({ _id, title, image }: TCategory, index: number) => (
                 <div
                   key={_id}

@@ -340,3 +340,17 @@ export const faqsQuery = `*[_type == "homefaqs"][0..3]{
   desc,
   image,
 }`;
+
+export const categoryTestimonialsQuery = `*[_type == "categoryTestimonials"][0..3]{
+  _id,
+  title,
+  desc,
+  image,
+}`;
+
+export const blogCategoyQuery = `*[_type == "category"][0..3]{
+  _id,
+  title,
+  desc,
+  image,
+}`;

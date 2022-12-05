@@ -49,11 +49,19 @@ const BlogHeader = () => {
                         className={`absolute top-1/4 left-3 w-32
                       `}
                       >
-                        <MainButton isRounded={true}>Shop Now</MainButton>
+                        <MainButton
+                          isRounded={true}
+                          handleClick={() =>
+                            navigate("/shop6", { replace: true })
+                          }
+                        >
+                          Shop Now
+                        </MainButton>
                       </div>
                     </div>
                   </div>
                 </div>
+                {/* Social Links */}
                 <ul className={`${flexRowCenter} space-x-5`}>
                   {Array(4)
                     .fill(0)
