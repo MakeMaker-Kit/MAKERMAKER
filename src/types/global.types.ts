@@ -159,6 +159,7 @@ export type TAUTHOR = {
   occupation?: string;
   social: string[];
   socials: TAS<string>;
+  slugs: string;
 };
 export type TCategories = {
   title?: string;

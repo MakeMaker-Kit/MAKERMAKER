@@ -40,6 +40,7 @@ title,
 author-> {
 name,
 slug,
+"slugs": slug.current,
 image,
 bio,
 occupation,
