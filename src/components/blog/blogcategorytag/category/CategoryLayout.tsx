@@ -64,11 +64,12 @@ const CategoryLayout = () => {
             </div>
             <div
               className={cx(
-                `w-full md:w-full lg:w-three lg:max-w-three h-auto`
+                `w-full md:w-full lg:w-three lg:max-w-three h-auto gap-y-10 flex flex-col`
               )}
             >
               {singleBlog &&
                 singleBlog?.map(({ author }: TBlogs, index) => (
+                  // @ts-ignore
                   <ProfileWrapper {...author} />
                 ))}
               {/* <BlogMore /> */}

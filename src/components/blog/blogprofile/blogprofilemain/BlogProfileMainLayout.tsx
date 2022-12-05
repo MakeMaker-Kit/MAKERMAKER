@@ -22,6 +22,7 @@ const BlogProfileMainLayout = ({
   date,
   slug,
   description,
+  id,
 }: {
   title?: string;
   body?: TypedObject[];
@@ -38,7 +39,7 @@ const BlogProfileMainLayout = ({
   };
   tags: {}[];
   author: TAUTHOR;
-}) => {
+} & { id?: string }) => {
   const {
     flexCol,
     flexRow,

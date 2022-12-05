@@ -10,6 +10,7 @@ import { blogsByAuthorSlugs } from "../../../utils/GROC";
 import { useAwesomwContext } from "../../../services/context/stylediconcontext/OnStyledIconContext";
 import { ProfileWrapper } from "../../appwrapper";
 import { MainSpinner } from "../../spinner/Spinners";
+import { ciEquals } from "../../../hooks/__mocks__/useInsencitiveComparison";
 const BlogProfileLayout = () => {
   const { themeWrapper, boxExtend, boxFull } = themes;
   const { mainMarX } = themeWrapper;
@@ -52,7 +53,10 @@ const BlogProfileLayout = () => {
                 {blogsByAuthorSlug &&
                   blogsByAuthorSlug?.map(({ posts }: TBlogs, index) =>
                     // @ts-ignore
-                    posts?.map((post) => <BlogProfileMainLayout {...post} />)
+                    posts?.map((post) => (
+                      // @ts-ignore
+                      <BlogProfileMainLayout {...post} id={tagId} />
+                    ))
                   )}
               </div>
             </div>
@@ -64,7 +68,7 @@ const BlogProfileLayout = () => {
               {/* <BlogMore /> */}
               {blogsByAuthorSlug.map((blogByAuthorSlug: TBlogs) => (
                 //@ts-ignore
-                <ProfileWrapper {...blogByAuthorSlug} />
+                <ProfileWrapper {...blogByAuthorSlug} id={tagId} />
               ))}
               {/* New / popular Blogs Display  */}
             </div>

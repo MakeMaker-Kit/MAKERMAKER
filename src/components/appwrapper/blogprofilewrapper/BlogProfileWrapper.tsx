@@ -9,6 +9,8 @@ import { useIcon } from "../../../hooks/dispatchContext";
 import PortableTextWrapper from "../portabletextwrapper/PortableTextWrapper";
 import { TypedObject } from "@sanity/types/dist/dts";
 import { TAS, TAUTHOR } from "../../../types/global.types";
+import { ciEquals } from "../../../hooks/__mocks__/useInsencitiveComparison";
+
 type TProps = Omit<React.ComponentProps<"div">, "classNames"> & {};
 interface MoreProps extends TProps {
   name?: string;
@@ -20,7 +22,7 @@ interface MoreProps extends TProps {
   socials: TAS<string>;
 }
 const ProfileWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
-  ({ children, name, slug, image, social, occupation, bio, socials }) => {
+  ({ children, name, slug, image, social, occupation, bio, socials, id }) => {
     const { boxFull, imageLayout } = themes;
     const { flexColCenter, flexRowCenter, flexCenter } = flexLayout;
     const { mainLayout, textCustom } = textStyles;
@@ -93,7 +95,14 @@ const ProfileWrapper = React.forwardRef<HTMLDivElement, MoreProps>(
               {/* // ))} */}
             </ul>
             {/*  */}
+            {/* var cleanString = dirtyString.replace(/[|&;$%@"<>()+,]/g, "");  str.replace(/\s+/g, '') */}
             <div className={`w-full max-w-five `}>
+              {ciEquals<string>(
+                (id as string)?.replace(/\s+[|&;$%@"<>()+,-]/g, ""),
+                (name as string)?.replace(/\s+[|&;$%@"<>()+,]/g, "")
+              )
+                ? " you win"
+                : "you lose"}
               <MainButton
                 isRounded={true}
                 handleClick={() =>
