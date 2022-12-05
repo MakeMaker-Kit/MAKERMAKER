@@ -1,12 +1,13 @@
 import React from "react";
 import { BlogDetailContentLayout, BlogWrapper } from "../components/blog";
+import Wrapper from "../components/appwrapper/Wrapper";
 
 const AppBlogDetail = () => {
   return (
     <>
-      <BlogWrapper>
+      <Wrapper>
         <BlogDetailContentLayout />
-      </BlogWrapper>
+      </Wrapper>
     </>
   );
 };

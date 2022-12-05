@@ -69,12 +69,12 @@ const CommentsForm = () => {
                         <p>{moment(_createdAt).utc().format("YYYY-MMM-DD")}</p>
                       </span>
                     </div>
-                    <div className={`px-8 py-3 border rounded-full shadow`}>
+                    {/* <div className={`px-8 py-3 border rounded-full shadow`}>
                       <span className={`${boxFull} ${flexRowCenter} space-x-2`}>
                         <p className={`underline text-lg`}>Share</p>
                         <RiShareForwardLine size={20} />
                       </span>
-                    </div>
+                    </div> */}
                     {/*  */}
                   </div>
                   <div className={``}>
