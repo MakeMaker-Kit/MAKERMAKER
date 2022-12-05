@@ -53,7 +53,9 @@ const TagLayout = () => {
             >
               <div className={cx(`${boxFull} `)}>
                 {blogTagPost &&
+                  // @ts-ignore
                   blogTagPost?.posts?.map((post: TBlogs) => (
+                    // @ts-ignore
                     <BlogProfileMainLayout {...post} />
                   ))}
               </div>
@@ -63,11 +65,7 @@ const TagLayout = () => {
                 `w-full md:w-full lg:w-three lg:max-w-three h-auto`
               )}
             >
-              {/* {blogTagPost &&
-                blogTagPost.map(({ author }: TBlogs, index) => (
-                  // @ts-ignore
-                  <ProfileWrapper {...author} />
-                ))} */}
+              {/* @ts-ignore */}
               {blogTagPost && <ProfileWrapper {...blogTagPost.author} />}
             </div>
           </div>

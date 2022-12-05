@@ -196,6 +196,7 @@ export interface TBlogs {
   }[];
   tags: { name?: string; _id: string }[];
   categories: TCategories;
+  category: TCategories;
 }
 
 export interface TCategory {

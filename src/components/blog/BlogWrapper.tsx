@@ -33,7 +33,7 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
         </div>
         {/* Blog Contact */}
 
-        <div className={`bg-gray-400 border-2 border-solid border-white`}>
+        <div className={`bg-gray-200 border-2 border-solid border-white`}>
           <Footer />
         </div>
       </div>

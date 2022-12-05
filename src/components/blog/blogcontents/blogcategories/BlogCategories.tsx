@@ -10,6 +10,7 @@ import {
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { Link } from "react-router-dom";
 
 const BlogCategories = () => {
   const { flexCol, flexRow, flexRowCenterBetween, flexCenter } = flexLayout;
@@ -27,15 +28,16 @@ const BlogCategories = () => {
   const { ArrowRightIcon } = useIcon();
   const { state } = USEContext();
   const { blogCategory } = state;
-  console.log("hblog category respoonse", blogCategory )
+  console.log("hblog category respoonse", blogCategory);
   return (
     <>
       <div className={`${boxFull}`}>
         <div className="py-3 ">
           <div className={cx(`${boxFull} ${flexCol} gap-y-5`)}>
             {blogCategory?.map(
-              ({ _id, title, image }: TCategory, index: number) => (
-                <div
+              ({ _id, title, image, slug }: TCategory, index: number) => (
+                <Link
+                  to={`/blog/category/${slug}`}
                   key={_id}
                   className={cx(
                     `h-24 ${XFull}`,
@@ -72,7 +74,7 @@ const BlogCategories = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               )
             )}
           </div>

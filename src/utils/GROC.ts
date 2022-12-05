@@ -355,4 +355,5 @@ export const blogCategoyQuery = `*[_type == "category"][0..3]{
   title,
   desc,
   image,
+  "slug":  slug.current,
 }`;
