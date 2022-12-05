@@ -82,12 +82,10 @@ const MoreDisplay: React.FC<productDisplayType & { isReversed: boolean }> = ({
                     </div>
                     <div>
                       <Button
-                        handleClick={() =>
-                          navigate("/contactus", { replace: true })
-                        }
+                        handleClick={() => navigate("/shop", { replace: true })}
                       >
                         {" "}
-                        Contact Us
+                        Buy now
                       </Button>
                     </div>
                   </div>

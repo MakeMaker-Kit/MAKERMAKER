@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { IsLoggedIn } from "./services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { Cart } from "./services/redux/features/productslice/ProductSlice";
 import { toast } from "react-hot-toast";
+import { AppContact } from "./pages";
 import {
   BlogCategory,
   BlogProfile,
@@ -49,6 +50,7 @@ const App = () => {
         )}
         <Route path="/*" element={<NotFound />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path={"/contactus"} element={<AppContact />} />
       </Routes>
     </>
   );

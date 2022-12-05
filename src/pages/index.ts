@@ -7,3 +7,4 @@ export { default as AppShop } from "./shop/AppShop";
 export { default as AppCheckout } from "./AppCheckout";
 export { default as AppNotFound } from "./AppNotFound";
 export { default as AppGalleryLayout } from "./AppGalleryLayout";
+export { default as AppContact } from "./AppContact";

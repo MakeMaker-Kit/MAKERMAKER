@@ -133,7 +133,7 @@ const Testimonial = () => {
             Help Us Reach More Schools With These Learning Kits
           </h1>
           {/* Button */}
-          <div className={cx(`${flexCenter} group ${transitions}`)}>
+          {/* <div className={cx(`${flexCenter} group ${transitions}`)}>
             <button
               className={cx(
                 `${flexRowCenter} w-40 space-x-2 h-10  p-2 rounded-md`,
@@ -151,7 +151,7 @@ const Testimonial = () => {
                 className={`w-2.5 h-2.5 hidden group-hover:inline-block`}
               />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
