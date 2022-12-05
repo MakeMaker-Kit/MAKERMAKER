@@ -85,7 +85,7 @@ const BlogHeader = () => {
                     </div>
                   </li>
                   <Link
-                    to={`${footermain?.socials.linkedIn}`}
+                    to={`${footermain?.socials?.linkedIn}`}
                     className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
                   >
                     <div className={cx(`${boxFull} ${flexCenter}`)}>
@@ -93,7 +93,7 @@ const BlogHeader = () => {
                     </div>
                   </Link>
                   <Link
-                    to={`${footermain?.socials.twitter}`}
+                    to={`${footermain?.socials?.twitter}`}
                     className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
                   >
                     <div className={cx(`${boxFull} ${flexCenter}`)}>
@@ -101,7 +101,7 @@ const BlogHeader = () => {
                     </div>
                   </Link>
                   <Link
-                    to={`${footermain?.socials.instagram}`}
+                    to={`${footermain?.socials?.instagram}`}
                     className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
                   >
                     <div className={cx(`${boxFull} ${flexCenter}`)}>

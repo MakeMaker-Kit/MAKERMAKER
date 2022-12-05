@@ -6,6 +6,7 @@ import BlogHeader from "./blogcontents/blogheader/BlogHeader";
 import BlogContact from "./blogcontents/blogcontact/BlogContact";
 import BannerPageWrapper from "../appwrapper/bannerPageWrapper/BannerPageWrapper";
 import ShopDetailLayout from "../shop/shopdetail/ShopDetailLayout";
+import Footer from "../applayout/Footer";
 interface Props {
   children: React.ReactNode;
 }
@@ -32,8 +33,8 @@ const BlogWrapper: React.FC<Props> = ({ children }) => {
         </div>
         {/* Blog Contact */}
 
-        <div className={`bg-gray-800 border-2 border-solid border-white`}>
-          <MainFooter />
+        <div className={`bg-gray-400 border-2 border-solid border-white`}>
+          <Footer />
         </div>
       </div>
     </>

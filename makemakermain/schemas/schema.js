@@ -32,6 +32,7 @@ import checkoutdata from "./checkout/checkoutdata";
 import gallery from "./gallery/gallery";
 import gallerycontent from "./gallery/gallerycontent";
 import faqs from "./home/faqs";
+import authorsocial from "./blog/authorsocial";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -70,5 +71,6 @@ export default createSchema({
     gallery,
     gallerycontent,
     faqs,
+    authorsocial,
   ]),
 });
