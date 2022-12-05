@@ -5,6 +5,8 @@ import AuthLayout from "../modals/authmodal/AuthLayout";
 import MainFooter from "../applayout/mainfooter/MainFooter";
 import ShopHeader from "./shopmain/shopcontent/shopheader/ShopHeader";
 import ShopDetailLayout from "./shopdetail/ShopDetailLayout";
+import Wrapper from "../appwrapper/Wrapper";
+import Footer from "../applayout/Footer";
 interface Iprops {
   children: React.ReactNode;
 }
@@ -31,8 +33,8 @@ const ShopWrapper: React.FC<Iprops> = ({ children }) => {
           </div>
           {/* Blog Contact */}
 
-          <div className={`bg-gray-800 border-2 border-solid border-white`}>
-            <MainFooter />
+          <div className={`bg-gray-50 border-2 border-solid border-white`}>
+            <Footer />
           </div>
         </div>
       </>

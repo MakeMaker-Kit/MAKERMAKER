@@ -99,9 +99,11 @@ const MoreDisplay: React.FC<productDisplayType & { isReversed: boolean }> = ({
                       className={classNames(
                         `bg-center bg-no-repeat bg-cover bg-gradient-to-r from-gray-50 to-slate-200 max-w-full w-full h-full`
                       )}
-                      style={{
-                        backgroundImage: `url(${urlFor(image).url()})`,
-                      }}
+                      style={
+                        {
+                          // backgroundImage: `url(${urlFor(image).url()})`,
+                        }
+                      }
                     />
                   </div>
                 </div>

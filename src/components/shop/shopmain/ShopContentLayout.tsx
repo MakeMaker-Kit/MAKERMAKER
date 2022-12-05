@@ -53,7 +53,7 @@ const ShopContentLayout = () => {
           <CartModalLayout />
           {/* <CartButtonModal /> */}
           {/* Shop Header Carousel */}
-          <div
+          {/* <div
             className={cx(
               `border border-dotted border-slate-500 px-1 py-4 mb-4`
             )}
@@ -61,7 +61,7 @@ const ShopContentLayout = () => {
             <div className={`${boxFull}`}>
               <ShopHeader />
             </div>
-          </div>
+          </div> */}
           {/* Shop Layout Container  */}
           <div
             className={cx(

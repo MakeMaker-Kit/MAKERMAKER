@@ -26,7 +26,7 @@ occupation,
 social,
 "socials": social[0..3]->{name, twitter, instagram, facebook, linkedin},
 },
-"categories": categories[]->{_id, title, image, description, "slug": slug.current},
+"categories": categories[0..1]->{_id, title, image, description, "slug": slug.current},
 "tags": tags[]->{_id, name, "slug": slug.current},
   }`;
   return query;
