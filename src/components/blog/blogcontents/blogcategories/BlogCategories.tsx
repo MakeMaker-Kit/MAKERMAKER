@@ -37,7 +37,7 @@ const BlogCategories = () => {
             {blogCategory?.map(
               ({ _id, title, image, slug }: TCategory, index: number) => (
                 <Link
-                  to={`/blog/category/${slug}`}
+                  to={`/category/${slug}`}
                   key={_id}
                   className={cx(
                     `h-24 ${XFull}`,

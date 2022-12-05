@@ -89,7 +89,7 @@ const BlogMain = () => {
                           <p className={cx(`text-sm text-gray-400`)}>
                             By{" "}
                             <Link
-                              to={`profile/${author.slugs}`}
+                              to={`/profile/${author.slugs}`}
                               className="text-gray-900"
                             >
                               {author.name}
