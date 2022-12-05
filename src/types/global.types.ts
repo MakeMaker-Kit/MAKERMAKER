@@ -145,6 +145,12 @@ export interface TContact {
   message: string;
 }
 
+export interface TAS<S> {
+  twitter: S;
+  instagram: S;
+  facebook: S;
+  linkedin: S;
+}
 export type TAUTHOR = {
   name?: string;
   slug?: { _type?: string; current?: string };
@@ -152,6 +158,7 @@ export type TAUTHOR = {
   readonly bio?: Object[];
   occupation?: string;
   social: string[];
+  socials: TAS<string>;
 };
 export type TCategories = {
   title?: string;

@@ -214,7 +214,7 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
   return (
     <>
       <div>
-        {/* @ts-igmore */}
+        {/* @ts-ignore */}
         <PortableText value={body} components={BlogPotabletextComponents} />
       </div>
     </>
