@@ -4,7 +4,11 @@ import TextWrapper from "../../../../appwrapper/textwrappers/TextWrapper";
 import { textStyles } from "../../../../../styles/themes/theme";
 import Button from "../../../../../hooks/button";
 import { themes, flexLayout } from "../../../../../styles/themes/theme";
-import { displayProduct, otherDisplay } from "../../../../../assets/images";
+import {
+  displayProduct,
+  otherDisplay,
+  kit,
+} from "../../../../../assets/images";
 import { BackpackIcon } from "@radix-ui/react-icons";
 import { productDisplayType } from "../../../../../types/global.types";
 import { urlFor } from "../../../../../client";
@@ -99,17 +103,15 @@ const MoreDisplay: React.FC<productDisplayType & { isReversed: boolean }> = ({
                       className={classNames(
                         `bg-center bg-no-repeat bg-cover bg-gradient-to-r from-gray-50 to-slate-200 max-w-full w-full h-full`
                       )}
-                      style={
-                        {
-                          // backgroundImage: `url(${urlFor(image).url()})`,
-                        }
-                      }
+                      style={{
+                        backgroundImage: `url(${kit})`,
+                      }}
                     />
                   </div>
                 </div>
               </div>
               {/* <div></div> */}
-              <div className={`${flexResponsive.flexRowColReverse}`}>
+              {/* <div className={`${flexResponsive.flexRowColReverse}`}>
                 <div
                   className={classNames(
                     `w-full md:w-full lg:w-four lg:max-w-four h-auto pl-3 `
@@ -150,7 +152,7 @@ const MoreDisplay: React.FC<productDisplayType & { isReversed: boolean }> = ({
                       ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
             {/* <div></div> */}
             {/*  */}

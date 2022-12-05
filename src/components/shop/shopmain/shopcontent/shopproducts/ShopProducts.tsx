@@ -34,9 +34,10 @@ const ShopProducts = ({
   const { ArchiveIcon } = useIcon();
   const dispatch = useDispatch();
   const openModal = () => {
+    // window.location.reload();
+
     dispatch(openShopComponent());
     navigate(`/shop/${slug}`, { replace: true });
-    // window.location.reload();
   };
 
   const AddToCart = () => dispatch(addToCart({ product }));

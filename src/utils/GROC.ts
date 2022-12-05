@@ -46,7 +46,8 @@ export const blogCategoryQuery = `*[_type == "category"]{
   _id,
   title,
   description,
-  image
+  image, 
+  "slug": slug.current
 }`;
 
 export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
