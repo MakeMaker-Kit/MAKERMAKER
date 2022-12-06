@@ -7,6 +7,7 @@ import cx from "classnames";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import SimpleReactLightBox, { ILightBoxProps } from "react-image-lightbox";
+import ImageViewer from "react-simple-image-viewer";
 // import {SRLWrapper} from 'react-image-lightbox';
 
 import {
@@ -21,7 +22,7 @@ const galleryContentss = [banner2, banner3, banner4, banner5];
 
 import { Offline, Online } from "react-detect-offline";
 
-const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
+const GalleryContents = ({ title, desc, gallery, images }: GalleryType) => {
   const { boxFull, transition } = themes;
   const { mainLayout, textCustom } = textStyles;
   const { flexCenter } = flexLayout;
@@ -29,54 +30,55 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(true);
   const { AiFillEye, AiOutlineCamera } = useIcon();
 
+  const openImageView = React.useCallback((index: number) => {
+    setPhotoIndex(index);
+    setIsOpen((prev) => !prev);
+  }, []);
+
+  const closeImageViewer = () => {
+    setPhotoIndex(0);
+    setIsOpen((prev) => !prev);
+  };
+
+  const imageString = images.map((image) => urlFor(image).url());
+  console.log("iamgestring", imageString);
   const galleryContents =
-    gallery &&
-    gallery?.map(({ _id, desc, image, sub, title }: TGALLERY) => (
-      <div className="lg:w-1/3 sm:w-1/2 p-4 group" key={_id}>
-        <div className="flex relative w-full h-[400px]">
-          <img
-            alt="gallery"
-            className="absolute inset-0 max-w-full w-full h-full object-cover object-center rounded-lg hover:opacity-60 hover:blackdrop-blur-sm"
-            loading-image={"lazy"}
-            title={`gallery_image_title`}
-            src={urlFor(image)
-              .minWidth(600)
-              .minHeight(600)
-              .width(600)
-              .height(600)
-              .maxWidth(500)
-              .maxHeight(500)
-              .url()}
-          />
-          {/* <div
-            className={`px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100 rounded-md ${mainLayout} ${textCustom}
-`}
-          >
-            <h2
-              className={cx(
-                `tracking-widest text-sm title-font font-medium text-indigo-500 mb-1`
-              )}
-            >
-              {sub}
-            </h2>
-            <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
-              {title}
-            </h1>
-            <p className="leading-relaxed">{desc}</p>
-          </div> */}
-          {/*Abolute position element */}
-          <div className={cx(`absolute top-1/2 left-1/2  `)}>
-            <div
-              className={`${boxFull} ${flexCenter} invisible group-hover:visible`}
-            >
-              <h1 className={`text-sm ${transition}`}>
-                <AiFillEye size={40} />
-              </h1>
+    images &&
+    // gallery?.map(({ _id, desc, image, sub, title }: TGALLERY) => (
+    images.map((image: string, i) => {
+      console.log("image", urlFor(image).url());
+      return (
+        <div className="lg:w-1/3 sm:w-1/2 p-4 group" key={i + 1}>
+          <div className="flex relative w-full h-[400px]">
+            <img
+              alt="gallery"
+              className="absolute inset-0 max-w-full w-full h-full object-cover object-center rounded-lg hover:opacity-60 hover:blackdrop-blur-sm"
+              loading-image={"lazy"}
+              title={`gallery_image_title`}
+              src={urlFor(image)
+                .minWidth(600)
+                .minHeight(600)
+                .width(600)
+                .height(600)
+                .maxWidth(500)
+                .maxHeight(500)
+                .url()}
+              onClick={() => openImageView(i)}
+            />
+            {/*Abolute position element */}
+            <div className={cx(`absolute top-1/2 left-1/2  `)}>
+              <div
+                className={`${boxFull} ${flexCenter} invisible group-hover:visible`}
+              >
+                <h1 className={`text-sm ${transition}`}>
+                  <AiFillEye size={40} />
+                </h1>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    ));
+      );
+    });
   return (
     <>
       <section className="text-gray-600 body-font">
@@ -92,35 +94,16 @@ const GalleryContents = ({ title, desc, gallery }: GalleryType) => {
             </p>
           </div>
           <div className="flex flex-wrap -m-4">
-            {/* {isOpen && (
-              <Lightbox
-                mainSrc={galleryContents.length && galleryContents[photoIndex]}
-                nextSrc={
-                  galleryContents[(photoIndex + 1) % galleryContents.length]
-                }
-                prevSrc={
-                  galleryContents[
-                    (photoIndex + galleryContents.length - 1) %
-                      galleryContents.length
-                  ]
-                }
-                onCloseRequest={() => setIsOpen((prevState) => !prevState)}
-                onMovePrevRequest={() =>
-                  setPhotoIndex(
-                    (prevIndex) =>
-                      prevIndex +
-                      galleryContents.length -
-                      (1 % galleryContents.length)
-                  )
-                }
-                onMoveNextRequest={() =>
-                  setPhotoIndex(
-                    (prevState) => prevState + (1 % galleryContents.length)
-                  )
-                }
-              />
-            )} */}
             {galleryContents}
+            {isOpen && (
+              <ImageViewer
+                src={imageString}
+                currentIndex={photoIndex}
+                disableScroll={true}
+                closeOnClickOutside={true}
+                onClose={closeImageViewer}
+              />
+            )}
           </div>
         </div>
       </section>
