@@ -28,6 +28,7 @@
     "axios": "^1.1.3",
     "classnames": "^2.3.2",
     "draft-js": "^0.11.7",
+    "file-selector": "^0.6.0",
     "formik": "^2.2.9",
     "google-map-react": "^2.2.0",
     "jsx-sfc.macro": "^1.6.0",

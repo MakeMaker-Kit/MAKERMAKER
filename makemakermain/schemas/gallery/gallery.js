@@ -14,6 +14,13 @@ export default {
       type: "text",
     },
     {
+      name: "mainimage",
+      title: "MainImage optional",
+      required: true,
+      type: "array",
+      of: [{ type: "image", options: [{ hotspot: true }] }],
+    },
+    {
       name: "gallerycontent",
       title: "Gallery Content",
       type: "array",

@@ -325,6 +325,7 @@ export interface TGALLERY {
 export interface GalleryType {
   title: string;
   desc: string;
+  images: string[];
   gallery: TGALLERY[];
 }
 
