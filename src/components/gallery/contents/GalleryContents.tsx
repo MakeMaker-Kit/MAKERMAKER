@@ -8,17 +8,6 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import SimpleReactLightBox, { ILightBoxProps } from "react-image-lightbox";
 import ImageViewer from "react-simple-image-viewer";
-// import {SRLWrapper} from 'react-image-lightbox';
-
-import {
-  banner1,
-  banner2,
-  banner3,
-  banner4,
-  banner5,
-} from "../../../assets/images";
-
-const galleryContentss = [banner2, banner3, banner4, banner5];
 
 import { Offline, Online } from "react-detect-offline";
 
@@ -27,7 +16,7 @@ const GalleryContents = ({ title, desc, gallery, images }: GalleryType) => {
   const { mainLayout, textCustom } = textStyles;
   const { flexCenter } = flexLayout;
   const [photoIndex, setPhotoIndex] = React.useState<number>(0);
-  const [isOpen, setIsOpen] = React.useState<boolean>(true);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const { AiFillEye, AiOutlineCamera } = useIcon();
 
   const openImageView = React.useCallback((index: number) => {
@@ -44,7 +33,6 @@ const GalleryContents = ({ title, desc, gallery, images }: GalleryType) => {
   console.log("iamgestring", imageString);
   const galleryContents =
     images &&
-    // gallery?.map(({ _id, desc, image, sub, title }: TGALLERY) => (
     images.map((image: string, i) => {
       console.log("image", urlFor(image).url());
       return (

@@ -28,7 +28,15 @@ const MainFooter = ({
   const { containerWrapper, themeWrapper, boxFull, XFull } = themes;
   const {} = themeWrapper;
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
-  const { FaLinkedinIn } = useIcon();
+  const { FaLinkedinIn, FiInstagram, FiFacebook, FaWhatsapp } = useIcon();
+  const socialIcons = [
+    { icon: <FaLinkedinIn /> },
+    { icon: <FiInstagram /> },
+    { icon: <FiFacebook /> },
+    { icon: <FaWhatsapp size={40} /> },
+  ];
+  const displayicons = (icons: { icon: JSX.Element }[]) =>
+    icons.map(({ icon }) => icon);
   return (
     <>
       <div className={`${flexRowCenterBetween} ${mainLayout} ${textCustom}`}>
@@ -51,10 +59,11 @@ const MainFooter = ({
             <Link
               to={`/tag/${name}`}
               key={index}
-              className={classNames(`w-8 p-2 h-8 bg-gray-50 border`)}
+              className={classNames(` p-2  bg-gray-50 border`)}
             >
               <div className={classNames(`${flexCenter} ${boxFull}`)}>
-                <FaLinkedinIn />
+                {/* {displayicons(socialIcons)} */}
+                facebook
               </div>
             </Link>
           ))}

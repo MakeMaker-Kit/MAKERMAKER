@@ -22,11 +22,13 @@ function useFilePicker({
 }: UseFilePickerConfig): FilePickerReturnTypes {
   const [files, setFiles] = React.useState<File[]>([]);
   const openFileSelector = accept instanceof Array ? accept.join(",") : accept;
+  // @ts-ignore
   openFileDialog(fileExtensions, multiple, (evt) => {
     fromEvent(evt).then((files) => {
       setFiles(files.map((file) => file as File) as File[]);
     });
   });
+  // @ts-ignore
   return [files, openFileDialog];
 }
 
