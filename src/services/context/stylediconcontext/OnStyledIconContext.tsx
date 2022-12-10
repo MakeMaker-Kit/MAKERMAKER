@@ -4,6 +4,7 @@ import { BlogQuery } from "../../../utils/querypaths";
 import { client } from "../../../client";
 import { AxiosError } from "axios";
 import { blogRelatedPost } from "../../../utils/GROC";
+import { toast } from "react-hot-toast";
 
 type AwesomeContextType = {
   awesomeState: number;
@@ -34,6 +35,24 @@ type AwesomeContextType = {
   setHomeBlog: React.Dispatch<React.SetStateAction<never[]>>;
   homeBlog: [];
   fetchHomeBlog: (queryResponse: string) => void;
+  setBlogReview: React.Dispatch<React.SetStateAction<never[]>>;
+  fetchBlogReview: (queryResponse: string) => void;
+  setFooterMain: React.Dispatch<React.SetStateAction<null>>;
+  footerMain: {
+    _id?: string;
+    name?: string;
+    desc?: string;
+    socials: {
+      _id?: string;
+      name?: string;
+      twitter?: string;
+      instagram?: string;
+      facebook?: string;
+      socialName: string[];
+    };
+    about: { logo?: string; desc?: string };
+  };
+  blogReview: [];
   contactInfo: {
     addressinfo: {
       address?: string;
@@ -45,6 +64,7 @@ type AwesomeContextType = {
   fetchContactInfo: (queryResponse: string) => void;
   setRelatedBlog: React.Dispatch<React.SetStateAction<never[]>>;
   relatedBlog: TRelatedBlogs;
+  fetchFoooterMain: (queryResponse: string) => void;
   fetchRelatedBlog: (queryResponse: string) => void;
 };
 export const AwesomeContext = React.createContext<null | AwesomeContextType>(
@@ -68,6 +88,8 @@ export const AwesomeContextProvider = ({ children }: Props) => {
   const [homeBlog, setHomeBlog] = React.useState([]);
   const [contactInfo, setContacInfo] = React.useState({});
   const [relatedBlog, setRelatedBlog] = React.useState([]);
+  const [blogReview, setBlogReview] = React.useState([]);
+  const [footerMain, setFooterMain] = React.useState(null);
   const toggleLoader = () => setIsLoading((curState) => !curState);
   const fetchBlogsByAuthorSlug = (queryResponse: string) => {
     client
@@ -201,6 +223,35 @@ export const AwesomeContextProvider = ({ children }: Props) => {
         return Error.response.data.errorMessage;
       });
   };
+
+  const fetchBlogReview: TFunction = (queryResponse) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        response && setIsLoading(false);
+        setBlogReview(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data.errorMessage;
+      });
+  };
+
+  const fetchFoooterMain: TFunction = (queryResponse) => {
+    client
+      .fetch(queryResponse)
+      .then((response) => {
+        response && setIsLoading(false);
+        // setBlogReview(response);
+        setFooterMain(response);
+      })
+      .catch((err: any) => {
+        let Error: AxiosError<ValidationError> = err;
+        if (!Error.response) throw Error;
+        return Error.response.data.errorMessage;
+      });
+  };
   const memiosedContextValue = React.useMemo(
     () => ({
       awesomeState,
@@ -229,6 +280,10 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       contactInfo,
       fetchRelatedBlog,
       relatedBlog,
+      blogReview,
+      fetchBlogReview,
+      fetchFoooterMain,
+      footerMain,
     }),
     [
       awesomeState,
@@ -254,9 +309,14 @@ export const AwesomeContextProvider = ({ children }: Props) => {
       contactInfo,
       fetchRelatedBlog,
       relatedBlog,
+      blogReview,
+      fetchBlogReview,
+      fetchFoooterMain,
+      footerMain,
     ]
   );
   return (
+    // @ts-ignore
     <AwesomeContext.Provider value={memiosedContextValue}>
       {children}
     </AwesomeContext.Provider>
@@ -266,6 +326,9 @@ export const AwesomeContextProvider = ({ children }: Props) => {
 export const useAwesomwContext = () => {
   const awesomeContext = React.useContext(AwesomeContext);
   if (!awesomeContext)
-    throw new Error(`You need to use these context in the provider `);
+    throw (
+      new Error(`You need to use these context in the provider `) &&
+      toast.error("You need to use these context in the provider ")
+    );
   return awesomeContext;
 };

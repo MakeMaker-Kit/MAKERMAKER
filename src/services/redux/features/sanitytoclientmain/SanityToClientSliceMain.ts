@@ -80,6 +80,12 @@ if (blogCategoryData || typeof blogCategoryData === "string") {
   blogCategoryResponse = JSON.parse(blogCategoryData);
 }
 
+const loginData = localStorage.getItem("loginState");
+let loginResponse;
+if (loginData || typeof loginData === "string") {
+  loginResponse = JSON.parse(loginData);
+}
+
 const initialState: sanityInitialState = {
   error: null,
 
@@ -120,7 +126,10 @@ const initialState: sanityInitialState = {
   blogCategories: blogCategoryResponse ? blogCategoryResponse : null,
 
   text: null,
+
   testdetails: null,
+
+  isLoggedIn: loginResponse ? loginResponse : false,
   // delete: null,
 };
 type SliceFunctionDefinition = (
@@ -382,6 +391,10 @@ export const SanityMainSlice = createSlice({
       });
       state.testdetails = result;
     },
+    setLogIn: (state) => {
+      state.isLoggedIn = !state.isLoggedIn;
+      localStorage.setItem("loginState", JSON.stringify(state.isLoggedIn));
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -494,7 +507,7 @@ const { actions, reducer } = SanityMainSlice;
 
 export default reducer;
 
-export const { fetchBlog, fetchSingleBlog } = actions;
+export const { fetchBlog, fetchSingleBlog, setLogIn } = actions;
 
 export const homeHeaderState = (state: RootState) =>
   state.sanityMain.homeHeader;
@@ -531,3 +544,5 @@ export const BlogCategory = (state: RootState) =>
 
 export const Text = (state: RootState) => state.sanityMain.text;
 export const TextDetails = (state: RootState) => state.sanityMain.testdetails;
+
+export const IsLoggedIn = (state: RootState) => state.sanityMain.isLoggedIn;

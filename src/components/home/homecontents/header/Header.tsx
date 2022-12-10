@@ -10,6 +10,7 @@ import Button from "../../../../hooks/button";
 import { TextWrapper } from "../../../appwrapper";
 import { HeaderApi } from "../../../../types/api.types";
 import { urlFor } from "../../../../client";
+import { Link, Navigator, useNavigate } from "react-router-dom";
 interface IProps {
   props: {}[];
 }
@@ -19,6 +20,7 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
   const { marX, padY } = themeWrapper;
   const { flexRow, flexResponsive, flexStart, flexCenter } = flexLayout;
   const { textCustom, mainLayout, mainText } = textStyles;
+  const navigate = useNavigate();
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>
@@ -59,7 +61,11 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
               </div>
               {/*  */}
               <div>
-                <Button handleClick={() => {}}>Book A Science Kit</Button>
+                <Button
+                  handleClick={() => navigate("/contactus", { replace: true })}
+                >
+                  Contact Us
+                </Button>
               </div>
             </div>
           </div>
@@ -72,7 +78,11 @@ const Header: React.FC<HeaderApi> = (props: HeaderApi) => {
               <div
                 className={`bg-[url(${backgroundHeader})] max-w-full w-full h-full bg-no-repeat bg-center bg-cover opacity-80 bg-gradient-to-r  from-gray-500 to-slate-200`}
                 style={{
-                  backgroundImage: `url(${urlFor(image)})`,
+                  backgroundImage: `url(${urlFor(image)
+                    .quality(1)
+                    .crop("center")
+                    .fit("scale")
+                    .url()})`,
                 }}
               ></div>
             </div>

@@ -7,9 +7,24 @@ import {
 } from "../../../../styles/themes/theme";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { useDispatch } from "react-redux";
-import { openShopComponent } from "../../../../services/redux/features/globalslice/GlobalStateSlice";
+import {
+  openShopComponent,
+  toggleCartModal,
+} from "../../../../services/redux/features/globalslice/GlobalStateSlice";
+import { TProduct } from "../../../../types/global.types";
+import { urlFor } from "../../../../client";
 
-const DetailCard = () => {
+const DetailCard = ({ product }: TProduct) => {
+  const {
+    _id,
+    price,
+    categories,
+    defaultVariant,
+    slug,
+    stockItems,
+    title,
+    discount,
+  } = product as TProduct;
   const { boxFull, imageLayout, transitions, transitionEase } = themes;
   const { flexCol, flexRowCenter, flexCenter, flexRowCenterBetween } =
     flexLayout;
@@ -17,13 +32,14 @@ const DetailCard = () => {
   const { ArchiveIcon, BiCartAlt } = useIcon();
   const dispatch = useDispatch();
   const openModal = () => dispatch(openShopComponent());
+  const openCart = () => dispatch(toggleCartModal());
   return (
     <>
       <li
         className={cx(
           `flex-[0_0_23.5%] w-full max-w-[23.5%] shadow-md p-4 rounded-md bg-white hover:shadow-lg hover:translate-x-1 hover:translate-y-1 hover:backdrop-blur-md hover:opacity-70 ${transitions}`
         )}
-        onClick={openModal}
+        // onClick={openModal}
       >
         <div className={cx(`${boxFull} ${flexCol} `)}>
           <div className={cx(`h-64 w-full relative`)}>
@@ -32,11 +48,22 @@ const DetailCard = () => {
               className={`py-1 px-2 rounded-md shadow absolute top-0 right-0 text-xs border border-dotted border-orange whitespace-nowrap`}
             >
               <div className={`${flexCenter} ${boxFull} `}>
-                <p>20%</p>
+                <p>{discount}%</p>
               </div>
             </div>
             <img
-              src="https://pickbazar-react.vercel.app/_next/image?url=https%3A%2F%2Fpickbazarlaravel.s3.ap-southeast-1.amazonaws.com%2F184%2Fcodfillet_u0mti1.jpg&w=1920&q=75"
+              src={
+                defaultVariant &&
+                urlFor(defaultVariant.images[0])
+                  .minWidth(100)
+                  .minWidth(100)
+                  .quality(10)
+                  .blur(10)
+                  .ignoreImageParams()
+                  .saturation(10)
+                  .forceDownload(true)
+                  .url()
+              }
               alt=""
               className={cx(`${imageLayout} object-center`)}
             />
@@ -50,11 +77,11 @@ const DetailCard = () => {
             <div
               className={`${flexRowCenter} space-x-2 font-semibold text-gray-800 tracking-wide`}
             >
-              <p className={``}>$49</p>
+              <p className={``}>{price} NGN</p>
               <p className={`line-through`}>00</p>
             </div>
             <div>
-              <p className={`font-semibold tracking-wide`}>Arduino Uno Board</p>
+              <p className={`font-semibold tracking-wide`}>{title}</p>
             </div>
             {/*  */}
             <div
@@ -64,7 +91,7 @@ const DetailCard = () => {
               )}
             >
               <div className="">
-                <h2>$90.00</h2>
+                <h2>{price} NGN </h2>
               </div>
               {/*  */}
               <div
@@ -72,7 +99,10 @@ const DetailCard = () => {
                   `px-3 py-1 border-2 border-gray-400 rounded-full shadow-xl`
                 )}
               >
-                <div className={cx(`${boxFull} ${flexRowCenter} gap-x-3`)}>
+                <div
+                  className={cx(`${boxFull} ${flexRowCenter} gap-x-3`)}
+                  onClick={openCart}
+                >
                   <BiCartAlt />
                   <p>Cart</p>
                 </div>

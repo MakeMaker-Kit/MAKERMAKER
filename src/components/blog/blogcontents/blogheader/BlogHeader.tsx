@@ -1,8 +1,13 @@
 import React from "react";
 import cx from "classnames";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MainButton from "../../../../hooks/button/mainBTN";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { USEContext } from "../../../../services/context/learncontext/LearnContext";
+import { TFooters } from "../../../../types/global.types";
+import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
+import { FiFacebook, FiInstagram } from "react-icons/fi";
 import {
   textStyles,
   flexLayout,
@@ -15,7 +20,12 @@ const BlogHeader = () => {
   const { themeWrapper, boxFull, XFull, containerWrapper } = themes;
   const { mainMarX } = themeWrapper;
   const navigate = useNavigate();
-  const { BsTwitter } = useIcon();
+  const { BsTwitter, FaLinkedinIn, FaWhatsapp, FiFacebook, FiInstagram } =
+    useIcon();
+  const { state } = USEContext();
+  const { footerData } = state;
+  // @ts-ignore
+  const { footermain, footerabout }: TFooters = footerData;
   return (
     <>
       <div className={`${boxFull}  `}>
@@ -49,24 +59,55 @@ const BlogHeader = () => {
                         className={`absolute top-1/4 left-3 w-32
                       `}
                       >
-                        <MainButton isRounded={true}>Shop Now</MainButton>
+                        <MainButton
+                          isRounded={true}
+                          handleClick={() =>
+                            navigate("/shop6", { replace: true })
+                          }
+                        >
+                          Shop Now
+                        </MainButton>
                       </div>
                     </div>
                   </div>
                 </div>
+                {/* Social Links */}
                 <ul className={`${flexRowCenter} space-x-5`}>
-                  {Array(4)
+                  {/* {Array(4)
                     .fill(0)
-                    .map((i) => (
-                      <li
-                        className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
-                        key={i}
-                      >
-                        <div className={cx(`${boxFull} ${flexCenter}`)}>
-                          <BsTwitter className={`w-3 h-3`} />
-                        </div>
-                      </li>
-                    ))}
+                    .map((i) => ( */}
+                  {/* ))} */}
+                  <li
+                    className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
+                  >
+                    <div className={cx(`${boxFull} ${flexCenter}`)}>
+                      <FiFacebook className={`w-3 h-3`} />
+                    </div>
+                  </li>
+                  <Link
+                    to={`${footermain?.socials?.linkedIn}`}
+                    className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
+                  >
+                    <div className={cx(`${boxFull} ${flexCenter}`)}>
+                      <FaLinkedinIn className={`w-3 h-3`} />
+                    </div>
+                  </Link>
+                  <Link
+                    to={`${footermain?.socials?.twitter}`}
+                    className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
+                  >
+                    <div className={cx(`${boxFull} ${flexCenter}`)}>
+                      <BsTwitter className={`w-3 h-3`} />
+                    </div>
+                  </Link>
+                  <Link
+                    to={`${footermain?.socials?.instagram}`}
+                    className={`h-10 w-10 p-2 bg-gray-50 border border-dotted rounded-full shadow-md `}
+                  >
+                    <div className={cx(`${boxFull} ${flexCenter}`)}>
+                      <FiInstagram className={`w-3 h-3`} />
+                    </div>
+                  </Link>
                 </ul>
               </div>
             </div>

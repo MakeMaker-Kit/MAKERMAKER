@@ -2,13 +2,32 @@ import React from "react";
 import cx from "classnames";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import MainButton from "../../../../hooks/button/mainBTN";
+import { TProduct } from "../../../../types/global.types";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { urlFor } from "../../../../client";
 import {
   flexLayout,
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import {
+  addToCart,
+  decrementProduct,
+  incrementProduct,
+  ProductQuantity,
+  removeFromCart,
+} from "../../../../services/redux/features/productslice/ProductSlice";
 
-const Contents = () => {
+const Contents = ({
+  price,
+  title,
+  stockItems,
+  categories,
+  defaultVariant,
+  product,
+  _id,
+}: TProduct) => {
   const {
     flexCol,
     flexStart,
@@ -18,7 +37,12 @@ const Contents = () => {
   } = flexLayout;
   const { boxFull } = themes;
   const { mainLayout, textCustom } = textStyles;
-  const { HeartIcon } = useIcon();
+  const { HeartIcon, AiFillPlusCircle, AiFillMinusCircle } = useIcon();
+  const productQuan = useSelector(ProductQuantity);
+  const dispatch = useDispatch();
+  const increaseProduct = () => dispatch(incrementProduct());
+  const decreaseProduct = () => dispatch(decrementProduct({ product }));
+  const AddToCart = () => dispatch(addToCart({ product }));
 
   return (
     <>
@@ -26,7 +50,7 @@ const Contents = () => {
         {/*  */}
         <div className={`${flexCol} space-y-12`}>
           <div className={`${flexRowCenterBetween}`}>
-            <h1>Swordfish Fillet</h1>
+            <h1 className={`text-2xl font-bold  tracking-widest`}>{title}</h1>
             <div
               className={cx(
                 `h-10 w-10 p-2 border border-orange outline-fuchsia-50 rounded-full`
@@ -53,13 +77,9 @@ const Contents = () => {
           </div>
           {/*  */}
           <div
-            className={`${flexStart} font-light tracking-wide text-start leading-relaxed`}
+            className={`${flexStart} font-light tracking-widest leading-9 text-start `}
           >
-            <p>
-              The swordfish meat has a very delicate flavour, meaty and mild.
-              Swordfish, also known as broadbills, is an oily fish similar to
-              tuna, chunky meat without bones.
-            </p>
+            <p>{defaultVariant?.description}</p>
           </div>
           {/*  */}
           <p className={cx(`text-start`)}>Read More</p>
@@ -67,38 +87,82 @@ const Contents = () => {
 
         {/*  */}
         <div className={cx(`${flexStart} ${flexRowCenter} space-x-3`)}>
-          <h1 className={`text-4xl`}>$75.1 </h1>
+          <h1 className={`text-4xl`}>{price}NGN</h1>
           <p className={`text-lg`}>$23</p>
         </div>
         {/*  */}
         <div className={`${flexCol} space-y-6`}>
           {/*  */}
           <div className={`${flexRowCenterBetween}`}>
-            <div className={`w-full max-w-seven`}>
-              <MainButton isRounded={true}>Add To Shopping Cart</MainButton>
+            <div className={`w-full max-w-seven ${flexRowCenter} space-x-4`}>
+              <div className={`w-full max-w-six`}>
+                <MainButton isRounded={true} handleClick={AddToCart}>
+                  Add To Shopping Cart
+                </MainButton>
+              </div>
+              <div className={`w-full max-w-four`}>
+                <div
+                  className={cx(
+                    `${flexRowCenter} space-x-1 ${mainLayout} ${textCustom} text-2xl`,
+                    `cursor-pointer`
+                  )}
+                >
+                  <span
+                    onClick={decreaseProduct}
+                    className={`w-8 h-8 border rounded-full`}
+                  >
+                    <p className={`${boxFull} ${flexCenter}`}>
+                      <AiFillMinusCircle />
+                    </p>
+                  </span>
+                  <span className={`${mainLayout} ${textCustom} text-sm px-2`}>
+                    {productQuan}{" "}
+                  </span>
+                  <span
+                    onClick={increaseProduct}
+                    className={`w-8 h-8 border rounded-full`}
+                  >
+                    <p className={`${boxFull} ${flexCenter}`}>
+                      <AiFillPlusCircle />
+                    </p>
+                  </span>
+                </div>
+              </div>
             </div>
-            <p className={`whitespace-nowrap`}>9 items Remaining </p>
+            <p className={`whitespace-nowrap tracking-widest`}>
+              {stockItems ? stockItems : "only one "} item(s) Remaining{" "}
+            </p>
           </div>
           {/*  */}
           <div className="w-full h-px bg-gray-900" />
           {/*  */}
           <div className={`${flexRowCenter} space-x-4`}>
-            <p>Categories</p>
+            <p className={`font-black tracking-wider`}>Categories</p>
             <div className={`${flexRowCenter} space-x-3`}>
-              {Array(3)
-                .fill(0)
-                .map((i) => (
+              {/* @ts-ignore */}
+              {categories.map(
+                ({
+                  title,
+                  slug,
+                  _id,
+                }: {
+                  _id?: string;
+                  slug?: string;
+                  name?: string;
+                  title?: string;
+                }) => (
                   <div
-                    key={i}
+                    key={_id}
                     className={`p-2 border border-orange rounded-md`}
                   >
                     <div
                       className={`${flexCenter} ${boxFull} whitespace-nowrap`}
                     >
-                      <p>Rice and Beans</p>
+                      <p>{title}</p>
                     </div>
                   </div>
-                ))}
+                )
+              )}
             </div>
           </div>
           {/*  */}

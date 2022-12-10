@@ -10,6 +10,8 @@ import { useAwesomwContext } from "../../../../../services/context/stylediconcon
 import { TRelatedBlogs, TRelated } from "../../../../../types/global.types";
 import { urlFor } from "../../../../../client";
 import moment from "moment";
+import { Link } from "react-router-dom";
+
 const RelatedCard = ({
   _id,
   body,
@@ -38,8 +40,14 @@ const RelatedCard = ({
   }, []);
   return (
     <>
-      <div className={`w-full ${flexCol} h-auto`}>
-        <div className={cx(`h-[300px] relative`)}>
+      <div
+        className={`w-full ${flexCol} h-auto`}
+        onClick={() => {
+          window.location.reload();
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
+        <Link to={`/blog/${slug}`} className={cx(`h-[300px] relative`)}>
           <img
             src={urlFor(mainImage).url()}
             alt=""
@@ -52,10 +60,12 @@ const RelatedCard = ({
             <p
               className={`${boxFull} ${flexCenter} ${mainLayout} ${textCustom}`}
             >
-              <span>{categories.title}</span>
+              <Link to={`/category/${categories.slug}`}>
+                {categories.title}
+              </Link>
             </p>
           </div>
-        </div>
+        </Link>
         <div className={cx(`p-5`)}>
           <div
             className={`${boxFull} ${flexCol} space-y-5 ${textCustom} ${mainLayout}`}
@@ -66,7 +76,12 @@ const RelatedCard = ({
                 <AiFillCalendar />
                 <p>{moment(publishedAt).utc().format("YYYY-MMM-DD")}</p>
               </div>
-              <p>{author.name}</p>
+              <Link
+                to={`/profile/${author.slug}`}
+                className={`hover:underline`}
+              >
+                {author.name}
+              </Link>
             </div>
             {/*  */}
             <div className={`line-clamp-3`}>
@@ -85,11 +100,15 @@ const RelatedCard = ({
 const BlogMainRelated = ({ categories, related, title }: TRelatedBlogs) => {
   const { boxFull, XFull, containerWrapper } = themes;
   const { flexCol, flexRow, flexWrap, flexColBetween } = flexLayout;
-  const {} = textStyles;
+  const { mainLayout, textCustom } = textStyles;
   return (
     <>
-      <div className={`${XFull} ${flexCol}`}>
-        <h1>Related Posts</h1>
+      <div className={`${XFull} ${flexCol} space-y-5 my-10`}>
+        <h1
+          className={`${mainLayout} ${textCustom} text-lg font-bold tracking-wider `}
+        >
+          Related Posts
+        </h1>
         {/*  */}
         <div className={cx(`w-full ${flexRow} ${flexWrap} gap-4`)}>
           {related?.map((post) => (

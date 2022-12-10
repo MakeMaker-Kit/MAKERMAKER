@@ -1,3 +1,5 @@
+import { TProduct } from "./../../../types/global.types";
+
 export interface globalInitialState {
   message: string;
   page: number;
@@ -49,6 +51,7 @@ export interface sanityInitialState {
   blogCategories?: null | {} | TBlogCat;
   text?: null | {};
   testdetails?: null | {};
+  isLoggedIn?: boolean;
 }
 export interface TContactForm {
   [key: string]: string | undefined;
@@ -71,11 +74,12 @@ export interface TCart {
   stockitems: number;
 }
 export interface ProductStateTypes {
+  [key: string]: string | undefined | number | Boolean | boolean | TProduct[];
   productQuantity: number;
   totalQuantity: number;
   readonly totalPrice: number;
   productIndexQuantity: number;
-  cart?: TCart[];
+  cart: TProduct[];
   isItemsAdded: boolean | Boolean;
   ShouldCartBeCleared: Boolean | boolean;
   ShouldCartBeReset: Boolean | boolean;

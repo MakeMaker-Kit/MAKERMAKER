@@ -9,7 +9,9 @@ import {
 } from "../../../../styles/themes/theme";
 import { HomeIcon } from "@radix-ui/react-icons";
 import { homeNavData } from "../../../../utils/homeData";
-import { NavItemTypes } from "../../../../types/global.types";
+import { NavItemTypes, TBlogs } from "../../../../types/global.types";
+import { useAwesomwContext } from "../../../../services/context/stylediconcontext/OnStyledIconContext";
+import { urlFor } from "../../../../client";
 
 interface Props {
   name: string;
@@ -28,8 +30,10 @@ const NavbarBtnDropdown = (props: Props) => {
     flexStart,
     flexColBetween,
     flexColCenter,
+    flexCenter,
   } = flexLayout;
   const { mainLayout, textCustom } = textStyles;
+  const { blogPosts } = useAwesomwContext();
   return (
     <>
       <div className={`relative  inline-block text-center z-[999]`}>
@@ -113,36 +117,65 @@ const NavbarBtnDropdown = (props: Props) => {
                         `${flexColBetween} ${textCustom} ${mainLayout}`
                       )}
                     >
-                      <h1>Hello world </h1>
+                      <h1>Our Blogs </h1>
                       {/* Main Contents */}
                       <div
                         className={`px-10  h-[400px] max-h-[400px] overflow-y-scroll scrollbar-hide `}
                       >
-                        {Array(20)
-                          .fill(0)
-                          .map((i) => (
-                            <div
-                              key={i}
-                              className={`${XFull} max-w-full ${flexRow}`}
-                            >
-                              {/*  */}
-                              <div className={`w-full max-w-two border `}>
-                                <ul className={`${XFull} `}>
-                                  <li className={`h-20`}>
-                                    <img
-                                      src="https://www.pngitem.com/pimgs/m/161-1618619_image-e-commerce-png-transparent-png.png"
-                                      alt=""
-                                      className={`max-w-full w-full h-full object-center object-cover`}
-                                    />
-                                  </li>
-                                </ul>
+                        {blogPosts &&
+                          blogPosts.map(
+                            (
+                              { _id, description, mainImage }: TBlogs,
+                              index
+                            ) => (
+                              <div
+                                key={_id}
+                                className={`${XFull} max-w-full ${flexRow}`}
+                              >
+                                {/*  */}
+                                <div className={`w-full max-w-two border `}>
+                                  <ul className={`${XFull} `}>
+                                    <li className={`h-20`}>
+                                      <img
+                                        src={urlFor(mainImage && mainImage)
+                                          .auto("format")
+                                          .bg("")
+                                          .blur(1)
+                                          .crop("entropy")
+                                          .forceDownload(true)
+                                          .height(200)
+                                          .width(200)
+                                          .maxHeight(300)
+                                          .maxWidth(300)
+                                          .quality(100)
+                                          .url()}
+                                        alt=""
+                                        className={`max-w-full w-full h-full object-center object-cover`}
+                                      />
+                                    </li>
+                                  </ul>
+                                </div>
+                                {/*  */}
+                                <div
+                                  className={`w-full max-w-eight border h-20`}
+                                >
+                                  <div
+                                    className={classNames(
+                                      `${flexCenter} ${boxFull}`
+                                    )}
+                                  >
+                                    <h1
+                                      className={classNames(
+                                        `${textCustom} ${mainLayout} text-xs stroke-current line-clamp-3`
+                                      )}
+                                    >
+                                      {description}
+                                    </h1>
+                                  </div>
+                                </div>
                               </div>
-                              {/*  */}
-                              <div className={`w-full max-w-eight border h-20`}>
-                                <h1>djjjddjj</h1>
-                              </div>
-                            </div>
-                          ))}
+                            )
+                          )}
                         {/*  */}
                       </div>
                       <div>

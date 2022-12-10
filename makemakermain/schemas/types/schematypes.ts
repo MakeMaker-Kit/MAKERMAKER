@@ -146,10 +146,11 @@ interface DatetimeFieldDef<Name extends string>
   };
 }
 
-interface GeopointValue {
+interface GeopointValue<T> {
   alt: number;
   lat: number;
   lng: number;
+  readonly title?: number | T;
 }
 
 /** @link https://www.sanity.io/docs/geopoint-type#validation */

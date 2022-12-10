@@ -13,12 +13,14 @@ import { useIcon } from "../../../../hooks/dispatchContext";
 import { AiOutlineGooglePlus } from "react-icons/ai";
 import { supabase } from "../../../db/database/Database";
 import { client } from "../../../../client";
+import toast from "react-hot-toast";
 import {
   EMAIL_ADDREESS_REGEX,
   USER_REGEX,
   phoneRegExp,
   PASSWORD_REGEX,
 } from "../Regex";
+import TextField from "../../../../components/home/homecontents/homecontact/textfield/TextField";
 
 const Register: React.FC<AuthContentType> = ({
   generateTitle,
@@ -59,115 +61,174 @@ const Register: React.FC<AuthContentType> = ({
             if (!values.fullName) {
               errors.fullName = "Required";
             } else if (!USER_REGEX.test(values.fullName)) {
-              fullName = "Invalid FUllName";
+              errors.fullName =
+                " FUllName must contain one word and maximum of 6 letters";
             }
             //
             if (!values.email) {
-              email = "Email Required";
+              errors.email = "Email Required";
             } else if (!EMAIL_ADDREESS_REGEX.test(values.email)) {
-              email = "Invalid Email Address";
+              errors.email = "Invalid Email Address";
             }
             //
             if (!values.phoneNumber) {
-              phoneNumber = "Phone Number Required";
+              errors.phoneNumber = "Phone Number Required";
             } else if (!phoneRegExp.test(values.phoneNumber)) {
-              phoneNumber = "Invalid Phone Number ";
+              errors.phoneNumber = "Invalid Phone Number ";
             }
             //
             if (!values.password) {
-              password = "Your Password is Required";
+              errors.password = "Your Password is Required";
             } else if (!PASSWORD_REGEX.test(values.password)) {
-              password = "Invalid Password ";
+              errors.password = "Invalid Password ";
             }
             //
             if (!values.password) {
-              comfirmPassword = "Invalid";
+              errors.comfirmPassword = "Invalid";
             } else if (
               values.comfirmPassword !== values.password &&
               !PASSWORD_REGEX.test(values.comfirmPassword)
             ) {
-              comfirmPassword = "Your Password dosen't match";
+              errors.comfirmPassword = "Your Password dosen't match";
             }
+            return errors;
           }}
-          // if (!values.)
-          onSubmit={async (values, { setStatus, setSubmitting }) => {
+          onSubmit={async (values, { setStatus, setSubmitting, resetForm }) => {
+            const { email, fullName, password, phoneNumber } = values;
+            setSubmitting(true);
+            toast.success("Submitting Your Response");
+            const AuthValues = { password, email, fullName, phoneNumber };
             try {
-              const { error, data } = await supabase.auth.signUp(values);
+              const { error, data } = await supabase.auth.signUp(AuthValues);
+
               const DBDetails = {
                 _type: "userData",
-                ...data,
+                ...AuthValues,
               };
-              if (data) {
-                client.create(DBDetails).then(() => {
-                  setSubmitting(false);
-                  setStatus(false);
-                  setPage((currentPage) => currentPage + 1);
-                });
+
+              if (data && !error) {
+                setSubmitting(false);
+                setStatus(false);
+                setPage((currentPage) => currentPage + 1);
               } else if (error) {
-                throw error;
+                throw error && toast.error(error.message) && resetForm();
               }
             } catch (error: unknown) {
               if (error instanceof Error) {
-                return error.message;
+                return error.message && toast.error("Signup error");
               }
             }
           }}
         >
           {(formik) => {
-            const { handleChange, values } = formik;
+            const {
+              handleChange,
+              values,
+              handleBlur,
+              handleReset,
+              errors,
+              touched,
+              handleSubmit,
+              isSubmitting,
+            } = formik;
             const { comfirmPassword, email, fullName, password, phoneNumber } =
               values;
             return (
               <>
-                <form className={cx(`${boxFull} ${flexColBetween} `)}>
+                <form
+                  className={cx(`${boxFull} ${flexColBetween} `)}
+                  onSubmit={handleSubmit}
+                >
                   <div className={cx(`h-[90%] max-h-[90%] px-5 py-3 w-full`)}>
                     <div
                       className={`${boxFull}  ${flexCol} space-y-5 items-center`}
                     >
                       <div className={`${XExtend}`}>
-                        <Input
-                          isRounded={true}
-                          placeholder={`Enter your FullName `}
-                          value={""}
-                          name={fullName}
+                        <TextField
+                          label=""
+                          name="fullName"
+                          placeholder="Enter Your fullName"
+                          value={fullName}
+                          error={errors.fullName}
+                          touched={touched.fullName}
+                          handleChange={handleChange}
+                          type={"text"}
+                          title={"fullName"}
+                          onBlur={handleBlur}
                         />
                       </div>
                       {/*  */}
                       <div className={`${flexRowCenter} space-x-2`}>
                         <div className={`max-w-five w-five`}>
-                          <Input
-                            isRounded={true}
-                            placeholder={`Ènter Your Email`}
-                            name={email}
+                          <TextField
+                            label=""
+                            name="email"
+                            placeholder="Enter Your Email"
+                            value={email}
+                            error={errors.email}
+                            touched={touched.email}
+                            handleChange={handleChange}
+                            type={"email"}
+                            title={"email"}
+                            onBlur={handleBlur}
                           />
                         </div>
                         <div className={`max-w-five w-five`}>
-                          <Input
-                            isRounded={true}
-                            placeholder={`Ènter Your Phone Number`}
-                            name={phoneNumber}
+                          <TextField
+                            label=""
+                            name="phoneNumber"
+                            placeholder="Your phoneNumber"
+                            value={phoneNumber}
+                            error={errors.phoneNumber}
+                            touched={touched.phoneNumber}
+                            handleChange={handleChange}
+                            type={"number"}
+                            title={"phoneNumber"}
+                            onBlur={handleBlur}
                           />
                         </div>
                       </div>
 
                       {/*  */}
                       <div className={`${XExtend}`}>
-                        <Input
-                          isRounded={true}
-                          placeholder={`Enter your Password `}
-                          name={password}
+                        <TextField
+                          label=""
+                          name="password"
+                          placeholder="Your Password"
+                          value={password}
+                          error={errors.password}
+                          touched={touched.password}
+                          handleChange={handleChange}
+                          type={"password"}
+                          title={"password"}
+                          onBlur={handleBlur}
                         />
                       </div>
                       <div className={`${XExtend}`}>
-                        <Input
-                          isRounded={true}
-                          placeholder={`Confirm your Password `}
-                          name={comfirmPassword}
+                        <TextField
+                          label=""
+                          name="comfirmPassword"
+                          placeholder="Confirm your Password"
+                          value={comfirmPassword}
+                          error={errors.comfirmPassword}
+                          touched={touched.comfirmPassword}
+                          handleChange={handleChange}
+                          type={"password"}
+                          title={"comfirmPassword"}
+                          onBlur={handleBlur}
                         />
                       </div>
                       {/* Login Button */}
                       <div className={` w-full max-w-nine `}>
-                        <MainButton isRounded={true}>Login</MainButton>
+                        <MainButton
+                          isRounded={true}
+                          type="submit"
+                          onError={() => toast.error("Error Detected")}
+                          onErrorCapture={() => toast.error("Error Detected")}
+                          disabled={isSubmitting}
+                        >
+                          Register
+                        </MainButton>
                       </div>
                       {/*  */}
                       <div

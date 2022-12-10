@@ -10,14 +10,59 @@ import {
 import DetailMoreWrapper from "./detailmain/DetailMoreWrapper";
 import DetailMore from "./detailmore/DetailMore";
 import ProductMore from "./detailproducts/ProductMore";
+import {
+  TFunction,
+  USEContext,
+} from "../../../services/context/learncontext/LearnContext";
+import { client } from "../../../client";
+import {
+  fetchRelatedProducts,
+  fetchSingleProducts,
+} from "../../../services/context/learncontext/types/IVehicle";
+import { RelatedProducts, SingleProduct } from "../../../utils/GROC";
+import { useParams } from "react-router-dom";
 
 const ShopDetailLayout = () => {
   const { containerWrapper, boxFull } = themes;
   const { flexCol } = flexLayout;
   const {} = textStyles;
-  const dispatch = useDispatch();
+  const dispatchs = useDispatch();
   const modalState = useSelector(openShopModal);
-  const closeModal = () => dispatch(closeShopComponent());
+  const closeModal = () => dispatchs(closeShopComponent());
+  const { state, dispatch } = USEContext();
+  const { singleProduct, relatedProducts } = state;
+  const params = useParams();
+  const { id } = params;
+  const fetchSingleProduct: TFunction = async (payloadResponse) => {
+    let RelatedQuery: string;
+    return await client
+      .fetch(payloadResponse)
+      .then((res) => {
+        if (res) {
+          return res && fetchSingleProducts(dispatch, res);
+        } else if (res) {
+          console.log("res res", res);
+
+          RelatedQuery = RelatedProducts(res);
+          client.fetch(RelatedQuery).then((response) => {
+            response && fetchRelatedProducts(dispatch, response);
+            return fetchRelatedProducts(dispatch, response);
+          });
+        }
+        return res && fetchSingleProducts(dispatch, res);
+      })
+      .catch((err) => err instanceof Error && err.message);
+  };
+
+  React.useEffect(() => {
+    let cancelled = false;
+    !cancelled && fetchSingleProduct(SingleProduct(id));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  console.log("single Product", singleProduct, relatedProducts);
+
   return (
     <>
       <div>
@@ -51,13 +96,18 @@ const ShopDetailLayout = () => {
                       // ${containerWrapper}
                     >
                       {/* Product maain */}
-                      <DetailMoreWrapper />
+                      {/* @ts-ignore */}
+                      <DetailMoreWrapper
+                        {...singleProduct}
+                        product={singleProduct}
+                      />
                       {/* prodcut moe  */}
                       <div className="w-full h-2 bg-gray-900" />
-                      <DetailMore />
+                      {/* @ts-ignore */}
+                      <DetailMore {...singleProduct} />
                       <div className="w-full h-1 bg-gray-900" />
                       {/* more products display @apply  */}
-                      <ProductMore />
+                      <ProductMore {...relatedProducts} />
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>

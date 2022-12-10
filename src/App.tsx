@@ -1,6 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Blogs from "./views/Blogs";
+import ShopDetailLayout from "./components/shop/shopdetail/ShopDetailLayout";
+import { useSelector } from "react-redux";
+import { IsLoggedIn } from "./services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { Cart } from "./services/redux/features/productslice/ProductSlice";
+import { toast } from "react-hot-toast";
+import { AppContact } from "./pages";
 import {
   BlogCategory,
   BlogProfile,
@@ -8,8 +14,15 @@ import {
   BlogTag,
   Home,
   Shop,
+  ShopDetail,
+  Checkout,
+  NotFound,
+  Gallery,
 } from "./views";
+
 const App = () => {
+  const isLogged = useSelector(IsLoggedIn);
+  const cartItems = useSelector(Cart);
   return (
     <>
       <Routes>
@@ -24,7 +37,20 @@ const App = () => {
         {/* Shop / Ecommerce Routes */}
         <Route path="/shop" element={<Shop />} />
         <Route path="/categories/:id" element={""} />
-        <Route path="/shop/:id" element={""} />
+        <Route path="/shop/:id" element={<Shop />} />
+        {(isLogged && cartItems.length == 0) ||
+        (cartItems.length > 1 &&
+          toast.error("You are not yet Authenticated ", {
+            duration: 4000,
+            className: `text-xs`,
+          })) ? (
+          <Route path="/" element={<Home />} />
+        ) : (
+          <Route path="/review" element={<Checkout />} />
+        )}
+        <Route path="/*" element={<NotFound />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path={"/contactus"} element={<AppContact />} />
       </Routes>
     </>
   );

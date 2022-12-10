@@ -18,10 +18,11 @@ const BlogProfileMainLayout = ({
   title,
   author,
   mainImage,
-  categories,
+  category,
   date,
   slug,
   description,
+  id,
 }: {
   title?: string;
   body?: TypedObject[];
@@ -30,15 +31,15 @@ const BlogProfileMainLayout = ({
   slug?: string;
   date?: string;
   description?: string;
-  categories: {
+  category: {
     title?: string;
     description?: string;
     image?: string;
-    slug: { current: string };
-  }[];
+    slug: string;
+  };
   tags: {}[];
   author: TAUTHOR;
-}) => {
+} & { id?: string }) => {
   const {
     flexCol,
     flexRow,
@@ -55,7 +56,7 @@ const BlogProfileMainLayout = ({
   const { ArchiveIcon } = useIcon();
   return (
     <>
-      <div className={cx(`${flexCol} space-y-6`)}>
+      <div className={cx(`${flexCol} space-y-6 border-y`)}>
         <div
           className={`${flexRowCenter} space-x-2 ${textCustom} ${mainLayout} text-lg font-black capitalize`}
         >
@@ -86,16 +87,17 @@ const BlogProfileMainLayout = ({
                     isRounded={true}
                     bgColor={`bg-blue-100`}
                     textColor={`text-gray-800`}
-                    handleClick={() =>
-                      navigate(`/category/${categories[0].slug}`)
-                    }
+                    handleClick={() => navigate(`/category/${category.slug}`)}
                   >
-                    {categories[0].title}
+                    {category.title}
                   </MainButton>
                 </div>
                 {/*  */}
                 <p>
-                  By <Link to={`/profile/${author.name}`}>{author.name}</Link>
+                  By{" "}
+                  <Link to={`/profile/${author.name}`} className={`underline`}>
+                    {author.name}
+                  </Link>
                 </p>
               </div>
               {/*  */}

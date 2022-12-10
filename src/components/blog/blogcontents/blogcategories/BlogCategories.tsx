@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { useIcon } from "../../../../hooks/dispatchContext";
 import { BlogCategory } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { TCategory } from "../../../../types/global.types";
+import { USEContext } from "../../../../services/context/learncontext/LearnContext";
 import {
   flexLayout,
   themes,
   textStyles,
 } from "../../../../styles/themes/theme";
+import { Link } from "react-router-dom";
 
 const BlogCategories = () => {
   const { flexCol, flexRow, flexRowCenterBetween, flexCenter } = flexLayout;
@@ -24,14 +26,18 @@ const BlogCategories = () => {
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
   const { ArrowRightIcon } = useIcon();
+  const { state } = USEContext();
+  const { blogCategory } = state;
+  console.log("hblog category respoonse", blogCategory);
   return (
     <>
       <div className={`${boxFull}`}>
         <div className="py-3 ">
           <div className={cx(`${boxFull} ${flexCol} gap-y-5`)}>
-            {blogCategories?.map(
-              ({ _id, title, image }: TCategory, index: number) => (
-                <div
+            {blogCategory?.map(
+              ({ _id, title, image, slug }: TCategory, index: number) => (
+                <Link
+                  to={`/category/${slug}`}
                   key={_id}
                   className={cx(
                     `h-24 ${XFull}`,
@@ -68,7 +74,7 @@ const BlogCategories = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               )
             )}
           </div>

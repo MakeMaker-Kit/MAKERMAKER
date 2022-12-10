@@ -7,12 +7,14 @@ import {
 } from "../../../../styles/themes/theme";
 import TestimonialCard from "./TestimonialCard";
 import { useIcon } from "../../../../hooks/dispatchContext";
+import { urlFor } from "../../../../client";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { fetchQuery } from "../../../../services/redux/features/sanitytoclient/SanityToClient";
 import { testimonials } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 import { hometestimonialsQuery } from "../../../../utils/querypaths";
 import { TTestimonials } from "../../../../types/global.types";
+import { USEContext } from "../../../../services/context/learncontext/LearnContext";
 
 const Testimonial = () => {
   const {
@@ -34,7 +36,11 @@ const Testimonial = () => {
     // @ts-ignore
     dispatch(fetchQuery(hometestimonialsQuery));
   }, [dispatch, testimonialData]);
-  console.table("testimonials data ", testimonialData);
+  const { state } = USEContext();
+  const { singleTestimonial } = state;
+  const { image, name, description, company } =
+    singleTestimonial as TTestimonials;
+  console.log("resnse", singleTestimonial);
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>
@@ -73,8 +79,8 @@ const Testimonial = () => {
                       )}
                     >
                       <img
-                        className={`max-w-full w-full max-h-full h-full object-center object-cover`}
-                        src={""}
+                        className={`max-w-full w-full max-h-full h-full object-center object-cover rounded-full`}
+                        // src={urlFor(image).url()}
                         alt={`Testimonial_img`}
                         title=""
                       />
@@ -88,18 +94,16 @@ const Testimonial = () => {
                           `line-clamp-5 ${textCustom} ${mainLayout} text-xs text-center font-cascadiacodePLItalic font-semibold`
                         )}
                       >
-                        I have even had kids who would never speak up or engage
-                        in much of anything ask to come in at lunch to
-                        experiment! NOW that makes me happy!…
+                        {description}
                       </p>
                       <div
                         className={cx(
                           `${flexCenter} ${flexRowCenter} space-x-2 ${mainLayout} ${textCustom} text-sm font-bold text-appBlue`
                         )}
                       >
-                        <h1>Alexandar Ibekason</h1>
+                        <h1>{name}</h1>
                         <div className="w-px h-5 bg-black" />
-                        <h1>Wizardomw</h1>
+                        <h1>{company}</h1>
                       </div>
                     </div>
                   </div>
@@ -129,7 +133,7 @@ const Testimonial = () => {
             Help Us Reach More Schools With These Learning Kits
           </h1>
           {/* Button */}
-          <div className={cx(`${flexCenter} group ${transitions}`)}>
+          {/* <div className={cx(`${flexCenter} group ${transitions}`)}>
             <button
               className={cx(
                 `${flexRowCenter} w-40 space-x-2 h-10  p-2 rounded-md`,
@@ -147,7 +151,7 @@ const Testimonial = () => {
                 className={`w-2.5 h-2.5 hidden group-hover:inline-block`}
               />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
@@ -155,3 +159,5 @@ const Testimonial = () => {
 };
 
 export default Testimonial;
+
+//  Quartely goals learning resources who to become

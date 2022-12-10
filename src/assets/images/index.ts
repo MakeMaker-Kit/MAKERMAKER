@@ -18,6 +18,10 @@ import banner4 from "./shop/banner4.webp";
 import banner5 from "./shop/banner5.webp";
 import shops from "./shops.png";
 import emptycart from "./emptycart.png";
+import pagenotfoundBg from "./404.png";
+import empty_cart from "./empty_cart.png";
+import logo_2 from "./logo2.png";
+import kit from "./kit.png";
 export {
   logoImage,
   backgroundHeader,
@@ -38,4 +42,8 @@ export {
   banner5,
   shops,
   emptycart,
+  pagenotfoundBg,
+  empty_cart,
+  logo_2,
+  kit,
 };

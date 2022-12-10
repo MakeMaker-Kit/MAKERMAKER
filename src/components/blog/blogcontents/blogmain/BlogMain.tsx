@@ -37,9 +37,10 @@ const BlogMain = () => {
                 {
                   _id,
                   slug,
+
                   author,
                   title,
-                  categories,
+                  category,
                   mainImage,
                   publishedAt,
                 }: TBlogs,
@@ -72,14 +73,27 @@ const BlogMain = () => {
                         <div className={`${flexRowCenter} gap-x-5`}>
                           <div className={`w-auto h-8 p-1 border rounded-md`}>
                             <div className={cx(`${boxFull} ${flexCenter}`)}>
-                              <p className={`text-sm font-gordita`}>
-                                {categories[0].title}
-                              </p>
+                              <Link
+                                to={`/category/${category.slug}`}
+                                className={`text-sm font-gordita ${textCustom} ${mainLayout} whitespace-nowrap`}
+                              >
+                                {/*TODO */}
+                                {category &&
+                                (category.title as string).length > 20
+                                  ? (category.title as string).slice(0, 13) +
+                                    "..."
+                                  : category.title}
+                              </Link>
                             </div>
                           </div>
                           <p className={cx(`text-sm text-gray-400`)}>
                             By{" "}
-                            <span className="text-gray-900">{author.name}</span>
+                            <Link
+                              to={`/profile/${author.slugs}`}
+                              className="text-gray-900"
+                            >
+                              {author.name}
+                            </Link>
                           </p>
                         </div>
                         <div>
@@ -98,7 +112,7 @@ const BlogMain = () => {
                             <span>
                               <ArchiveIcon />
                             </span>
-                            <p className="tracking-tight">
+                            <p className="tracking-tight text-xs">
                               {moment(publishedAt).utc().format("YYYY-MMM-DD")}
                             </p>
                             <p>10 min read</p>

@@ -131,5 +131,7 @@ module.exports = {
     require("tailwind-scrollbar")({ nocompatible: true }),
     require("tailwindcss-radix"),
     require("tailwind-scrollbar-hide"),
+    require("tailwindcss-brand-colors"),
+    require("tailwindcss-debug-screens"),
   ],
 };

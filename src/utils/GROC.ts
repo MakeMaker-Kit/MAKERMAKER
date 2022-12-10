@@ -24,8 +24,9 @@ image,
 bio,
 occupation,
 social,
+"socials": social[0..3]->{name, twitter, instagram, facebook, linkedin},
 },
-"categories": categories[]->{_id, title, image, description, "slug": slug.current},
+"categories": categories[0..1]->{_id, title, image, description, "slug": slug.current},
 "tags": tags[]->{_id, name, "slug": slug.current},
   }`;
   return query;
@@ -45,7 +46,8 @@ export const blogCategoryQuery = `*[_type == "category"]{
   _id,
   title,
   description,
-  image
+  image, 
+  "slug": slug.current
 }`;
 
 export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
@@ -64,6 +66,7 @@ export const blogsByAuthorSlugs: TGROCID = (authorSlug) => {
     description,
 body,
 "categories": categories[]->{_id, description, title, image, "slug": slug.current},
+"category": categories[0]->{_id, title, description, image, "slug": slug.current},
 "tags": tags[]->{_id, name},
 "date": publishedAt,
 mainImage,
@@ -97,6 +100,7 @@ export const blogCategoryPosts: TGROCID = (categorySlug) => {
     "slug": slug.current,
     body,
     "categories": categories[]->{_id, description, title, image, "slug": slug.current},
+    "category": categories[0]->{_id, title, description, image, "slug": slug.current},
     "tags": tags[]->{_id, name},
     "date": publishedAt,
     mainImage,
@@ -125,6 +129,7 @@ export const blogTagPosts: TGROCID = (tagSlug) => {
       body,
       deescription,
       "categories": categories[]->{_id, description, title, image, "slug": slug.current},
+      "category": categories[0]->{_id, title, description, image, "slug": slug.current},
       "tags": tags[]->{_id, name, "slug": slug.current},
       "date": publishedAt,
       mainImage,
@@ -189,18 +194,170 @@ export const blogRelatedPost = (mainBlogId: {
      }
   }`;
 };
-// *[_type == "post" && _id != "cfbfe0ea-4e98-4efa-a565-ebb923d7d7ad"  &&    categories[1]->slug.current == "design"][0..4]
+
+export const blogReviewQuery = `*[_type == "blogreview"][0..5]{
+  _id,
+  fullname,
+  email,
+  phonenumber,
+  message,
+  _createdAt
+}`;
+
+export const blogFooterMain = `*[_type == "footermain"][0]{
+  _id,
+  name,
+  desc,
+  "socials": socials[0]->{_id, name, socialName[0..3]},
+  "about": *[_type == "footerabout" ][0]{
+    logo,
+    desc
+  },
+}`;
+
+export const ProductsQuery = `*[_type == "product"][0..9]{
+title,
+"slug": slug.current,
+_id,
+price,
+updatedPrice,
+"defaultVariant": DefaultProductVariant,
+quantity,
+variants,
+stockItems,
+discount,
+tags[0..2],
+"cateSpec": specificCategory[0..3],
+categories[0..3]->{_id, "slug": slug.current, name,"desc": description},
+}`;
+
 /**
- * 
- * *[_type == "post" && slug.current == "enhancing-productivity"][0] {
-  title,
-  categories[]->,
-  "related": *[_type == "post" && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc, _createdAt desc) [0..5] {
-     title,
-     slug,
-    body, 
-    description,
-    
-   }
-}
+ * @param slugId
+ * @export slugId
  */
+
+export const SingleProduct = <T>(slugId: T): string => {
+  return `*[_type == "product" && slug.current == '${slugId}'][0]{
+    title,
+"slug": slug.current,
+_id,
+price,
+updatedPrice,
+"defaultVariant": DefaultProductVariant,
+quantity,
+variants[0],
+stockItems,
+discount,
+tags[0..2],
+"cateSpec": specificCategory[0..3],
+categories[0..3]->{_id, "slug": slug.current, name,"desc": description, title},
+  }`;
+};
+
+/**
+ * @param productSingle
+ */
+
+export const RelatedProducts = (productSingle: {
+  slug?: string;
+  _id?: string;
+}) => {
+  return `*[_type ==  "product" && slug.current == '${productSingle.slug}' ][0]{
+  "related": *[_type == "product" && _id != '${productSingle._id}' && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc, _createdAt desc)[0..5]{
+  title,
+  "slug": slug.current,
+  _id,
+  price,
+  updatedPrice,
+  "defaultVariant": DefaultProductVariant,
+  quantity,
+  variants[0],
+  stockItems,
+  discount,
+  tags[0..2],
+  "cateSpec": specificCategory[0..3],
+  categories[0..3]->{_id, "slug": slug.current, name,"desc": description},
+}
+  } `;
+};
+
+export const CheckoutDataQuery = `*[_type == "checkoutdata"]{
+  firstname,
+lastname,
+email,
+phonenumber,
+streetaddress,
+ name, 
+ suite,
+state,
+city,
+zipcode
+}`;
+
+export const footerQueries = `*[_type in ["footermain", "footerabout"]][0]{
+  "footermain": *[_type == "footermain" ][0] {
+    name,
+    desc,
+    socials-> {name, twitter, instagram, facebook, "socialname": socialName}
+   },
+  "footerabout":  *[_type == "footerabout"][0] {
+    // Your field selection for the blogPost type
+    logo,
+    desc
+  }
+}`;
+
+// Gallery
+
+export const GalleryQuery = `*[_type == 'gallery'][0]{
+  title,
+  desc,
+  "images": mainimage[0..10],
+  "gallery": gallerycontent[0..20]-> {"sub": subtitle, title, desc, image, _id}
+}`;
+
+export const SingleTestimonial = `*[_type == "hometestimonials"][0]{
+  image,
+  name,
+  description,
+  company,
+}`;
+
+// homeHeader
+export const HeadersQuery = `*[_type == "header"]{
+  _id,
+  title,
+  desc,
+  image
+}`;
+
+// product display
+
+export const productDisplayQuery = `*[_type == "productDisplay"][0]{
+  _id,
+title,
+desc,
+image,
+}`;
+
+export const faqsQuery = `*[_type == "homefaqs"][0..3]{
+  _id, 
+  title,
+  desc,
+  image,
+}`;
+
+export const categoryTestimonialsQuery = `*[_type == "categoryTestimonials"][0..3]{
+  _id,
+  title,
+  desc,
+  image,
+}`;
+
+export const blogCategoyQuery = `*[_type == "category"][0..3]{
+  _id,
+  title,
+  desc,
+  image,
+  "slug":  slug.current,
+}`;

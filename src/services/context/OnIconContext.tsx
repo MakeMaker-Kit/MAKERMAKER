@@ -3,14 +3,22 @@ import {
   AiOutlineGooglePlus,
   AiOutlineShoppingCart,
   AiFillCalendar,
+  AiFillPlusCircle,
+  AiFillMinusCircle,
+  AiFillEye,
+  AiOutlineCamera,
 } from "react-icons/ai";
 import { BiSearchAlt, BiMenu, BiCartAlt } from "react-icons/bi";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 import { FaWhatsapp, FaPinterestP, FaLinkedinIn } from "react-icons/fa";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { BsTwitter } from "react-icons/bs";
+import { MdOutlineKeyboardArrowDown, MdMarkEmailUnread } from "react-icons/md";
+import { BsTwitter, BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { IconContextProps } from "./context.type";
+import { CiFaceMeh, CiClock2 } from "react-icons/ci";
+import { HiChatAlt2 } from "react-icons/hi";
+import { RiShareForwardLine } from "react-icons/ri";
+import { GiCancel } from "react-icons/gi";
 import {
   PaperPlaneIcon,
   MinusCircledIcon,
@@ -50,6 +58,17 @@ export const IconContextProvider: React.FC<IconContextProps> = ({
         AiOutlineShoppingCart,
         FiShoppingCart,
         AiFillCalendar,
+        BsFillTelephoneOutboundFill,
+        MdMarkEmailUnread,
+        CiFaceMeh,
+        HiChatAlt2,
+        RiShareForwardLine,
+        CiClock2,
+        AiFillPlusCircle,
+        AiFillMinusCircle,
+        GiCancel,
+        AiFillEye,
+        AiOutlineCamera,
         // READIX ICONS
         PaperPlaneIcon,
         MinusCircledIcon,

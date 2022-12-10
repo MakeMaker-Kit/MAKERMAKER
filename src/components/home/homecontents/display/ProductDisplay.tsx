@@ -7,28 +7,24 @@ import {
   textStyles,
 } from "../../../../styles/themes/theme";
 import { TextWrapper } from "../../../appwrapper";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../hooks/button";
 import { displayProduct } from "../../../../assets/images";
 import {
   DisplayContentTypes,
   TDisplayContentTypes,
 } from "../../../../utils/utils.types";
+import { productDisplayType } from "../../../../types/global.types";
 
-const ProductDisplay: React.FC<TDisplayContentTypes> = ({
-  coreTags,
-  desc,
-  // handleClick,
-  iconsValues,
-  // id,
-  image,
-  title,
-  isReversed,
-}) => {
+const ProductDisplay: React.FC<
+  productDisplayType & { isReversed: boolean }
+> = ({ _id, title, desc, image, isReversed }) => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRow, flexCol, flexResponsive, flexStart, flexRowCenter } =
     flexLayout;
   const { mainLayout, mainText, textCustom } = textStyles;
+  const navigate = useNavigate();
   return (
     <>
       <div className={cx(`${marX} ${padY} relative`)}>
@@ -73,7 +69,12 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                   </p>
                 </div>
                 <div>
-                  <Button handleClick={() => {}}> Buy Now</Button>
+                  <Button
+                    handleClick={() => navigate("/shop", { replace: true })}
+                  >
+                    {" "}
+                    Buy Our Product
+                  </Button>
                 </div>
               </div>
             </div>
@@ -94,7 +95,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             className={`${
               isReversed
                 ? flexResponsive.flexRowColReverse
@@ -139,7 +140,7 @@ const ProductDisplay: React.FC<TDisplayContentTypes> = ({
                 ))}
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

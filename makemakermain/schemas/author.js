@@ -57,9 +57,10 @@ export default {
       type: "array",
       of: [
         {
-          type: "string",
+          type: "reference",
           title:
             "Add the authors social Media Link Here (Facebook, Twitter, LinkedIn, Instagram)",
+          to: [{ type: "authorsocial" }],
         },
       ],
     },

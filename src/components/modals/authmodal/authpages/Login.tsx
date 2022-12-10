@@ -1,4 +1,12 @@
-import React from "react";
+import React, {
+  useDebugValue,
+  useSyncExternalStore,
+  useDeferredValue,
+  useId,
+  useImperativeHandle,
+  useInsertionEffect,
+  useTransition,
+} from "react";
 import cx from "classnames";
 import { client } from "../../../../client";
 import { AuthContentType, LoginType } from "../../../../types/global.types";
@@ -14,6 +22,7 @@ import { PASSWORD_REGEX, EMAIL_ADDREESS_REGEX } from "../Regex";
 import { supabase } from "../../../db/database/Database";
 import TextField from "../../../home/homecontents/homecontact/textfield/TextField";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import {
   Formik,
   FormikErrors,
@@ -21,6 +30,7 @@ import {
   FormikProps,
   FormikRegistration,
 } from "formik";
+import { setLogIn } from "../../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
 
 const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
   const {
@@ -34,6 +44,7 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
   const { mainLayout, mainText, textCustom } = textStyles;
   const { boxFull, XFull, containerWrapper } = themes;
   const { AiOutlineGooglePlus } = useIcon();
+  const dispatch = useDispatch();
   return (
     <>
       <div className={cx(`${boxFull} ${flexCol}`)}>
@@ -83,11 +94,14 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
             { setSubmitting, setFieldTouched, resetForm }
           ) => {
             const { comfirmPassword, email, password } = values;
+            const AuthValue = { email, password };
             setSubmitting(true);
             try {
               const { error, data } = await supabase.auth.signInWithPassword(
-                values
+                AuthValue
               );
+              if (error)
+                throw error && toast.error(error.message) && resetForm();
               const UserLogin = {
                 _type: "userData",
                 email,
@@ -96,15 +110,20 @@ const Login: React.FC<AuthContentType> = ({ generateTitle, page, setPage }) => {
               if (data) {
                 client.create(UserLogin).then(() => {
                   toast.success(`Your Login was successful`);
+                  dispatch(setLogIn());
                   resetForm();
                   setSubmitting(false);
                 });
               } else if (error) {
-                throw new Error("User Login UnSuccessful, parameters inflated");
+                throw (
+                  new Error("User Login UnSuccessful, parameters inflated") &&
+                  toast.error(error) &&
+                  resetForm()
+                );
               }
             } catch (error: unknown) {
               if (error instanceof Error) {
-                return error.message;
+                return toast.error(error.message) && resetForm();
               }
             }
           }}

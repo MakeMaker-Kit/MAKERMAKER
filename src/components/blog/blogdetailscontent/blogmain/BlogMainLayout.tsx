@@ -37,13 +37,16 @@ const BlogMainLayout: React.FC<TBlogs> = ({
             mainImage={mainImage}
             author={author}
             publishedAt={publishedAt}
+            //@ts-ignore
             categories={categories}
           />
         </div>
         <div>
+          {/* @ts-ignore */}
           <MainDesc body={body} />
         </div>
         <div>
+          {/* @ts-ignore */}
           <MainFooter author={author} tags={tags} />
         </div>
       </div>

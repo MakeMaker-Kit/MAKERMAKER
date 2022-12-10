@@ -1,5 +1,7 @@
 import { NumberSchemaType } from "@sanity/types/dist/dts";
 import { TypedObject } from "@sanity/types/dist/dts";
+import { E164Number } from "libphonenumber-js/core";
+// import {Value} from "@react-phone-number-input/index.d.ts"
 
 import React from "react";
 import { NonIndexRouteObject, OutletProps } from "react-router-dom";
@@ -34,6 +36,8 @@ export interface AuthContentType {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+type Value = E164Number;
+
 export interface InputRef {
   focus?: () => void;
   blur?: () => void;
@@ -43,7 +47,19 @@ export interface InputRef {
   disabled?: boolean;
   name?: string;
   type?: string;
+  error?: string;
+  touched?: boolean;
   placeholder?: string;
+  id?: string;
+  label?: string;
+  handleChange?: {
+    (e: React.ChangeEvent<any>): void;
+    <T = string | React.ChangeEvent<any>>(
+      field: T
+    ): T extends React.ChangeEvent<any>
+      ? void
+      : (e: string | React.ChangeEvent<any>) => void;
+  };
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -54,6 +70,10 @@ export interface InputRef {
   onCompositionStart?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
   onCompositionUpdate?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+  icon?: JSX.Element | React.ReactElement;
+  // onChanged?: (value?: E164Number) => void;
+  onChanged?(value?: Value | undefined): void;
+  values?: Value;
 }
 export declare function Outlet(props: OutletProps): React.ReactElement | null;
 export interface PathRouteProps {
@@ -125,6 +145,12 @@ export interface TContact {
   message: string;
 }
 
+export interface TAS<S> {
+  twitter: S;
+  instagram: S;
+  facebook: S;
+  linkedin: S;
+}
 export type TAUTHOR = {
   name?: string;
   slug?: { _type?: string; current?: string };
@@ -132,6 +158,8 @@ export type TAUTHOR = {
   readonly bio?: Object[];
   occupation?: string;
   social: string[];
+  socials: TAS<string>;
+  slugs: string;
 };
 export type TCategories = {
   title?: string;
@@ -169,6 +197,7 @@ export interface TBlogs {
   }[];
   tags: { name?: string; _id: string }[];
   categories: TCategories;
+  category: TCategories;
 }
 
 export interface TCategory {
@@ -188,7 +217,7 @@ export interface TRelated {
   slug?: string;
   body?: TypedObject | TypedObject;
   mainImage?: string;
-  author: TAUTHOR;
+  author: { name?: string; slug?: string };
   categories: TCategories;
   tags: { name?: string; _id: string; slug?: string };
   publishedAt?: string;
@@ -206,4 +235,122 @@ export interface TRelatedBlogs {
   title?: string;
   categories: TCategory;
   related: TRelated[];
+}
+
+export interface TReviews {
+  _type?: string;
+  fullname?: string;
+  email?: string;
+  phonenumber?: string;
+  message?: string;
+}
+
+export type TVariant = {
+  title: string;
+  description?: string;
+  grams?: string;
+  sku?: string;
+  taxable: boolean;
+  images: string[];
+};
+
+export interface TProduct {
+  [key: string]:
+    | string
+    | {}[]
+    | {}
+    | boolean
+    | Boolean
+    | undefined
+    | null
+    | unknown
+    | number;
+  _id?: string;
+  title?: string;
+  price: number;
+  updatedPrice?: string;
+  readonly defaultVariant?: TVariant;
+  quantity?: number;
+  variants?: TVariant[];
+  stockItems?: number;
+  tags?: string[];
+  slug?: string;
+  categories?: { _id?: string; slug?: string; name?: string; title?: string }[];
+  discount?: string;
+}
+
+export interface TFooters {
+  footermain?: {
+    image: string;
+    name: string;
+    desc: string;
+    socials: {
+      twitter: string;
+      linkedIn: string;
+      instagram: string;
+      facebook?: string;
+    };
+  };
+  footerabout: { logo: string; desc: string };
+}
+
+export interface TFooters {
+  [key: string]:
+    | string
+    | number
+    | boolean
+    | {
+        image: string;
+        name: string;
+        desc: string;
+        socials: {
+          twitter: string;
+          linkedIn: string;
+          instagram: string;
+          facebook?: string;
+        };
+      }
+    | { logo: string; desc: string }
+    | undefined;
+}
+
+export interface TGALLERY {
+  sub: string;
+  title: string;
+  desc: string;
+  image: string;
+  _id: string;
+}
+
+export interface GalleryType {
+  title: string;
+  desc: string;
+  images: string[];
+  gallery: TGALLERY[];
+}
+
+// export interface GalleryType {
+//   [key: string]: string | undefined | TGALLERY[];
+// }
+
+export interface HeadType<S> {
+  _id: S;
+  desc: S;
+  image: S;
+}
+
+export interface HomeHeaderType extends HeadType<string> {}
+
+export interface productDisplayType {
+  _id?: string;
+  title: string;
+  desc: string;
+  image: string;
+}
+
+export interface FaqsOptions {
+  _id: string;
+  title: string;
+  desc: string;
+  image: string;
 }

@@ -9,6 +9,19 @@ import CartButtonModal from "../../modals/cartbtnmodal/CartButtonModal";
 import { openShopModal } from "../../../services/redux/features/globalslice/GlobalStateSlice";
 import { useSelector } from "react-redux";
 import { CartModalLayout } from "../../modals";
+import {
+  addVehicle,
+  fetchProducts,
+} from "../../../services/context/learncontext/types/IVehicle";
+import {
+  TFunction,
+  USEContext,
+} from "../../../services/context/learncontext/LearnContext";
+import { ProductsQuery } from "../../../utils/GROC";
+import { client } from "../../../client";
+import { useParams } from "react-router-dom";
+import { MainSpinner } from "../../spinner/Spinners";
+import { IAppState } from "../../../services/context/learncontext/LearnContext";
 
 const ShopContentLayout = () => {
   const { themeWrapper, boxExtend, boxFull, containerWrapper } = themes;
@@ -16,12 +29,23 @@ const ShopContentLayout = () => {
   const { flexResponsive } = flexLayout;
   const {} = textStyles;
   const modalState = useSelector(openShopModal);
+  const { state, dispatch } = USEContext();
+  const { vehicles, selectedVehicles, features, products } = state as IAppState;
+  console.log("response from product", state, products);
+  const { loading } = state;
+  const param = useParams();
+  const { id } = param;
 
   return (
     <>
       {/*   Shop Wrapper Layout  */}
+      {loading && <MainSpinner />}
       <div>
-        <BannerPageWrapper home="home" routePath="Shop" />
+        <BannerPageWrapper
+          home="home"
+          routePath="Shop"
+          routePathID={window.location.pathname === `shop/${id}` ? id : ""}
+        />
       </div>
       <div className={`${mainMarX} relative`}>
         <div className={cx(`${boxExtend}`)}>
@@ -29,7 +53,7 @@ const ShopContentLayout = () => {
           <CartModalLayout />
           {/* <CartButtonModal /> */}
           {/* Shop Header Carousel */}
-          <div
+          {/* <div
             className={cx(
               `border border-dotted border-slate-500 px-1 py-4 mb-4`
             )}
@@ -37,7 +61,7 @@ const ShopContentLayout = () => {
             <div className={`${boxFull}`}>
               <ShopHeader />
             </div>
-          </div>
+          </div> */}
           {/* Shop Layout Container  */}
           <div
             className={cx(

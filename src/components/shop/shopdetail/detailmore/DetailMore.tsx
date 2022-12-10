@@ -1,12 +1,13 @@
 import React from "react";
 import cx from "classnames";
+import { TVariant } from "../../../../types/global.types";
 import {
   themes,
   flexLayout,
   textStyles,
 } from "../../../../styles/themes/theme";
 
-const DetailMore = () => {
+const DetailMore = ({ defaultVariant }: { defaultVariant: TVariant }) => {
   const { containerWrapper, boxFull, themeWrapper } = themes;
   const { padY } = themeWrapper;
   const { flexCol, flexStart } = flexLayout;
@@ -17,13 +18,14 @@ const DetailMore = () => {
         <div
           className={`${boxFull} ${flexCol} gap-y-10 ${mainLayout} ${textCustom} `}
         >
-          <h1 className={cx(`text-start`)}>Details</h1>
+          <h1
+            className={cx(`text-start font-bold tracking-widest underline  `)}
+          >
+            Details
+          </h1>
           <div>
-            <p className={`text-start`}>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt
-              at porro est, architecto, quos earum tempore praesentium molestias
-              facere itaque eius exercitationem alias amet provident harum
-              delectus omnis incidunt excepturi.
+            <p className={`text-start leading-9 tracking-wider`}>
+              {defaultVariant.description}
             </p>
           </div>
         </div>

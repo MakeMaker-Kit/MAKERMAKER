@@ -54,7 +54,7 @@ const MainHeader = ({
         <div className={`${flexRowCenterBetween} ${textCustom} ${mainLayout} `}>
           <div className={`${flexRowCenter} gap-x-5`}>
             <ButtonText
-              clasNames={`${boxFull}  ${flexCenter}`}
+              clasNames={`${boxFull}  ${flexCenter} space-x-2  `}
               isRounded={true}
             >
               {categories.map(({ title, slug }, index) => (
@@ -81,10 +81,10 @@ const MainHeader = ({
             </p>
             <p>10 min read</p>
           </div>
-          <div className={`${flexRowCenter} space-x-1`}>
+          {/* <div className={`${flexRowCenter} space-x-1`}>
             <HeartFilledIcon className={`w-5 h-5`} />
             <ReaderIcon className={`w-5 h-5`} />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

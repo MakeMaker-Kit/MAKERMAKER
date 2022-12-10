@@ -1,7 +1,7 @@
 export default {
   name: "product",
   title: "Products  ",
-  desciption: "This isn the Ecommerce or Products Query ",
+  desciption: "This is  the Ecommerce or Products Query ",
   type: "document",
   fields: [
     {
@@ -15,13 +15,23 @@ export default {
       name: "slug",
       title: "Slug",
       type: "slug",
-      option: {
+      options: {
         source: "title",
         maxLength: 96,
       },
     },
     {
-      title: "Default Variant",
+      name: "price",
+      title: "Standard Price (NAIRA)",
+      type: "string",
+    },
+    {
+      name: "updatedprice",
+      title: "Updated Price (NAIRA)",
+      type: "string",
+    },
+    {
+      title: "Default Variant ",
       name: "DefaultProductVariant",
       type: "productVariant",
     },
@@ -45,11 +55,19 @@ export default {
       ],
     },
     {
-      name: "stockitems",
+      name: "stockItems",
       title: "Stock Items <OPTIONAL>",
       description:
         "This is the number of product remaining for each product in the Schema",
       type: "number",
+      required: true,
+    },
+    {
+      name: "discount",
+      title: "  Discount",
+      description:
+        "This query should in percentage and it is used to  shoul the percentage in discount given to a product",
+      type: "string",
       required: true,
     },
     //

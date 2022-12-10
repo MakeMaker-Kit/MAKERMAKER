@@ -6,23 +6,48 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   cartModalState,
+  openAuthModal,
+  toggleCartModal,
   unToggleCartModal,
 } from "../../../services/redux/features/globalslice/GlobalStateSlice";
 import CartProducts from "./CartProducts";
+import { TotalQuantity } from "../../../services/redux/features/productslice/ProductSlice";
+import {
+  Cart,
+  TotalPrice,
+} from "../../../services/redux/features/productslice/ProductSlice";
+import { TProduct } from "../../../types/global.types";
+import { IsLoggedIn } from "../../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import { useNavigate } from "react-router-dom";
+import { empty_cart } from "../../../assets/images";
+import MainButton from "../../../hooks/button/mainBTN";
 
 const CartModalLayout = () => {
-  const { themeWrapper, boxFull, XExtend, containerWrapper } = themes;
+  const { themeWrapper, boxFull, XExtend, containerWrapper, imageLayout } =
+    themes;
   const {
     flexCol,
     flexColBetween,
     flexRowCenterBetween,
     flexCenter,
     flexRowCenter,
+    flexColCenter,
   } = flexLayout;
+  const navigate = useNavigate();
   const { mainLayout, textCustom } = textStyles;
   const dispatch = useDispatch();
   const cartState = useSelector(cartModalState);
   const closeModal = () => dispatch(unToggleCartModal());
+  const cartItems = useSelector(Cart);
+  const totalPrice = useSelector(TotalPrice);
+  const totalQuan = useSelector(TotalQuantity);
+  const isLoggedin = useSelector(IsLoggedIn);
+  const toggleCheckout = () => {
+    isLoggedin
+      ? navigate("/review", { replace: true })
+      : dispatch(openAuthModal()) && dispatch(toggleCartModal());
+  };
+  console.log("cartItem eponse", cartItems);
   return (
     <div>
       <Transition appear show={cartState} as={React.Fragment}>
@@ -60,9 +85,9 @@ const CartModalLayout = () => {
                         className={`${boxFull} ${flexRowCenterBetween} ${textCustom} ${mainLayout}`}
                       >
                         {/*  */}
-                        <div className={`${flexRowCenter}`}>
+                        <div className={`${flexRowCenter} space-x-2`}>
                           <p>icon</p>
-                          <p> 1 Item</p>
+                          <p> {totalQuan} Item</p>
                         </div>
                         {/*  */}
                         <div
@@ -72,7 +97,7 @@ const CartModalLayout = () => {
                           )}
                           onClick={closeModal}
                         >
-                          <p>kf</p>
+                          <p className="text-xl">x </p>
                         </div>
                       </div>
                     </div>
@@ -83,11 +108,51 @@ const CartModalLayout = () => {
                         `h-[700px] max-h-[700px]`
                       )}
                     >
-                      {Array(20)
+                      {/* {Array(20)
                         .fill(0)
                         .map((i) => (
                           <CartProducts key={i} />
-                        ))}
+                        ))} */}
+                      {cartItems.length > 0 ? (
+                        cartItems.map((cart: TProduct, index: number) => (
+                          <CartProducts key={index} {...cart} product={cart} />
+                        ))
+                      ) : (
+                        <div className={`p-4 `}>
+                          <div
+                            className={cx(
+                              `${flexColCenter} ${boxFull} gap-y-5`
+                            )}
+                          >
+                            {/* image */}
+                            <div className="h-40 w-40">
+                              <img
+                                src={empty_cart}
+                                alt=""
+                                className={imageLayout}
+                              />
+                            </div>
+                            {/* descrioption */}
+                            <p
+                              className={cx(
+                                `${mainLayout} ${textCustom} tracking-widest`
+                              )}
+                            >
+                              Your Cart is likely Empty, consider adding some
+                              products{" "}
+                            </p>
+                            {/* Button */}
+                            <MainButton
+                              isRounded={true}
+                              onClick={() =>
+                                navigate("/shop", { replace: true })
+                              }
+                            >
+                              continue shopping
+                            </MainButton>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     {/* Cart Checkout  */}
                     <div className={`p-3`}>
@@ -101,7 +166,8 @@ const CartModalLayout = () => {
                         >
                           {/*  */}
                           <div
-                            className={`px-4 py-3 bg-transparent rounded-full`}
+                            className={`px-4 py-3 bg-transparent rounded-full cursor-pointer`}
+                            onClick={toggleCheckout}
                           >
                             <div className={`${boxFull} ${flexCenter}`}>
                               <p>Checkout</p>
@@ -110,7 +176,7 @@ const CartModalLayout = () => {
                           {/*  */}
                           <div className={`px-4 py-3 bg-white rounded-full`}>
                             <div className={`${boxFull} ${flexCenter}`}>
-                              <p>$3.00</p>
+                              <p>{totalPrice} NGN</p>
                             </div>
                           </div>
                         </div>

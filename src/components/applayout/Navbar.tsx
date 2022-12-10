@@ -5,19 +5,29 @@ import {} from "@radix-ui/react-icons";
 import { themes, flexLayout, textStyles } from "../../styles/themes/theme";
 import { useIcon } from "../../hooks/dispatchContext";
 import { NavbarData } from "../../utils/homeData";
-import { logoImage } from "../../assets/images";
-import { NavbarBtnDropdown } from "../dropdowns";
+import { logoImage, logo_2 } from "../../assets/images";
+import { NavbarBtnDropdown, BlogDropdown } from "../dropdowns";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { TotalQuantity } from "../../services/redux/features/productslice/ProductSlice";
+import { IsLoggedIn } from "../../services/redux/features/sanitytoclientmain/SanityToClientSliceMain";
+import Links from "../../hooks/links";
 import {
   onModalState,
   openAuthModal,
   toggleCartModal,
 } from "../../services/redux/features/globalslice/GlobalStateSlice";
+import SearchDropdown from "../dropdowns/advanceddropdowns/SearchDropdown";
 
 const Navbar = () => {
-  const { themeWrapper, boxFull, XFull, containerWrapper, XExtend } = themes;
+  const {
+    themeWrapper,
+    boxFull,
+    XFull,
+    containerWrapper,
+    XExtend,
+    transitions,
+  } = themes;
   const { marX, padY } = themeWrapper;
   const { flexRowCenterBetween, flexRowCenter, flexCenter } = flexLayout;
   const {
@@ -32,6 +42,7 @@ const Navbar = () => {
   const totalQuantity = useSelector(TotalQuantity);
   const openNodal = () => dispatch(openAuthModal());
   const openCartMenu = () => dispatch(toggleCartModal());
+  const isLoggedIn = useSelector(IsLoggedIn);
   return (
     <>
       <div className={classNames(`${marX} my-2 py-3 border-y`, ``)}>
@@ -40,10 +51,7 @@ const Navbar = () => {
             <div>
               <Link to={"/"} className={classNames(`w-10 h-10`)}>
                 <img
-                  //   src={logoImage}
-                  src={
-                    "https://thescienceset.com/wp-content/uploads/2021/09/Logo.png"
-                  }
+                  src={logo_2}
                   alt=""
                   className={`${XExtend} h-full object-contain`}
                 />
@@ -59,22 +67,19 @@ const Navbar = () => {
                 {NavbarData.map((nav, index: number) => {
                   const { id, link, name, navContents } = nav;
                   return (
-                    // <li
-                    //   className={classNames(
-                    //     `${flexRowCenter}`,
-                    //     `${mainText} ${mainLayout} uppercase`
-                    //   )}
-                    //   key={id}
-                    // >
-                    //   <span>{name}</span>
-                    //   <MdOutlineKeyboardArrowDown />
-                    // </li>
-                    <NavbarBtnDropdown
-                      name={name}
-                      link={link}
-                      id={id}
-                      navContents={navContents}
-                    />
+                    <Link
+                      to={link}
+                      key={id}
+                      className={`${mainLayout} ${textCustom} text-sm uppercase hover:underline ${transitions} `}
+                    >
+                      {name}
+                    </Link>
+                    // <BlogDropdown
+                    //   name={name}
+                    //   link={link}
+                    //   id={id}
+                    //   navContents={navContents}
+                    // />
                   );
                 })}
 
@@ -104,12 +109,15 @@ const Navbar = () => {
                   </div>
                 </div>
                 {/* Search Component */}
-                <BiSearchAlt size={25} />
+                {/* <BiSearchAlt size={25} /> */}
+                <SearchDropdown />
+                {/* Search  */}
                 <span className={classNames(`h-6 w-auto group`)}>
                   <div
                     className={classNames(
                       ` ${boxFull} ${flexCenter}`,
-                      `rounded  border border-orange p-2 cursor-pointer group-hover:bg-orange `
+                      `rounded  border border-orange p-2 cursor-pointer group-hover:bg-orange `,
+                      isLoggedIn ? "hidden" : "block"
                     )}
                   >
                     <p
