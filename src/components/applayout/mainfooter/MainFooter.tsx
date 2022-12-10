@@ -90,9 +90,11 @@ const MainFooter = () => {
                       </h1>
                     </div>
                     <div className={`w-full max-w-full`}>
+                      {/* @ts-ignore */}
                       <Input placeholder="your name" isRounded={true} />
                     </div>
                     <div className={`w-full max-w-full`}>
+                      {/* @ts-ignore */}
                       <Input placeholder="your name" isRounded={true} />
                     </div>
                     <div className={`w-full max-w-nine ${flexCenter}`}>

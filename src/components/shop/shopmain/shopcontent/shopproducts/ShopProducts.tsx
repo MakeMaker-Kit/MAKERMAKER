@@ -39,6 +39,7 @@ const ShopProducts = ({
     dispatch(openShopComponent());
     navigate(`/shop/${slug}`, { replace: true });
   };
+  {  /* @ts-ignore */}
 
   const AddToCart = () => dispatch(addToCart({ product }));
 

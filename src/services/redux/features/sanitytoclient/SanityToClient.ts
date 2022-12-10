@@ -20,6 +20,7 @@ const {
   generateProductDisplay,
 } = SanityToClientService;
 // const homeHeaderData2 = JSON.parse(localStorage.getItem("HomeHeader") || "");
+{  /* @ts-ignore */}
 
 const initialState: sanityInitialState = {
   error: null,
@@ -87,6 +88,8 @@ const SanityToClientSlice = createSlice({
       })
       .addCase(fetchQuery.fulfilled, (state, action) => {
         state.loading = false;
+        {  /* @ts-ignore */}
+
         state.displaymore = action.payload;
         state.error = null;
       })

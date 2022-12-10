@@ -100,6 +100,7 @@ const PortableTextWrapper = ({ body }: IProps) => {
   return (
     <>
       <div>
+        {/* @ts-ignore */}
         <PortableText value={body} components={BlogPortableTextComponents} />
       </div>
     </>

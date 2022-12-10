@@ -8,7 +8,7 @@ import {
 import Links from "../../../../hooks/links";
 import { Link } from "react-router-dom";
 import { NavItemTypes, TBlogs } from "../../../../types/global.types";
-
+{  /* @ts-ignore */}
 import tw from "twin.macro";
 import cx from "classnames";
 

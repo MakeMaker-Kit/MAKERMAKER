@@ -105,6 +105,7 @@ type proxy<T> = {
 type Proxify<T> = {
   [P in keyof T]: proxy<T[P]>;
 };
+{  /* @ts-ignore */}
 
 function proxify<T>(o: T): Proxify<T> {}
 let props = { roma: 2 };

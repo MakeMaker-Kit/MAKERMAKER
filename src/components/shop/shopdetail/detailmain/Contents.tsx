@@ -42,6 +42,8 @@ const Contents = ({
   const dispatch = useDispatch();
   const increaseProduct = () => dispatch(incrementProduct());
   const decreaseProduct = () => dispatch(decrementProduct({ product }));
+  {  /* @ts-ignore */}
+
   const AddToCart = () => dispatch(addToCart({ product }));
 
   return (

@@ -34,6 +34,8 @@ const UncomfirnedForgotPassword: React.FC<AuthContentType> = ({
           <div className={cx(`h-[90%] max-h-[90%] px-5 py-3 w-full`)}>
             <div className={`${boxFull}  ${flexCol} space-y-5 items-center`}>
               <div className={`max-w-full w-full`}>
+              {  /* @ts-ignore */}
+
                 <Input isRounded={true} placeholder={`Ènter Your Email `} />
               </div>
               {/* Login Button */}
