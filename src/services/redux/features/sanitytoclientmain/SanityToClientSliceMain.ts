@@ -359,7 +359,7 @@ export const textGet = createAsyncThunk<
 });
 
 /**
- * 
+ *  company informatkion is the loacatoo of the geometrric of th appluacstoi
  Create SnaityToClient Slicce @type to
  */
 export const SanityMainSlice = createSlice({
@@ -372,7 +372,7 @@ export const SanityMainSlice = createSlice({
     fetchBlog: (state, action) => {
       const result = client.fetch(action.payload).then((response) => {
         return response;
-      });
+      }); 
       state.text = result;
     },
 
