@@ -63,7 +63,6 @@ const BlogDetailContentLayout = () => {
   //     cancelled = true;
   //   };
   // }, []);
-  console.log("Autho Respone", relatedBlog);
   return (
     <>
       <MainSpinner />

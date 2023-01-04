@@ -40,7 +40,6 @@ const BlogContentLayout = () => {
   React.useEffect(() => {
     fetchBlogPosts(BlogQuery);
   }, [BlogQuery]);
-  console.log("BlogPots Details", blogPosts);
 
   return (
     <>

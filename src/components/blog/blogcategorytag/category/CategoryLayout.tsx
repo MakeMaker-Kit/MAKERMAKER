@@ -30,7 +30,6 @@ const CategoryLayout = () => {
     const query = blogCategoryPosts(ID);
     !cancelled && fetchCategoryBlogs(query);
   }, []);
-  console.log("Category details", singleBlog, params);
   return (
     <>
       <MainSpinner />

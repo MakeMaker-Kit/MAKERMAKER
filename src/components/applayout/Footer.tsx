@@ -35,7 +35,6 @@ const Footer = () => {
   const { footerData } = state;
   // @ts-ignore
   const { footerabout, footermain }: TFooters = footerData;
-  console.log("footer espon", footerData);
   return (
     <>
       <div className={cx(`${marX} py-6`)}>

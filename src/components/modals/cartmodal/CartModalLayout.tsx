@@ -47,7 +47,6 @@ const CartModalLayout = () => {
       ? navigate("/review", { replace: true })
       : dispatch(openAuthModal()) && dispatch(toggleCartModal());
   };
-  console.log("cartItem eponse", cartItems);
   return (
     <div>
       <Transition appear show={cartState} as={React.Fragment}>

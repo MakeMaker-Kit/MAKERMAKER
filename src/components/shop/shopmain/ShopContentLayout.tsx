@@ -31,7 +31,6 @@ const ShopContentLayout = () => {
   const modalState = useSelector(openShopModal);
   const { state, dispatch } = USEContext();
   const { vehicles, selectedVehicles, features, products } = state as IAppState;
-  console.log("response from product", state, products);
   const { loading } = state;
   const param = useParams();
   const { id } = param;

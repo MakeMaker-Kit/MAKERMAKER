@@ -14,7 +14,6 @@ const GalleryLayout = () => {
   const [width, setWidth] = React.useState<number>(0);
   const { galleryData, loading } = state;
 
-  console.log("GALLERY LAYOUT", state.galleryData);
   /**
    * @param w
    * @param h

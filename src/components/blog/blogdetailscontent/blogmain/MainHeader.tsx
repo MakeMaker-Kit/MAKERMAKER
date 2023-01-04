@@ -34,7 +34,6 @@ const MainHeader = ({
     flexLayout;
   const { textCustom, mainLayout } = textStyles;
   const { ArchiveIcon, HeartFilledIcon, ReaderIcon } = useIcon();
-  console.log("bLOG cATEGORIES iTEM", categories);
   return (
     <>
       <div className={classNames(`${flexCol} gap-y-10`)}>

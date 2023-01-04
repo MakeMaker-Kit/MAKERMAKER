@@ -23,7 +23,6 @@ const BlogMainLayout: React.FC<TBlogs> = ({
   detail,
   tags,
 }: TBlogs) => {
-  console.log("fjfjfjfjf", body);
   const { themeWrapper } = themes;
   const {} = themeWrapper;
   const { flexCol } = flexLayout;

@@ -37,7 +37,6 @@ const Content = () => {
     dispatch(getContactInfo(ContactInfoQuery));
     fetchContactInfo(contactInfoQuery);
   }, [dispatch]);
-  console.log("cjfhf", contactInfo);
   return (
     <>
       <div className={cx(`${flexCenter}`)}>

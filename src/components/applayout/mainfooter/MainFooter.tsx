@@ -24,7 +24,6 @@ const MainFooter = () => {
   React.useEffect(() => {
     fetchFoooterMain(blogFooterMain);
   }, []);
-  console.log("Footer MAIN", footerMain);
   return (
     <>
       <div className={cx(`${marX} py-20`)}>

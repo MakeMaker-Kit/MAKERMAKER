@@ -41,8 +41,6 @@ const ShopDetailLayout = () => {
         if (res) {
           return res && fetchSingleProducts(dispatch, res);
         } else if (res) {
-          console.log("res res", res);
-
           RelatedQuery = RelatedProducts(res);
           client.fetch(RelatedQuery).then((response) => {
             response && fetchRelatedProducts(dispatch, response);
@@ -61,7 +59,6 @@ const ShopDetailLayout = () => {
       cancelled = true;
     };
   }, []);
-  console.log("single Product", singleProduct, relatedProducts);
 
   return (
     <>

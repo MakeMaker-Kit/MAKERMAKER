@@ -26,7 +26,6 @@ const BlogMain = () => {
   const {} = themeWrapper;
   const { mainLayout, textCustom } = textStyles;
   const { HeartFilledIcon, HeartIcon, ReaderIcon, ArchiveIcon } = useIcon();
-  console.log("Blogs ", blogPosts);
   return (
     <>
       <div className={cx(`${boxFull}`)}>
@@ -37,7 +36,6 @@ const BlogMain = () => {
                 {
                   _id,
                   slug,
-
                   author,
                   title,
                   category,

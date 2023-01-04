@@ -130,7 +130,6 @@ const Contact = () => {
           errors,
         }) => {
           const { email, message, username, phoneNumber, subject } = values;
-          console.log("Contct Information", errors);
 
           return (
             <form className={cx(`${XFull} h-auto`, ``)} onSubmit={handleSubmit}>

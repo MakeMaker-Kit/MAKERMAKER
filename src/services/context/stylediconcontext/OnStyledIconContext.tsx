@@ -129,7 +129,6 @@ export const AwesomeContextProvider = ({ children }: Props) => {
           const query = blogRelatedPost(response[0]);
           client.fetch(query).then((data) => {
             setRelatedBlog(data);
-            console.log("related respine", data);
           });
         }
       })

@@ -18,7 +18,9 @@ const DetailMoreWrapper = ({
   stockItems,
   product,
 }: TProduct) => {
-  {  /* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
 
   const { images } =
     !!defaultVariant?.images.length && (defaultVariant as TVariant);

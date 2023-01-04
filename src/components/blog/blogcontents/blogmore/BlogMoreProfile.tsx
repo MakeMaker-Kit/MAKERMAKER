@@ -23,7 +23,6 @@ const BlogMoreProfile = () => {
   const blogPosts = useSelector(BlogPosts);
   const author = blogPosts && blogPosts?.map(({ author }: TBlogs) => author);
   const social = blogPosts && blogPosts?.map(({ social }: TBlogs) => social);
-  console.log("Auth Repone", social, blogPosts);
   const {
     flexRowCenter,
     flexCol,

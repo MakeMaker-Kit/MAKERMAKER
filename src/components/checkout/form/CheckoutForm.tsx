@@ -84,7 +84,6 @@ const CheckoutForm = () => {
 
   const totalPrice = useSelector(TotalPrice);
   const { state } = USEContext();
-  console.log("checkout daat", state.checkoutData);
   const { email, city, firstname, lastname, phonenumber } =
     state.checkoutData as InitialValuesTypes;
   const componentProps = {

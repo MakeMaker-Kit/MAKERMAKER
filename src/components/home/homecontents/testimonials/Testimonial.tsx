@@ -40,7 +40,6 @@ const Testimonial = () => {
   const { singleTestimonial } = state;
   const { image, name, description, company } =
     singleTestimonial as TTestimonials;
-  console.log("resnse", singleTestimonial);
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>

@@ -34,7 +34,6 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
     isInline: boolean;
   }) => {
     const { width, height } = getImageDimensions(value.asset);
-    console.log("Imgae Logged ", value);
     return (
       <img
         src={urlBuilder()
@@ -56,7 +55,6 @@ const MainDesc = ({ body }: { body: TypedObject | TypedObject[] }) => {
   const BlogPotabletextComponents = {
     types: {
       image: ({ value }: { value: any }) => {
-        console.log("logged Imaeg", value);
         return (
           <div className={`w-full h-[400px] my-10 border-2 rounded`}>
             <img

@@ -52,7 +52,6 @@ const CheckoutSummaryCard = ({
   const decrease = () => dispatch(decreaseProductInCart());
   const removeItem = () => dispatch(removeFromCart({ _id, title }));
   const totalQuan = useSelector(TotalQuantity);
-  console.log("total Quantity Response", totalQuan);
   return (
     <li key={_id} className={`h-32 ${containerWrapper}  flex-shrink-0 py-4  `}>
       <div className={`${boxFull} ${flexRow}  `}>

@@ -34,7 +34,6 @@ const TagLayout = () => {
       cancelled = true;
     };
   }, []);
-  console.log("BlogTagPosts", blogTagPost, params);
   return (
     <>
       <MainSpinner />

@@ -27,7 +27,6 @@ const BlogProfileLayout = () => {
       cancelled = true;
     };
   }, [tagId]);
-  console.log("BlogByAuthorSlug", blogsByAuthorSlug);
   // const AuthorDetails = blogsByAuthorSlug?.map((slug: TBlogs)=> slug )
   return (
     <>

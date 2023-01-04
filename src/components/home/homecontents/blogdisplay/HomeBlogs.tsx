@@ -28,7 +28,6 @@ const HomeBlog = () => {
   React.useEffect(() => {
     fetchHomeBlog(homeBlogQuery);
   }, []);
-  console.log("Home Blog Response", homeBlog);
   return (
     <>
       <div className={cx(`${marX} ${padY}`)}>

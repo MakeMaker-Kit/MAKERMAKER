@@ -52,11 +52,10 @@ const HomeLayout = () => {
     // @ts-ignore
     dispatch(getTestimonials(hometestimonialsQuery));
   }, [dispatch]);
-  console.log("Display more response data", homeHeader);
   return (
     <>
       {loading && <MainSpinner />}
-      <CartModalLayout/>
+      <CartModalLayout />
       <div>
         {/* Header  */}
         {homeHeader?.map((content: HeaderApi) => (

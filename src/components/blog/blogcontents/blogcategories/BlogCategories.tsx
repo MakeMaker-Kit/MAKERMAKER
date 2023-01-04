@@ -28,7 +28,6 @@ const BlogCategories = () => {
   const { ArrowRightIcon } = useIcon();
   const { state } = USEContext();
   const { blogCategory } = state;
-  console.log("hblog category respoonse", blogCategory);
   return (
     <>
       <div className={`${boxFull}`}>

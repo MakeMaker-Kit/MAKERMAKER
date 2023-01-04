@@ -18,7 +18,6 @@ const Brand = () => {
     // @ts-ignore
     dispatch(fetchQuery(homebrandsQuery));
   }, [dispatch, homebrand]);
-  console.log("HomeBand", homebrand);
   return (
     <>
       <div className={cx(`mx-64 mt-10`)}>
